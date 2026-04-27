@@ -96,10 +96,10 @@ Feature("Yudoku", async () => {
     });
     When("I tap the last empty cell", when.tapID(ids.CELL_ROW_COLUMN(8, 8, 0)), async () => {
       When("I tap the correct number", when.tapID(ids.SUDOKU_NUMBER_INPUT(8)), async () => {
-        Then("I can see I am on the challenge completed screen", then.amOnYudokuCompleted(1, 1));
+        Then("I can see I am on the challenge completed screen", then.successYudokuScreen(152, 60));
       });
     });
-    When("I tap collect", when.tapCollect, async () => {
+    When("I tap continue on the challenge success screen", when.tapChallengeSuccessCta(5000), async () => {
       Then("I should see the level 152", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(152)));
       Then("I should see yuCoin has increased", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)));
     });
@@ -290,10 +290,8 @@ Feature("Yudoku", async () => {
         When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
           When("I tap the soduku challenge", when.tapSudoku, async () => {
             When("I complete the Yudoku", when.completeYudoku(false), async () => {
-              When("I scroll down the challenges info hint", when.scrollFromID(ids.HINT_VARIANT("challenges"), "up", "fast"), async () => {
-                When("I tap collect", when.tapText("Collect"), async () => {
-                  Then("I should see my first streak completed", then.idVisible(ids.STREAK_TICKS("1", true), 5000));
-                });
+              When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
+                Then("I should see my first streak completed", then.idVisible(ids.STREAK_TICKS("1", true), 5000));
               });
             });
           });
@@ -377,10 +375,10 @@ Feature("Yudoku", async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage);
     });
     When("I complete the Yudoku", when.completeYudoku(false), async () => {
-      Then("I should see my reward of 60 coins", then.idVisible(ids.SUDOKU_STAT("Reward", "60"), 4000));
+      Then("I should see the yudoku success screen", then.successYudokuScreen(5, 60));
       Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
     });
-    When("I tap collect", when.tapCollect, async () => {
+    When("I tap continue", when.tapChallengeSuccessCta(5000), async () => {
       Then("I should see my completed streak modal", then.idVisible(ids.STREAK_TICKS("5", true), 5000));
     });
     When("I tap to collect my streak reward", when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000), async () => {

@@ -1,5 +1,5 @@
 import { Box, LevelLine, Stars, TextTemplate } from "@atoms";
-import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
+import { CHALLENGE_SUCCESS_CTA, CHALLENGE_SUCCESS_SCREEN } from "@ids";
 import { t } from "@locale";
 import { AnimatedPlusPoints, CentredScreen } from "@molecules";
 import { ItemDetailsReward } from "@organisms";
@@ -65,7 +65,7 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
       <BlurredRaysWrapper
         testID={CHALLENGE_SUCCESS_SCREEN}
         buttonLabel={t("labels.cta.continue")}
-        buttonTestID="CHALLENGE_SUCCESS_CTA"
+        buttonTestID={CHALLENGE_SUCCESS_CTA}
         onButtonPress={onPressCta}
         isLoading={false}
         isBlurred={false}

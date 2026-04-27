@@ -1,4 +1,4 @@
-import { Feature, Given, When, Then, Scenario } from "@yu-life/yulife-bdd-framework";
+import { Feature, Given, When, Then, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -33,7 +33,7 @@ Feature("As a user I can use the streaks functionality", async () => {
       When("I walk over 300 steps", when.sendSteps(400, 38000), async () => {
         Then("I should see the well done screen", then.onChallengeComplete(400, 1));
       });
-      When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+      When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
         Then("I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1));
       });
       When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2500), async () => {
@@ -68,7 +68,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(400, 2));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT, 3000), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see the completed streak day 2 modal", then.completedTodayStreakCopyVisible(2));
     });
     When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
@@ -103,7 +103,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(400, 5));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT, 3000), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see my reward of 400 coins", then.idVisible(ids.STREAKS_SCREEN_BUTTON, 2000));
     });
     When("I tap collect 400 YuCoin", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
@@ -138,7 +138,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(400, 3));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1));
     });
   });
@@ -175,7 +175,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         });
       });
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT, 3000), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see my streak is completed", then.completedTodayStreakCopyVisible(5));
     });
     When("I click Collect", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
@@ -195,7 +195,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I tap quests", when.tapID(ids.NAV_BAR("quests"), 2000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(450, 4));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560), 3000));
     });
   });
@@ -208,7 +208,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(4000, 51));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(840)));
       Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
     });
@@ -230,7 +230,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I walk over 300 steps", when.sendSteps(305, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(305, 52));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1));
     });
     When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {

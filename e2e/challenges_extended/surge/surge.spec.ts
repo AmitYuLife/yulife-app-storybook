@@ -23,7 +23,7 @@ Feature("Surges work as intended", async () => {
       Then("I should see the well done screen", then.textVisible("Well done!"));
       Then("I should see +400 reward", then.idVisible(ids.CHALLENGE_REWARD(400)));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
         Then("I should see I have 800 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(600)));
       });
@@ -56,7 +56,7 @@ Feature("Surges work as intended", async () => {
       Then("I should see the well done screen", then.textVisible("Well done!"));
       Then("I should see +80 reward", then.idVisible(ids.CHALLENGE_REWARD(80)));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
         Then("I should see I have 320 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(280)));
       });

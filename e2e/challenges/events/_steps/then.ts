@@ -24,7 +24,7 @@ export const {
 
 export const {} = screens.streaks;
 
-export const { onChallengeComplete } = screens.challenges;
+export const { onChallengeComplete, stepsChallengeDataCorrect } = screens.challenges;
 
 export const { scrollUntilTextVisible, swipeFromText } = navigation.scrolling;
 
@@ -165,14 +165,6 @@ export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
   await idVisibleAtIndex(ids.CHALLENGE_REWARD("60"), 2)();
 };
 
-export const stepsChallengeDataCorrect =
-  (level: number, yucoinEarned: number, steps: number) => async () => {
-    await textVisible(`Level ${level}`)();
-    await textVisible(`${yucoinEarned}`)();
-    await textVisible(`${steps} steps`)();
-    await idVisible(ids.CHALLENGE_STARS(true, true, true))();
-  };
-
 export const firstChallengeClaimedVisible = async () => {
   await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardTitle)();
   await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)();
@@ -212,13 +204,6 @@ export const yuCoinTodayEarned =
     const sum = challengeTotals.reduce((acc, val) => acc + val, 0);
     const yuCoinToday = `${addCommasToNumber(sum + milestoneTotal * 10)} YuCoin today`;
     await textVisible(yuCoinToday)();
-  };
-
-export const meditationChallengeDataCorrect =
-  (stage: number, yucoinEarned: number, mins: number) => async () => {
-    await textVisible(`Stage ${stage}`)();
-    await textVisible(`${yucoinEarned}`)();
-    await textVisible(`${mins} minutes`)();
   };
 
 export const challengesAndYuCoinsAwardedVisible = async () => {

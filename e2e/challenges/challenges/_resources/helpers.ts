@@ -160,10 +160,10 @@ export const END_WALKING_CHALLENGE_FAKE_TIME = async () => {
   When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
     Then("I should see the well done screen", then.onChallengeComplete(3050, 7));
   });
-  When("I tap collect on the well done screen", when.tapText("Collect", 1000), async () => {
+  When("I tap continue on the well done screen", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
     Then("I should see the chest modal appear", then.idVisible(ids.ANIMATED_CHEST_MODAL, 3000));
   });
-  When("I tap collect to open the chest", when.tapText("Open the chest", 3000), async () => {
+  When("I tap to open the chest", when.tapText("Open the chest", 3000), async () => {
     Then("I should see the chest unlocked screen", then.textVisible("You’ve earned YuCoin!", 3000));
   });
   When("I tap to continue", when.tapID(ids.ANIMATED_CHEST_BUTTON, 3000), async () => {

@@ -24,6 +24,8 @@ export const {
   canSeeChallengeTiles,
   yunityRewardsVisible,
   successScreenNotHintVisible,
+  stepsChallengeDataCorrect,
+  meditationChallengeDataCorrect,
 } = screens.challenges;
 
 export const { swipeFromText, scrollUntilIdVisible, scrollFromID } = navigation.scrolling;
@@ -97,20 +99,6 @@ export const stepsDoneToday = (steps: number) => async () => {
   const stepsComma = addCommasToNumber(steps);
   await textVisible(`${stepsComma} steps`)();
 };
-
-export const stepsChallengeDataCorrect =
-  (stage: number, yucoinEarned: number, steps: number) => async () => {
-    await textVisible(`Stage ${stage}`)();
-    await textVisible(`${yucoinEarned}`)();
-    await textVisible(`${steps} steps`)();
-  };
-
-export const meditationChallengeDataCorrect =
-  (stage: number, yucoinEarned: number, mins: number) => async () => {
-    await textVisible(`Stage ${stage}`)();
-    await textVisible(`${yucoinEarned}`)();
-    await textVisible(`${mins} minutes`)();
-  };
 
 export const celestialChestEarned = async () => {
   await wait(2000)();

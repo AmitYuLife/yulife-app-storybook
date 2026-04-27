@@ -93,7 +93,7 @@ export const END_MEDITATION_FAKE_TIME = async () => {
 
   jest.useRealTimers();
 
-  When("I tap collect on the well done screen", when.tapText("Collect", 5000), async () => {
+  When("I tap continue on the well done screen", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
     Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
   });
 };

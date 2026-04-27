@@ -42,7 +42,7 @@ Feature("Level boosts", async () => {
         });
       });
     });
-    When("I Tap collect", when.tapText("Collect", 3000), async () => {
+    When("I Tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       Then("I can see the yucoin balance is correct", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(680)));
     });
     When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu"), 3000), async () => {

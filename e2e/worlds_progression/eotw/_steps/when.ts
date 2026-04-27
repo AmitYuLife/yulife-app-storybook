@@ -17,7 +17,7 @@ export const {
 
 export const { loginAsUser } = navigation.login;
 
-export const { startChallenge, startChallengeFromQuests } = screens.challenges;
+export const { startChallenge, startChallengeFromQuests, tapChallengeSuccessCta } = screens.challenges;
 
 export const { scrollFromID, swipeFromText, scrollUntilIdVisible } = navigation.scrolling;
 

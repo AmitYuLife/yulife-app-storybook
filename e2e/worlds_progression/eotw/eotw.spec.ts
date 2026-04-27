@@ -36,7 +36,7 @@ Feature("End of the world/Yuniverse", async () => {
     When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
       Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 48, 400));
     });
-    When("I tap collect", when.tapText("Collect", 3000), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(3000), async () => {
       When("I tap done", when.tapText("Done", 3000), async () => {
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17748), 2500));
         Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));
@@ -63,7 +63,7 @@ Feature("End of the world/Yuniverse", async () => {
     When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk Walk", 1200), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 72, 400 + 1200));
     });
-    When("I tap collect", when.tapText("Collect", 3000), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(3000), async () => {
       Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));
       Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17820)));
     });
@@ -89,7 +89,7 @@ Feature("End of the world/Yuniverse", async () => {
     When("I complete a long walk challenge at level 251", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 96, 400 + 1200 + 2000));
     });
-    When("I tap collect", when.tapText("Collect", 3000), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(3000), async () => {
       Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));
       Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17922), 2500));
     });
@@ -116,7 +116,7 @@ Feature("End of the world/Yuniverse", async () => {
     When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge(180), async () => {
       Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 48, 3));
     });
-    When("I tap collect", when.tapText("Collect", 3000), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(3000), async () => {
       When("I go to quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
         Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17970)));
@@ -189,7 +189,7 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
     When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-      When("I tap collect", when.tapText("Collect"), async () => {
+      When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
         When("I tap done", when.tapText("Done"), async () => {
           Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
           Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18344), 2000));
@@ -203,7 +203,7 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
     When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
-      When("I tap collect", when.tapText("Collect"), async () => {
+      When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
         Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18380), 2000));
       });
@@ -215,7 +215,7 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
     When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
-      When("I tap collect", when.tapText("Collect"), async () => {
+      When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
         Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18434), 2000));
       });
@@ -227,7 +227,7 @@ Feature("End of the world/Yuniverse", async () => {
       Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible);
     });
     When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallenge(180), async () => {
-      When("I tap collect", when.tapText("Collect"), async () => {
+      When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
         Then("I should see the level 201 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
         Then("I should see level 201 has 3 stars", then.idVisible(ids.LEVEL_STAR_COUNT(3)));
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18446), 2000));
@@ -291,7 +291,7 @@ Feature("End of the world/Yuniverse", async () => {
         Then("I should not see the hint, as I am over level 150", then.successScreenNotHintVisible);
       });
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       When("I tap done", when.tapText("Done"), async () => {
         Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
       });
@@ -304,7 +304,7 @@ Feature("End of the world/Yuniverse", async () => {
     });
     When("I tap level 201 button a second time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
       When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
-        When("I tap collect", when.tapText("Collect"), async () => {
+        When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
           Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)));
           Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)));
         });
@@ -469,7 +469,7 @@ Feature("End of the world/Yuniverse", async () => {
     When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
       Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 80, 400));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       When("I tap done", when.tapText("Done", 3000), async () => {
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500 + 80), 3000));
         Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));
@@ -551,7 +551,7 @@ Feature("End of the world/Yuniverse", async () => {
     When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
       Then("I should see the correct challenge details on screen", then.stepsChallengeDataCorrect(1, 80, 400));
     });
-    When("I tap collect", when.tapText("Collect", 3000), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(3000), async () => {
       When("I tap done", when.tapText("Done", 3000), async () => {
         Then("I should see the YuCoin counter updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500 + 80), 3000));
         Then("I should be returned to the Yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)));

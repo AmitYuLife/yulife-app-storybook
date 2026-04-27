@@ -30,7 +30,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(5, 1, "40"));
       });
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {
+    When("I tap continue on the well done screen", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapText("Done", 5000, true), async () => {
@@ -65,7 +65,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible);
       });
     });
-    When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+    When("I tap continue on the well done screen", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
@@ -184,7 +184,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         });
       });
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {
+    When("I tap collect on the well done screen", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapText("Done", 5000, true), async () => {
