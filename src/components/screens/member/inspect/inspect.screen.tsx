@@ -1,8 +1,8 @@
-import React, { memo, useMemo } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { Pressable, Yumoji } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad, GiftSendPrompt, NameLevelMiniAvatar } from "@organisms";
-import { Style, StyleSheet } from "@styles";
-import { Platform, ScrollView, View, ViewStyle } from "react-native";
+import { Style, StyleSheet, TOP_BAR } from "@styles";
+import { NativeScrollEvent, NativeSyntheticEvent, Platform, ScrollView, View, ViewStyle } from "react-native";
 import { t } from "@locale";
 import { INSPECT_SCREEN, YUMOJI, USER_INFO } from "@ids";
 import AverageStatsSection, { ActivityItems } from "./sections/average.stats.section";
@@ -32,7 +32,7 @@ export interface InspectProps {
   challengeDuel: VoidFunction;
   onYumojiPress: VoidFunction;
   onGiftPress?: VoidFunction;
-  componentId?: string;
+  componentId: string;
   showAchievements: boolean;
   achievement: IAchievement;
   currentViewedUserId: string;
@@ -70,6 +70,22 @@ const InspectScreen = ({
   );
 
   const { bottom } = useSafeAreaInsets();
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  const onScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (!showAchievements) {
+        return;
+      }
+
+      const scrolled = event.nativeEvent.contentOffset.y > AVATAR_HEIGHT;
+
+      setScrolledPastHero((prevScrolled) => (scrolled !== prevScrolled ? scrolled : prevScrolled));
+    },
+    [showAchievements]
+  );
+
+  const useAchievementHeader = showAchievements && !scrolledPastHero;
 
   const imagesStyles = useMemo(() => {
     return {
@@ -86,15 +102,25 @@ const InspectScreen = ({
 
   return (
     <View style={styles.wrapper} testID={INSPECT_SCREEN}>
-      <GenericHeadingPad />
+      {showAchievements ? null : <GenericHeadingPad />}
       <ScrollView
         bounces={!showAchievements}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.containerStyle}
         testID={USER_INFO(`${userName} ${level}`)}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
       >
         {showAchievements ? (
-          <Box flexDirection="row" ph={24} pt={12} pr={5} mb={58} bg={achievement?.backgroundColor} maxHeight={338}>
+          <Box
+            flexDirection="row"
+            ph={Style.adjust(24)}
+            pt={TOP_BAR.TOP_BAR_WITH_PAD + Style.adjust(12)}
+            pr={Style.adjust(5)}
+            mb={Style.adjust(58)}
+            bg={achievement?.backgroundColor}
+            disableAutoAdjust={true}
+          >
             {achievement?.backgroundImage?.uri ? (
               <>
                 <Image
@@ -179,7 +205,13 @@ const InspectScreen = ({
         </Box>
       </ScrollView>
 
-      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onClose} />
+      <GenericHeadingAbsolute
+        logo="yulife"
+        logoType={useAchievementHeader && achievement?.topBarType === "white" ? "inverted" : undefined}
+        onLeftIconPress={onClose}
+        backgroundColor={useAchievementHeader ? achievement?.backgroundColor : undefined}
+        color={useAchievementHeader ? achievement?.textColor : undefined}
+      />
     </View>
   );
 };
@@ -191,7 +223,7 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
   },
   containerStyle: {
-    paddingBottom: Style.adjust(Platform.select({ ios: 20, android: 50 })),
+    paddingBottom: Style.adjust(Platform.select({ ios: 20, android: 50, default: 20 })),
   },
   yumojiWrapper: {
     alignItems: "center",
