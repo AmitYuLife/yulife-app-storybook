@@ -11,6 +11,7 @@ import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.sel
 import { ChallengeCompletionSummary } from "@redux/levels/levels.types";
 import { Style, StyleSheet } from "@styles";
 import { getTheme } from "@theme";
+import Hint from "@components/molecules/hint/hint";
 
 import { FadeInDown } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +21,7 @@ import { AppDataType } from "@redux/user/user.types";
 import { useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Platform } from "react-native";
+import { MAX_EXTRA_CHALLENGES_HINT_LEVEL } from "@services/constants";
 
 interface IProps {
   onPressCta: () => void;
@@ -34,14 +36,13 @@ const REWARD_IMAGE_SIZE = Style.adjust(140);
 const REWARD_IMAGE_SIZE_YUCOIN = 90;
 const ANIMATION_START_DELAY = 300;
 
-const STATS_WIDTH = Style.DEVICE_WIDTH * 0.85;
-
 const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionSummary }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const totalCoins = useSelector(getTotalCoins);
   const { top } = useSafeAreaInsets();
   const dispatch = useDispatch();
+  const showChallengesHint = currentLevel >= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
   useEffect(() => {
     dispatch(
@@ -75,6 +76,7 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
           alignItems="center"
           gap={Style.adjust(24)}
           h="100%"
+          width="100%"
           pt={Platform.OS === "android" ? top + 45 : 45}
           disableAutoAdjust={true}
         >
@@ -119,7 +121,16 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
             </Box>
           </Box>
 
-          <ChallengeStats width={STATS_WIDTH} completionSummary={completionSummary} />
+          <Box width="100%" ph={28} gap={40}>
+            <ChallengeStats completionSummary={completionSummary} />
+            {showChallengesHint ? (
+              <Hint
+                label={t("hints.unlock_more_challenges.title")}
+                description={t("hints.unlock_more_challenges.description")}
+                variant="challenges"
+              />
+            ) : null}
+          </Box>
         </Box>
       </BlurredRaysWrapper>
     </CentredScreen>
