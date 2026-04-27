@@ -15,7 +15,6 @@ import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { Image } from "react-native";
 
 interface IChallengeStatsProps {
-  width: number;
   completionSummary?: ChallengeCompletionSummary | null;
 }
 
@@ -76,7 +75,7 @@ function renderScore(type: ChallengeCategory, score: number) {
 
 const ICON_SIZE = 24;
 
-const ChallengeStats = ({ width, completionSummary }: IChallengeStatsProps) => {
+const ChallengeStats = ({ completionSummary }: IChallengeStatsProps) => {
   const totalResult = useTotalResult(completionSummary);
 
   if (!completionSummary) {
@@ -92,8 +91,8 @@ const ChallengeStats = ({ width, completionSummary }: IChallengeStatsProps) => {
       px={BOX_PADDING}
       pv={BOX_PADDING}
       mt={BOX_PADDING}
-      width={width}
       disableAutoAdjust={true}
+      width="100%"
     >
       {completionSummary.entries.map((entry, index) => {
         const result = entry.type === ChallengeCompletionSummaryEntryType.Total ? totalResult : entry.result;
