@@ -26,7 +26,7 @@ tsc-check:
 
 lint:
   extends:
-    - .generic-node
+    - .generic-node-arm64
     - .cache-pull
   stage: quality
   # Cancel job if newer commit made
@@ -34,6 +34,7 @@ lint:
   variables:
     GIT_DEPTH: 0 # disable shallow clone for 'git diff'
     ESLINT_CODE_QUALITY_REPORT: eslint-codequality.json
+    NODE_OPTIONS: --max-old-space-size=4096
   script:
     - |
       # Install Node
