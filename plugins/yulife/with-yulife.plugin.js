@@ -3,6 +3,7 @@ const withYulifeDelegate = require("./with-yulife-delegate");
 const withYulifeFirebaseMessagingPlugin = require("./with-yulife-firebase-messaging.plugin");
 const withYulifeAndroidManifestPlugin = require("./with-yulife-android-manifest.plugin");
 const withYulifeAndroidStylesPlugin = require("./with-yulife-android-styles.plugin");
+const withYulifeAndroidTextCompatPlugin = require("./with-yulife-android-text-compat.plugin");
 const withYulifePodsPlugin = require("./with-yulife-pods.plugin");
 const withYulifeStringsPlugin = require("./with-yulife-strings.plugin");
 const withYulifeSupportPlugin = require("./with-yulife-support.plugin");
@@ -18,6 +19,7 @@ module.exports = (app) => {
     withYulifeStringsPlugin,
     withYulifeAndroidManifestPlugin,
     withYulifeAndroidStylesPlugin,
+    withYulifeAndroidTextCompatPlugin,
     withYulifeFirebaseMessagingPlugin,
     withYulifeBugsnagFix,
   ]);

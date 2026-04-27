@@ -209,6 +209,19 @@ module.exports = {
         "strict-null-checks/all": "off",
       },
     },
+    {
+      files: ["plugins/**/*.js"],
+      env: {
+        node: true,
+      },
+      parserOptions: {
+        project: null,
+      },
+      rules: {
+        "@typescript-eslint/no-deprecated": "off",
+        "strict-null-checks/all": "off",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
