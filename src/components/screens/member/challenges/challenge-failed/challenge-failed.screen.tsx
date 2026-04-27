@@ -1,5 +1,4 @@
-import { LevelLine, Stars, Text } from "@atoms";
-import * as React from "react";
+import { Box, LevelLine, Stars, TextTemplate } from "@atoms";
 import { View } from "react-native";
 import styles from "./challenge-failed.screen.styles";
 import { Button, CentredScreen } from "@molecules";
@@ -7,7 +6,6 @@ import { t } from "@locale";
 import { getTheme } from "@theme";
 import { CHALLENGE_FAILED_SCREEEN } from "@ids";
 
-import { StyleSheet } from "@styles";
 interface IProps {
   level?: number;
   yuniversalMap?: number;
@@ -16,27 +14,29 @@ interface IProps {
 }
 
 const ChallengeFailedScreen = ({ level, yuniversalMap, onPress, loading }: IProps) => {
-  const { challengeFailedScreen } = getTheme(level, yuniversalMap);
+  const { challengeFailedScreen } = getTheme(level ?? 1, yuniversalMap);
+  const textColor = challengeFailedScreen.textStyle.color;
 
   return (
     <CentredScreen {...challengeFailedScreen}>
       <View style={styles.ratingWrapper} testID={CHALLENGE_FAILED_SCREEEN}>
         <Stars />
-        <View style={styles.levelWrapper}>
-          <View style={styles.levelLineWrapper}>
-            <LevelLine colour={challengeFailedScreen.lineColour} />
-          </View>
-          <Text style={StyleSheet.flatten([styles.level, challengeFailedScreen.textStyle])}>
+        <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8} mt={5} mb={24}>
+          <LevelLine colour={challengeFailedScreen.lineColour} half="left" />
+          <TextTemplate type="l1" color={textColor} textAlign="center">
             {yuniversalMap ? t("screens.challenge_failed.stage", { level }) : t("labels.level", { level })}
-          </Text>
-        </View>
+          </TextTemplate>
+          <LevelLine colour={challengeFailedScreen.lineColour} half="right" />
+        </Box>
       </View>
-      <Text bold={true} style={StyleSheet.flatten([styles.heading, challengeFailedScreen.textStyle])}>
-        {t("screens.challenge_failed.heading")}
-      </Text>
-      <Text style={StyleSheet.flatten([styles.secondaryText, challengeFailedScreen.textStyle])}>
+      <Box mt={6} mb={16}>
+        <TextTemplate type="big40" color={textColor}>
+          {t("screens.challenge_failed.heading")}
+        </TextTemplate>
+      </Box>
+      <TextTemplate type="b1" color={textColor} lineHeight={24}>
         {t("screens.challenge_failed.footer")}
-      </Text>
+      </TextTemplate>
       <Button
         isLoading={loading}
         wrapperStyle={styles.cta}
