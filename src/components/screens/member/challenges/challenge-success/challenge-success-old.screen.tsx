@@ -1,5 +1,4 @@
 import { Colours } from "@styles";
-import * as React from "react";
 import { ScrollView } from "react-native";
 import { LevelLine, Box, Stars, TextTemplate, RawImage } from "@atoms";
 import { t } from "@locale";
@@ -40,7 +39,7 @@ const ChallengeSuccessOldScreen = ({
   yuniversalMap,
 }: IChallengeSuccessOldScreenProps) => {
   const dispatch = useDispatch();
-  const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
+  const { challengeSuccessScreen } = getTheme(level ?? 1, yuniversalMap);
   const currentLevel = useSelector(getCurrentLevel);
   const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
@@ -65,15 +64,12 @@ const ChallengeSuccessOldScreen = ({
         <Box alignItems="center">
           <Box alignItems="center" mt={40}>
             <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-            <Box alignItems="center" justifyContent="center" mt={5} mb={24}>
-              <Box position="absolute">
-                <LevelLine colour={challengeSuccessScreen.lineColour} />
-              </Box>
-              <Box collapsable={false}>
-                <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-                  {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
-                </TextTemplate>
-              </Box>
+            <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8} mt={5} mb={24}>
+              <LevelLine colour={challengeSuccessScreen.lineColour} half="left" />
+              <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+                {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
+              </TextTemplate>
+              <LevelLine colour={challengeSuccessScreen.lineColour} half="right" />
             </Box>
           </Box>
           <Box alignItems="center" mb={16} mt={6}>
