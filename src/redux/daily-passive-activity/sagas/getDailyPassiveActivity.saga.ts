@@ -18,11 +18,18 @@ import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { getAggregationCyclingConfiguration, getMindfulSessionFitKitTypes } from "@services/fitkit/fitkit.config";
 import { IFeature } from "@redux/user/user.types";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
-import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
+import {
+  BucketSize,
+  HealthDataType,
+  HealthPermissionStatus,
+  HealthProviderCapability,
+  IAggregateQueryResponse,
+} from "@yu-life/react-native-yu-health";
 import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.types";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 import { toReduxChallenge } from "./utils";
 import { GET_USER_TODAY_ACTIVITY_SUCCESS, getUserTodayActivitySuccess } from "@redux/user/user.actions";
+import { getCapabilityStatuses } from "@redux/yu-health/yu-health.selectors";
 
 export default function* getDailyPassiveActivity(
   dataPayload:
@@ -52,17 +59,25 @@ export default function* getDailyPassiveActivity(
     }
 
     const setDefaultPermissionCheck = features.disableCheckPermission || Platform.OS === "ios";
-    const [meditationPermissionGranted, cyclingPermissionGranted] = yield all([
-      setDefaultPermissionCheck
-        ? true
-        : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
-      setDefaultPermissionCheck
-        ? true
-        : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
-    ]);
+    const capabilityStatuses: ReturnType<typeof getCapabilityStatuses> = yield select(getCapabilityStatuses);
+    const shouldUseYuHealthPermissions = !setDefaultPermissionCheck && features.tempGameEnableReleaseYuHealthV4;
+
+    const [meditationPermissionGranted, cyclingPermissionGranted] = shouldUseYuHealthPermissions
+      ? [
+          capabilityStatuses?.[HealthProviderCapability.MINDFUL_MINUTES] === HealthPermissionStatus.granted,
+          capabilityStatuses?.[HealthProviderCapability.CYCLING_DISTANCE] === HealthPermissionStatus.granted,
+        ]
+      : yield all([
+          setDefaultPermissionCheck
+            ? true
+            : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
+          setDefaultPermissionCheck
+            ? true
+            : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
+        ]);
 
     if ((!meditationPermissionGranted || !cyclingPermissionGranted) && features.loggingEnabled) {
-      Logger.info("Google Fit permissions not granted", {
+      Logger.info("Health provider permissions not granted", {
         permissions: {
           cycling: cyclingPermissionGranted,
           meditation: meditationPermissionGranted,
@@ -119,11 +134,11 @@ export default function* getDailyPassiveActivity(
         const challenges = mutationResult?.challenges ?? [];
 
         for (const challenge of challenges) {
-          if (challenge?.incomingData.meditation > 0) {
+          if ((challenge?.incomingData?.meditation ?? 0) > 0) {
             yield put(updateDailyMeditation(toReduxChallenge(challenge)));
           }
 
-          if (challenge?.incomingData.distance > 0) {
+          if ((challenge?.incomingData?.distance ?? 0) > 0) {
             yield put(updateDailyCycling(toReduxChallenge(challenge)));
           }
         }
@@ -280,7 +295,7 @@ const parseYuHealthMeditation = (
 
 const parseMeditation = (
   inAppMeditation: IAppDailyMeditationProps,
-  fitkitMeditation: QueryFitKitByTypesResponse
+  fitkitMeditation: QueryFitKitByTypesResponse | null
 ): QueryFitKitByTypesResponse => {
   const getStartTime = () => {
     return inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).format() : moment().format();
@@ -294,21 +309,13 @@ const parseMeditation = (
     isInApp: true,
   };
 
-  if (!fitkitMeditation && !inAppMeditation.duration) {
-    return {
-      error: true,
-      results: [],
-    };
+  if (!fitkitMeditation) {
+    return inAppMeditation.duration
+      ? { error: false, results: [inAppMeditationResponse] }
+      : { error: true, results: [] };
   }
 
-  if (!fitkitMeditation && inAppMeditation.duration) {
-    return {
-      error: false,
-      results: [inAppMeditationResponse],
-    };
-  }
-
-  if (fitkitMeditation && !inAppMeditation.duration) {
+  if (!inAppMeditation.duration) {
     return fitkitMeditation;
   }
 

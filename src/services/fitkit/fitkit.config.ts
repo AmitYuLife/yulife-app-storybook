@@ -8,12 +8,13 @@ export const getAggregationCyclingConfiguration = (features: IUserStore["feature
   const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
 
   return {
-    timeRange: Platform.select({
-      // Android is actually 'minimum time', so one second is appropriate
-      android: TimeRange.SECONDS,
-      // iOS is bucket size
-      ios: TimeRange.DAYS,
-    }),
+    timeRange:
+      Platform.select({
+        // Android is actually 'minimum time', so one second is appropriate
+        android: TimeRange.SECONDS,
+        // iOS is bucket size
+        ios: TimeRange.DAYS,
+      }) ?? TimeRange.DAYS,
     fitKitTypes: [FitKitType.Cycling, ...additionalFitnessActivities],
     aggregationType: AggregationType.ActivitySegment,
   };
@@ -47,11 +48,11 @@ const buildActivityTimeRange = (range?: string) => {
   }
 };
 
-export const getMindfulSessionFitKitTypes = () =>
+export const getMindfulSessionFitKitTypes = (): FitKitType[] =>
   Platform.select({
     android: [FitKitType.MindfulSession, FitKitType.GuidedBreathing],
     ios: [FitKitType.MindfulSession],
-  });
+  }) ?? [FitKitType.MindfulSession];
 
 export const getAggregationMindfulSessionConfiguration = () => ({
   fitKitTypes: getMindfulSessionFitKitTypes(),

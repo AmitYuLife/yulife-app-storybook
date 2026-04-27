@@ -15,8 +15,15 @@ import {
   getAggregationMindfulSessionConfiguration,
 } from "@services/fitkit/fitkit.config";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
-import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
+import {
+  BucketSize,
+  HealthDataType,
+  HealthPermissionStatus,
+  HealthProviderCapability,
+} from "@yu-life/react-native-yu-health";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import { getCapabilityStatuses } from "@redux/yu-health/yu-health.selectors";
+import { IYuHealthStore } from "@redux/yu-health/yu-health.reducer";
 
 export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
@@ -31,9 +38,11 @@ export default function* getPassiveSinceLastUpdateAndroid(
     meditationLastUpdate,
     cyclingLastUpdate
   );
+  const capabilityStatuses: IYuHealthStore["capabilityStatuses"] = yield select(getCapabilityStatuses);
   const { meditationPermissionGranted, cyclingPermissionGranted, fineLocationGranted } = yield call(
     checkPermissions,
-    userFeatures
+    userFeatures,
+    capabilityStatuses
   );
   const queryCycling = cyclingLastUpdate && fineLocationGranted && cyclingPermissionGranted;
   const queryMeditation = meditationLastUpdate && meditationPermissionGranted;
@@ -52,7 +61,7 @@ const getCycling = async (
   cyclingLastUpdate: string,
   endDateCycling: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, any>
+  metaData: Record<string, string>
 ): Promise<ChallengesPayload[]> => {
   if (!queryCycling) {
     return [];
@@ -95,7 +104,7 @@ const getMeditation = async (
   meditationLastUpdate: string,
   endDateMeditation: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, any>
+  metaData: Record<string, string>
 ): Promise<ChallengesPayload[]> => {
   if (!queryMeditation) {
     return [];
@@ -135,7 +144,7 @@ const getSteps = async (
   endDateSteps: moment.Moment,
   stepsBlackListApps: string[],
   features: IUserStore["features"],
-  metaData: Record<string, any>
+  metaData: Record<string, string>
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -170,21 +179,28 @@ const getSteps = async (
   return processYuHealthResult(yuHealthMeditation, start.clone(), endDateSteps, PassiveChallengeType.Steps);
 };
 
-const checkPermissions = async (userFeatures: IUserStore["features"]) => {
+const checkPermissions = async (
+  userFeatures: IUserStore["features"],
+  capabilityStatuses: IYuHealthStore["capabilityStatuses"]
+) => {
   const setDefaultPermissionCheck = userFeatures.disableCheckPermission;
 
   const [meditationPermissionGranted, cyclingPermissionGranted, fineLocationGranted] = await Promise.all([
     setDefaultPermissionCheck
       ? true
+      : userFeatures.tempGameEnableReleaseYuHealthV4
+      ? capabilityStatuses?.[HealthProviderCapability.MINDFUL_MINUTES] === HealthPermissionStatus.granted
       : RNFitKit.isAuthorised({ read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
     setDefaultPermissionCheck
       ? true
+      : userFeatures.tempGameEnableReleaseYuHealthV4
+      ? capabilityStatuses?.[HealthProviderCapability.CYCLING_DISTANCE] === HealthPermissionStatus.granted
       : RNFitKit.isAuthorised({ read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
     PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION"),
   ]);
 
   if ((!meditationPermissionGranted || !cyclingPermissionGranted) && userFeatures?.loggingEnabled) {
-    Logger.info("Google Fit permissions not granted", {
+    Logger.info("Health provider permissions not granted", {
       permissions: {
         cycling: cyclingPermissionGranted,
         meditation: meditationPermissionGranted,
