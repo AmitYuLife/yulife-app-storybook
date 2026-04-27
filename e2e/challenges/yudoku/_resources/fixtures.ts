@@ -2,6 +2,8 @@ import { CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, SUDOKU_ANSWER_67, SUDOKU_ANSWER_
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
 import { getDuration } from "@socket";
 
+export const yudokuTimeOnSuccessCard = /^(\d+h )?\d+m \d+s$/;
+
 // Cersei
 export const User71LeaderboardItemSudoku: UserLeaderboardListItem = {
     name: `${CUSTOMER_71.data.firstName} ${CUSTOMER_71.data.lastName}`,

@@ -30,10 +30,10 @@ export const completeNewWorldShortStroll = (levelNumber: number) => async () => 
   await navigateViaText("Let's do it", 2000);
   await startChallenge("Short Stroll")();
   await sendSteps(400, 35000)();
-  await waitFor(element(by.text("Collect")))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(5000);
-  await navigateViaText("Collect", 3000);
+  await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
   await navigateViaText("Open the chest", 3000);
   await navigateViaText("Continue", 3000);
   await navigateViaText("Done", 3000);
@@ -42,10 +42,10 @@ export const completeNewWorldShortStroll = (levelNumber: number) => async () => 
 export const completYuniversWorldShortStroll = async () => {
   await startChallenge("Short Stroll")();
   await sendSteps(400, 35000)();
-  await waitFor(element(by.text("Collect")))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(5000);
-  await navigateViaText("Collect");
+  await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
   await waitFor(element(by.text("Done")))
     .toBeVisible()
     .withTimeout(5000);
@@ -60,10 +60,10 @@ export const completeChallenge = (levelNumber: number, challengeType: string) =>
   await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
-  await waitFor(element(by.text("Collect")))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(5000);
-  await navigateViaText("Collect");
+  await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
   await navigateViaText("Done");
 };
 
@@ -71,20 +71,20 @@ export const completeSecondChallenge = (levelNumber: number, challengeType: stri
   await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
-  await waitFor(element(by.text(t("Collect"))))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(5000);
-  await navigateViaText(t("Collect"));
+  await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
 };
 
 export const selectAndCompleteWalkingChallenge =
   (challengeType: string, steps: number) => async () => {
     await startChallenge(challengeType)();
     await sendSteps(steps, 35000)();
-    await waitFor(element(by.text(t("Collect"))))
+    await waitFor(element(by.text("Continue")))
       .toBeVisible()
       .withTimeout(5000);
-    await navigateViaText(t("Collect"));
+    await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
   };
 
 export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
@@ -102,8 +102,8 @@ export const selectAndCompleteMeditationChallengeWithMedia =
     await swipeFromText("Or use an app", "up", "slow")();
     await tapText("Use a different app")();
     await sendMindfulnessData(mindfulnessdata, 75000)();
-    await waitFor(element(by.text("Collect")))
+    await waitFor(element(by.text("Continue")))
       .toBeVisible()
       .withTimeout(5000);
-    await navigateViaText("Collect"), 2000;
+    await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
   };

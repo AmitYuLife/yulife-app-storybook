@@ -21,7 +21,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I wait to complete this challenge", when.wait(65000), async () => {
       Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 5));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       Then("I should see the streak completed screen", then.completedTodayStreakCopyVisible(5));
       Then("I should see the number of points I just earned", then.textVisible("Collect 300 YuCoin"));
     });
@@ -49,7 +49,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I walk 450 steps", when.sendSteps(450, 33000), async () => {
       Then("I should be on the challenge complete screen", then.onChallengeComplete(450, 90));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1));
     });
     When("I tap done", when.tapText("Done"), async () => {
@@ -75,7 +75,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I wait to complete this challenge", when.wait(65000), async () => {
       Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1));
     });
     When("I tap done", when.tapText("Done"), async () => {
@@ -100,7 +100,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I walk over 500 steps", when.sendSteps(600, 33000), async () => {
       Then("I should be on the challenge complete screen", then.onChallengeComplete(600, 115));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       When("I tap done", when.tapText("Done"), async () => {
         Then("I should be on the third world quests screen", then.idVisible(ids.QUESTS_SCREEN(2)));
       });
@@ -127,7 +127,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I wait to complete this challenge", when.wait(66000), async () => {
       Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       When("I tap done", when.tapText("Done"), async () => {
         Then("I should be on the third world quests screen", then.idVisible(ids.QUESTS_SCREEN(2)));
         Then("I should see my updated coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(27740)));
@@ -147,7 +147,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I walk over 500 steps", when.sendSteps(550, 35000), async () => {
       Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       When("I tap done", when.tapText("Done"), async () => {
         Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(3)));
       });
@@ -173,7 +173,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     When("I wait to complete this challenge", when.wait(65000), async () => {
       Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175));
     });
-    When("I tap collect", when.tapText("Collect"), async () => {
+    When("I tap the challenge success CTA", when.tapChallengeSuccessCta(), async () => {
       When("I tap Done", when.tapText("Done"), async () => {
         Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(3)));
         Then("I should see my updated coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50240)));

@@ -102,7 +102,7 @@ Feature("I can view and use all battle pass features", async () => {
     When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(400, 10));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1));
     });
     When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {

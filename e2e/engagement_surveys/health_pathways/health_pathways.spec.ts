@@ -173,7 +173,7 @@ Feature("Health Pathways", async () => {
         });
       });
     });
-    When("I collect my reward", when.tapID(ids.CTA_COLLECT, 2_000), async () => {
+    When("I collect my reward", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2_000), async () => {
       Then("I should see the feedback screen", then.textVisible("How do you feel?", 3_000));
       Then("I should see the feedback description", then.textVisible("How do you feel now compared to when you started this challenge?", 2_000));
       Then("I should see the feedback slider on the default state", then.idVisible(ids.SLIDABLE_POSITION(2), 3_000));

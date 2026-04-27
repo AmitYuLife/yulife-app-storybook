@@ -52,7 +52,7 @@ export const completeChallenge = (levelNumber: number, challengeType: string) =>
   await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
-  await waitFor(element(by.text("Collect")))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(5000);
 };
@@ -61,8 +61,8 @@ export const completeSecondChallenge = (levelNumber: number, challengeType: stri
   await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))();
   await startChallenge(challengeType)();
   await sendSteps(400, 35000)();
-  await waitFor(element(by.text(t("Collect"))))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(5000);
-  await navigateViaText(t("Collect"));
+    await tapID(ids.CHALLENGE_SUCCESS_CTA, 3000)();
 };

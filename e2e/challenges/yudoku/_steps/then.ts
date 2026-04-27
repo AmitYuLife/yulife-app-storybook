@@ -33,7 +33,7 @@ export const { scrollUntilTextVisible, scrollUntilIdVisible } = navigation.scrol
 export const { idVisible, textVisible, idExist, wait, completedTodayStreakCopyVisible } =
   navigation.common;
 
-export const { successScreenHintVisible } = screens.challenges;
+export const { successScreenHintVisible, successYudokuScreen } = screens.challenges;
 
 export const canSeeSudokuTile = async () => {
   await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Yudoku", "down")();
@@ -92,14 +92,6 @@ export const cannotSeePauseModal = async () => {
 
 export const canSeeHomeAfterLeaderboardJoin = async () => {
   await textVisible("Today's Leaderboard")();
-};
-
-export const amOnYudokuCompleted = (hintsNum: number, mistakesNum: number) => async () => {
-  await textVisible("Great work!", 4000)();
-  await textVisible("Come back tomorrow for a new round.")();
-  await idVisible(SUDOKU_STAT("Hints", hintsNum))();
-  await idVisible(SUDOKU_STAT("Mistakes", mistakesNum))();
-  await idVisible(SUDOKU_STAT("Reward", 60))();
 };
 
 export const onMidGamePausedScreen = async () => {

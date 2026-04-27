@@ -20,6 +20,8 @@ export const { scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText, scro
 
 export const { tapMenuItem } = screens.menu;
 
+export const { tapChallengeSuccessCta } = screens.challenges;
+
 export const tapSudoku = async () => {
   await scrollUntilTextVisible(ids.CHALLENGE_SET_SCROLL, "Yudoku", "down")();
   await tapText("Yudoku")();
@@ -63,11 +65,6 @@ export const tapResumeSudoku = async () => {
   await tapText("Resume Game")();
 };
 
-export const tapCollect = async () => {
-  await scrollUntilTextVisible(ids.SUDOKU_COMPLETED_SCREEN_SCROLL, "Collect", "down")();
-  await tapText("Collect")();
-};
-
 export const tapLeaderboard = async () => {
   await tapText("Daily Leaderboard")();
 };
@@ -100,7 +97,7 @@ export const completeYudoku =
     await tapID(ids.SUDOKU_NUMBER_INPUT(8))();
     await wait(3000)();
     if (shouldCollect) {
-      await tapCollect();
+      await tapChallengeSuccessCta(5000)();
     }
     await wait(endWait)();
   };

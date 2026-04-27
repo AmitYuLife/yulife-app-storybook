@@ -43,10 +43,10 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) =>
 
   await tapText("Use a different app", 1500)();
   await sendMindfulnessData(mindfulnessdata, 75000)();
-  await waitFor(element(by.text("Collect")))
+  await waitFor(element(by.text("Continue")))
     .toBeVisible()
     .withTimeout(7000);
-  await navigateViaText("Collect");
+  await tapID(ids.CHALLENGE_SUCCESS_CTA, 4000)();
   await triggerAppUpdateState();
 };
 

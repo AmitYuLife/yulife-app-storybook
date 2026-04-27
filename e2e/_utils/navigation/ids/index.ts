@@ -694,6 +694,7 @@ export const MEDIA_STAR_REWARD = (star: number) => `MEDIA_REWARD_${star}`;
 export const MEDIA_YUCOIN_REWARD = (yucoin: number) => `MEDIA_REWARD_${yucoin}`;
 export const MEDIA_SMALL_LOGO = (logoUrl: string) => `MEDIA_SMALL_LOGO_${logoUrl}`;
 export const CHALLENGE_SUCCESS_SCREEN = "CHALLENGE_SUCCESS_SCREEN";
+export const CHALLENGE_SUCCESS_CTA = "CHALLENGE_SUCCESS_CTA";
 export const CHALLENGE_TILE_BOOST_TAG = (heading: string, reward: string, hasBonus: boolean) =>
   `CHALLENGE_TILE_BOOST_TAG_${heading}_${reward}_${hasBonus}`;
 export const CHALLENGE_PAGE_BOOST_SLOT = (reward: number) => `CHALLENGE_PAGE_BOOST_SLOT_${reward}`;

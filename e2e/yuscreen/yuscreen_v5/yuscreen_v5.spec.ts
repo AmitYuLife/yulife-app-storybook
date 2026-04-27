@@ -101,9 +101,9 @@ Feature("I am able to use the yuscreen v5", async () => {
       Then("I can see the short stroll tile", then.idVisible(ids.CHALLENGE_TILE("Short Stroll"), 5000));
     });
     When("I complete a short stroll challenge", when.completeShortStroll(310, 40000), async () => {
-      Then("I should see the challenge complete 'Collect' button", then.idVisible(ids.CTA_COLLECT, 4000));
+      Then("I should see the challenge complete 'Continue' button", then.idVisible(ids.CHALLENGE_SUCCESS_CTA, 4000));
     });
-    When("I tap collect", when.tapID(ids.CTA_COLLECT, 2500), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2000), async () => {
       Then("I should see the streaks modal 'Done' button", then.idExist(ids.STREAKS_SCREEN_BUTTON, 4000));
     });
     When("I tap 'Done' on the streaks modal", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2500), async () => {

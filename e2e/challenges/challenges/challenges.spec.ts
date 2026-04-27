@@ -406,9 +406,9 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation"), 3000));
     });
     When("I wait for the challenge to complete", when.wait(50000), async () => {
-      Then("I should see the Collect button", then.idVisible(ids.CTA_COLLECT));
+      Then("I should see the Continue button", then.idVisible(ids.CHALLENGE_SUCCESS_CTA));
     });
-    When("I click collect", when.tapID(ids.CTA_COLLECT), async () => {
+    When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
       When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
         Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50240)));
         Then("I should see the level 175 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(175)));

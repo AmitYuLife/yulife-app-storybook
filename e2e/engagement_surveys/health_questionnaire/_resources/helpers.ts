@@ -16,8 +16,8 @@ export const takeChallengeFromYuCoinScreen =
           async () => {
             When("I walk over 300 steps", when.sendSteps(400, 38000), async () => {
               Then(
-                "I should see the collect button once the challenge is completed",
-                then.idVisible(ids.CTA_COLLECT, 3000)
+                "I should see the continue button once the challenge is completed",
+                then.idVisible(ids.CHALLENGE_SUCCESS_CTA, 3000)
               );
             });
           }
@@ -25,7 +25,7 @@ export const takeChallengeFromYuCoinScreen =
       }
     );
     if (firstTime) {
-      When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+      When("I tap collect", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
         Then("I should see the first day streak screen", then.textVisible("First day done!"));
       });
       When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
@@ -37,7 +37,7 @@ export const takeChallengeFromYuCoinScreen =
         });
       });
     } else {
-      When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+      When("I tap collect", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
         When("I go back to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
           Then(
             `I should see the YuScreen CTA '${expectedLabel}'`,

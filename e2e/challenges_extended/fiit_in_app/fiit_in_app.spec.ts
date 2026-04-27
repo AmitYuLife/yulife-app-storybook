@@ -44,7 +44,7 @@ Feature("Fiit in app", async () => {
         Then("I can see the challenge reward screen", then.canSeeFiitChallengeRewardScreen(data.USER_FIIT, data.MEDIA_5, 5));
       });
     });
-    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 3500), async () => {
+    When("I tap 'Collect'", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2_000), async () => {
       Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1));
     });
     When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
@@ -128,7 +128,7 @@ Feature("Fiit in app", async () => {
     When("I close and reopen the app", when.relaunchAppWithoutSync, async () => {
       Then("I should see the challenge hint on the success screen", then.successScreenHintVisible);
     });
-    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
+    When("I tap 'Collect'", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2_000), async () => {
       Then("I should see the streak modal appear to the Quests screen", then.idVisible(ids.STREAKS_SCREEN_BUTTON, 7_000));
     });
     When("I tap 'Done' on the first day streak modal", when.tapID(ids.STREAKS_SCREEN_BUTTON, 4000), async () => {
@@ -182,7 +182,7 @@ Feature("Fiit in app", async () => {
         });
       });
     });
-    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT, 4000), async () => {
+    When("I tap 'Collect'", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2_000), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I navigate to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {

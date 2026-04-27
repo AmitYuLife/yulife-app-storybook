@@ -13,6 +13,7 @@ export const {
   canSeeNewChallengePage,
   canSeeChallengeTiles,
   yunityRewardsVisible,
+  stepsChallengeDataCorrect,
 } = screens.challenges;
 
 export const { scrollUntilTextVisibleAtIndex, scrollUntilIdVisible } = navigation.scrolling;
@@ -26,13 +27,6 @@ export const canSeeForestYunity = async () => {
 export const canSeeForestYunityChestIntro = async () => {
   await textVisible("You've earned the\nYunity Forest Chest!")();
 };
-
-export const stepsChallengeDataCorrect =
-  (stage: number, yucoinEarned: number, steps: number) => async () => {
-    await textVisible(`Level ${stage}`)();
-    await textVisible(`${yucoinEarned}`)();
-    await textVisible(`${steps} steps`)();
-  };
 
 export const inventoryItemVisible =
   (itemName: string, timeout = 3_000) =>
