@@ -38,8 +38,6 @@ export const additionalInfo_1 =
   "This information is based on data we received from your employer. Please contact us if you have any questions.";
 export const additionalInfo_2 =
   "YuLife SA Ltd is an authorised financial services provider (FSP No 52478). Insurance products are underwritten by Guardrisk Life Limited, an authorised financial services provider (FSP No 76) and a licenced life insurer.";
-export const additionalInfo_OM =
-  "YuLife SA Ltd is an authorised financial services provider (FSP No 52478). Insurance products are underwritten by Old Mutual Life Assurance Company (SA) Limited, a licensed FSP and Life Insurer.";
 export const child0_12MonthsText = "Child 0 - 12 months";
 export const child1_5YearsText = "Child 1 - 5 years";
 export const child6_13YearsText = "Child 6 - 13 years";
@@ -147,5 +145,3 @@ export const claimImg =
   "https://yulife-develop.imgix.net/content/icons/claim.svg?ixlib=js-3.2.1&w=540&h=540&s=070c3c3c99859ee08a5897252365336e";
 export const certificateImg =
   "https://yulife-develop.imgix.net/content/icons/doc_certificate.svg?ixlib=js-3.2.1&w=72&h=72&s=bcefc8d51f33e8dcd54346cabac94b70";
-export const oldMutualMeGLImg =
-  "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/old-mutual/group-life-assurance-wide.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=88669b6209c4c04e74a155c6b0471858";

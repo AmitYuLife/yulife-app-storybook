@@ -50,17 +50,15 @@ export { rewardsLocationModalVisible } from "benefits/rewards/_steps/then";
 
 export { yuScreenV5HeaderVisible } from "../../../yuscreen/yuscreen_v5/_steps/then";
 
-export const productCardVisible =
-  (productCard: ProductSlot) =>
-  async () => {
-    await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(productCard.name))();
-    await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE(productCard.title))();
-    productCard.img &&
-      (await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(productCard.img))());
-    productCard.body &&
-      (await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC(productCard.body))());
-    productCard.logo && (await idExist(ids.YUSCREEN_V5_PRODUCT_CARD_LOGO)());
-  };
+export const productCardVisible = (productCard: ProductSlot) => async () => {
+  await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(productCard.name))();
+  await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_TITLE(productCard.title))();
+  productCard.img &&
+    (await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(productCard.img))());
+  productCard.body &&
+    (await idExist(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC(productCard.body))());
+  productCard.logo && (await idExist(ids.YUSCREEN_V5_PRODUCT_CARD_LOGO)());
+};
 
 export const productCheck =
   (
@@ -68,18 +66,11 @@ export const productCheck =
     keyInfo: keyInfo,
     beneficiarySection: boolean,
     coverInfo?: coverAmounts,
-    beneficiaries?: beneficiaries,
-    oldMutual = false
+    beneficiaries?: beneficiaries
   ) =>
   async () => {
     await onProductPage(productPage)();
-    if (oldMutual) {
-      await scrollUntilTextVisible(
-        ids.PRODUCT_DETAILS_SCROLL_VIEW,
-        constant.coverAmountsText,
-        "down"
-      )();
-    } else if (coverInfo) {
+    if (coverInfo) {
       await scrollUntilTextVisible(
         ids.PRODUCT_DETAILS_SCROLL_VIEW,
         constant.termsAndConditionsWarning,
@@ -113,10 +104,13 @@ export const productCheck =
         "down"
       )());
     beneficiarySection && (await beneficiariesSectionVisible(beneficiaries)());
-    const additionalInfo2 = oldMutual ? constant.additionalInfo_OM : constant.additionalInfo_2;
-    await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, additionalInfo2, "down")();
-    await usefulLinksVisible(beneficiarySection, oldMutual)();
-    await additionalInfoVisible(additionalInfo2);
+    await scrollUntilTextVisible(
+      ids.PRODUCT_DETAILS_SCROLL_VIEW,
+      constant.additionalInfo_2,
+      "down"
+    )();
+    await usefulLinksVisible(beneficiarySection)();
+    await additionalInfoVisible(constant.additionalInfo_2);
   };
 
 export const onProductPage = (product: SAProductData) => async () => {
@@ -161,14 +155,14 @@ export const beneficiariesSectionVisible = (beneficiaries?: beneficiaries) => as
   }
 };
 
-export const usefulLinksVisible = (beneficiaries: boolean, oldMutual: boolean) => async () => {
+export const usefulLinksVisible = (beneficiaries: boolean) => async () => {
   beneficiaries && (await textVisible(constant.editBeneficiariText)());
   beneficiaries && (await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constant.editBeneficiariImg))());
   !beneficiaries && (await textNotVisible(constant.editBeneficiariText)());
   await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constant.makeClaimImg))();
   await textVisible(constant.makeClaimText)();
-  !oldMutual && (await textVisible(constant.memberCertText)());
-  !oldMutual && (await textVisible(constant.memberCertDisclaimer)());
+  await textVisible(constant.memberCertText)();
+  await textVisible(constant.memberCertDisclaimer)();
 };
 
 export const additionalInfoVisible = (info2: string) => async () => {
