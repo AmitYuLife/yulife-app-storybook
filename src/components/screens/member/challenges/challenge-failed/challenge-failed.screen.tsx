@@ -1,49 +1,62 @@
 import { Box, LevelLine, Stars, TextTemplate } from "@atoms";
-import { View } from "react-native";
-import styles from "./challenge-failed.screen.styles";
-import { Button, CentredScreen } from "@molecules";
-import { t } from "@locale";
-import { getTheme } from "@theme";
 import { CHALLENGE_FAILED_SCREEEN } from "@ids";
+import { t } from "@locale";
+import { Button, CentredScreen } from "@molecules";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { MIN_SAFE_BOTTOM_PADDING } from "@styles/safeAreaViewOffset";
+import { getTheme } from "@theme";
+import { Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
 
-interface IProps {
-  level?: number;
-  yuniversalMap?: number;
+interface IChallengeFailedScreenProps {
+  level: number;
   loading: boolean;
   onPress: () => void;
 }
 
-const ChallengeFailedScreen = ({ level, yuniversalMap, onPress, loading }: IProps) => {
-  const { challengeFailedScreen } = getTheme(level ?? 1, yuniversalMap);
+const ChallengeFailedScreen = ({ level, onPress, loading }: IChallengeFailedScreenProps) => {
+  const currentLevel = useSelector(getCurrentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { top, bottom } = useSafeAreaInsets();
+
+  const { challengeFailedScreen } = getTheme(currentLevel, yuniversalMap);
   const textColor = challengeFailedScreen.textStyle.color;
 
   return (
-    <CentredScreen {...challengeFailedScreen}>
-      <View style={styles.ratingWrapper} testID={CHALLENGE_FAILED_SCREEEN}>
-        <Stars />
-        <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8} mt={5} mb={24}>
-          <LevelLine colour={challengeFailedScreen.lineColour} half="left" />
-          <TextTemplate type="l1" color={textColor} textAlign="center">
-            {yuniversalMap ? t("screens.challenge_failed.stage", { level }) : t("labels.level", { level })}
-          </TextTemplate>
-          <LevelLine colour={challengeFailedScreen.lineColour} half="right" />
+    <CentredScreen testID={CHALLENGE_FAILED_SCREEEN} {...challengeFailedScreen}>
+      <Box
+        alignItems="center"
+        h="100%"
+        width="100%"
+        pt={Platform.OS === "android" ? top + 45 : 45}
+        ph={32}
+        disableAutoAdjust={true}
+      >
+        <Box width="100%" alignItems="center" disableAutoAdjust={true}>
+          <Stars scale={0.6} />
+          <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8}>
+            <LevelLine colour={challengeFailedScreen.lineColour} half="left" />
+            <TextTemplate type="b2" color={textColor} textAlign="center">
+              {yuniversalMap ? t("screens.challenge_failed.stage", { level }) : t("labels.level", { level })}
+            </TextTemplate>
+            <LevelLine colour={challengeFailedScreen.lineColour} half="right" />
+          </Box>
         </Box>
-      </View>
-      <Box mt={6} mb={16}>
-        <TextTemplate type="big40" color={textColor}>
-          {t("screens.challenge_failed.heading")}
-        </TextTemplate>
+
+        <Box mt={36} alignItems="center" gap={7}>
+          <TextTemplate type="h3" color={textColor} textAlign="center">
+            {t("screens.challenge_failed.heading")}
+          </TextTemplate>
+          <TextTemplate type="b2" color={textColor} textAlign="center">
+            {t("screens.challenge_failed.footer")}
+          </TextTemplate>
+        </Box>
+
+        <Box flex={1} alignSelf="stretch" justifyContent="flex-end" pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)}>
+          <Button translationKey="labels.cta.back_to_quests" isLoading={loading} onPress={onPress} size="Fill" />
+        </Box>
       </Box>
-      <TextTemplate type="b1" color={textColor} lineHeight={24}>
-        {t("screens.challenge_failed.footer")}
-      </TextTemplate>
-      <Button
-        isLoading={loading}
-        wrapperStyle={styles.cta}
-        onPress={onPress}
-        translationKey="labels.cta.got_it"
-        size="Medium"
-      />
     </CentredScreen>
   );
 };
