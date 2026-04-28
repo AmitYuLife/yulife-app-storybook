@@ -42,7 +42,7 @@ const ChallengeSuccessScreen = ({ level, rating, reward, onPressCta, completionS
   const totalCoins = useSelector(getTotalCoins);
   const { top } = useSafeAreaInsets();
   const dispatch = useDispatch();
-  const showChallengesHint = currentLevel >= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
+  const showChallengesHint = currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
   useEffect(() => {
     dispatch(
