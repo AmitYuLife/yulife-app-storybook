@@ -22,6 +22,7 @@ import {
   HealthProviderCapability,
 } from "@yu-life/react-native-yu-health";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import { roundSecondsToNearestMinute } from "@utils";
 import { getCapabilityStatuses } from "@redux/yu-health/yu-health.selectors";
 import { IYuHealthStore } from "@redux/yu-health/yu-health.reducer";
 
@@ -122,7 +123,17 @@ const getMeditation = async (
       ...meditationConfiguration,
     });
 
-    return processResult(meditation, "MindfulSession", start.clone(), endDateMeditation);
+    const roundedMeditation = meditation.error
+      ? meditation
+      : {
+          ...meditation,
+          results: meditation.results.map((item) => ({
+            ...item,
+            value: roundSecondsToNearestMinute(item.value),
+          })),
+        };
+
+    return processResult(roundedMeditation, "MindfulSession", start.clone(), endDateMeditation);
   }
 
   const yuHealthMeditation = await yuHealthAggregateQuery({
@@ -136,7 +147,12 @@ const getMeditation = async (
     },
   });
 
-  return processYuHealthResult(yuHealthMeditation, start.clone(), endDateMeditation, PassiveChallengeType.Meditation);
+  const roundedYuHealth = yuHealthMeditation.map((item) => ({
+    ...item,
+    value: roundSecondsToNearestMinute(item.value),
+  }));
+
+  return processYuHealthResult(roundedYuHealth, start.clone(), endDateMeditation, PassiveChallengeType.Meditation);
 };
 
 const getSteps = async (

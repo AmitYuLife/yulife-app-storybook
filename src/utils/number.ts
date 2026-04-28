@@ -1,3 +1,5 @@
+export const roundSecondsToNearestMinute = (seconds: number): number => Math.ceil(seconds / 60) * 60;
+
 export function padNum(x: number, sliceIndex: number = -2) {
   return `0${x}`.slice(sliceIndex);
 }
@@ -9,7 +11,7 @@ export function addCommasToNumber(x: number) {
 export function formatNumber(
   text: string,
   locale: string | string[],
-  options?: { style: Parameters<typeof Intl.NumberFormat>["1"]["style"]; maximumFractionDigits?: number }
+  options?: { style: Intl.NumberFormatOptions["style"]; maximumFractionDigits?: number }
 ) {
   // default maximumFractionDigits is 3
   const { maximumFractionDigits = 3, style } = options || {};

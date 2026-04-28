@@ -12,6 +12,7 @@ import {
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { HealthDataType, BucketSize } from "@yu-life/react-native-yu-health";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import { roundSecondsToNearestMinute } from "@utils";
 
 // TODO: Merge with getPassiveSinceLastUpdateAndroid
 export default function* getPassiveSinceLastUpdateIos(
@@ -52,7 +53,7 @@ const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, any>
+  metaData: Record<string, unknown>
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -91,7 +92,7 @@ const getMeditation = async (
   meditationLastUpdate: string,
   endDateMeditation: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, any>
+  metaData: Record<string, unknown>
 ): Promise<ChallengesPayload[]> => {
   if (!meditationLastUpdate) {
     return [];
@@ -108,7 +109,22 @@ const getMeditation = async (
       metaData,
     });
 
-    return processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endDateMeditation);
+    const roundedMeditation = meditation.error
+      ? meditation
+      : {
+          ...meditation,
+          results: meditation.results.map((item) => ({
+            ...item,
+            value: roundSecondsToNearestMinute(item.value),
+          })),
+        };
+
+    return processResult(
+      roundedMeditation,
+      "MindfulSession",
+      moment(meditationLastUpdate).startOf("day"),
+      endDateMeditation
+    );
   }
 
   const yuHealthMeditation = await yuHealthAggregateQuery({
@@ -122,19 +138,19 @@ const getMeditation = async (
     },
   });
 
-  return processYuHealthResult(
-    yuHealthMeditation,
-    startTime.clone(),
-    endDateMeditation,
-    PassiveChallengeType.Meditation
-  );
+  const roundedYuHealth = yuHealthMeditation.map((item) => ({
+    ...item,
+    value: roundSecondsToNearestMinute(item.value),
+  }));
+
+  return processYuHealthResult(roundedYuHealth, startTime.clone(), endDateMeditation, PassiveChallengeType.Meditation);
 };
 
 const getCycling = async (
   cyclingLastUpdate: string,
   endDateCycling: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, any>
+  metaData: Record<string, unknown>
 ): Promise<ChallengesPayload[]> => {
   if (!cyclingLastUpdate) {
     return [];
