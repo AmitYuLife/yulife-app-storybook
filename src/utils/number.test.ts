@@ -1,4 +1,23 @@
-import { truncateNumberValue } from "./number";
+import { roundSecondsToNearestMinute, truncateNumberValue } from "./number";
+
+describe("roundSecondsToNearestMinute", () => {
+  const cases = [
+    { input: 0, expected: 0 },
+    { input: 1, expected: 60 },
+    { input: 59, expected: 60 },
+    { input: 60, expected: 60 },
+    { input: 61, expected: 120 },
+    { input: 1776, expected: 1800 },
+    { input: 1800, expected: 1800 },
+    { input: 1801, expected: 1860 },
+  ];
+
+  for (const { input, expected } of cases) {
+    it(`rounds ${input}s up to ${expected}s`, () => {
+      expect(roundSecondsToNearestMinute(input)).toBe(expected);
+    });
+  }
+});
 
 describe("truncateNumberValue", () => {
   const tests = [

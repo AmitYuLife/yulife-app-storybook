@@ -10,7 +10,7 @@ import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { getToken } from "@services/storage";
-import { Unpacked } from "@utils";
+import { Unpacked, roundSecondsToNearestMinute } from "@utils";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
@@ -278,19 +278,26 @@ const parseYuHealthMeditation = (
     startTime: getStartTime(),
   };
 
-  if (!yuHealthMeditation.length && !inAppMeditation.duration) {
+  // Round external meditation values up to the nearest whole minute to match
+  // Apple's display behaviour (GS-1926). In-app values are exact and not rounded.
+  const roundedYuHealth = yuHealthMeditation.map((item) => ({
+    ...item,
+    value: roundSecondsToNearestMinute(item.value),
+  }));
+
+  if (!roundedYuHealth.length && !inAppMeditation.duration) {
     return [];
   }
 
-  if (!yuHealthMeditation.length && inAppMeditation.duration) {
+  if (!roundedYuHealth.length && inAppMeditation.duration) {
     return [inAppMeditationResponse];
   }
 
-  if (yuHealthMeditation.length && !inAppMeditation.duration) {
-    return yuHealthMeditation;
+  if (roundedYuHealth.length && !inAppMeditation.duration) {
+    return roundedYuHealth;
   }
 
-  return [...yuHealthMeditation, inAppMeditationResponse];
+  return [...roundedYuHealth, inAppMeditationResponse];
 };
 
 const parseMeditation = (
@@ -316,11 +323,23 @@ const parseMeditation = (
   }
 
   if (!inAppMeditation.duration) {
-    return fitkitMeditation;
+    return {
+      ...fitkitMeditation,
+      results: fitkitMeditation.results.map((item) => ({
+        ...item,
+        value: roundSecondsToNearestMinute(item.value),
+      })),
+    };
   }
 
   return {
     error: false,
-    results: [...fitkitMeditation.results, inAppMeditationResponse],
+    results: [
+      ...(fitkitMeditation?.results.map((item) => ({
+        ...item,
+        value: roundSecondsToNearestMinute(item.value),
+      })) ?? []),
+      inAppMeditationResponse,
+    ],
   };
 };
