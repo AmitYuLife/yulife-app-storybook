@@ -159,6 +159,7 @@
       "allow": "OK",
       "ask_later": "後で回答する",
       "back": "戻る",
+      "back_to_quests": "クエスト 再び ",
       "cancel": "キャンセル",
       "claim": "獲得",
       "close": "閉じる",
@@ -1928,13 +1929,13 @@
       }
     },
     "tournaments": {
-      "days_left": "%{smart_count}日残り |||| %{smart_count}日残り",
-      "joined": "%{smart_count} 人 参加済み",
+      "days_left": "残り%{smart_count}日 |||| 残り%{smart_count}日",
+      "joined": "%{smart_count}人参加済み",
       "leaderboard": "ランキング",
-      "member_count": "%{smart_count} 人 |||| %{smart_count} 人",
+      "member_count": "%{smart_count}人 |||| %{smart_count}人",
       "members": "メンバー",
       "my_team": "私のチーム ( %{teamName} )",
-      "total_team_score": "チーム の 合計 得点"
+      "total_team_score": "チームの合計得点"
     },
     "update_mobile": {
       "cta_label": "アプリの更新"
