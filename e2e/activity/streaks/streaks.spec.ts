@@ -159,7 +159,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     When("I wait for the challenge to finish", when.wait(32000), async () => {
       Then("I should see the challenge failed screen", then.textVisible("You were so close!", 6000));
     });
-    When("I tap Got it", when.tapID(ids.CTA_GOT_IT, 2000), async () => {
+    When("I tap to go back to quests screen", when.tapID(ids.BACK_TO_QUESTS_SCREEN, 2000), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 2000));
     });
     When("I go back to the yucoin screen", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
@@ -203,13 +203,13 @@ Feature("As a user I can use the streaks functionality", async () => {
   Scenario("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
     Given("I login as a user who activated a challenge yesterday", given.loginAsUser(data.CUSTOMER_42, data.AUTH_42), async () => {
       Then("I should see 0/5 on the daily steps screen", then.idVisible(ids.STREAKS_BUTTON_LABEL("0/5"), 3000));
-      Then("I should see my current yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
+      Then("I should see my current yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(840)));
     });
     When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(4000, 51));
     });
     When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
-      Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(840)));
+      Then("I should see my yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(840)));
       Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
     });
     When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

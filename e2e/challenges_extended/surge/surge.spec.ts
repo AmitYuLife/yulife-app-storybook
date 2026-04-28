@@ -20,7 +20,7 @@ Feature("Surges work as intended", async () => {
       Then("I can see the surge icon", then.idVisibleAtIndex(ids.CHALLENGE_TILE_SURGE_ICON, 3, 2000));
     });
     When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
-      Then("I should see the well done screen", then.textVisible("Well done!"));
+      Then("I should see the Great work screen", then.textVisible("Great work!"));
       Then("I should see +400 reward", then.idVisible(ids.CHALLENGE_REWARD(400)));
     });
     When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {
@@ -53,7 +53,7 @@ Feature("Surges work as intended", async () => {
       Then("I should see the reward values are normal", then.canSeeChallengeTiles(data.USER_1));
     });
     When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
-      Then("I should see the well done screen", then.textVisible("Well done!"));
+      Then("I should see the Great work screen", then.textVisible("Great work!"));
       Then("I should see +80 reward", then.idVisible(ids.CHALLENGE_REWARD(80)));
     });
     When("I tap continue", when.tapID(ids.CHALLENGE_SUCCESS_CTA), async () => {

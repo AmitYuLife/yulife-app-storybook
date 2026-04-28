@@ -9,7 +9,7 @@ import { fiitCardioMedia, fiitRebalanceMedia } from "./_resources/constants";
 import { bodyCoachWorkout10 } from "./_resources/fixtures";
 
 Feature("Fiit in app", async () => {
-  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
+  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge", scenario.start, () => {
     Given("I login as a user", given.loginAsUser(data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       When("I go to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 5000), async () => {
         Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 3000));
