@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState, useCallback } from "react";
+import { memo, useEffect, useMemo, useState, useCallback, ReactNode } from "react";
 import {
   View,
   ViewStyle,
@@ -25,8 +25,22 @@ import { useBoxProps, useUserFeatures } from "@hooks";
 import { IBoxProps } from "@atoms/box/box.types";
 import { isRTL } from "@locale";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import dd from "@services/datadog";
 
 const PIXEL_FIX: number = 1;
+
+const resolveRemoteImageSize = async (uri: string): Promise<{ width: number; height: number } | null> => {
+  try {
+    const ref = await ExpoImage.loadAsync(uri);
+    if (ref?.width && ref?.height) {
+      return { width: ref.width, height: ref.height };
+    }
+  } catch {
+    dd.debug(`Couldn't load image uri`, { uri });
+  }
+
+  return null;
+};
 
 export enum ImageCachePolicy {
   /**
@@ -76,7 +90,7 @@ export interface IImageProps extends Omit<IBoxProps, "style"> {
    */
   suppressLoadingUi?: boolean;
   autoFlipForRTL?: boolean;
-  CustomLoader?: React.ReactNode;
+  CustomLoader?: ReactNode;
   onLoad?: ImageProps["onLoad"];
   accessible?: boolean;
   accessibilityLabel?: string;
@@ -101,6 +115,7 @@ export const Image = memo(
     suppressLoadingUi,
     accessibilityLabel,
     height: propHeight = 0,
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     resizeMode = "contain",
     contentFit,
     contentPosition,
@@ -116,11 +131,20 @@ export const Image = memo(
       [autoFlipForRTL]
     );
 
+    const isBundledAsset = typeof source === "number";
     const disableNativeSizing = typeof propWidth !== "number" || typeof propHeight !== "number";
-    const [nativeSize, setNativeSize] = useState<{ width: number; height: number } | null>(
+    const [nativeSize, setNativeSize] = useState<{ width: number; height: number } | undefined>(
       (() => {
         if (disableNativeSizing) {
           return undefined;
+        }
+
+        if (isBundledAsset) {
+          const resolved = RNImage.resolveAssetSource(source);
+
+          if (resolved?.width && resolved?.height) {
+            return { width: resolved.width, height: resolved.height };
+          }
         }
 
         return {
@@ -129,6 +153,28 @@ export const Image = memo(
         };
       })()
     );
+
+    const remoteUri = !isBundledAsset && source && "uri" in source ? source.uri : undefined;
+    const hasResolvedNativeSize = !!(nativeSize && nativeSize.height > 0 && nativeSize.width > 0);
+
+    useEffect(() => {
+      (async () => {
+        if (!remoteUri || disableNativeSizing || (typeof propHeight === "number" && propHeight > 0)) {
+          return;
+        }
+
+        if (hasResolvedNativeSize) {
+          return;
+        }
+
+        const size = await resolveRemoteImageSize(remoteUri);
+        if (!size) {
+          return;
+        }
+
+        setNativeSize(size);
+      })();
+    }, [remoteUri, disableNativeSizing, propHeight, hasResolvedNativeSize]);
 
     const handleLoadStart = useCallback(() => setIsLoading(!isWeb()), []);
 
@@ -164,7 +210,7 @@ export const Image = memo(
     );
 
     const dimensions = useMemo((): ImageStyle => {
-      if (disableNativeSizing) {
+      if (disableNativeSizing || !nativeSize) {
         return {
           height: propHeight,
           width: propWidth,
@@ -205,27 +251,33 @@ export const Image = memo(
       return <View style={styles.loader}>{CustomLoader || <ActivityIndicator size="large" color={themeColor} />}</View>;
     }, [isLoading, suppressLoadingUi, CustomLoader, themeColor]);
 
+    const isAwaitingSize =
+      !disableNativeSizing && !(typeof propHeight === "number" && propHeight > 0) && !hasResolvedNativeSize;
+
     return (
       <View pointerEvents="none" style={containerStyle} testID={testID}>
-        <RawImage
-          onLoadStart={handleLoadStart}
-          onLoad={handleLoadState}
-          style={[...imageStyles, boxStyle, rtlImageStyle]}
-          source={source}
-          transition={transition}
-          resizeMode={resizeMode}
-          contentFit={contentFit}
-          contentPosition={contentPosition}
-          accessible={accessible}
-          placeholder={placeholder}
-          accessibilityLabel={accessibilityLabel}
-          onError={onError}
-          // This resolves an issue where if the image is
-          // loaded at a smaller size and is quickly resized.
-          // The image could sometimes be blurry because expo-images
-          // would resize the image but would not re-downscale the new version.
-          allowDownscaling={false}
-        />
+        {isAwaitingSize ? null : (
+          <RawImage
+            onLoadStart={handleLoadStart}
+            onLoad={handleLoadState}
+            style={[...imageStyles, boxStyle, rtlImageStyle]}
+            source={source}
+            transition={transition}
+            // eslint-disable-next-line @typescript-eslint/no-deprecated
+            resizeMode={resizeMode}
+            contentFit={contentFit}
+            contentPosition={contentPosition}
+            accessible={accessible}
+            placeholder={placeholder}
+            accessibilityLabel={accessibilityLabel}
+            onError={onError}
+            // This resolves an issue where if the image is
+            // loaded at a smaller size and is quickly resized.
+            // The image could sometimes be blurry because expo-images
+            // would resize the image but would not re-downscale the new version.
+            allowDownscaling={false}
+          />
+        )}
         {loadingSpinner}
       </View>
     );
