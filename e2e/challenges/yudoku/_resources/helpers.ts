@@ -114,12 +114,12 @@ export const END_YUDOKU_FAKE_TIME = async () => {
   When("I complete the Yudoku", when.completeYudoku(false, false), async () => {
     Then(
       "I should see my reward of 60 coins",
-      then.idVisible(ids.SUDOKU_STAT("Reward", "60"), 4000)
+      then.idVisible(ids.CHALLENGE_REWARD("60"), 4000)
     );
   });
   When(
     "I tap to collect my 60 YuCoin reward",
-    when.tapID(ids.SODOKU_COMPLETED_REWARD_COLLECT, 3000),
+    when.tapID(ids.CHALLENGE_SUCCESS_CTA, 3000),
     async () => {
       Then(
         "I should see my completed streak modal",

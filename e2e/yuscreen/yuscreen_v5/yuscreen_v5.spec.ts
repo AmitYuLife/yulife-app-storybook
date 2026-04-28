@@ -437,7 +437,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     });
     When("I tap the Yudoku challenge", when.tapSudoku, async () => {
       When("I complete the Yudoku", when.completeYudoku(3000), async () => {
-        When("I tap to collect the Yudoku reward", when.tapID(ids.SODOKU_COMPLETED_REWARD_COLLECT, 3000), async () => {
+        When("I tap to collect the Yudoku reward", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 3000), async () => {
           When("I tap to collect the Streak reward", when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000), async () => {
             When("I return to the YuScreen", when.tapID(ids.NAV_BAR("yu"), 4500), async () => {
               Then("I should still see the achivement slot empty", then.checkEmptyAchievementSlots(1));

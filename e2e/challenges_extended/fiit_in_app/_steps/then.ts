@@ -1,4 +1,4 @@
-import { navigation } from "@utils";
+import { navigation, textVisibleAtIndex } from "@utils";
 import { screens } from "@appScreens";
 import { MEDIA_2, USER_BODY_COACH, USER_FIIT } from "../../_data";
 import { fiitCategories, fiitInfo } from "../_resources/constants";
@@ -110,11 +110,11 @@ export const canSeeFiitChallengeRewardScreen =
     } = media;
     const durationInMinutes = duration / 60;
 
-    await idVisible(ids.CHALLENGE_SUCCESS_SCREEN)();
+    await idExist(ids.CHALLENGE_SUCCESS_SCREEN)();
     await textVisible(`Level ${level}`)();
-    await textVisible("Well done!")();
+    await textVisible("Great work!")();
     await idVisible(ids.CHALLENGE_REWARD(earnRate * 6))();
-    await textVisible(`${durationInMinutes} minutes`)();
+    await textVisibleAtIndex(`${durationInMinutes} minutes`, 1)();
   };
 
 export const canSeeYuCoinEarntToday = (yuCoin: number) => async () => {

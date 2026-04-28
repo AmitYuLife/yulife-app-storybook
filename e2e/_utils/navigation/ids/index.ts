@@ -27,6 +27,7 @@ export const STATS_SCREEN = "STATS_SCREEN";
 export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const SETTINGS_SCREEN_SCROLL = "SETTINGS_SCREEN_SCROLL";
 export const QUESTS_SCREEN = (level: number) => `QUESTS_SCREEN_${level.toString()}`;
+export const BACK_TO_QUESTS_SCREEN = "labels.cta.back_to_quests";
 export const QUESTS_SCREEN_YUNIVERSAL = (level: number) => `QUESTS_SCREEN_YUNIVERSAL_${level}`;
 export const LEVEL_BUBBLE = (level: number) => `LEVEL_BUBBLE_${level}`;
 export const MENU_SCREEN = "MENU_SCREEN";

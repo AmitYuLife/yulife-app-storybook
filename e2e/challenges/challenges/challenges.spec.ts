@@ -84,7 +84,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see the didn't make it screen", then.textVisible("You were so close!", 5000));
       Then("I should see the sub copy", then.textVisible("Why not try again?"));
     });
-    When("I tap Got it", when.tapText(t("Got it")), async () => {
+    When("I tap to go back to quests screen", when.tapID(ids.BACK_TO_QUESTS_SCREEN, 2000), async () => {
       Then("I should be back on quests", then.idVisible(ids.QUESTS_SCREEN(0)));
     });
     When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

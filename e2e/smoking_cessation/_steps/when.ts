@@ -40,5 +40,5 @@ export const {
 } = navigation.common;
 
 export const goToSmokingCessation = async () => {
-  await launchApp({ url: "yulifeapp-detox://yulife/smoking" });
+  await launchApp({ url: "yulifeapp-detox://yulife/smoking", newInstance: false });
 };
