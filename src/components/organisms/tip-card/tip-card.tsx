@@ -33,14 +33,29 @@ export const TipCard = ({ id, title, description, icon, cardStyle }: TipCardPara
           )}
           {!description ? null : <TextTemplate type="l2">{description}</TextTemplate>}
         </Box>
-        {!icon ? null : (
-          <Image source={icon} suppressLoadingUi={true} width={TIP_CARD_ICON_SIZE} height={TIP_CARD_ICON_SIZE} />
-        )}
+        {icon?.uri ? (
+          <Image
+            source={{ uri: icon.uri }}
+            suppressLoadingUi={true}
+            width={TIP_CARD_ICON_SIZE}
+            height={TIP_CARD_ICON_SIZE}
+          />
+        ) : null}
       </Box>
     </Box>
   );
 };
 
-export const TipCardItem = ({ item }: { item: TipCardParams }) => <TipCard {...item} />;
+export const TipCardItem = ({ item }: { item: TipCardParams }) => {
+  return (
+    <TipCard
+      id={item.id}
+      title={item.title}
+      description={item.description}
+      icon={item.icon}
+      cardStyle={item.cardStyle}
+    />
+  );
+};
 
 export const TipCardSeparator = () => <Box style={styles.separator} />;
