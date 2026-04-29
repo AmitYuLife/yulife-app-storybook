@@ -222,6 +222,13 @@ module.exports = {
         "strict-null-checks/all": "off",
       },
     },
+    {
+      files: ["src/graphql/__generated/**/*"],
+      rules: {
+        "eslint-comments/no-unlimited-disable": "off",
+        "eslint-comments/no-unused-disable": "off",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
