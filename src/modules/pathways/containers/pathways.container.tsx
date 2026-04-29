@@ -1,6 +1,7 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { Navigation } from "@navigation/main";
 import { FeatureCardSection, WellbeingHubSection } from "@graphql/__generated";
+import { PathwayAdviceSectionProps } from "../components/pathways-advice-section/pathways-advice-section";
 import { getMoodSubmission } from "../utils/get-mood-submission.util";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "@navigation/constants";
@@ -69,7 +70,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
       reflectedToday: reflectionProgress.reflectedToday,
       maxProgress: reflectionProgress.maxProgress,
       nextQuestionnaireLocalDate: data?.getUserPathways?.nextQuestionnaireLocalDate ?? "",
-      adviceSection: data?.getUserPathwayAdviceSection,
+      adviceSection: data?.getUserPathwayAdviceSection as PathwayAdviceSectionProps | undefined,
       interventionSections: data?.getInterventionItems?.sections as Array<FeatureCardSection | WellbeingHubSection>,
       pathwayChallenge: pathwayChallenge,
       isStreakComplete: isStreakComplete,

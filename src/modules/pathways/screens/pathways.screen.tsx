@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Box, RawImage, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
@@ -29,7 +29,7 @@ interface IPathwaysScreenProps {
   coinAwards: number[];
   reflectedToday: boolean;
   nextQuestionnaireLocalDate: string;
-  adviceSection: PathwayAdviceSectionProps;
+  adviceSection?: PathwayAdviceSectionProps;
   interventionSections: Array<FeatureCardSection | WellbeingHubSection>;
   isLoading: boolean;
   maxProgress: number;

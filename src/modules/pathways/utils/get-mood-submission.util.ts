@@ -1,7 +1,7 @@
 import { GetUserPathwaysQuery } from "@graphql/__generated";
 import moment from "moment";
 
-export const getMoodSubmission = (data: GetUserPathwaysQuery) => {
+export const getMoodSubmission = (data: GetUserPathwaysQuery | undefined) => {
   const startOfWeek = moment().startOf("week");
 
   return Array.from({ length: 7 }, (_, i) => {
@@ -11,7 +11,7 @@ export const getMoodSubmission = (data: GetUserPathwaysQuery) => {
     return {
       dayLabel: date.format("dd"),
       isToday: date.isSame(moment(), "day"),
-      iconUrl: submission?.icon?.uri,
+      iconUrl: submission?.icon?.uri ?? undefined,
     };
   });
 };
