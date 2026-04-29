@@ -179,6 +179,9 @@ export const ROUTES = {
 
   // mood calendar
   moodCalendar: "yulife.member.moodCalendar",
+
+  // goals history
+  goalsHistory: "yulife.member.goalsHistory",
 };
 
 export const MODAL_PREFIX = "yulife.modals";

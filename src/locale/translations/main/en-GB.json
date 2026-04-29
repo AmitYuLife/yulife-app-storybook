@@ -185,6 +185,9 @@
     "mood-calendar": {
       "title": "Mood Calendar"
     },
+    "goals-history": {
+      "title": "Goals history"
+    },
     "pathways": {
       "powered_by_yunity": "Powered by ",
       "header": "Today's reflection",
@@ -193,6 +196,11 @@
       "user_mood": {
         "heading": "Your Mood",
         "view_calendar": "View calendar"
+      },
+      "goals": {
+        "heading": "Goals",
+        "goals_left": "%{smart_count} goal left |||| %{smart_count} goals left",
+        "days_left": "%{smart_count} day left |||| %{smart_count} days left"
       },
       "personal_health_path": {
         "heading": "Personal Health Path"

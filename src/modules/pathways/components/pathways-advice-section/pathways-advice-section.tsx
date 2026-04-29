@@ -8,19 +8,19 @@ import AdviceEmptySection from "./pathways-advice-empty-section";
 type UserPathwayItem = {
   onPress: SduiAction;
   onScrollIntoView?: SduiAction;
-  backgroundColor?: string;
-  shadowColor?: string;
+  backgroundColor: string;
+  shadowColor: string;
   id: string;
   image: {
     id: string;
-    uri?: string | null;
+    uri?: string;
   };
   heading: string;
   label: string;
 };
 
 export type PathwayAdviceSectionProps = {
-  items: Array<UserPathwayItem>;
+  items?: Array<UserPathwayItem>;
   scrollY?: SharedValue<number>;
 };
 
