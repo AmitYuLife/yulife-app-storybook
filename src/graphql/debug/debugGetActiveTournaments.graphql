@@ -1,0 +1,7 @@
+query DebugGetActiveTournaments {
+  debugGetActiveTournaments {
+    id
+    name
+    teamName
+  }
+}

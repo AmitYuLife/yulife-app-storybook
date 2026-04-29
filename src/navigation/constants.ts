@@ -148,6 +148,7 @@ export const ROUTES = {
   themeSwitcher: "yulife.debug.themeSwitcher",
   debugUserInfo: "yulife.debug.userInfo",
   challengeFailedDebug: "yulife.debug.challengeFailed",
+  tournamentDebug: "yulife.debug.tournamentDebug",
 
   // smoking
   smoking: "yulife.member.smoking",

@@ -70,6 +70,7 @@ enum DebugCodes {
   welcomeScreen = "welcome-screen",
   scheduleWeeklyGoals = "schedule-weekly-goals",
   challengeFailed = "challenge-failed",
+  tournamentDebug = "tournament-debug",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -458,6 +459,15 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
                   loading: false,
                   onPress: () => Navigation.pop(ROUTES.challengeFailedDebug),
                 },
+              },
+            });
+          }
+
+          case DebugCodes.tournamentDebug: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.tournamentDebug,
+                name: ROUTES.tournamentDebug,
               },
             });
           }

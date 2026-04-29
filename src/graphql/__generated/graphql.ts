@@ -1177,6 +1177,7 @@ export type BusinessSessionSettings = {
   eventManagementEnabled: Scalars["Boolean"]["output"];
   helpCentreLink?: Maybe<Scalars["String"]["output"]>;
   homePageAddEmployeeWidgetEnabled: Scalars["Boolean"]["output"];
+  messagingIntegrationsEnabled: Scalars["Boolean"]["output"];
   newAddEmployeeEnabled: Scalars["Boolean"]["output"];
   peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   /** @deprecated Banner logic now server-side */
@@ -1185,6 +1186,7 @@ export type BusinessSessionSettings = {
   /** @deprecated Temporary field for survey export feature, will be removed in next release */
   surveyExportEnabled: Scalars["Boolean"]["output"];
   tournamentsEnabled: Scalars["Boolean"]["output"];
+  walletAndBillingPortalEnabled: Scalars["Boolean"]["output"];
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
 
@@ -3428,6 +3430,13 @@ export type DateQueryInput = {
   lessThan?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type DebugActiveTournament = {
+  __typename?: "DebugActiveTournament";
+  id: Scalars["ID"]["output"];
+  name: Scalars["String"]["output"];
+  teamName?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type DebugData = {
   __typename?: "DebugData";
   id?: Maybe<Scalars["String"]["output"]>;
@@ -5314,7 +5323,6 @@ export enum HomePromoBannerType {
 export type HrisConnectionConfig = {
   __typename?: "HrisConnectionConfig";
   contractedWeeksPerYear?: Maybe<Scalars["Int"]["output"]>;
-  employeeFilters?: Maybe<Array<HrisEmployeeFilter>>;
   hrisType: Scalars["String"]["output"];
 };
 
@@ -5762,6 +5770,7 @@ export type MemberDataConnection = {
   customerFieldsToUpdate?: Maybe<Array<MemberDataFieldNames>>;
   dataSample?: Maybe<ConnectionDataSample>;
   email?: Maybe<EmailConnectionConfig>;
+  employeeFilters?: Maybe<Array<HrisEmployeeFilter>>;
   hrisApi?: Maybe<HrisConnectionConfig>;
   id: Scalars["String"]["output"];
   isProcessingEnabled: Scalars["Boolean"]["output"];
@@ -6926,6 +6935,7 @@ export type Mutation = {
   createWellbeingHubItem: TeamWellbeingHubResponse;
   createYuCoinTopupRequest: TeamYuCoinTopupRequest;
   deactivateEmployees?: Maybe<EmployeeBulkProcessResult>;
+  debugEndTournamentEarly?: Maybe<Scalars["Boolean"]["output"]>;
   deleteBusinessCard: BusinessCard;
   deleteConnection?: Maybe<Scalars["Boolean"]["output"]>;
   deleteCustomValue: Scalars["Boolean"]["output"];
@@ -6933,7 +6943,7 @@ export type Mutation = {
   deleteTeamSocialGroup: TeamSocialGroup;
   deleteTournamentEvent: TournamentEvent;
   disable2FA: Scalars["Boolean"]["output"];
-  disconnectHris: Scalars["Boolean"]["output"];
+  disconnectConnection: Scalars["Boolean"]["output"];
   disconnectMessagingConnection: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
   duplicateBusinessSurveyCampaign: Scalars["ID"]["output"];
@@ -7425,6 +7435,10 @@ export type MutationDeactivateEmployeesArgs = {
   employees: Array<InputMaybe<EmployeeInput>>;
 };
 
+export type MutationDebugEndTournamentEarlyArgs = {
+  tournamentId: Scalars["ID"]["input"];
+};
+
 export type MutationDeleteBusinessCardArgs = {
   businessPaymentMethodId: Scalars["String"]["input"];
 };
@@ -7455,7 +7469,7 @@ export type MutationDisable2FaArgs = {
   token?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type MutationDisconnectHrisArgs = {
+export type MutationDisconnectConnectionArgs = {
   connectionId: Scalars["String"]["input"];
 };
 
@@ -7739,6 +7753,7 @@ export type MutationResetBusinessPasswordArgs = {
 export type MutationResetDataArgs = {
   code: Scalars["String"]["input"];
   type?: InputMaybe<Scalars["String"]["input"]>;
+  value?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type MutationResetUserPasswordArgs = {
@@ -8723,6 +8738,7 @@ export type QualitativeQuestionInfo = {
 export type Query = {
   __typename?: "Query";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
+  debugGetActiveTournaments: Array<DebugActiveTournament>;
   downloadUserDocument: Scalars["String"]["output"];
   get2FASecret?: Maybe<TwoFaSecretResponse>;
   getAPIVersion?: Maybe<ApiDetails>;
@@ -8888,6 +8904,7 @@ export type Query = {
   getMobileGameFingerprintTheme: MobileGameTheme;
   getMobileGameRewardPassList: MobileGameRewardPassList;
   getMobileGameTheme: MobileGameTheme;
+  getMobileGameThemeForEmployment: MobileGameTheme;
   getMobileGameUserAchievements: MobileGameUserAchievements;
   getMobileGameUserWalletRewardItems: MobileGameUserWalletSections;
   getMobileGameUserWalletRewards: MobileGameUserWalletRewards;
@@ -9534,6 +9551,11 @@ export type QueryGetMobileGameBattlePassRewardInfoArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameFingerprintThemeArgs = {
   input: GetMobileGameFingerprintThemeInput;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileGameThemeForEmploymentArgs = {
+  businessAccountId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -10987,7 +11009,6 @@ export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
   hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
   hasSetPassword?: Maybe<Scalars["Boolean"]["output"]>;
-  hasShortCode?: Maybe<Scalars["Boolean"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
   shortCodeLength?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -25378,6 +25399,24 @@ export type UpdateMobileUserContentLocationMutation = {
   updateMobileUserContentLocation: boolean;
 };
 
+export type DebugEndTournamentEarlyMutationVariables = Exact<{
+  tournamentId: Scalars["ID"]["input"];
+}>;
+
+export type DebugEndTournamentEarlyMutation = { __typename?: "Mutation"; debugEndTournamentEarly?: boolean | null };
+
+export type DebugGetActiveTournamentsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type DebugGetActiveTournamentsQuery = {
+  __typename?: "Query";
+  debugGetActiveTournaments: Array<{
+    __typename?: "DebugActiveTournament";
+    id: string;
+    name: string;
+    teamName?: string | null;
+  }>;
+};
+
 export type GetDebugCodesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetDebugCodesQuery = { __typename?: "Query"; getDebugCodes?: Array<string | null> | null };
@@ -25403,6 +25442,7 @@ export type GetUserDebugDataQuery = {
 export type ResetDataMutationVariables = Exact<{
   code: Scalars["String"]["input"];
   type?: InputMaybe<Scalars["String"]["input"]>;
+  value?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
 export type ResetDataMutation = { __typename?: "Mutation"; resetData?: boolean | null };
@@ -78087,6 +78127,66 @@ export const UpdateMobileUserContentLocationDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateMobileUserContentLocationMutation, UpdateMobileUserContentLocationMutationVariables>;
+export const DebugEndTournamentEarlyDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DebugEndTournamentEarly" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "tournamentId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "debugEndTournamentEarly" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "tournamentId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "tournamentId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DebugEndTournamentEarlyMutation, DebugEndTournamentEarlyMutationVariables>;
+export const DebugGetActiveTournamentsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "DebugGetActiveTournaments" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "debugGetActiveTournaments" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "teamName" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DebugGetActiveTournamentsQuery, DebugGetActiveTournamentsQueryVariables>;
 export const GetDebugCodesDocument = {
   kind: "Document",
   definitions: [
@@ -78158,6 +78258,11 @@ export const ResetDataDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "value" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -78175,6 +78280,11 @@ export const ResetDataDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "type" },
                 value: { kind: "Variable", name: { kind: "Name", value: "type" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "value" },
+                value: { kind: "Variable", name: { kind: "Name", value: "value" } },
               },
             ],
           },

@@ -89,6 +89,7 @@ import ChallengeFailedScreen from "../components/screens/member/challenges/chall
 import WorkoutDebugContainer from "../components/containers/member/debug/workout-debug/workout-debug.container";
 import GenericHeadingContainer from "../components/containers/member/debug/generic-heading/generic-heading.container";
 import ThemeSwitcherContainer from "../components/containers/member/debug/theme-switcher/theme-switcher.container";
+import TournamentDebugContainer from "../components/containers/member/debug/tournament-debug/tournament-debug.container";
 
 // meditation
 import MeditopiaMediaListContainer from "../components/containers/member/media/meditopia-media-list/meditopia-media-list.container";
@@ -562,6 +563,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.themeSwitcher,
     component: ThemeSwitcherContainer,
+  },
+  {
+    name: ROUTES.tournamentDebug,
+    component: TournamentDebugContainer,
   },
   {
     name: ROUTES.permissions,

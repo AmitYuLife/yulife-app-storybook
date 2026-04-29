@@ -1,0 +1,3 @@
+mutation DebugEndTournamentEarly($tournamentId: ID!) {
+  debugEndTournamentEarly(tournamentId: $tournamentId)
+}
