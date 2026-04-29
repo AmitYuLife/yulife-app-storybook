@@ -66,6 +66,7 @@
     "watch:translations": "ts-node ./scripts/watch-translations.ts",
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "logs": "node ./scripts/logs.js",
     "bootstrap": "pnpm install && pnpm regenerate && pnpm pod:install"
   },
   "dependencies": {
@@ -213,6 +214,7 @@
     "detox": "20.47.0",
     "detox-allure2-adapter": "^1.0.0-alpha.27",
     "dotenv": "16",
+    "enquirer": "^2.4.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-react": "^1.1.7",
