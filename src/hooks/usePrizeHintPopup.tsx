@@ -104,7 +104,7 @@ export const usePrizeHintPopup = ({ routeIds, viewRef, isEnabled, delay = 200 }:
       );
     };
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (!isMounted.current) {
         return;
       }
@@ -114,15 +114,21 @@ export const usePrizeHintPopup = ({ routeIds, viewRef, isEnabled, delay = 200 }:
         return;
       }
 
+      if (viewRef == null) {
+        return;
+      }
+
       popupShownRef.current = currentPrizeHint.id;
 
       showTooltipPopupRelativeToView({
-        viewRef: viewRef,
+        viewRef,
         style: {
           maxWidth: Style.DEVICE_WIDTH / 1.5,
         },
         children: popup,
       });
     }, delay);
-  }, [currentPrizeHint, dispatch, isEnabled, routeIds, viewRef, delay]);
+
+    return () => clearTimeout(timer);
+  }, [activeModal, currentPrizeHint, dispatch, isEnabled, routeIds, viewRef, delay]);
 };

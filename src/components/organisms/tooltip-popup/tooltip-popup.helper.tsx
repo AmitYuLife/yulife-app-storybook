@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { MODALS } from "@navigation/constants";
 import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -10,7 +10,7 @@ import { isRTL } from "@locale";
 import { Style } from "@styles";
 
 interface PopoverProps {
-  viewRef: React.MutableRefObject<View | React.ElementRef<typeof TouchableOpacity>>;
+  viewRef: React.RefObject<View | React.ComponentRef<typeof TouchableOpacity>>;
   children: React.ReactNode | (({ onClose }: { onClose: () => void }) => ReactElement);
   style?: ViewStyle;
   beakPosition?: BeakPosition;
@@ -25,7 +25,7 @@ interface TooltipPointRelative {
 }
 
 interface InfoMessageTooltipViewRelative {
-  viewRef: React.MutableRefObject<View>;
+  viewRef: React.RefObject<View>;
   infoText: string;
   title?: string;
   buttonLabel?: string;
