@@ -90,8 +90,10 @@ export const stepsChallengeDataCorrect =
     }
   };
 
+const meditationMinutesLabel = (minutes: number): string =>
+  minutes === 1 ? "1 minute" : `${minutes} minutes`;
 export const successMeditationStats =
-  (minutes: number, timeout = 10_000) =>
+  (sessionMinutes: number, totalMinutes: number, timeout = 10_000) =>
   async () => {
     await waitFor(element(by.text("Minutes meditated")))
       .toBeVisible()
@@ -99,29 +101,41 @@ export const successMeditationStats =
     await waitFor(element(by.text("Total minutes")))
       .toBeVisible()
       .withTimeout(timeout);
-    const durationLabel = minutes === 1 ? "1 minute" : `${minutes} minutes`;
-    await waitFor(element(by.text(durationLabel)).atIndex(0))
-      .toBeVisible()
-      .withTimeout(timeout);
-    await waitFor(element(by.text(durationLabel)).atIndex(1))
-      .toBeVisible()
-      .withTimeout(timeout);
+
+    const sessionLabel = meditationMinutesLabel(sessionMinutes);
+    const totalLabel = meditationMinutesLabel(totalMinutes);
+
+    if (sessionLabel === totalLabel) {
+      await waitFor(element(by.text(sessionLabel)).atIndex(0))
+        .toBeVisible()
+        .withTimeout(timeout);
+      await waitFor(element(by.text(totalLabel)).atIndex(1))
+        .toBeVisible()
+        .withTimeout(timeout);
+    } else {
+      await waitFor(element(by.text(sessionLabel)))
+        .toBeVisible()
+        .withTimeout(timeout);
+      await waitFor(element(by.text(totalLabel)))
+        .toBeVisible()
+        .withTimeout(timeout);
+    }
   };
 
 export const successMeditationReward =
-  (yucoinEarned: number, minutes: number, timeout = 10_000) =>
+  (yucoinEarned: number, sessionMinutes: number, totalMinutes?: number, timeout = 10_000) =>
   async () => {
     await waitFor(element(by.id(ids.CHALLENGE_REWARD(yucoinEarned))))
       .toBeVisible()
       .withTimeout(timeout);
-    await successMeditationStats(minutes, timeout)();
+    await successMeditationStats(sessionMinutes, totalMinutes ?? sessionMinutes, timeout)();
   };
 
 export const meditationChallengeDataCorrect =
-  (level: number, yucoinEarned: number, minutes: number) =>
+  (level: number, yucoinEarned: number, sessionMinutes: number, totalMinutes?: number) =>
   async () => {
     await successLevel(level)();
-    await successMeditationReward(yucoinEarned, minutes)();
+    await successMeditationReward(yucoinEarned, sessionMinutes, totalMinutes)();
   };
 
 export const successYudokuStats =
@@ -186,7 +200,7 @@ export const tapChallengeSuccessCta =
     await tapID(ids.CHALLENGE_SUCCESS_CTA, timeout)();
   };
 
-export const onMeditationChallengeComplete = (minutes: number, level: number) => async () => {
+export const onMeditationChallengeComplete = (minutes: number, level: number, totalMinutes?: number) => async () => {
   await wait(3000)();
 
   const screenCopy = ["Great work!", "Continue"];
@@ -199,7 +213,7 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
   }
 
   await successLevel(level, 10000)();
-  await successMeditationStats(minutes, 10000)();
+  await successMeditationStats(minutes, totalMinutes ?? minutes, 10000)();
 };
 
 export const startChallenge = (challengeTile: string) => async () => {
@@ -449,7 +463,7 @@ export const completeMeditopiaContentSession = async () => {
 };
 
 export const onMeditopiaChallengeComplete =
-  (minutes: number, level: number, yuCoin: string) => async () => {
+  (sessionMinutes: number, level: number, yuCoin: string, totalMinutes?: number) => async () => {
     const yuCoinReward = Number(String(yuCoin).replace(/,/g, ""));
 
     const screenCopy = ["Great work!", "Continue"];
@@ -465,7 +479,7 @@ export const onMeditopiaChallengeComplete =
     await waitFor(element(by.id(ids.CHALLENGE_REWARD(yuCoinReward))))
       .toBeVisible()
       .withTimeout(10000);
-    await successMeditationStats(minutes, 10000)();
+    await successMeditationStats(sessionMinutes, totalMinutes ?? sessionMinutes, 10000)();
   };
 
 export const pauseMeditopiaChallenge =

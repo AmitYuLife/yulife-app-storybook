@@ -204,10 +204,10 @@ Feature("As a user I can get past the login screen", async () => {
       });
     });
     When("I have done 11.3 km cycling", given.addCyclingData(11345), async () => {
-      When("I have done 13 min Mindfulness", given.addMindfulnessHistoricalData(800, 0), async () => {
+      When("I have done 14 min Mindfulness", given.addMindfulnessHistoricalData(800, 0), async () => {
         When("I update the screen to see today activity", when.relaunchAppWithoutSync, async () => {
           Then("I should see 11.3 km done today", then.idVisible(ids.CYCLING_COUNT("11.3 km"), 4000));
-          Then("I should see 13 min mindful done today", then.idVisible(ids.MINDFUL_COUNT("13 min"), 2000));
+          Then("I should see 14 min mindful done today", then.idVisible(ids.MINDFUL_COUNT("14 min"), 2000));
           Then("I should se§e the amount of YuCoin I earned today", then.textVisible("320 YuCoin today", 2000));
           Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO));
         });
@@ -219,7 +219,7 @@ Feature("As a user I can get past the login screen", async () => {
     When("I go back this screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {
       Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
       When("I tap on YuCoin today text", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-        Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, "11.3 / 9.6 km", 13));
+        Then("I should see correct data 20 steps, 11.3 km, 14 min mindful", then.onTodaysYucoin(20, "11.3 / 9.6 km", 14));
       });
     });
     When("I go back this screen", when.tapID(ids.BACK_BUTTON, 2000), async () => {

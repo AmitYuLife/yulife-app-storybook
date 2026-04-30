@@ -61,7 +61,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
     When("I tap start session", when.tapStartSession, async () => {
       When("I complete the 14 min Meditopia session (plays a 15 sec test video)", when.completeMeditopiaContentSession, async () => {
-        Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 140, "60"));
+        Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 140, "60", 14));
         Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible);
       });
     });
@@ -79,7 +79,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     When("I tap the 5 mins Awareness card", when.tapMeditopiaContentCard("5", "20"), async () => {
       When("I tap to start the session", when.tapStartSession, async () => {
         When("I complete the 5 min Meditopia session", when.completeMeditopiaContentSession, async () => {
-          Then("I should see the correct reward on the challenge completion screen", then.onMeditopiaChallengeComplete(5, 140, "20"));
+          Then("I should see the correct reward on the challenge completion screen", then.onMeditopiaChallengeComplete(5, 140, "20", 14));
         });
       });
     });

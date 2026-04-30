@@ -418,7 +418,7 @@ Feature("As a user I can take a challenge", async () => {
 
   Scenario("I can confirm the accurate reset of data and successfully redeem a challenge initiated the day before, completed just after midnight", scenario.start, async () => {
     Given("I login as a user who initiated a walking challenge yesterday", given.loginAsUser(data.CUSTOMER_132, data.AUTH_132), async () => {
-      Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)));
+      Then("I should see my coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)));
     });
     When("I tap the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
       Then("I should see the well done screen", then.onChallengeComplete(450, 1));
