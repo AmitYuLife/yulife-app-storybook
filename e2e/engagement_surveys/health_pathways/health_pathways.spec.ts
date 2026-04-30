@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioSkip, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import { healthPathUnlockedCopy } from "engagement_surveys/_resources/fixtures";
 import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 import * as scenario from "../_common/scenario";
@@ -168,10 +168,22 @@ Feature("Health Pathways", async () => {
     });
     When("I tap Continue", when.tapID(ids.LABELS_CTA_CONTINUE, 2_000), async () => {
       When("I tap to start the box breathing", when.tapID(ids.BUTTON_BASE("Start", false), 4_000), async () => {
-        When("I wait for the breathing exercise to complete", when.wait(65_000), async () => {
-          Then("I can see my 90 reward coins", then.idVisible(ids.CHALLENGE_REWARD(90), 3_000));
+        When("I tap Pause on the breathing exercise", when.tapID(ids.CTA_PAUSE, 3_000), async () => {
+          Then("I should see Resume so the exercise is paused", then.idVisible(ids.CTA_RESUME, 3_000));
         });
       });
+    });
+    When("I tap the close control on the breathing exercise", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0, 3_000), async () => {
+      Then("I should see the Call it quits confirmation like other active challenges", then.idVisible(ids.GENERIC_SCREEN_HEADING("Call it quits?")));
+    });
+    When("I dismiss the confirmation with Cancel", when.tapID(ids.GENERIC_SCREEN_CTA("Cancel"), 2_000), async () => {
+      Then("the quit confirmation should be gone", then.textNotVisible("Call it quits?", 3_000));
+    });
+    When("I tap Resume to continue the breathing exercise", when.tapID(ids.CTA_RESUME, 3_000), async () => {
+      Then("I should see Pause again while the exercise runs", then.idVisible(ids.CTA_PAUSE, 3_000));
+    });
+    When("I wait for the breathing exercise to complete", when.wait(65_000), async () => {
+      Then("I can see my 90 reward coins", then.idVisible(ids.CHALLENGE_REWARD(90), 3_000));
     });
     When("I collect my reward", when.tapID(ids.CHALLENGE_SUCCESS_CTA, 2_000), async () => {
       Then("I should see the feedback screen", then.textVisible("How do you feel?", 3_000));

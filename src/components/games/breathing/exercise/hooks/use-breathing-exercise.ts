@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Easing, useSharedValue, withTiming, cancelAnimation } from "react-native-reanimated";
+import { DETOX_ENABLED } from "@services/socket";
 
 const INTRO_DURATION_MS = 3 * 1000;
 
@@ -111,10 +112,15 @@ export const useBreathingExercise = ({
 
     // Handle progress bar animation - only start/restart when needed
     if (!progressAnimating.current && partIndex >= 0 && progress.value < 1) {
-      const progressRemaining = 1 - progress.value;
-      const timeRemaining = progressRemaining * selectedDurationMs;
-      progress.value = withTiming(1, { duration: timeRemaining, easing: Easing.linear });
-      progressAnimating.current = true;
+      if (DETOX_ENABLED) {
+        progress.value = 1;
+        progressAnimating.current = false;
+      } else {
+        const progressRemaining = 1 - progress.value;
+        const timeRemaining = progressRemaining * selectedDurationMs;
+        progress.value = withTiming(1, { duration: timeRemaining, easing: Easing.linear });
+        progressAnimating.current = true;
+      }
     }
 
     phaseStartTime.current = Date.now();
