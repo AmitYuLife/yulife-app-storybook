@@ -202,7 +202,7 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
         setElapsedMs(Math.min(currentElapsed, selectedDurationMs));
       }
     },
-    isPlaying && currentPart.type !== BreathingExerciseOptionPartType.Intro ? 100 : null
+    !DETOX_ENABLED && isPlaying && currentPart.type !== BreathingExerciseOptionPartType.Intro ? 100 : null
   );
 
   useEffect(() => {
@@ -268,6 +268,15 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
     return displaySecondsAsMinutes(selectedDurationMs / 1000).minutes;
   }, [selectedDurationMs]);
 
+  const breathingPhaseHeading = useMemo(() => {
+    if (DETOX_ENABLED) {
+      return " ";
+    }
+
+    const key = TRANSLATION_MAPPING[currentPart.type];
+    return key !== undefined ? t(key) : " ";
+  }, [currentPart.type]);
+
   useEffect(() => {
     // auto play after a tiny delay (only on mount)
     const timeout = setTimeout(
@@ -301,11 +310,17 @@ const BreathingExerciseContainer = ({ data, challengeId }: Props) => {
         <Box pt={120} justifyContent="center" alignItems="center">
           <Box justifyContent="center" alignItems="center">
             <TextTemplate type="h2" color={Colours.neutral.white}>
-              {TRANSLATION_MAPPING[currentPart.type] ? t(TRANSLATION_MAPPING[currentPart.type]) : " "}
+              {breathingPhaseHeading}
             </TextTemplate>
           </Box>
           <Box justifyContent="center" alignItems="center" mt={8}>
-            <Content {...currentPart} isPlaying={isPlaying} />
+            {DETOX_ENABLED ? (
+              <TextTemplate type="b2" color={Colours.neutral.white}>
+                {" "}
+              </TextTemplate>
+            ) : (
+              <Content {...currentPart} isPlaying={isPlaying} />
+            )}
           </Box>
 
           {currentPart.type !== BreathingExerciseOptionPartType.End && hasMultipleDurations ? (
@@ -372,7 +387,7 @@ export default memo(BreathingExerciseContainer);
 
 const Content = ({ type, duration, isPlaying }: { type: string; duration?: number; isPlaying: boolean }) => {
   if (type === BreathingExerciseOptionPartType.Hold) {
-    return <CountDown isPlaying={isPlaying} duration={duration} textType="b2" />;
+    return <CountDown isPlaying={isPlaying} duration={duration ?? 0} textType="b2" />;
   }
 
   let content = " ";

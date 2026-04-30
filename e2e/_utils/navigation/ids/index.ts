@@ -61,7 +61,8 @@ export const WELLBEING_SERVICE_EMPTY_LIST = "WELLBEING_SERVICE_EMPTY_LIST";
 export const PERK_SCREEN = "PERK_SCREEN";
 export const EVENT_DIALOG_SCREEN = "EVENT_DIALOG_SCREEN";
 export const EVENT_DIALOG_SCREEN_SCROLL = "EVENT_DIALOG_SCREEN_SCROLL";
-export const EVENT_DIALOG_HEADER_SUBTITLE = (subtitle: string) => `EVENT_DIALOG_HEADER_SUBTITLE_${subtitle}`;
+export const EVENT_DIALOG_HEADER_SUBTITLE = (subtitle: string) =>
+  `EVENT_DIALOG_HEADER_SUBTITLE_${subtitle}`;
 export const HEALTH_SCREEN = "HEALTH_SCREEN";
 export const MEDITOPIA_CHALLENGE_LOAD_SCREEN = "MEDITOPIA_CHALLENGE_LOAD_SCREEN";
 export const CHOOSE_MEDITOPIA_SCREEN = "CHOOSE_MEDITOPIA_SCREEN";
@@ -1084,6 +1085,7 @@ export const CTA_LETS_GO = "labels.cta.lets_go";
 export const CTA_GET_STARTED = "labels.cta.get_started";
 export const CTA_SELECT = "labels.cta.select";
 export const CTA_PAUSE = "labels.cta.pause";
+export const CTA_RESUME = "labels.cta.resume";
 export const CTA_ASK_ME_LATER = "labels.cta.ask_later-text-view";
 
 // Yunity Swipe (2048)
