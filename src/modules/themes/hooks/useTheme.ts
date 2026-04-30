@@ -5,8 +5,10 @@ import { useMemo } from "react";
 import Config from "react-native-config";
 import { useSelector } from "react-redux";
 import { DEFAULT_YULIFE_THEME } from "../helpers";
+import { useThemeOverride } from "../context";
 
 export const useTheme = () => {
+  const overrideTheme = useThemeOverride();
   const shouldApplyThemeOnLogin = Config.HAS_THEME_ON_LOGIN === "true";
 
   const currentUserId = useSelector(getCurrentUserId);
@@ -27,7 +29,7 @@ export const useTheme = () => {
     errorPolicy: "ignore",
   });
 
-  const theme = query?.data?.getMobileGameTheme || DEFAULT_YULIFE_THEME;
+  const theme = overrideTheme || query?.data?.getMobileGameTheme || DEFAULT_YULIFE_THEME;
 
   return {
     ...query,

@@ -6250,6 +6250,7 @@ export type MobileGameTheme = {
   colors: MobileGameThemeColors;
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
+  sections: MobileGameThemeSections;
 };
 
 export type MobileGameThemeAssets = {
@@ -6265,6 +6266,21 @@ export type MobileGameThemeAssets = {
 export type MobileGameThemeColors = {
   __typename?: "MobileGameThemeColors";
   primary: PrimaryThemeColor;
+};
+
+export type MobileGameThemeSections = {
+  __typename?: "MobileGameThemeSections";
+  id: Scalars["ID"]["output"];
+  wellbeing?: Maybe<MobileGameThemeWellbeingSection>;
+};
+
+export type MobileGameThemeWellbeingSection = {
+  __typename?: "MobileGameThemeWellbeingSection";
+  headerTextColor?: Maybe<Scalars["String"]["output"]>;
+  heroImageBackground?: Maybe<RemoteImage>;
+  heroImageIcon?: Maybe<RemoteImage>;
+  id: Scalars["ID"]["output"];
+  logoType?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type MobileGameUserAchievement = {
@@ -40396,12 +40412,60 @@ export type JoinWeeklyGoalMutation = {
   } | null;
 };
 
+export type GetEmploymentThemeQueryVariables = Exact<{
+  businessAccountId: Scalars["String"]["input"];
+}>;
+
+export type GetEmploymentThemeQuery = {
+  __typename?: "Query";
+  getMobileGameThemeForEmployment: {
+    __typename?: "MobileGameTheme";
+    id: string;
+    name: string;
+    sections: {
+      __typename?: "MobileGameThemeSections";
+      wellbeing?: {
+        __typename?: "MobileGameThemeWellbeingSection";
+        headerTextColor?: string | null;
+        logoType?: string | null;
+        heroImageBackground?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        heroImageIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      } | null;
+    };
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+  };
+};
+
 export type GetWellbeingHubItemsQueryVariables = Exact<{
   os?: InputMaybe<Os>;
   width?: InputMaybe<Scalars["Float"]["input"]>;
   height?: InputMaybe<Scalars["Float"]["input"]>;
   categories?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>> | InputMaybe<Scalars["String"]["input"]>>;
-  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
+  businessAccountId: Scalars["String"]["input"];
   hasSelectedBusinessAccount: Scalars["Boolean"]["input"];
 }>;
 
@@ -40424,12 +40488,46 @@ export type GetWellbeingHubItemsQuery = {
     locationLabel?: string | null;
   } | null;
   categories?: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
-  linkedBusinesses: Array<{
-    __typename?: "UserBusinessLink";
+  theme?: {
+    __typename?: "MobileGameTheme";
     id: string;
-    businessAccountId: string;
-    businessAccountName: string;
-  }>;
+    name: string;
+    sections: {
+      __typename?: "MobileGameThemeSections";
+      wellbeing?: {
+        __typename?: "MobileGameThemeWellbeingSection";
+        headerTextColor?: string | null;
+        logoType?: string | null;
+        heroImageBackground?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        heroImageIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      } | null;
+    };
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+  };
 };
 
 export type SendWellbeingHubItemDocumentsMutationVariables = Exact<{
@@ -101524,6 +101622,176 @@ export const JoinWeeklyGoalDocument = {
     },
   ],
 } as unknown as DocumentNode<JoinWeeklyGoalMutation, JoinWeeklyGoalMutationVariables>;
+export const GetEmploymentThemeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetEmploymentTheme" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileGameThemeForEmployment" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "wellbeing" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "heroImageBackground" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "heroImageIcon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "logoType" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetEmploymentThemeQuery, GetEmploymentThemeQueryVariables>;
 export const GetWellbeingHubItemsDocument = {
   kind: "Document",
   definitions: [
@@ -101555,7 +101823,7 @@ export const GetWellbeingHubItemsDocument = {
         {
           kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
         {
           kind: "VariableDefinition",
@@ -101732,14 +102000,163 @@ export const GetWellbeingHubItemsDocument = {
           },
           {
             kind: "Field",
-            alias: { kind: "Name", value: "linkedBusinesses" },
-            name: { kind: "Name", value: "getLinkedBusinesses" },
+            alias: { kind: "Name", value: "theme" },
+            name: { kind: "Name", value: "getMobileGameThemeForEmployment" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+            ],
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
-                { kind: "Field", name: { kind: "Name", value: "businessAccountName" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "wellbeing" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "heroImageBackground" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "heroImageIcon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "logoType" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },

@@ -2,7 +2,7 @@ import Box from "@atoms/box/box";
 import { TouchableOpacityWithDelay } from "..";
 import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
-import { backgroundColour, colour, styles } from "./styles";
+import { backgroundColour, PICKER_TEXT_COLOUR, styles } from "./styles";
 import { DropdownSolidIcon } from "@atoms/icon/dropdown-solid-icon";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -30,9 +30,10 @@ interface BusinessPickerProps {
     box?: string;
   };
   businessAccountState: BusinessAccountState;
+  color?: string;
 }
 
-export const BusinessPicker = ({ businessAccountState, testIds }: BusinessPickerProps) => {
+export const BusinessPicker = ({ businessAccountState, testIds, color = PICKER_TEXT_COLOUR }: BusinessPickerProps) => {
   const dispatch = useDispatch();
 
   const { activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount } = businessAccountState;
@@ -43,6 +44,7 @@ export const BusinessPicker = ({ businessAccountState, testIds }: BusinessPicker
         activeBusinessAccounts.find((ba) => ba?.businessAccountId === selectedBusinessCustomerId) ||
         selectedBusinessAccount;
 
+      // eslint-disable-next-line strict-null-checks/all
       setSelectedBusinessAccount(currentBusinessAccountSelection);
     },
     [activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount]
@@ -86,7 +88,7 @@ export const BusinessPicker = ({ businessAccountState, testIds }: BusinessPicker
   return (
     <TouchableOpacityWithDelay style={styles.info} onPress={onPress} disabled={!hasBusinessSelector}>
       <Box flexDirection="row" mv={8}>
-        <TextTemplate type="l1b" color={colour} testID={testIds?.textTemplate || undefined}>
+        <TextTemplate type="l1b" color={color} testID={testIds?.textTemplate || undefined}>
           {selectedBusinessAccount?.businessAccountName}
         </TextTemplate>
         {!hasBusinessSelector ? null : (
@@ -101,7 +103,7 @@ export const BusinessPicker = ({ businessAccountState, testIds }: BusinessPicker
             ml={8}
             pt={2}
           >
-            <DropdownSolidIcon colour={colour} width={8} height={8} />
+            <DropdownSolidIcon colour={color} width={8} height={8} />
           </Box>
         )}
       </Box>

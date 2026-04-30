@@ -1,7 +1,8 @@
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { Platform, View, ViewStyle } from "react-native";
+import { Platform } from "react-native";
+import { Box, prefetchImages } from "@atoms";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { gql, Os } from "@graphql/__generated";
@@ -11,6 +12,7 @@ import { getUserFirstName } from "@redux/user/user.selectors";
 import { Style } from "@styles";
 import { ROUTES } from "@navigation/constants";
 import { BusinessAccount } from "@components/molecules/business-picker";
+import ThemeOverrideProvider from "@modules/themes/context";
 
 interface IProps {
   componentId: string;
@@ -43,19 +45,23 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
   const [selectedBusinessAccount, setSelectedBusinessAccount] = useState<BusinessAccount | undefined>(undefined);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [categoryToPreselect, setCategoryToPreselect] = useState(preselectCategory || null);
+  const [isPrefetchingImages, setIsPrefetchingImages] = useState(true);
   const firstName = useSelector(getUserFirstName);
 
-  const { data, loading } = useQuery(gql("GetWellbeingHubItemsDocument"), {
+  const { data, loading, previousData } = useQuery(gql("GetWellbeingHubItemsDocument"), {
     fetchPolicy: "cache-and-network",
     variables: {
       os: Platform.OS as Os,
       width: Style.adjust(240),
       height: Style.adjust(208),
       categories: selectedCategory === "all" ? undefined : [selectedCategory],
-      businessAccountId: selectedBusinessAccount?.businessAccountId,
+      // everything should still be validated by hasSelectedBusinessAccount
+      businessAccountId: selectedBusinessAccount?.businessAccountId || "",
       hasSelectedBusinessAccount: !!selectedBusinessAccount,
     },
   });
+
+  const { data: linkedBusinessesData } = useQuery(gql("GetLinkedBusinessesDocument"));
 
   const handleWellbeingLocationPress = useCallback(
     () =>
@@ -72,6 +78,28 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
   );
 
   useEffect(() => {
+    if (!data?.theme) {
+      return;
+    }
+
+    const fetchImages = async () => {
+      const themeBackgroundUri = data?.theme?.sections?.wellbeing?.heroImageBackground?.uri;
+      const themeIconUri = data?.theme?.sections?.wellbeing?.heroImageIcon?.uri;
+
+      const images = [themeBackgroundUri, themeIconUri].filter((uri): uri is string => !!uri);
+      if (images.length > 0) {
+        try {
+          await prefetchImages(images);
+        } finally {
+          setIsPrefetchingImages(false);
+        }
+      }
+    };
+
+    fetchImages();
+  }, [data?.theme, loading]);
+
+  useEffect(() => {
     if (data?.categories && categoryToPreselect) {
       // we have to resolve the category name to an id
       const category = data?.categories.find((c) => c.name === categoryToPreselect);
@@ -85,7 +113,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
   }, [categoryToPreselect, data?.categories]);
 
   useEffect(() => {
-    const linkedBusinesses = data?.linkedBusinesses || [];
+    const linkedBusinesses = linkedBusinessesData?.getLinkedBusinesses || [];
 
     setActiveBusinessAccounts(linkedBusinesses);
     if (!selectedBusinessAccount && linkedBusinesses.length > 0) {
@@ -93,7 +121,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
         linkedBusinesses.find((a) => a.businessAccountId === businessAccountId) || linkedBusinesses[0]
       );
     }
-  }, [businessAccountId, data?.linkedBusinesses, selectedBusinessAccount]);
+  }, [businessAccountId, linkedBusinessesData?.getLinkedBusinesses, selectedBusinessAccount]);
 
   const onCategoryPress = useCallback(
     (id: string) => {
@@ -114,29 +142,28 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
     [data?.categories, onCategoryPress, selectedCategory]
   );
 
+  useEffect(() => {
+    if (selectedBusinessAccount) {
+      onCategoryPress("all");
+    }
+  }, [selectedBusinessAccount, onCategoryPress]);
+
   return (
-    <View style={styles.wrapper}>
-      <WellBeingHub
-        handleClose={handleClose}
-        categoryChips={categoryChips}
-        loading={loading}
-        userFirstName={firstName}
-        handleWellbeingLocationPress={handleWellbeingLocationPress}
-        cards={data?.listItems}
-        location={data?.location}
-        businessAccountState={{ activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount }}
-      />
-    </View>
+    <ThemeOverrideProvider theme={data?.theme || previousData?.theme}>
+      <Box flex={1}>
+        <WellBeingHub
+          handleClose={handleClose}
+          categoryChips={categoryChips}
+          loading={loading || isPrefetchingImages}
+          userFirstName={firstName}
+          handleWellbeingLocationPress={handleWellbeingLocationPress}
+          cards={data?.listItems}
+          location={data?.location}
+          businessAccountState={{ activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount }}
+        />
+      </Box>
+    </ThemeOverrideProvider>
   );
 };
 
 export default WellbeingHubItemsContainer;
-
-const styles = {
-  wrapper: {
-    flex: 1,
-  } as ViewStyle,
-  tabsWrapper: {
-    marginTop: Style.adjust(17),
-  } as ViewStyle,
-};
