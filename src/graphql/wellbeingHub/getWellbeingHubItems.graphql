@@ -3,7 +3,7 @@ query GetWellbeingHubItems(
   $width: Float
   $height: Float
   $categories: [String]
-  $businessAccountId: String
+  $businessAccountId: String!
   $hasSelectedBusinessAccount: Boolean!
 ) {
   listItems: wellbeingHubItems(os: $os, categories: $categories, businessAccountId: $businessAccountId)
@@ -32,9 +32,20 @@ query GetWellbeingHubItems(
     id
     name
   }
-  linkedBusinesses: getLinkedBusinesses {
-    id
-    businessAccountId
-    businessAccountName
+  theme: getMobileGameThemeForEmployment(businessAccountId: $businessAccountId)
+    @include(if: $hasSelectedBusinessAccount) {
+    ...MobileGameTheme
+    sections {
+      wellbeing {
+        headerTextColor
+        heroImageBackground {
+          ...RemoteImage
+        }
+        heroImageIcon {
+          ...RemoteImage
+        }
+        logoType
+      }
+    }
   }
 }

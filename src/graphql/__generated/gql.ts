@@ -333,6 +333,7 @@ type Documents = {
   ClaimMobileGameWeeklyRewardsDocument: typeof types.ClaimMobileGameWeeklyRewardsDocument;
   GetMobileGameWeekliesDocument: typeof types.GetMobileGameWeekliesDocument;
   JoinWeeklyGoalDocument: typeof types.JoinWeeklyGoalDocument;
+  GetEmploymentThemeDocument: typeof types.GetEmploymentThemeDocument;
   GetWellbeingHubItemsDocument: typeof types.GetWellbeingHubItemsDocument;
   SendWellbeingHubItemDocumentsDocument: typeof types.SendWellbeingHubItemDocumentsDocument;
   GetMobileUserWrappedDocument: typeof types.GetMobileUserWrappedDocument;
@@ -678,6 +679,7 @@ const documents: Documents = {
   ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
   GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
   JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
+  GetEmploymentThemeDocument: types.GetEmploymentThemeDocument,
   GetWellbeingHubItemsDocument: types.GetWellbeingHubItemsDocument,
   SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
   GetMobileUserWrappedDocument: types.GetMobileUserWrappedDocument,
@@ -2233,6 +2235,10 @@ export function gql(source: "GetMobileGameWeekliesDocument"): (typeof documents)
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "JoinWeeklyGoalDocument"): (typeof documents)["JoinWeeklyGoalDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetEmploymentThemeDocument"): (typeof documents)["GetEmploymentThemeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

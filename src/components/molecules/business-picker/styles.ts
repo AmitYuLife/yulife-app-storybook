@@ -5,5 +5,5 @@ export const styles = StyleSheet.create({
   },
 });
 
-export const colour = "#345E8C";
+export const PICKER_TEXT_COLOUR = "#345E8C";
 export const backgroundColour = "#BBD8F6";

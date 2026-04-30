@@ -1,4 +1,4 @@
-import { StyleProp } from "react-native";
+import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { MobileGameTheme } from "@graphql/__generated";
 import { Colours, Style, templateTextStyles } from "@styles";
 
@@ -15,7 +15,7 @@ export interface IMarkdownStyle {
   link?: Record<string, string | number>;
 }
 
-export const getMarkdownStyles = (props: IMarkdownStyle, theme?: MobileGameTheme) =>
+export const getMarkdownStyles = (props: IMarkdownStyle, theme?: Omit<MobileGameTheme, "sections">) =>
   ({
     block: {
       marginBottom: Style.adjust(10),
@@ -120,6 +120,6 @@ export const getMarkdownStyles = (props: IMarkdownStyle, theme?: MobileGameTheme
       paddingVertical: Style.adjust(8),
       ...props?.paragraph,
     },
-  } as StyleProp<any>);
+  } as Record<string, ViewStyle | TextStyle | ImageStyle>);
 
 export default getMarkdownStyles;
