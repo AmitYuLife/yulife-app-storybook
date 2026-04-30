@@ -1,14 +1,17 @@
-import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
+/* eslint-disable react-compiler/react-compiler */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import Video, {
   VideoRef,
   OnLoadData,
   OnProgressData,
   PosterResizeModeType,
-  ResizeMode,
   IgnoreSilentSwitchType,
   ViewType,
+  OnVideoErrorData,
 } from "@atoms/video/video";
 import moment from "moment";
+// eslint-disable-next-line rulesdir/no-restricted-imports-clone
 import { Animated, View, AppStateStatus } from "react-native";
 import { useCasting, useCastingAntiCheat, AirplayButton, CastButton, showRoutePicker } from "@services/casting";
 import type Lottie from "lottie-react-native";
@@ -206,6 +209,13 @@ const VideoPlayer = ({
    * Set's the app state, if the video is in the background etc
    */
   useAppState((appState: AppStateStatus) => {
+    Logger.info("video_player app_state_change", {
+      from: appCurrentState,
+      to: appState,
+      isDoneOnBackground: state.isDoneOnBackground,
+      videoPlayerIsActive,
+      activeCastProtocol,
+    });
     setAppCurrentState(appState);
   });
 
@@ -219,12 +229,18 @@ const VideoPlayer = ({
    * Triggers the `onEnd` ballback when the video is finished
    */
   useEffect(() => {
-    const isPlayerActive = appCurrentState === "active" && videoPlayerIsActive;
-    if (state.isDoneOnBackground && isPlayerActive) {
-      dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
-      onEnd();
+    if (!state.isDoneOnBackground) {
+      return;
     }
-  }, [appCurrentState]);
+
+    Logger.info("video_player resume-from-background — firing deferred onEnd", {
+      appCurrentState,
+      videoPlayerIsActive,
+      activeCastProtocol,
+    });
+
+    handleOnEndRef.current();
+  }, [appCurrentState, state.isDoneOnBackground]);
 
   /**
    * Set's up the initial player state and cleanup
@@ -285,7 +301,7 @@ const VideoPlayer = ({
         payload: moment.duration(currentProgressInSeconds, "seconds").asMilliseconds(),
       });
     },
-    [state.currentProgressInSeconds, onProgress]
+    [state.currentProgressInSeconds, onProgress, remotePlayback]
   );
 
   const onLoad = useCallback(
@@ -327,7 +343,7 @@ const VideoPlayer = ({
     dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
 
     if (lottieUri) {
-      lottieRef?.current[state.isPaused ? "resume" : "pause"]();
+      lottieRef.current?.[state.isPaused ? "resume" : "pause"]();
     }
 
     reduxDispatch(
@@ -463,39 +479,41 @@ const VideoPlayer = ({
   }, [state.isPaused, state.showFocusScreen, activeCastProtocol]);
 
   const handleOnError = useCallback(
-    async (err: any): Promise<void> => {
+    async (err: OnVideoErrorData): Promise<void> => {
       Logger.notify(new Error(JSON.stringify(err?.error || {})), {
         location: "video-player-onError",
         activeCastProtocol,
       });
 
       if (state.retries > 0 && state.isMusicControlMounted) {
-        playerRef.current.seek(state.currentProgressInSeconds);
+        playerRef.current?.seek(state.currentProgressInSeconds);
         dispatch({ type: ActionTypes.SET_RETRIES });
         return dispatch({ type: ActionTypes.PLAY_PLAYER });
       }
 
       onError();
     },
-    [state.currentProgressInSeconds, state.isMusicControlMounted, state.retries, activeCastProtocol]
+    [state.currentProgressInSeconds, state.isMusicControlMounted, state.retries, activeCastProtocol, onError]
   );
 
   const handleOnRightIconPress = useCallback((): void => {
     onRightIconPress(state.isMusicControlMounted);
-  }, [state.isMusicControlMounted]);
+  }, [state.isMusicControlMounted, onRightIconPress]);
 
   const videoUrl = useMemo(
     () =>
       DETOX_ENABLED
         ? "https://yulife-local.imgix.net/media/meditation/meditopia/15-seconds-video.mp4?ixlib=js-3.2.1&s=5270f77d06c4b2ad83e582610a75553b"
         : source,
-    [source, DETOX_ENABLED]
+    [source]
   );
 
   const videoSource = useMemo(
     () => ({
       uri: videoUrl,
       type: videoSourceType,
+      minLoadRetryCount: 20,
+      contentFit: effectiveOrientation === "landscape" ? ("none" as const) : ("cover" as const),
       headers: {
         yu_client_token: Config.YU_CLIENT_TOKEN,
       },
@@ -523,7 +541,7 @@ const VideoPlayer = ({
   );
 
   const hasErrorOnReduxSubmission = useMemo(() => {
-    return activeLevel.submissionErrorCount > 0;
+    return (activeLevel?.submissionErrorCount ?? 0) > 0;
   }, [activeLevel?.submissionErrorCount]);
 
   const shouldShowTryAgainError = state.showTryAgainError || hasErrorOnReduxSubmission;
@@ -531,36 +549,35 @@ const VideoPlayer = ({
   return (
     <View style={styles.wrapper}>
       <Pressable delay={1000} onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
-        <Video
-          ref={playerRef}
-          source={videoSource}
-          minLoadRetryCount={20}
-          disableFocus={true}
-          poster={poster}
-          posterResizeMode={PosterResizeModeType.COVER}
-          progressUpdateInterval={1000}
-          resizeMode={effectiveOrientation === "landscape" ? ResizeMode.NONE : ResizeMode.COVER}
-          onError={handleOnError}
-          onLoad={onLoad}
-          onEnd={handleOnEnd}
-          onProgress={handleOnProgress}
-          paused={state.isPaused || remotePlayback !== null || isRemotePlaybackLoading}
-          playInBackground={!isExternalPlaybackActive}
-          ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
-          showNotificationControls={!isExternalPlaybackActive}
-          viewType={ViewType.TEXTURE}
-          useTextureView={true}
-          maxBitRate={qualities.bitRate}
-          allowsExternalPlayback={allowsExternalPlayback}
-          onExternalPlaybackChange={handleLocalPlaybackExternalDisplayChange}
-          style={
-            !state.isMusicControlMounted
-              ? styles.backgroundVideo
-              : effectiveOrientation === "landscape"
-              ? styles.backgroundVideoLandscape
-              : styles.backgroundVideo
-          }
-        />
+        {videoSource?.uri ? (
+          <Video
+            ref={playerRef}
+            // eslint-disable-next-line strict-null-checks/all
+            source={videoSource}
+            disableFocus={true}
+            poster={poster ? { source: { uri: poster }, resizeMode: PosterResizeModeType.COVER } : undefined}
+            progressUpdateInterval={1000}
+            onError={handleOnError}
+            onLoad={onLoad}
+            onEnd={handleOnEnd}
+            onProgress={handleOnProgress}
+            paused={state.isPaused || remotePlayback !== null || isRemotePlaybackLoading}
+            playInBackground={!isExternalPlaybackActive}
+            ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
+            showNotificationControls={!isExternalPlaybackActive}
+            viewType={ViewType.TEXTURE}
+            maxBitRate={qualities.bitRate}
+            allowsExternalPlayback={allowsExternalPlayback}
+            onExternalPlaybackChange={handleLocalPlaybackExternalDisplayChange}
+            style={
+              !state.isMusicControlMounted
+                ? styles.backgroundVideo
+                : effectiveOrientation === "landscape"
+                ? styles.backgroundVideoLandscape
+                : styles.backgroundVideo
+            }
+          />
+        ) : null}
         <GenericHeadingPad />
 
         {!lottieUri &&
@@ -576,11 +593,11 @@ const VideoPlayer = ({
               title={title}
               subtitle={subtitle}
               description={description}
-              duration={state.durationInSeconds}
-              yuCoin={yuCoin}
+              duration={state.durationInSeconds ?? 0}
+              yuCoin={yuCoin ?? 0}
               stars={stars}
               tag={tag}
-              logo={logo}
+              logo={logo ?? ""}
             />
           </View>
         )}
@@ -590,7 +607,7 @@ const VideoPlayer = ({
             <Image
               suppressLoadingUi={true}
               source={{ uri: videoLogo }}
-              resizeMode="contain"
+              contentFit="contain"
               width={Style.adjust(151)}
               height={Style.adjust(151)}
               testID={VIDEO_LOGO}
@@ -693,12 +710,12 @@ const VideoPlayer = ({
       {!state.durationInSeconds ? null : (
         <GenericHeadingAbsolute
           backgroundColor="transparent"
-          onLeftIconPress={!state.isMusicControlMounted ? onLeftIconPress : null}
+          onLeftIconPress={!state.isMusicControlMounted ? onLeftIconPress : undefined}
           color={themeColour}
           {...showYuLogo}
           onRightIconPress={
             state.showFocusScreen || (effectiveOrientation === "landscape" && state.isMusicControlMounted)
-              ? null
+              ? undefined
               : handleOnRightIconPress
           }
           rightIcon="CLOSE"
@@ -730,6 +747,7 @@ const VideoPlayer = ({
           ) : null}
           {showGoogleCastButton ? (
             <Pressable size={44} justifyContent="center" alignItems="center" enableAnimation={true}>
+              {/* eslint-disable-next-line react-native/no-inline-styles */}
               <CastButton style={{ width: 24, height: 24, tintColor: themeColour }} />
             </Pressable>
           ) : null}
