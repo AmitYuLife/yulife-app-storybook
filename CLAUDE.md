@@ -2,83 +2,82 @@
 
 YuLife is a React Native mobile application for iOS and Android that provides a health and wellness platform with step tracking, challenges, rewards, and gamification features. The app uses Expo, React Native Navigation, Redux Toolkit with Sagas, Apollo GraphQL, and integrates with native health APIs.
 
-## Architecture Overview
+Source control is GitLab (`glab` CLI).
 
-@.cursor/rules/react-native-best-practices.mdc
-
-### Environment Configuration
-
-API URLs are controlled by `.env.local`, but `.env.local.overrides` takes precedence and will silently replace values set in `.env.local`. When pointing the app at a different API server (e.g. a worktree on a non-default port), update `.env.local.overrides` rather than `.env.local`.
-
-### Boundaries
+## Boundaries
 
 - **Do not modify `ios/` or `android/` directories.** This is an Expo managed project; native code changes belong in plugins or upstream packages, not in these folders directly.
-
-### Rules
-
-- Always use `import { Box } from "@atoms";` component instead of View. Use the style props in `src/components/atoms/box/box.types.ts` instead of passing a `style` to Box.
-- When creating components, always define them with `const` and export with `export default memo(Component)` at the bottom of the file. Do not define with `const MyComponent = memo(...`
-- Always destructure React imports. For example use `property: ReactNode` instead of `property: React.ReactNode`
-- If working within a module `src/modules` keep all files related to it in the module folder/subfolders.
-- All screens must be rendered via a `container` rather than adding the screen file directly to navigation. This is usually via a `screen-name.container.tsx` file.
-- Prop interfaces should be named following the pattern IComponentNameProps
+- Do not add new data to the Redux store without specific user instruction.
 - Do not create new barrel files. Only add to existing barrel files if needed.
-- Do not use `Style.DEVICE_HEIGHT` or `Style.DEVICE_WIDTH` for the width or height of the outermost `Box`. Use `100%` when you specifically do not need the dimensions and need to cover the whole screen.
 
-### State Management (Redux)
+## Code Rules
 
-Redux store configuration: `src/redux/_core/store.ts` - do not add new data to the redux store without specific user instruction
+- File and directory names are kebab-case (e.g. `event-reward/`, `event-reward.tsx`).
+- Use `import { Box } from "@atoms";` instead of `View`. Use the style props in `src/components/atoms/box/box.types.ts` instead of passing a `style` to Box.
+- Do not use `Style.DEVICE_HEIGHT` or `Style.DEVICE_WIDTH` for the outermost `Box`. Use `100%` instead.
+- Define components with `const` and export with `export default memo(Component)` at the bottom. Do not wrap the definition itself in `memo`.
+- Destructure React imports: `property: ReactNode` not `property: React.ReactNode`. Do not use `React.FC`.
+- Prop interfaces: `IComponentNameProps`.
+- Screens must be rendered via a container (`screen-name.container.tsx`), never added directly to navigation.
+- Modules in `src/modules/` — keep all related files within the module folder/subfolders.
+- When fixing `Platform.select` returning `undefined`, add a `default` case rather than `?? fallback`.
+- Use `useCallback` for callbacks passed as props to memoised children. Not required for every function in a component.
+- Use `react-native-reanimated` for animations, not `Animated` from React Native.
+- Use FlashList over FlatList with `estimatedItemSize`. Avoid anonymous functions in `renderItem` or event handlers.
+- **All ESLint warnings are CI-blocking** (`--max-warnings 0`). When you modify a file, run `pnpm eslint <file>` and fix all warnings in that file, even pre-existing ones.
 
-**Async Operations**: Redux-Saga middleware handles side effects
+## Environment Configuration
 
-- Sagas located in each module's directory
-- Central saga coordination in `src/redux/_core/sagas.ts`
+API URLs are controlled by `.env.local`, but `.env.local.overrides` takes precedence and will silently replace values. When pointing the app at a different API server, update `.env.local.overrides` rather than `.env.local`.
 
-### GraphQL (Apollo Client)
+## State Management (Redux)
 
-Client setup: `src/graphql/_core/client.ts`
+- Store: `src/redux/_core/store.ts`
+- Async side effects via Redux-Saga, sagas in each module's directory, coordinated in `src/redux/_core/sagas.ts`
 
-**Query Files**: Organized by domain in `src/graphql/[feature]/`
+## GraphQL (Apollo Client)
 
-- Auto-generated TypeScript types in `src/graphql/__generated/`
+- Client: `src/graphql/_core/client.ts`
+- Queries by domain in `src/graphql/[feature]/`, generated types in `src/graphql/__generated/`
 - Run `pnpm generate:gql:types:local` after modifying `.graphql` files
 
-### Navigation (React Native Navigation)
+## Navigation (React Native Navigation)
 
-Navigation wrapper: `src/navigation/main.ts`
+Uses React Native Navigation (native stacks), not React Navigation.
 
-**Key Files**:
+- Routes: `src/navigation/routes.ts`
+- Screen IDs: `src/navigation/constants.ts`
+- Root layout: `src/navigation/root.ts`
 
-- `src/navigation/routes.ts`: Route definitions
-- `src/navigation/constants.ts`: Screen component IDs
-- `src/navigation/root.ts`: Root navigation layout
+## Localisation (Tolgee)
 
-**Features**:
+- New copy goes in `en-GB.json` only — CI handles other languages.
+- API: `src/locale/index.ts`, wrapper: `src/locale/translator.ts`
 
-- Native stack navigation (not React Navigation)
-- RTL support with animation inversion
-- Bottom tabs for main screens
-- Modal and overlay support
+## Unit Tests (Jest)
 
-### Localization (Tolgee)
-
-Translation management:
-
-- New copy should only be added to the `en-GB.json` file, which will be auto translated in CI later
-- Main API: `src/locale/index.ts`
-- Polyglot wrapper: `src/locale/translator.ts`
-- Regional overrides supported (UK, US, Saudi Arabia, Japan)
-- RTL locale support (Arabic, Hebrew)
+- Runner: Jest (`jest.config.ts`)
+- Run all: `pnpm test:unit`
+- Run single file: `pnpm jest path/to/file.test.ts`
+- Tests are co-located with source as `filename.test.ts` — no `__tests__/` directories.
 
 ## E2E Testing (Detox)
 
-@.cursor/rules/e2e-testing.mdc
-@.cursor/rules/e2e-seed-data.mdc
-
 Test structure: `e2e/feature/sub-feature/*.spec.ts`
+
+- Uses `@yu-life/yulife-bdd-framework` for BDD-style tests: `Feature()` > `Scenario()` > `Given()` / `When()` / `Then()`
+- Step definitions in `_steps/given.ts`, `_steps/when.ts`, `_steps/then.ts`
+- Prefer seed helpers (`createCustomerRecords()`, `createBusinessRecords()`) over seeding individual models
+- Separate users for each Scenario — do not share customer/user data between Scenario blocks
+- Businesses can be reused across scenarios
 
 **Running E2E Tests**:
 
-1. Terminal 1: `pnpm start:e2e` (bundler + TypeScript watch)
-2. Terminal 2: `CI=true pnpm detox:run e2e/path/to/suite.spec.ts`
-3. Backend: In api-server repo, run `pnpm detox:start` (request the user to do this separately)
+1. Backend: In api-server repo, run `pnpm detox:start` (request the user to do this separately)
+2. Terminal 1: `pnpm start:e2e` (bundler + TypeScript watch)
+3. Terminal 2: `CI=true pnpm detox:run e2e/path/to/suite.spec.ts`
+
+**Troubleshooting**:
+
+- "Failed to find the app binary": run `pnpm detox:build`
+- "Failed to find a device by type": check `xcrun simctl list devices available | grep -i iphone`, then `xcrun simctl create "iPhone 16 Pro" "iPhone 16 Pro"`

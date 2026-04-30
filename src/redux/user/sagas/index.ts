@@ -13,11 +13,10 @@ import {
   UPDATE_USER_PROFILE,
   REFRESH_USER_PROFILE,
   YUSCREEN_SYNCHRONISED,
-  REFRESH_USER_PROFILE_EVENTS,
-  UPDATE_USER_PROFILE_EVENTS,
   GET_ALL_USER_DATA_START,
-  UPDATE_USER_PROFILE_HERO_CARDS,
   LOGOUT_SUCCESS,
+  REFRESH_HERO_CARDS,
+  UPDATE_USER_PROFILE_HERO_CARDS,
 } from "../user.actions";
 
 import { AppDataType } from "../user.types";
@@ -74,7 +73,7 @@ export default [
     })
   ),
   takeLatest(UPDATE_CURRENT_DATE, getUserOnUpdatedDateSaga),
-  takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
+  takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_HERO_CARDS], getUserProfileEvents),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
   takeLatest(LOGOUT_START, logOutSaga),
   takeLatest(LOGOUT_SUCCESS, resetApolloSaga),
@@ -83,7 +82,7 @@ export default [
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest([LOGIN_USER_SUCCESS, REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], clearMobileTabsUnreadBadgeCounts),
-  takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS, UPDATE_USER_PROFILE_HERO_CARDS], showEventFinishDialog),
+  takeLatest(UPDATE_USER_PROFILE_HERO_CARDS, showEventFinishDialog),
   takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
   takeLatest([REHYDRATE, UPDATE_USER_PROFILE], setSuspendedTabs),
   takeLatest([UPDATE_APP_STATE_ACTIVE, AUTHENTICATED], trackUserSession),

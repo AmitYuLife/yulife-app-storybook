@@ -1,6 +1,7 @@
 import { defaultDataIdFromObject, InMemoryCache, TypePolicies } from "@apollo/client";
 import fragmentMatcher from "../__generated/possibleTypes";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultYuLifeIdFromObject = (object: any) => `${object.__typename}-${object.id}`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,9 +47,6 @@ const incomingMergeStrategy = (_existing: never, incoming: never) => incoming;
 const typePolicies: TypePolicies = {
   Query: {
     fields: {
-      getUserProfileEvents: {
-        merge: incomingMergeStrategy,
-      },
       getMobileHeroCards: {
         merge: incomingMergeStrategy,
       },

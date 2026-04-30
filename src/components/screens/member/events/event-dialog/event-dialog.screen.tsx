@@ -1,6 +1,6 @@
 import LinearGradient from "react-native-linear-gradient";
-import { Animated, NativeScrollEvent, Platform, View } from "react-native";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import { Animated, NativeScrollEvent, Platform, View } from "react-native"; // eslint-disable-line rulesdir/no-restricted-imports-clone
+import { type ReactNode, useCallback, useMemo, useRef, useState } from "react";
 
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
@@ -30,7 +30,7 @@ import style, {
 } from "./event-dialog.styles";
 import moment from "moment";
 import HintContainer from "@components/molecules/hint/hint.container";
-import { GetGoalDetailsQuery, GetUserProfileQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
+import { GetGoalDetailsQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -38,6 +38,7 @@ const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
   ios: Style.adjust(32),
   android: Style.adjust(44),
+  default: Style.adjust(32),
 });
 
 interface IHeaderProps {
@@ -66,17 +67,17 @@ interface ITasks {
 }
 
 interface IEventDialogScreenProps {
-  event: GetUserProfileQuery["getUserProfile"]["events"][number];
+  event: NonNullable<GetGoalDetailsQuery["getGoalDetails"]>["dialogInfo"];
   faq?: IFaqProps;
   rewards: IReward[];
   about?: IAboutProps;
   maxProgress: number;
   progressUnit: string;
   type: string;
-  teams?: GetGoalDetailsQuery["getGoalDetails"]["teams"];
+  teams?: NonNullable<GetGoalDetailsQuery["getGoalDetails"]>["teams"];
   progressIcon: Source;
   milestones: number[];
-  banner?: GetGoalDetailsQuery["getGoalDetails"]["banner"];
+  banner?: NonNullable<GetGoalDetailsQuery["getGoalDetails"]>["banner"];
   button?: EventButton;
   currentProgress: number;
   onFaqViewed?: () => void;
@@ -166,7 +167,7 @@ const EventDialogScreen = ({
         x: pageX + FAQ_ICON_DIMENSION / 2 + FAQ_VERTICAL_PADDING / 2,
         y: pageY + FAQ_ICON_DIMENSION,
         beakPosition: "topRight",
-        infoText: faq?.text,
+        infoText: faq?.text ?? "",
       });
     });
   }, [faq?.text, onFaqViewed]);
@@ -183,7 +184,7 @@ const EventDialogScreen = ({
   const isEventActive = event?.status === UserProfileEventStatus.Active;
 
   const heading = useMemo(
-    (): React.ReactNode => (
+    (): ReactNode => (
       <>
         <TextTemplate textAlign="center" numberOfLines={1} type="b1b" color={headerTextColor}>
           {title}
@@ -225,7 +226,7 @@ const EventDialogScreen = ({
         <Image
           suppressLoadingUi={true}
           style={style.headerImageWrapper}
-          resizeMode="cover"
+          contentFit="cover"
           source={headerImageSource}
           width={Style.DEVICE_WIDTH}
           height={HEADER_HEIGHT}
@@ -318,7 +319,7 @@ const EventDialogScreen = ({
               title={about.title}
               wrapperStyle={versus ? style.aboutForVersus : style.about}
               titleType="b1b"
-              markdown={about.markdown}
+              markdown={about.markdown ?? ""}
             />
           )}
 
@@ -337,7 +338,7 @@ const EventDialogScreen = ({
             <Box mt={-8} mb={24}>
               <TextTemplate type="b1b">{t("screens.event.vs.current_standings")}</TextTemplate>
               <Box mt={16} br={10} borderWidth={1} borderColor={Colours.metallic.m200} pt={8}>
-                {teams.map((team, i) => (
+                {teams?.map((team, i) => (
                   <ListItem
                     score={team.score}
                     position={i + 1}
@@ -347,7 +348,7 @@ const EventDialogScreen = ({
                     theme={team.includesCurrentUser ? "bold" : undefined}
                     key={team.id}
                     name={team.name}
-                    uri={team.image?.uri}
+                    uri={team.image?.uri ?? ""}
                   />
                 ))}
               </Box>
@@ -383,8 +384,8 @@ const EventDialogScreen = ({
             <Pressable delay={1000} onPress={openPopUp}>
               <Image
                 suppressLoadingUi={true}
-                resizeMode="contain"
-                source={faq.icon}
+                contentFit="contain"
+                source={{ uri: faq.icon.uri ?? undefined }}
                 width={FAQ_ICON_DIMENSION}
                 height={FAQ_ICON_DIMENSION}
               />

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import type Lottie from "lottie-react-native";
 import Svg, { Circle } from "react-native-svg";
 import { Vibration, View, ViewStyle } from "react-native";
-import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";
+import { memo, useRef, useMemo, useEffect, useCallback, useState, type ReactNode, type RefObject } from "react";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
 import { Colours, Style, StyleSheet } from "@styles";
 import { Image, TextTemplate } from "@atoms";
@@ -12,7 +12,7 @@ import { RadioIcon } from "@atoms/icon/radio-icon";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import { Button, LabelWithImages, LottieView, Pressable } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { refreshUserProfileEvents, getUserDataStart } from "@redux/user/user.actions";
+import { refreshHeroCards, getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -138,9 +138,9 @@ const EventReward = ({
       })
     );
     showInfoMessageTooltipViewRelative({
-      viewRef: questionMarkRef,
-      infoText,
-      buttonLabel: "Got it",
+      viewRef: questionMarkRef as RefObject<View>,
+      infoText: infoText ?? "",
+      buttonLabel: t("labels.cta.got_it"),
     });
   }, [dispatch, goalId, id, infoText, title]);
 
@@ -151,7 +151,7 @@ const EventReward = ({
 
     try {
       await onClaimReward(reward);
-      dispatch(refreshUserProfileEvents());
+      dispatch(refreshHeroCards());
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
 
       Vibration.vibrate();
@@ -160,7 +160,7 @@ const EventReward = ({
     }
   }, [isClaimRewardEnabled, isRewardDelayedStatusCompleted, onClaimReward, reward, dispatch]);
 
-  const shineAnimation = useMemo((): React.ReactNode => {
+  const shineAnimation = useMemo((): ReactNode => {
     if (!animated && !isRewardDelayedStatusCompleted) {
       return null;
     }
@@ -251,14 +251,14 @@ const EventReward = ({
                 width={Style.adjust(IMAGE_SIZE)}
                 suppressLoadingUi={true}
                 height={Style.adjust(IMAGE_SIZE)}
-                source={{ uri: itemBackgroundUri }}
+                source={{ uri: itemBackgroundUri ?? undefined }}
               />
               {shineAnimation}
               <Image
                 style={styles.image}
                 suppressLoadingUi={true}
                 width={Style.adjust(IMAGE_SIZE)}
-                source={{ uri: itemUri }}
+                source={{ uri: itemUri ?? undefined }}
                 height={Style.adjust(IMAGE_SIZE)}
               />
             </Animated.View>
@@ -309,7 +309,7 @@ const EventReward = ({
                   suppressLoadingUi={true}
                   width={INFO_VIEW_HEIGHT_WIDTH}
                   height={INFO_VIEW_HEIGHT_WIDTH}
-                  source={infoBadgeUri}
+                  source={{ uri: infoBadgeUri.uri ?? undefined }}
                 />
               </View>
             </Pressable>

@@ -6,11 +6,8 @@ import {
   updateConnectionFailed,
   updateConnectionSuccess as updateConnectionSuccessAction,
   updateUserProfile as updateUserProfileAction,
-  updateUserProfileEvents as updateUserProfileEventsAction,
   updateUserProfileHeroCards as updateUserProfileHeroCardsAction,
   updateUserProfileDataSaverMode as updateUserProfileDataSaverModeAction,
-  removeUserProfileEvent as removeUserProfileEventAction,
-  updateUserGoal as updateUserGoalAction,
   updateUserAvatarRemoteFiles,
   updateUserSurge as updateUserSurgeAction,
   logOutSuccess,
@@ -20,9 +17,10 @@ import {
   getUserSessionSuccess,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
+import { UserFeatures } from "@redux/_core/types";
 import {
-  Events,
   IUserGetUserSuccessPayload,
+  IFeature,
   UserSurge,
   UserConnection,
   IUpdateUserProfilePayload,
@@ -80,7 +78,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasPendingForm: false,
     hasAppReview: false,
   },
-  events: [],
   heroCards: [],
   sessionTimestamp: 0,
   supportConfig: {
@@ -105,13 +102,10 @@ const userReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateConnectionFailed, (state, action) => updateConnectionsLoading(state, action.payload, false));
   builder.addCase(updateConnectionSuccessAction, (state, action) => updateConnectionsSuccess(state, action.payload));
   builder.addCase(updateUserProfileAction, (state, action) => updateUserProfile(state, action.payload));
-  builder.addCase(updateUserProfileEventsAction, (state, action) => updateUserProfileEvents(state, action.payload));
 
   builder.addCase(updateUserProfileHeroCardsAction, (state, action) =>
     updateUserProfileHeroCards(state, action.payload)
   );
-  builder.addCase(removeUserProfileEventAction, (state, action) => removeUserProfileEvent(state, action.payload));
-  builder.addCase(updateUserGoalAction, (state, action) => updateUserGoal(state, action.payload));
   builder.addCase(updateUserAvatarRemoteFiles, (state, action) => ({
     ...state,
     avatar: { ...state.avatar, avatarRemoteFiles: { ...action.payload } },
@@ -206,7 +200,10 @@ const getUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): IUs
     firstName: res?.user?.firstName,
     lastName: res?.user?.lastName,
     fullName: res?.user?.fullName,
-    features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
+    features: (res?.user?.userFeatures || []).reduce<IFeature>(
+      reduceUserFeatures as (acc: IFeature, item: UserFeatures) => IFeature,
+      {}
+    ),
   };
 };
 
@@ -217,7 +214,10 @@ const loginUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): I
     firstName: res?.user?.firstName,
     lastName: res?.user?.lastName,
     fullName: res?.user?.fullName,
-    features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
+    features: (res?.user?.userFeatures || []).reduce<IFeature>(
+      reduceUserFeatures as (acc: IFeature, item: UserFeatures) => IFeature,
+      {}
+    ),
   };
 };
 
@@ -244,73 +244,30 @@ const updateConnectionsSuccess = (state: IUserStore, payload: UserConnection): I
   }),
 });
 
-const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload) => ({
+const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload): IUserStore => ({
   ...state,
   blackListedNavBarTabs: payload.blackListedNavBarTabs || state.blackListedNavBarTabs || [],
-  earnRate: payload.earnRate,
-  surge: {
-    ...payload.surge,
-  },
-  avatar: {
-    ...payload.avatar,
-  },
-  passiveChallengesLastUpdate: {
-    ...payload.passiveChallengesLastUpdate,
-  },
-  passiveHourlyActivityLastUpdate: {
-    ...payload.passiveHourlyActivityLastUpdate,
-  },
-  endPointsVersion: {
-    ...payload.endPointsVersion,
-  },
-  notification: {
-    ...payload.notification,
-  },
+  earnRate: payload.earnRate ?? state.earnRate,
+  surge: payload.surge ? { ...payload.surge } : state.surge,
+  avatar: payload.avatar ? { ...payload.avatar } : state.avatar,
+  passiveChallengesLastUpdate: payload.passiveChallengesLastUpdate
+    ? { ...payload.passiveChallengesLastUpdate }
+    : state.passiveChallengesLastUpdate,
+  passiveHourlyActivityLastUpdate: payload.passiveHourlyActivityLastUpdate
+    ? { ...payload.passiveHourlyActivityLastUpdate }
+    : state.passiveHourlyActivityLastUpdate,
+  endPointsVersion: payload.endPointsVersion ? { ...payload.endPointsVersion } : state.endPointsVersion,
+  notification: payload.notification ? { ...payload.notification } : state.notification,
   supportConfig: {
-    supportLevel: payload.supportConfig?.supportLevel || state.supportConfig?.supportLevel,
+    supportLevel: payload.supportConfig?.supportLevel ?? state.supportConfig?.supportLevel ?? null,
   },
-  events: payload.events,
-  heroCards: payload.heroCards,
-  enabledHealthProviders: payload.enabledHealthProviders,
-});
-
-const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
-  ...state,
-  events,
+  heroCards: payload.heroCards ?? state.heroCards,
+  enabledHealthProviders: payload.enabledHealthProviders ?? state.enabledHealthProviders,
 });
 
 const updateUserProfileHeroCards = (state: IUserStore, heroCards: IUserStore["heroCards"]) => ({
   ...state,
   heroCards,
-});
-
-const removeUserProfileEvent = (state: IUserStore, id: string) => ({
-  ...state,
-  events: state.events.filter((event) => event.id !== id),
-});
-
-const updateUserGoal = (state: IUserStore, payload: Partial<Events>): IUserStore => ({
-  ...state,
-  events: state.events.map((event) => {
-    if (event.id === payload.id) {
-      return { ...event, ...payload };
-    }
-
-    return event;
-  }),
-  heroCards: state.heroCards.map((heroCard) => {
-    if (heroCard.id === payload.id) {
-      return {
-        ...heroCard,
-        joined: payload.joined,
-        ...(payload.badge?.text && {
-          badge: { ...(heroCard?.badge || {}), text: payload.badge.text, icon: payload.badge?.icon?.uri },
-        }),
-      };
-    }
-
-    return heroCard;
-  }),
 });
 
 const updateUserSurge = (state: IUserStore, payload: UserSurge) => ({
@@ -320,9 +277,12 @@ const updateUserSurge = (state: IUserStore, payload: UserSurge) => ({
   },
 });
 
-const getUserFeaturesSuccess = (state: IUserStore, payload: GetUserFeaturesPayload) => ({
+const getUserFeaturesSuccess = (state: IUserStore, payload: GetUserFeaturesPayload): IUserStore => ({
   ...state,
-  features: (payload.features || []).reduce(reduceUserFeatures, {}),
+  features: (payload.features || []).reduce<IFeature>(
+    reduceUserFeatures as (acc: IFeature, item: UserFeatures) => IFeature,
+    {}
+  ),
 });
 
 const getUserConnectionsSuccess = (state: IUserStore, payload: GetUserConnectionsPayload) => ({

@@ -1,7 +1,7 @@
 import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import React, { memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { Navigation } from "@navigation/main";
@@ -9,7 +9,7 @@ import { Navigation } from "@navigation/main";
 import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit, useYuWatch } from "@hooks";
-import { getUserSurge, getUserEvents, getUserFeatures } from "@redux/user/user.selectors";
+import { getUserSurge, getUserFeatures } from "@redux/user/user.selectors";
 
 import {
   getChallengesStatus,
@@ -17,7 +17,7 @@ import {
   getHasNotification,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import { getCurrentWorld, getCurrentYuniverse } from "@utils";
+import { getCurrentWorld, getCurrentYuniverse, noop } from "@utils";
 import { dailyScreenInformationIcon } from "@redux/onboarding/onboarding.selectors";
 import { getTheme } from "@theme";
 import { hideDailyScreenInformationIcon } from "@redux/onboarding/onboarding.actions";
@@ -33,7 +33,6 @@ const _DailyStepsContainer = () => {
   const userFeatures = useSelector(getUserFeatures);
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
-  const userEvents = useSelector(getUserEvents);
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
@@ -44,7 +43,7 @@ const _DailyStepsContainer = () => {
 
   const navigateToTodayEarnings = useCallback((): void => {
     if (!fitkit.authorised) {
-      return null;
+      return;
     }
 
     if (!isDailyScreenInformationIconHidden) {
@@ -57,7 +56,7 @@ const _DailyStepsContainer = () => {
         name: ROUTES.todayEarnings,
       },
     });
-  }, [fitkit.authorised, isDailyScreenInformationIconHidden, componentId]);
+  }, [fitkit.authorised, isDailyScreenInformationIconHidden, componentId, dispatch]);
 
   const navigateToNotifications = useCallback(() => {
     Navigation.push(componentId, {
@@ -86,11 +85,11 @@ const _DailyStepsContainer = () => {
         hasDoneChallengeToday={hasDone}
         isChallengeActive={isChallengeActive}
         theme={theme}
-        userSurge={userSurge}
-        onLeftMenuPress={onLeftMenuPress}
+        userSurge={userSurge as typeof userSurge & { lottie: NonNullable<typeof userSurge.lottie> }}
+        onLeftMenuPress={onLeftMenuPress ?? noop}
         onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
         hasPermission={fitkit.authorised}
-        hasEvents={!!userEvents?.length}
+        hasEvents={false}
         hideInformationIcon={isDailyScreenInformationIconHidden}
       />
     </FitkitContext>

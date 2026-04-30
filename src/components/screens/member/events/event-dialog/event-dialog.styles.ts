@@ -10,6 +10,7 @@ export const HEADER_HEIGHT = Style.DEVICE_WIDTH / 2.2;
 export const CONTENT_MARGIN_TOP = Platform.select({
   ios: HEADER_HEIGHT,
   android: HEADER_HEIGHT + Style.adjust(12),
+  default: HEADER_HEIGHT,
 });
 
 export const FAQ_ICON_DIMENSION = 30;

@@ -322,7 +322,6 @@ type Documents = {
   GetUserDailyChallengeAmountAvailableDocument: typeof types.GetUserDailyChallengeAmountAvailableDocument;
   GetUserFeaturesDocument: typeof types.GetUserFeaturesDocument;
   GetUserProfileDocument: typeof types.GetUserProfileDocument;
-  GetUserProfileEventsDocument: typeof types.GetUserProfileEventsDocument;
   GetUserTodayScreenDocument: typeof types.GetUserTodayScreenDocument;
   LoginUserDocument: typeof types.LoginUserDocument;
   RefreshSessionDocument: typeof types.RefreshSessionDocument;
@@ -668,7 +667,6 @@ const documents: Documents = {
   GetUserDailyChallengeAmountAvailableDocument: types.GetUserDailyChallengeAmountAvailableDocument,
   GetUserFeaturesDocument: types.GetUserFeaturesDocument,
   GetUserProfileDocument: types.GetUserProfileDocument,
-  GetUserProfileEventsDocument: types.GetUserProfileEventsDocument,
   GetUserTodayScreenDocument: types.GetUserTodayScreenDocument,
   LoginUserDocument: types.LoginUserDocument,
   RefreshSessionDocument: types.RefreshSessionDocument,
@@ -2189,10 +2187,6 @@ export function gql(source: "GetUserFeaturesDocument"): (typeof documents)["GetU
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetUserProfileDocument"): (typeof documents)["GetUserProfileDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "GetUserProfileEventsDocument"): (typeof documents)["GetUserProfileEventsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -3,12 +3,12 @@ import { eventState } from "@components/screens/member/events/collect-event-rewa
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, refreshHeroCards } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logger/logger";
 import { delay } from "@utils/misc";
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
 
@@ -32,7 +32,7 @@ const CollectEventRewardModal = ({ goalIds, event, rewards, completed = false }:
   const dispatch = useDispatch();
 
   const handleModalClose = useCallback(() => {
-    dispatch(refreshUserProfileEvents());
+    dispatch(refreshHeroCards());
     dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     Navigation.dismissModal(MODALS.collectEventReward);
   }, [dispatch]);
@@ -106,13 +106,13 @@ const CollectEventRewardModal = ({ goalIds, event, rewards, completed = false }:
         handleModalClose();
       }
     }
-  }, [eventFinished, unclaimedRewardIds]);
+  }, [eventFinished, unclaimedRewardIds, claimGoalRewardsMutation, completed, handleModalClose]);
 
   const { title, descriptionTitle, description, cta, status } = useMemo(() => {
     if (eventFinished) {
       return {
         title:
-          goalIds?.length > 1
+          (goalIds?.length ?? 0) > 1
             ? t("screens.event_completed.multiple_events_title")
             : t("screens.event_completed.title", { event }),
         descriptionTitle: t("screens.event_completed.description_title"),
@@ -124,7 +124,7 @@ const CollectEventRewardModal = ({ goalIds, event, rewards, completed = false }:
 
     return {
       title:
-        goalIds?.length > 1
+        (goalIds?.length ?? 0) > 1
           ? t("screens.collect_reward_modal.multiple_events_title")
           : t("screens.collect_reward_modal.title", { event }),
       descriptionTitle: t("screens.collect_reward_modal.description_title"),
@@ -132,7 +132,7 @@ const CollectEventRewardModal = ({ goalIds, event, rewards, completed = false }:
       cta: t("screens.collect_reward_modal.cta"),
       status: eventState.IN_PROGRESS,
     };
-  }, [eventFinished, goalIds?.length]);
+  }, [eventFinished, goalIds?.length, event]);
   return (
     <CollectEventRewardScreen
       title={title}

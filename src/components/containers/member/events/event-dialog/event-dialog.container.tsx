@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/client";
 import { t } from "@locale";
@@ -9,7 +9,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { refreshUserProfileEvents, removeUserProfileEvent } from "@redux/user/user.actions";
+import { refreshHeroCards } from "@redux/user/user.actions";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
 import { GoalActionType, GoalRewardStatus, SduiActionType, gql } from "@graphql/__generated";
@@ -45,8 +45,7 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
   });
 
   useEffect(() => {
-    // rehydrate the daily screen
-    dispatch(refreshUserProfileEvents());
+    dispatch(refreshHeroCards());
   }, [dispatch]);
 
   useEffect(() => {
@@ -104,7 +103,7 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
    * Navigates to the specified component id
    */
   const navigateToComponentId = useCallback(async (): Promise<void> => {
-    if (goalDetails.button?.onPress?.sduiType !== SduiActionType.SduiActionSetBottomTab) {
+    if (goalDetails?.button?.onPress?.sduiType !== SduiActionType.SduiActionSetBottomTab) {
       return;
     }
 
@@ -115,11 +114,15 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
    * Marks the specified goal as complete
    */
   const onCloseEvent = useCallback(async (): Promise<void> => {
+    if (!event?.participationId) {
+      return;
+    }
+
     await onCompleteEvent(event.participationId);
-    dispatch(removeUserProfileEvent(eventId));
+    dispatch(refreshHeroCards());
     Navigation.dismissAllModals();
     await navigateToComponentId();
-  }, [onCompleteEvent, eventId, event, dispatch, navigateToComponentId]);
+  }, [onCompleteEvent, event, dispatch, navigateToComponentId]);
 
   /**
    * Send a event to mixpanel when the faq is viewed
@@ -127,9 +130,9 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
   const onFaqViewed = useCallback((): void => {
     dispatch(
       logMixpanelEventActionCreator("event_faq_viewed", {
-        name: goalDetails.title,
+        name: goalDetails?.title,
         event_id: eventId,
-        faq_name: goalDetails.faq?.text,
+        faq_name: goalDetails?.faq?.text,
       })
     );
   }, [goalDetails, eventId, dispatch]);
@@ -138,11 +141,11 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
    * Triggers a dynamic button action sent via the server
    */
   const onButtonPress = useCallback(async (): Promise<void> => {
-    if (!goalDetails.button?.onPress) {
+    if (!goalDetails?.button?.onPress) {
       return navigateToComponentId();
     }
 
-    if (!goalDetails.button?.onPress?.goalType) {
+    if (!goalDetails.button.onPress.goalType) {
       dispatch({
         type: goalDetails.button.onPress.sduiType,
         payload: { serverPayload: goalDetails.button.onPress.payload },
@@ -151,7 +154,7 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
       return navigateToComponentId();
     }
 
-    switch (goalDetails.button?.onPress?.goalType) {
+    switch (goalDetails.button.onPress.goalType) {
       case GoalActionType.ClaimReward:
         return await showYuModal({
           component: {
@@ -191,9 +194,7 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
             return;
           }
 
-          // updates event panels
-          dispatch(refreshUserProfileEvents());
-          // updates event dialog
+          dispatch(refreshHeroCards());
           refetch();
         } catch (error) {
           Logger.notify(error, { file: "event-dialog.container" });
@@ -219,24 +220,25 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
   }
 
   const headerProps = {
-    title: goalDetails?.title,
-    labels: goalDetails?.labels,
-    source: { uri: goalDetails?.headerImage?.uri },
-    backgroundColor: goalDetails?.headerBackgroundColor,
-    headerTextColor: goalDetails?.headerTextColor,
+    title: goalDetails.title,
+    labels: goalDetails.labels ?? [],
+    source: { uri: goalDetails.headerImage?.uri ?? "" },
+    backgroundColor: goalDetails.headerBackgroundColor,
+    headerTextColor: goalDetails.headerTextColor,
     onLeftIconPress: handleLeftIconPress,
   };
 
   return (
+    // eslint-disable-next-line strict-null-checks/all
     <EventDialogScreen
-      event={event}
+      event={event!}
       headerProps={headerProps}
       onFaqViewed={onFaqViewed}
       onClaimReward={onClaimReward}
       onButtonPress={onButtonPress}
       onCompleteEvent={onCompleteEvent}
-      hideHint={goalDetails?.hideHint}
-      {...goalDetails}
+      {...goalDetails!}
+      hideHint={goalDetails.hideHint ?? undefined}
     />
   );
 };

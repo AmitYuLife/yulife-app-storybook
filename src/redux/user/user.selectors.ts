@@ -1,6 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { IReduxState } from "../_core/reducers";
-import { UserProfileEventStatus } from "./user.types";
 
 type State = IReduxState["user"];
 const reducer = (state: IReduxState) => state.user;
@@ -60,17 +59,10 @@ export const getBlackListedNavBarTabs = createSelector(reducer, blackListedNavBa
 const enabledHealthProviders = (state: State) => state.enabledHealthProviders;
 export const getEnabledHealthProviders = createSelector(reducer, enabledHealthProviders);
 
-const userEvents = (state: State) => state.events || [];
-export const getUserEvents = createSelector(reducer, userEvents);
-
 const userHeroCards = (state: State) => state.heroCards || [];
 export const getUserHeroCards = createSelector(reducer, userHeroCards);
 
 export const sessionTimestamp = (state: State) => state.sessionTimestamp;
-
-export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
-  events.filter((event) => event.status !== UserProfileEventStatus.Completed)
-);
 
 const userDataSaverModeEnabled = (state: State) => state.dataSaverModeEnabled;
 export const getUserDataSaverModeEnabled = createSelector(reducer, userDataSaverModeEnabled);

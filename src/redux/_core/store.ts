@@ -10,7 +10,7 @@ import sagas from "./sagas";
 const persistConfig = {
   blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit", "detox"],
   key: "root",
-  version: 31,
+  version: 32,
   storage: AsyncStorage,
   migrate: createMigrate(migrations, { debug: false }),
 };
@@ -25,7 +25,7 @@ const middlewares = [sagaMiddleware];
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
-let configuredStore: ReturnType<typeof toolkitConfigureStore>;
+let configuredStore!: ReturnType<typeof toolkitConfigureStore>;
 
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
   configuredStore = toolkitConfigureStore({ reducer: persistedReducer, preloadedState, middleware: middlewares });

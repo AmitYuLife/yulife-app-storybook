@@ -9,7 +9,6 @@ import {
   AppDataType,
   UserSurge,
   UpdateUserAvatarRemoteFilesPayload,
-  Events,
   UpdateUserConsentPayload,
   UserConnection,
   GetUserFeaturesPayload,
@@ -44,13 +43,10 @@ export const LOGOUT_START = "LOGOUT_START";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
-export const REMOVE_USER_PROFILE_EVENT = "REMOVE_USER_PROFILE_EVENT";
-export const UPDATE_USER_PROFILE_EVENTS = "UPDATE_USER_PROFILE_EVENTS";
 export const UPDATE_USER_PROFILE_HERO_CARDS = "UPDATE_USER_PROFILE_HERO_CARDS";
-export const REFRESH_USER_PROFILE_EVENTS = "REFRESH_USER_PROFILE_EVENTS";
+export const REFRESH_HERO_CARDS = "REFRESH_HERO_CARDS";
 export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
-export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const GET_USER_SESSION_SUCCESS = "GET_USER_SESSION_SUCCESS";
 export const UPDATE_USER_TODAY_SCREEN = "UPDATE_USER_TODAY_SCREEN";
@@ -59,7 +55,7 @@ export const UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID = "UPDATE_USER_PASSIVE_CHA
 
 export const refreshUserToken = createAction<null, "REFRESH_USER_TOKEN">(REFRESH_USER_TOKEN);
 
-export const refreshUserProfile = createAction<null, "REFRESH_USER_PROFILE">(REFRESH_USER_PROFILE);
+export const refreshUserProfile = createAction("REFRESH_USER_PROFILE");
 
 export const fitKitConsentAuthorised = createAction<null, "FITKIT_CONSENT_AUTHORISED">(FITKIT_CONSENT_AUTHORISED);
 
@@ -134,22 +130,11 @@ export const openMyAccount: ActionCreatorWithOptionalPayload<IOpenMyAccount> = c
 
 export const updateUserProfile = createAction<IUpdateUserProfilePayload, "UPDATE_USER_PROFILE">(UPDATE_USER_PROFILE);
 
-export const updateUserProfileEvents = createAction<IUserStore["events"], "UPDATE_USER_PROFILE_EVENTS">(
-  UPDATE_USER_PROFILE_EVENTS
-);
-
 export const updateUserProfileHeroCards = createAction<IUserStore["heroCards"], "UPDATE_USER_PROFILE_HERO_CARDS">(
   UPDATE_USER_PROFILE_HERO_CARDS
 );
 
-export const removeUserProfileEvent = createAction<string, "REMOVE_USER_PROFILE_EVENT">(REMOVE_USER_PROFILE_EVENT);
-
-export const refreshUserProfileEvents = createAction<null, "REFRESH_USER_PROFILE_EVENTS">(REFRESH_USER_PROFILE_EVENTS);
-
-export const updateUserGoal: ActionCreatorWithOptionalPayload<Partial<Events>> = createAction<
-  Partial<Events>,
-  "UPDATE_USER_GOAL"
->(UPDATE_USER_GOAL);
+export const refreshHeroCards = createAction("REFRESH_HERO_CARDS");
 
 export const updateUserAvatarRemoteFiles: ActionCreatorWithOptionalPayload<UpdateUserAvatarRemoteFilesPayload> =
   createAction<UpdateUserAvatarRemoteFilesPayload, "UPDATE_USER_AVATAR">(UPDATE_USER_AVATAR);
