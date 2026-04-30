@@ -1236,6 +1236,9 @@
       },
       "total_yu_coin": "YuCoin total"
     },
+    "goals-history": {
+      "title": "Historia de los objetivos"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "Siempre que tu dispositivo se conecte a %{platform} sincronizaremos los datos al final de cada día para recompensarte por todos tus pasos.",
@@ -1525,6 +1528,11 @@
         "yucoin": "YuCoin"
       },
       "day": "Día %{day}",
+      "goals": {
+        "days_left": "%{smart_count} día restante |||| %{smart_count} días restantes",
+        "goals_left": "%{smart_count} gol restante |||| %{smart_count} goles restantes",
+        "heading": "Objetivos"
+      },
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
       "journey_header": "Viaje actual",

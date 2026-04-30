@@ -1236,6 +1236,9 @@
       },
       "total_yu_coin": "إجمالي يوكوين"
     },
+    "goals-history": {
+      "title": "سجل الأهداف"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "طالما أن جهازك القابل للارتداء متصل بـ %{platform}، سنقوم بالمزامنة في نهاية كل يوم لمكافأتك على جميع خطواتك.",
@@ -1525,6 +1528,11 @@
         "yucoin": "يوكوين"
       },
       "day": "يوم %{day}",
+      "goals": {
+        "days_left": "%{smart_count} يوم متبقي |||| %{smart_count} أيام متبقية",
+        "goals_left": "%{smart_count} هدف متبقي |||| %{smart_count} أهداف متبقية",
+        "heading": "الأهداف"
+      },
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
       "journey_header": "الرحلة الحالية",

@@ -1236,6 +1236,9 @@
       },
       "total_yu_coin": "YuCoinの合計"
     },
+    "goals-history": {
+      "title": "目標 履歴"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "ウェアラブル端末が%{platform}に連携されている限り、1日の終わりにデータが同期され、すべての歩数に応じたリワードが提供されます。",
@@ -1525,6 +1528,11 @@
         "yucoin": "YuCoin"
       },
       "day": "%{day}日目",
+      "goals": {
+        "days_left": "残り%{smart_count}日 |||| 残り%{smart_count}日",
+        "goals_left": "残り%{smart_count}ゴール |||| 残り%{smart_count}ゴール",
+        "heading": "目標"
+      },
       "header": "今日の振り返り",
       "health_insights": "健康に関するアドバイス",
       "journey_header": "これまでの進捗",

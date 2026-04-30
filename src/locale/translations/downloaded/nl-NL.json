@@ -1236,6 +1236,9 @@
       },
       "total_yu_coin": "Totaal YuCoin"
     },
+    "goals-history": {
+      "title": "Doelen geschiedenis"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "Zolang je wearable verbinding maakt met %{platform} synchroniseren we aan het einde van elke dag om je te belonen voor al je stappen.",
@@ -1525,6 +1528,11 @@
         "yucoin": "YuCoin"
       },
       "day": "Dag %{day}",
+      "goals": {
+        "days_left": "%{smart_count} dag over |||| %{smart_count} dagen over",
+        "goals_left": "%{smart_count} doel links |||| %{smart_count} doel links",
+        "heading": "Doelen"
+      },
       "header": "De overdenking van vandaag",
       "health_insights": "Inzichten in gezondheid",
       "journey_header": "Huidige reis",
