@@ -3,12 +3,12 @@ import Logger from "@services/logger/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import { QueryResult } from "@apollo/client";
-import { UpdateSmokingStreakMutation, gql } from "@graphql/__generated";
+import { UpdateSmokingStreakMutation, UpdateSmokingStreakMutationVariables, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
 import { updateHealthSmokingStateAction } from "../health-smoking.actions";
 import { HealthSmokingState } from "../health-smoking.types";
 import { updateSmokingStreak } from "../health-smoking.actions";
-import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, refreshHeroCards } from "@redux/user/user.actions";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { AppDataType } from "@redux/user/user.types";
 
@@ -21,12 +21,16 @@ export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof upda
 
   try {
     const { data }: QueryResult<UpdateSmokingStreakMutation> = yield call(() =>
-      client().mutate({ mutation: gql("UpdateSmokingStreakDocument"), variables: payload, fetchPolicy: "no-cache" })
+      client().mutate({
+        mutation: gql("UpdateSmokingStreakDocument"),
+        variables: payload as UpdateSmokingStreakMutationVariables,
+        fetchPolicy: "no-cache",
+      })
     );
 
     if (data?.updateSmokingStreak) {
       yield put(updateHealthSmokingStateAction(data.updateSmokingStreak as HealthSmokingState));
-      yield put(refreshUserProfileEvents());
+      yield put(refreshHeroCards());
       yield put(refreshTotalCoins());
       yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     }

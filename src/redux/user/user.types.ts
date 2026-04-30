@@ -52,11 +52,10 @@ export interface IUserStore {
     hasPendingForm: boolean;
     hasAppReview: boolean;
   };
-  events: Partial<Events>[];
   heroCards: HeroCard[];
   sessionTimestamp: number;
   supportConfig: {
-    supportLevel: UserSupportLevel;
+    supportLevel: UserSupportLevel | null;
   };
   dataSaverModeEnabled: boolean;
 }
@@ -103,7 +102,7 @@ export interface UserSurge {
   multiplier: string;
   title: string;
   description: string;
-  lottie: ContentItemLottie;
+  lottie: ContentItemLottie | null;
 }
 
 export type ContentItemLottie = {
@@ -129,73 +128,8 @@ export interface SduiAction {
   payload?: string;
 }
 
-export interface Events {
-  id: string;
-  /**
-   * @deprecated
-   */
-  stageId: string;
-  participationId: string;
-  title: string;
-  description: string;
-  image: Icon;
-  startDate: string;
-  endDate: string;
-  status: UserProfileEventStatus;
-  challenges: EventsChallenges[];
-  tags: EventsTags;
-  joined: boolean;
-  badge: EventsBadge;
-  progressBar: EventsProgressBar;
-  milestones: EventsMilestones[];
-  onPress: SduiAction;
-  type: EventType;
-}
-
-export enum EventType {
-  Goal = "goal",
-  Journey = "journey",
-}
-
-export enum UserProfileEventStatus {
-  Active = "active",
-  Completed = "completed",
-}
-
 export interface Icon {
   uri?: string;
-}
-
-export interface EventsChallenges {
-  description: string;
-  icon: Icon;
-}
-
-export interface EventsTags {
-  tag: string;
-  joined?: string;
-  icon: Icon;
-}
-
-export interface EventsBadge {
-  id?: string;
-  text: string;
-  icon: Icon;
-  backgroundColor?: string;
-}
-
-export interface EventsProgressBar {
-  max: number;
-  current: number;
-}
-
-export interface EventsMilestones {
-  targetValue: number;
-  image?: Icon;
-  animated?: boolean;
-  rewardId?: string;
-  rewardClaimed?: boolean;
-  isClaimable?: boolean;
 }
 
 export type IUserGetUserSuccessPayload = {

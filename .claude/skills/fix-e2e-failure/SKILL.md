@@ -51,12 +51,18 @@ Remember the path. It must be reverted on exit (`git checkout -- <path>`).
 ## 4. Run
 
 ```sh
-CI=true pnpm detox:run <relative spec path>
+CI=true pnpm detox:run <relative spec path> 2>&1 | tee /tmp/detox-output.txt
 ```
 
 `CI=true` skips the interactive "replay the test / exit" prompt after completion. Going through `pnpm detox:run` (rather than shelling `detox test` directly) is important — the wrapper sets `TS_NODE_PROJECT=./e2e/tsconfig.json` so `jest.config.ts` compiles, runs the bundler/API pre-flight, and writes the Allure report.
 
-Run with `run_in_background: true` so results can be checked once done.
+Run with `run_in_background: true`, then immediately arm a Monitor on `/tmp/detox-output.txt` to catch failures as they happen:
+
+```sh
+tail -f /tmp/detox-output.txt 2>/dev/null | grep -E --line-buffered "FAIL|Tests:.*failed|Tests:.*passed"
+```
+
+This lets you stop early on the first FAIL rather than waiting for the full suite to finish. When a FAIL event arrives, kill detox (`pkill -f 'detox test'; pkill -f 'jest.*spec'`), inspect the failure, fix, and re-run — all without waiting for subsequent steps to time out.
 
 ## 5. Per-step capture comes free from Allure artefacts
 

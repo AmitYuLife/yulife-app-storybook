@@ -58,9 +58,6 @@ query GetUserProfile {
     heroCards {
       ...HeroCard
     }
-    events {
-      ...UserProfileEvents
-    }
     supportConfig {
       supportLevel
     }

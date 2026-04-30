@@ -10,7 +10,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { navigateToCommitmentScreen } from "../helpers/navigateToCommitmentScreen";
 import { VoidFunction } from "@utils";
-import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, refreshHeroCards } from "@redux/user/user.actions";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { showSmokingStreakCelebrationModal } from "../helpers/showSmokingStreakCelebrationModal";
@@ -32,6 +32,7 @@ export const useStreakCheckIn = (
   const [showCommitmentScreen, setShowCommitmentScreen] = useState(false);
   const isOverlayOpen = useRef(false);
   const initialSmokingStateStreak = useRef<number | null>(null);
+  const showSmokingCheckInOverlayRef = useRef<(data: HealthSmokingState) => void>(() => {});
 
   const dismissOverlay = useCallback(async () => {
     isOverlayOpen.current = false;
@@ -54,7 +55,7 @@ export const useStreakCheckIn = (
           dismissOverlay();
         }
 
-        showSmokingCheckInOverlay(healthSmokingState as HealthSmokingState);
+        showSmokingCheckInOverlayRef.current(healthSmokingState as HealthSmokingState);
       }
 
       initialSmokingStateStreak.current = healthSmokingState.currentStreak;
@@ -65,11 +66,11 @@ export const useStreakCheckIn = (
     } catch {
       setError(true);
     }
-  }, []);
+  }, [dispatch, queryHealthSmokingState, dismissOverlay, setInitialSmokingState]);
 
   useEffect(() => {
     querySmokingState();
-  }, []);
+  }, [querySmokingState]);
 
   useEffect(() => {
     if (currentScreen !== ROUTES.smoking) {
@@ -86,7 +87,7 @@ export const useStreakCheckIn = (
       navigateToCommitmentScreen(smokingState);
       setShowCommitmentScreen(false);
     }
-  }, [currentScreen]);
+  }, [currentScreen, dispatch, dispatchStreakLapsedAction, showCommitmentScreen, smokingState]);
 
   const onContinueStreakPress = useCallback(async () => {
     try {
@@ -100,15 +101,15 @@ export const useStreakCheckIn = (
       const healthSmokingState = success.data?.updateSmokingStreak;
       dispatch(updateHealthSmokingStateAction(healthSmokingState as HealthSmokingState));
 
-      // As the streak has now been updated, we need to update the events so the hero card for smoking updates to latest day
-      dispatch(refreshUserProfileEvents());
+      dispatch(refreshHeroCards());
       dispatch(refreshTotalCoins());
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
 
       const yuCoinAwarded = healthSmokingState?.streakCheckInOverlay?.celebration?.yuCoinAwarded;
       const initialStreakAfterMax =
-        initialSmokingStateStreak.current === null || initialSmokingStateStreak.current > healthSmokingState.maxStreak;
-      const currentStreakAfterMax = healthSmokingState.currentStreak > healthSmokingState.maxStreak;
+        initialSmokingStateStreak.current === null ||
+        initialSmokingStateStreak.current > (healthSmokingState?.maxStreak ?? 0);
+      const currentStreakAfterMax = (healthSmokingState?.currentStreak ?? 0) > (healthSmokingState?.maxStreak ?? 0);
 
       if (initialStreakAfterMax && currentStreakAfterMax && !yuCoinAwarded) {
         onSmokingStreakCelebrationClose();
@@ -119,7 +120,7 @@ export const useStreakCheckIn = (
     } catch {
       setError(true);
     }
-  }, [dismissOverlay, onSmokingStreakCelebrationClose]);
+  }, [dismissOverlay, onSmokingStreakCelebrationClose, dispatch, setUpdateSmokingStreakDocument]);
 
   const showSmokingCheckInOverlay = useCallback(
     // to prevent a race condition which occurs if the `smokingData` state is not updated by the time this function is called, pass the data to this function as an argument
@@ -168,8 +169,10 @@ export const useStreakCheckIn = (
         ),
       });
     },
-    [onContinueStreakPress]
+    [onContinueStreakPress, dismissOverlay]
   );
+
+  showSmokingCheckInOverlayRef.current = showSmokingCheckInOverlay;
 
   return {
     loading,
