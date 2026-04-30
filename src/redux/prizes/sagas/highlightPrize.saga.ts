@@ -12,7 +12,7 @@ interface PrizeTypeOption {
   tooltipBody?: string;
 }
 
-const getPrizeTypeOptions = (prize: GamePrizeType): PrizeTypeOption => {
+const getPrizeTypeOptions = (prize: GamePrizeType): PrizeTypeOption | undefined => {
   switch (prize) {
     case GamePrizeType.ChallengeBoost:
     case GamePrizeType.ChallengeSurge:
@@ -47,7 +47,7 @@ const getPrizeTypeOptions = (prize: GamePrizeType): PrizeTypeOption => {
 export default function* highlightPrizeSaga({ payload }: ReturnType<typeof prizesAwarded>) {
   const tabsToHighlight: Partial<Record<GamePrizeType, PrizeTypeOption>> = {};
 
-  let shownTooltipPrizeType: GamePrizeType;
+  let shownTooltipPrizeType: GamePrizeType | undefined;
 
   for (const prizeType of payload.prizeTypes) {
     if (tabsToHighlight[prizeType]) {

@@ -48,9 +48,9 @@ export const getRecommendedProvider = ({
   providerAvailabilities,
 }: {
   providerAvailabilities?: Record<HealthProvider, HealthProviderAvailability>;
-}): HealthProvider => {
+}): HealthProvider | undefined => {
   if (!providerAvailabilities) {
-    return null;
+    return undefined;
   }
 
   if (isiOS()) {
@@ -63,7 +63,7 @@ export const getRecommendedProvider = ({
     }
   }
 
-  return null;
+  return undefined;
 };
 
 const CAPABILITY_TRANSLATIONS: Record<HealthProviderCapability, string> = {
@@ -156,7 +156,7 @@ export function gqlDataTypeToDataType(
   throw new Error(`Data type ${dataType} not supported for conversion!`);
 }
 
-export const toYuHealthReduxType = (gql: YuHealthOptionsGql): YuHealthOptionsRedux => {
+export const toYuHealthReduxType = (gql?: YuHealthOptionsGql | null): YuHealthOptionsRedux | undefined => {
   if (!gql) {
     return undefined;
   }

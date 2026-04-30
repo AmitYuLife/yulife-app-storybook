@@ -6,8 +6,8 @@ type DeferredPromise<T> = {
 };
 
 export const createDeferredPromise = <T = void>(): DeferredPromise<T> => {
-  let resolve: DeferredPromise<T>["resolve"];
-  let reject: DeferredPromise<T>["reject"];
+  let resolve!: DeferredPromise<T>["resolve"];
+  let reject!: DeferredPromise<T>["reject"];
 
   const promise = new Promise<T>((res, rej) => {
     resolve = res;

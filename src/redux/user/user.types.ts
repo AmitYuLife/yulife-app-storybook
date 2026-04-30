@@ -136,7 +136,7 @@ export type IUserGetUserSuccessPayload = {
   user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName"> & {
     userFeatures: UserFeatures[];
     supportConfig: {
-      supportLevel: UserSupportLevel;
+      supportLevel: UserSupportLevel | null;
     };
   };
 };

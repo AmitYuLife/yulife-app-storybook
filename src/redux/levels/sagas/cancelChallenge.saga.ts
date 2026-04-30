@@ -12,7 +12,7 @@ export default function* cancelChallengeSaga() {
       challengeId: activeLevel?.id,
     });
 
-    yield put(challengeResetSuccessAction({ subtype: activeLevel?.subtype }));
+    yield put(challengeResetSuccessAction(activeLevel?.subtype));
   }
 
   yield call(Storage.removeItem, StorageKey.mediaPlayerProgress);

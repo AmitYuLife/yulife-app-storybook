@@ -131,7 +131,7 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
         switch (code) {
           case DebugCodes.querySmokingState:
             Alert.alert("Success");
-            return dispatch(queryHealthSmokingState(null));
+            return dispatch(queryHealthSmokingState());
 
           case DebugCodes.clearYuScreenAnimationSeen:
             Alert.alert("Success");

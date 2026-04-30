@@ -9,7 +9,7 @@ export const getHint = ({
   screen: HintScreenType;
   hintsState: IHintsStore;
   iterations?: number;
-}): { hint: IHint } => {
+}): { hint: IHint } | null => {
   if (iterations > hintsState.hints.length) {
     return null;
   }
@@ -34,7 +34,7 @@ export const getHint = ({
     return hasSeenFirst.showCount - hasSeenSecond.showCount;
   });
 
-  const nextHint: IHint = sortedHints.find(isHintAvailable(screen));
+  const nextHint = sortedHints.find(isHintAvailable(screen));
 
   if (!nextHint) {
     return null;

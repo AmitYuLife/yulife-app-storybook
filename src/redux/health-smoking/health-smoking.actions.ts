@@ -7,7 +7,7 @@ export const MUTATION_START_SMOKING_STREAK = "MUTATION_START_SMOKING_STREAK";
 export const MUTATION_UPDATE_SMOKING_STREAK = "MUTATION_UPDATE_SMOKING_STREAK";
 export const UPDATE_SMOKING_EDITABLE_FIELDS = "UPDATE_SMOKING_EDITABLE_FIELDS";
 
-export const queryHealthSmokingState = createAction<null, typeof QUERY_HEALTH_SMOKING_STATE>(
+export const queryHealthSmokingState = createAction<void, typeof QUERY_HEALTH_SMOKING_STATE>(
   QUERY_HEALTH_SMOKING_STATE
 );
 
@@ -20,7 +20,7 @@ export const updateSmokingEditableFieldsAction = createAction<
   typeof UPDATE_SMOKING_EDITABLE_FIELDS
 >(UPDATE_SMOKING_EDITABLE_FIELDS);
 
-export const startSmokingStreak = createAction<null, typeof MUTATION_START_SMOKING_STREAK>(
+export const startSmokingStreak = createAction<void, typeof MUTATION_START_SMOKING_STREAK>(
   MUTATION_START_SMOKING_STREAK
 );
 
