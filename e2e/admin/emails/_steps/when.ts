@@ -5,6 +5,7 @@ import { INPUT_SHORT_CODE } from "@ids";
 
 export type FollowEmailLinkOptions = {
   clearKeychainBeforeLaunch?: boolean;
+  newInstance?: boolean;
 };
 
 export const {
@@ -79,7 +80,7 @@ export const followEmailLink =
     }
 
     await launchApp({
-      newInstance: true,
+      newInstance: options?.newInstance ?? false,
       url: deeplink,
     });
   };

@@ -19,10 +19,10 @@ Feature("As a USA user, I can login and interact with app features", async () =>
       });
     });
     When("I have done 11.3 km cycling", when.addCyclingData(11345), async () => {
-      When("I have done 13 min Mindfulness", when.addMindfulnessHistoricalData(800, 0), async () => {
+      When("I have done 14 min Mindfulness", when.addMindfulnessHistoricalData(800, 0), async () => {
         When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
           Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("7.0 mi"), 4000));
-          Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min"), 4000));
+          Then("I should see 14 min mindful done today", then.idVisible(MINDFUL_COUNT("14 min"), 4000));
           Then("I should see the amount of yucoin I earned today", then.textVisible("16 YuCoin today", 4000));
           Then("I should see the power info tooltip next to the YuCoin icon", then.idVisible(YUCOIN_POWER_INFO, 3000));
         });
