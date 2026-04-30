@@ -295,7 +295,7 @@ const updateUserProfileDataSaverMode = (state: IUserStore, payload: boolean) => 
   dataSaverModeEnabled: payload,
 });
 
-const updateUserPassiveChallengeSessionId = (state: IUserStore, payload: string) => ({
+const updateUserPassiveChallengeSessionId = (state: IUserStore, payload: string | undefined) => ({
   ...state,
   passiveChallengesLastUpdate: {
     ...state.passiveChallengesLastUpdate,

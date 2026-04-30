@@ -53,13 +53,13 @@ export const UPDATE_USER_TODAY_SCREEN = "UPDATE_USER_TODAY_SCREEN";
 export const UPDATE_USER_PROFILE_DATE_SAVER_MODE = "UPDATE_USER_PROFILE_DATE_SAVER_MODE";
 export const UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID = "UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID";
 
-export const refreshUserToken = createAction<null, "REFRESH_USER_TOKEN">(REFRESH_USER_TOKEN);
+export const refreshUserToken = createAction<void, "REFRESH_USER_TOKEN">(REFRESH_USER_TOKEN);
 
-export const refreshUserProfile = createAction("REFRESH_USER_PROFILE");
+export const refreshUserProfile = createAction<void, "REFRESH_USER_PROFILE">(REFRESH_USER_PROFILE);
 
-export const fitKitConsentAuthorised = createAction<null, "FITKIT_CONSENT_AUTHORISED">(FITKIT_CONSENT_AUTHORISED);
+export const fitKitConsentAuthorised = createAction<void, "FITKIT_CONSENT_AUTHORISED">(FITKIT_CONSENT_AUTHORISED);
 
-export const setUserNoAccessAction = createAction<null, "SET_USER_NO_ACCESS">(SET_USER_NO_ACCESS);
+export const setUserNoAccessAction = createAction<void, "SET_USER_NO_ACCESS">(SET_USER_NO_ACCESS);
 
 export const getUserDataStart = createAction(
   GET_ALL_USER_DATA_START,
@@ -98,7 +98,7 @@ export const getUserConnectionsSuccess = createAction<GetUserConnectionsPayload,
   GET_USER_CONNECTIONS_SUCCESS
 );
 
-export const yuScreenSynchronised = createAction<null, "YUSCREEN_SYNCHRONISED">(YUSCREEN_SYNCHRONISED);
+export const yuScreenSynchronised = createAction<void, "YUSCREEN_SYNCHRONISED">(YUSCREEN_SYNCHRONISED);
 
 export const getUserSuccess = createAction<IGetUserSuccessPayload, "GET_USER_SUCCESS">(GET_USER_SUCCESS);
 
@@ -119,9 +119,9 @@ export const updateConnectionSuccess: ActionCreatorWithOptionalPayload<UserConne
   "UPDATE_CONNECTION_SUCCESS"
 >(UPDATE_CONNECTION_SUCCESS);
 
-export const logOutStart = createAction<null, "LOGOUT_START">(LOGOUT_START);
+export const logOutStart = createAction<void, "LOGOUT_START">(LOGOUT_START);
 
-export const logOutSuccess = createAction<null, "LOGOUT_SUCCESS">(LOGOUT_SUCCESS);
+export const logOutSuccess = createAction<void, "LOGOUT_SUCCESS">(LOGOUT_SUCCESS);
 
 export const openMyAccount: ActionCreatorWithOptionalPayload<IOpenMyAccount> = createAction<
   IOpenMyAccount,
@@ -145,8 +145,9 @@ export const updateUserProfileDataSaverMode = createAction<boolean, "UPDATE_USER
   UPDATE_USER_PROFILE_DATE_SAVER_MODE
 );
 
-export const getUserSessionSuccess = createAction<null, "GET_USER_SESSION_SUCCESS">(GET_USER_SESSION_SUCCESS);
+export const getUserSessionSuccess = createAction<void, "GET_USER_SESSION_SUCCESS">(GET_USER_SESSION_SUCCESS);
 
-export const updateUserPassiveChallengeSessionId = createAction<string, "UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID">(
-  UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID
-);
+export const updateUserPassiveChallengeSessionId = createAction<
+  string | undefined,
+  "UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID"
+>(UPDATE_USER_PASSIVE_CHALLENGE_SESSION_ID);

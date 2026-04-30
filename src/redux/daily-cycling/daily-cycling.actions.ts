@@ -7,7 +7,7 @@ export const UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE = "UPDATE_DAILY_CYCL
 
 export const updateDailyCycling = createAction<Challenge, "UPDATE_DAILY_CYCLING_SUCCESS">(UPDATE_DAILY_CYCLING_SUCCESS);
 
-export const updateDailyCyclingEmptyResult = createAction<null, "UPDATE_DAILY_CYCLING_EMPTY_RESULT">(
+export const updateDailyCyclingEmptyResult = createAction<void, "UPDATE_DAILY_CYCLING_EMPTY_RESULT">(
   UPDATE_DAILY_CYCLING_EMPTY_RESULT
 );
 

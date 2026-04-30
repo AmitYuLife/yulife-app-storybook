@@ -10,7 +10,7 @@ const MAX_SCHEMAS = 10;
 const cleanupSchemaRegistry = () => {
   const now = Date.now();
 
-  let earliestSchemaKey: string;
+  let earliestSchemaKey: string | undefined;
   let earliestSchemaTimestamp = Number.MAX_SAFE_INTEGER;
 
   schemaRegistry.forEach(({ timestamp }, key) => {
@@ -35,7 +35,7 @@ const cleanupSchemaRegistry = () => {
 
 type Params = {
   schema: string;
-  data: Record<string, any>;
+  data: Record<string, unknown>;
   isValidationEnabled?: boolean;
 };
 
@@ -69,6 +69,10 @@ export function useAjvSchemaValidation({ schema, data, isValidationEnabled }: Pa
       }
 
       validate = ajv.getSchema(schemaKey);
+    }
+
+    if (!validate) {
+      return;
     }
 
     setIsValid(!!validate(data));

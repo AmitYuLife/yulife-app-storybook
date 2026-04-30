@@ -28,7 +28,7 @@ export function* startTracking(
   endDateTime: string,
   fitKitTypes: FitKitType[],
   videoPlayerIsActive: boolean,
-  yuHealth: YuHealthOptions,
+  yuHealth: YuHealthOptions | undefined,
   challengeId: string
 ) {
   const startTime = moment(startDateTime);
@@ -60,6 +60,10 @@ export function* startTracking(
           return fitkitResult.results;
         }
 
+        if (!yuHealth) {
+          return [];
+        }
+
         return yuHealthSampleQuery({
           params: {
             startTime: startTime.toDate(),
@@ -88,19 +92,21 @@ export function* startTracking(
           }
         );
 
-        const challengeData = data?.updateMobileQuestLevelChallenge;
+        const challenge = data?.updateMobileQuestLevelChallenge?.challenge;
 
-        yield put(
-          challengeUpdateSuccessAction({
-            coins: challengeData?.challenge.yuCoinAwarded,
-            isCompleted: (challengeData?.challenge.status || "") === "completed",
-            milestonesLog: challengeData?.challenge.milestoneLog,
-            rating: challengeData?.challenge.rating,
-            incomingData: challengeData?.challenge.incomingData,
-          })
-        );
+        if (challenge) {
+          yield put(
+            challengeUpdateSuccessAction({
+              coins: challenge.yuCoinAwarded,
+              isCompleted: challenge.status === "completed",
+              milestonesLog: challenge.milestoneLog,
+              rating: challenge.rating,
+              incomingData: challenge.incomingData,
+            })
+          );
+        }
 
-        if ((challengeData?.challenge?.status || "") === "completed") {
+        if (challenge?.status === "completed") {
           yield put(cancelLocalPush());
           yield put(challengeEndAction({ location: "startChallenge.helper status completed check" }));
           return;
@@ -133,7 +139,7 @@ type Args = {
   challengeId: string;
   enableForegroundService: boolean;
 } & Pick<
-  CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"]["levelSlot"],
+  NonNullable<NonNullable<CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"]>["levelSlot"]>,
   "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
 > &
   Pick<ChallengeStartPayload, "videoPlayerIsActive"> &
@@ -150,15 +156,15 @@ export default function* startChallenge({
   challengeId,
   enableForegroundService,
 }: Args) {
-  let challengeTask: Task;
-  let foregroundStepsTask: Task;
+  let challengeTask: Task | undefined;
+  let foregroundStepsTask: Task | undefined;
 
-  if (fitKitTypes.length && createdBySource !== ChallengeSourceType.Watch) {
+  if (fitKitTypes?.length && createdBySource !== ChallengeSourceType.Watch) {
     // We don't want to track time when playing sudoku as we want the user to be able to start & then finish after midnight.
     // The challenge will be auto cancelled by quests.container if they go back to the map after the day has ended,
     // but if they are still playing the game, we will allow them to finish.
     challengeTask = shouldEndOnLastGoalAchieved
-      ? yield fork(startTracking, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive, yuHealth, challengeId)
+      ? yield fork(startTracking, startDateTime, endDateTime, fitKitTypes, !!videoPlayerIsActive, yuHealth, challengeId)
       : yield fork(startTrackingTime, endDateTime);
 
     if (enableForegroundService && yuHealth?.dataType === HealthDataType.steps) {

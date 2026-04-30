@@ -12,7 +12,7 @@ import {
 } from "./fitkit.types";
 import { AggregationTypesMap } from "./cast/aggregationTypes";
 import { TimeRangeCast } from "./cast/timeRange";
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/__generated";
 import {
   getAggregationCyclingConfiguration,
   getAggregationStepCountConfiguration,
@@ -46,26 +46,24 @@ export async function queryFitKitSampleData<T extends boolean = false>({
 }: FitKitSampleType<T>): Promise<GenericFitKitResponseType<T>> {
   const allResults: SampleQueryResult[] = [];
   let error = false;
-  let errorUserInfo: Record<string, any>;
+  let errorUserInfo: Record<string, unknown> | undefined;
   const { disableUserEntries = true, loggingEnabled = false } = features || {
     disableUserEntries: true,
     loggingEnabled: false,
   };
 
-  if (!fitKitTypes?.length) {
-    fitKitTypes.push(undefined);
-  }
+  const typesToQuery: (FitKitType | undefined)[] = fitKitTypes?.length ? fitKitTypes : [undefined];
 
-  Logger.breadcrumb("FitKit Sample Queried", { startTime, endTime, fitKitTypes }, "log");
+  Logger.breadcrumb("FitKit Sample Queried", { startTime, endTime, fitKitTypes: typesToQuery }, "log");
 
-  for (const fitKitType of fitKitTypes) {
+  for (const fitKitType of typesToQuery) {
     try {
       const args = {
         disableUserEntries,
         endTime,
         startTime,
         type: fitKitType && mapGqlFitKitTypeToFitKitType(fitKitType),
-      };
+      } as Parameters<typeof RNFitKit.sampleQuery>[0];
 
       if (loggingEnabled) {
         Logger.info(`Raw ${fitKitType} query args`, {
@@ -157,7 +155,7 @@ export const queryFitKitAggregatedData = async ({
       blackListApps,
       types: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
       runOnNewThread: true,
-    };
+    } as Parameters<typeof RNFitKit.aggregateQuery>[0];
 
     if (loggingEnabled) {
       Logger.info("Raw aggregated query args", {
@@ -179,7 +177,10 @@ export const queryFitKitAggregatedData = async ({
       });
     }
 
-    return { results: results.map(transformSampleResultToPayloadWithType as any), error: null };
+    return {
+      results: results.map((r) => transformSampleResultToPayloadWithType(r as SampleQueryResult)),
+      error: false,
+    };
   } catch (e) {
     Logger.error("Raw aggregated query error", {
       ...metaData,

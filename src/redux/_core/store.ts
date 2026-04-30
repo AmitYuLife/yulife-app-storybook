@@ -25,7 +25,7 @@ const middlewares = [sagaMiddleware];
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
-let configuredStore!: ReturnType<typeof toolkitConfigureStore>;
+let configuredStore: ReturnType<typeof toolkitConfigureStore> | undefined;
 
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
   configuredStore = toolkitConfigureStore({ reducer: persistedReducer, preloadedState, middleware: middlewares });

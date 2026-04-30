@@ -89,9 +89,9 @@ export const challengeNoDataDeferAction = createAction(CHALLENGE_NO_DATA_DEFER);
 
 export const challengeResetAction = createAction(CHALLENGE_RESET);
 
-export const challengeResetSuccessAction = createAction<{ subtype: string }, typeof CHALLENGE_RESET_SUCCESS>(
-  CHALLENGE_RESET_SUCCESS
-);
+export const challengeResetSuccessAction = createAction(CHALLENGE_RESET_SUCCESS, (subtype?: string) => ({
+  payload: { subtype },
+}));
 
 export const challengeResetFailAction = createAction(CHALLENGE_RESET_FAIL);
 

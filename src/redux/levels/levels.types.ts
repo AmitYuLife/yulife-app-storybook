@@ -1,5 +1,13 @@
 import { FitKitType, Milestone, YuHealthOptions } from "@redux/_core/types";
 
+export interface ChallengeMilestoneLogEntry {
+  completed?: number | null;
+  data?: ChallengeIncomingData | null;
+  id?: string | null;
+}
+
+export type ChallengeMilestonesLog = Array<ChallengeMilestoneLogEntry | null> | null | undefined;
+
 export enum ChallengeCategory {
   Steps = "STEPS",
   Meditation = "MEDITATION",
@@ -86,7 +94,7 @@ export interface IActiveLevel {
   shouldEndOnLastGoalAchieved: boolean;
   milestones: Milestone[];
   yuHealth?: YuHealthOptions;
-  milestonesLog: any;
+  milestonesLog: ChallengeMilestonesLog;
   rating: number;
   score: number;
   startDateTime: string;
@@ -258,11 +266,11 @@ export type FinishInAppMediaChallengeActionPayload = {
 };
 
 export interface ChallengeIncomingData {
-  steps?: number;
-  meditation?: number;
-  distance?: number;
-  duration?: number;
-  calories?: number;
+  steps?: number | null;
+  meditation?: number | null;
+  distance?: number | null;
+  duration?: number | null;
+  calories?: number | null;
 }
 
 export type ILevelsStoreGetCoinLedger = Pick<

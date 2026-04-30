@@ -17,7 +17,7 @@ export const YU_HEALTH_SET_STATUS = "YU_HEALTH_SET_STATUS";
 export const YU_HEALTH_RESET_YU_HEALTH_STATE = "YU_HEALTH_RESET_YU_HEALTH_STATE";
 
 /* Dispatched when YuHealth permissions have potentially changed */
-export const yuHealthPermissionsRequested = createAction<null, "YU_HEALTH_PERMISSIONS_REQUESTED">(
+export const yuHealthPermissionsRequested = createAction<void, "YU_HEALTH_PERMISSIONS_REQUESTED">(
   YU_HEALTH_PERMISSIONS_REQUESTED
 );
 
@@ -36,12 +36,12 @@ export const updateCapabilityStatuses = createAction<
   "YU_HEALTH_UPDATE_CAPABILITY_STATUSES"
 >(YU_HEALTH_UPDATE_CAPABILITY_STATUSES);
 
-export const refreshCapabilityPermissions = createAction<null, "YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS">(
+export const refreshCapabilityPermissions = createAction<void, "YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS">(
   YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS
 );
 
 export const setYuHealthStatus = createAction<YuHealthStatus, "YU_HEALTH_SET_STATUS">(YU_HEALTH_SET_STATUS);
 
-export const resetYuHealthState = createAction<null, "YU_HEALTH_RESET_YU_HEALTH_STATE">(
+export const resetYuHealthState = createAction<void, "YU_HEALTH_RESET_YU_HEALTH_STATE">(
   YU_HEALTH_RESET_YU_HEALTH_STATE
 );

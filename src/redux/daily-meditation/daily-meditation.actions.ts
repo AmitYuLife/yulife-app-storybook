@@ -10,7 +10,7 @@ export const updateDailyMeditation = createAction<Challenge, "UPDATE_DAILY_MEDIT
   UPDATE_DAILY_MEDITATION_SUCCESS
 );
 
-export const updateDailyMeditationEmptyResult = createAction<null, "UPDATE_DAILY_MEDITATION_EMPTY_RESULT">(
+export const updateDailyMeditationEmptyResult = createAction<void, "UPDATE_DAILY_MEDITATION_EMPTY_RESULT">(
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT
 );
 
