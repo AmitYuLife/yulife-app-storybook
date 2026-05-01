@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.8.0] - 2026-05-01
+
+### Features
+
+- Feature GS-2681: cobranding wellbeing hub
+
+### Bugfixes
+
+- Bugfix GS-2720: Fix prize hint popup not showing after modal dismiss
+- Bugfix GS-2674: Fix pathway video stuck on screen after backgrounding
+- Bugfix GS-2711: Fix the debug sign
+- Bugfix GS-1926: Round up external meditation minutes to nearest minute
+- Bugfix GS-2649: Correctly check for permission based on the flag
+- (grafted) Bugfix GS-2217: Fix level display on old success/failed screens
+
+### Tasks
+
+- Task GS-2725: Apply business theme colors on referrals screen
+- Task GS-2695: Part 2 null checks fix
+- Task GS-2658: Remove dead events code
+- Task GS-2692: Pathway goals components
+- Task GS-2718: Add Datadog logging script
+- Task GS-2612: Add tournament debug screen
+- Task GS-2711: Show hint on new success screen
+- Task GS-2707: New challenge-failed screen
+- Task CTE-726: Inspect achievement header
+- Task ISA-4416: Remove Old Mutual E2E fixtures and scenario
+- Task GS-2705: Potentially fix android text clipping
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- (grafted) Merge branch 'chore/linter-memory' into 'develop'
+
+### Extra
+
+- Detox GS-2312: Exit Pathways Challenge
+- Detox GS-2723: Meditation Success Stats
+- GS-2715: Fix tip-card invalid hook call from React Compiler
+- Detox GS-2710: Challenge Success Screen P2
+- GS-2712: Fix Image auto sizing
+- Detox GS-2710: Challenge Success Screen P1
+
 ## [5.7.0] - 2026-04-22
 
 ### Bugfixes
