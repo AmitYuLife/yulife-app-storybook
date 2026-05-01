@@ -1,7 +1,7 @@
 query GetReferralInformation(
   $limit: Int
   $offset: Int
-  $businessAccountId: String
+  $businessAccountId: String!
   $hasSelectedBusinessAccount: Boolean!
 ) {
   referralInformation(limit: $limit, offset: $offset, businessAccountId: $businessAccountId)
@@ -24,10 +24,8 @@ query GetReferralInformation(
     }
     businessAccountId
   }
-  activeEmployments: getActiveEmployments {
-    id
-    businessAccountId
-    businessAccountName
+  theme: getMobileGameThemeForEmployment(businessAccountId: $businessAccountId)
+    @include(if: $hasSelectedBusinessAccount) {
+    ...MobileGameTheme
   }
 }
-

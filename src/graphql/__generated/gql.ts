@@ -270,10 +270,10 @@ type Documents = {
   GetProductBeneficiariesDocument: typeof types.GetProductBeneficiariesDocument;
   GetYuScreenProductDetailsDocument: typeof types.GetYuScreenProductDetailsDocument;
   SetShareOfBenefitForProductDocument: typeof types.SetShareOfBenefitForProductDocument;
+  GetReferralInformationDocument: typeof types.GetReferralInformationDocument;
   GetReferralOnboardingPopoverDocument: typeof types.GetReferralOnboardingPopoverDocument;
   GetReferralRewardAmountDocument: typeof types.GetReferralRewardAmountDocument;
   GetReferralHistoryDocument: typeof types.GetReferralHistoryDocument;
-  GetReferralInformationDocument: typeof types.GetReferralInformationDocument;
   GetMobileGameShopfrontDocument: typeof types.GetMobileGameShopfrontDocument;
   GetMobileGameUserWalletRewardItemsDocument: typeof types.GetMobileGameUserWalletRewardItemsDocument;
   GetMobileGameUserWalletRewardsDocument: typeof types.GetMobileGameUserWalletRewardsDocument;
@@ -333,7 +333,6 @@ type Documents = {
   ClaimMobileGameWeeklyRewardsDocument: typeof types.ClaimMobileGameWeeklyRewardsDocument;
   GetMobileGameWeekliesDocument: typeof types.GetMobileGameWeekliesDocument;
   JoinWeeklyGoalDocument: typeof types.JoinWeeklyGoalDocument;
-  GetEmploymentThemeDocument: typeof types.GetEmploymentThemeDocument;
   GetWellbeingHubItemsDocument: typeof types.GetWellbeingHubItemsDocument;
   SendWellbeingHubItemDocumentsDocument: typeof types.SendWellbeingHubItemDocumentsDocument;
   GetMobileUserWrappedDocument: typeof types.GetMobileUserWrappedDocument;
@@ -616,10 +615,10 @@ const documents: Documents = {
   GetProductBeneficiariesDocument: types.GetProductBeneficiariesDocument,
   GetYuScreenProductDetailsDocument: types.GetYuScreenProductDetailsDocument,
   SetShareOfBenefitForProductDocument: types.SetShareOfBenefitForProductDocument,
+  GetReferralInformationDocument: types.GetReferralInformationDocument,
   GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
   GetReferralRewardAmountDocument: types.GetReferralRewardAmountDocument,
   GetReferralHistoryDocument: types.GetReferralHistoryDocument,
-  GetReferralInformationDocument: types.GetReferralInformationDocument,
   GetMobileGameShopfrontDocument: types.GetMobileGameShopfrontDocument,
   GetMobileGameUserWalletRewardItemsDocument: types.GetMobileGameUserWalletRewardItemsDocument,
   GetMobileGameUserWalletRewardsDocument: types.GetMobileGameUserWalletRewardsDocument,
@@ -679,7 +678,6 @@ const documents: Documents = {
   ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
   GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
   JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
-  GetEmploymentThemeDocument: types.GetEmploymentThemeDocument,
   GetWellbeingHubItemsDocument: types.GetWellbeingHubItemsDocument,
   SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
   GetMobileUserWrappedDocument: types.GetMobileUserWrappedDocument,
@@ -1944,6 +1942,10 @@ export function gql(
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetReferralInformationDocument"): (typeof documents)["GetReferralInformationDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "GetReferralOnboardingPopoverDocument"
 ): (typeof documents)["GetReferralOnboardingPopoverDocument"];
@@ -1955,10 +1957,6 @@ export function gql(source: "GetReferralRewardAmountDocument"): (typeof document
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetReferralHistoryDocument"): (typeof documents)["GetReferralHistoryDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "GetReferralInformationDocument"): (typeof documents)["GetReferralInformationDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -2235,10 +2233,6 @@ export function gql(source: "GetMobileGameWeekliesDocument"): (typeof documents)
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "JoinWeeklyGoalDocument"): (typeof documents)["JoinWeeklyGoalDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "GetEmploymentThemeDocument"): (typeof documents)["GetEmploymentThemeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

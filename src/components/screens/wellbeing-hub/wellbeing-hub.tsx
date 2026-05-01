@@ -17,7 +17,7 @@ import WellbeingHeader from "./sub-components/wellbeing-header";
 import WellbeingHubHero from "./sub-components/wellbeing-hub-hero";
 import FirstTimeContentLocationSelection from "../member/content-location/first-time-content-location-selection";
 import { BusinessAccountState } from "@components/molecules/business-picker";
-import { useThemeOverride } from "@modules/themes/context";
+import { ThemeOverride, useThemeOverride } from "@modules/themes/context";
 import { IYuLifeLogoProps } from "@atoms/logo";
 
 interface IProps {
@@ -43,9 +43,11 @@ const WellBeingHub: FC<IProps> = ({
   businessAccountState,
 }) => {
   const themeOverride = useThemeOverride();
-  const wellbeingHeroUri = themeOverride?.sections.wellbeing?.heroImageBackground?.uri;
-  const wellbeingHeroIconUri = themeOverride?.sections.wellbeing?.heroImageIcon?.uri;
-  const logoType = themeOverride?.sections.wellbeing?.logoType;
+
+  const { headerTextColor, heroImageBackground, heroImageIcon, logoType } = getWellbeingHubValues(themeOverride);
+
+  const wellbeingHeroUri = heroImageBackground?.uri;
+  const wellbeingHeroIconUri = heroImageIcon?.uri;
 
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = location?.hasUserSelectedContentLocation === false;
@@ -107,7 +109,6 @@ const WellBeingHub: FC<IProps> = ({
 
   const title = t("screens.wellbeing_hub.header_title", { name: userFirstName });
   const description = t("screens.wellbeing_hub.header_description");
-  const headerTextColor = themeOverride?.sections.wellbeing?.headerTextColor || Colours.neutral.n800;
 
   if (isEmpty) {
     return (
@@ -207,5 +208,23 @@ const styles = StyleSheet.create({
     marginTop: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
 });
+
+const getWellbeingHubValues = (themeOverride: ThemeOverride | null) => {
+  if (!themeOverride || !("sections" in themeOverride)) {
+    return {
+      headerTextColor: Colours.neutral.n800,
+      heroImageBackground: null,
+      heroImageIcon: null,
+      logoType: undefined,
+    };
+  }
+
+  return {
+    headerTextColor: themeOverride?.sections?.wellbeing?.headerTextColor || Colours.neutral.n800,
+    heroImageBackground: themeOverride?.sections?.wellbeing?.heroImageBackground || null,
+    heroImageIcon: themeOverride?.sections?.wellbeing?.heroImageIcon || null,
+    logoType: themeOverride?.sections?.wellbeing?.logoType || undefined,
+  };
+};
 
 export default WellBeingHub;

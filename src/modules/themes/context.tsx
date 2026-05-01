@@ -1,9 +1,11 @@
 import { createContext, memo, ReactNode, useContext } from "react";
-import { GetWellbeingHubItemsQuery } from "@graphql/__generated";
+import { GetMobileGameThemeQuery, GetWellbeingHubItemsQuery } from "@graphql/__generated";
 
 // Sourced from the sections of feature specific themes
 // e.g wellbeing-hub
-export type ThemeOverride = NonNullable<GetWellbeingHubItemsQuery["theme"]>;
+export type ThemeOverride =
+  | NonNullable<GetWellbeingHubItemsQuery["theme"]>
+  | GetMobileGameThemeQuery["getMobileGameTheme"];
 
 /**
  * Overrides `useTheme()` for the wrapped subtree. Pass `null`/`undefined`

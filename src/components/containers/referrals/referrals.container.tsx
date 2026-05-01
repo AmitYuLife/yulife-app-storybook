@@ -13,8 +13,9 @@ import ReferralsLoadingScreen from "@components/screens/referrals/referrals-load
 import EngagementTracking from "@services/logging/engagement-tracking";
 import Logger from "@services/logger/logger";
 import { Share } from "react-native";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { BusinessAccount } from "@components/molecules/business-picker";
+import ThemeOverrideProvider from "@modules/themes/context";
 
 interface IProps {
   componentId: string;
@@ -58,12 +59,14 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
     fetchPolicy: "cache-and-network",
   });
 
+  const { data: linkedBusinessesData } = useQuery(gql("GetLinkedBusinessesDocument"));
+
   const handleRefreshScreen = useCallback(() => {
     getReferralInformation({
       variables: {
         ...DEFAULT_REFERRAL_INFORMATION_VARS,
         hasSelectedBusinessAccount: !!selectedBusinessAccount?.businessAccountId,
-        businessAccountId: selectedBusinessAccount?.businessAccountId,
+        businessAccountId: selectedBusinessAccount?.businessAccountId || "",
       },
     }).finally(() => {
       if (selectedBusinessAccount?.businessAccountId) {
@@ -77,13 +80,13 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
   }, [handleRefreshScreen, selectedBusinessAccount?.businessAccountId]);
 
   useEffect(() => {
-    const activeEmployments = data?.activeEmployments || [];
+    const linkedBusinesses = linkedBusinessesData?.getLinkedBusinesses || [];
 
-    setActiveBusinessAccounts(activeEmployments);
-    if (!selectedBusinessAccount && activeEmployments.length > 0) {
-      setSelectedBusinessAccount(activeEmployments[0]);
+    setActiveBusinessAccounts(linkedBusinesses);
+    if (!selectedBusinessAccount && linkedBusinesses.length > 0) {
+      setSelectedBusinessAccount(linkedBusinesses[0]);
     }
-  }, [data?.activeEmployments, selectedBusinessAccount]);
+  }, [linkedBusinessesData?.getLinkedBusinesses, selectedBusinessAccount]);
 
   const dispatch = useDispatch();
 
@@ -94,9 +97,11 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
   const onShare = useCallback(async () => {
     EngagementTracking.logMixpanelEvent("referral_link_shared");
     try {
-      await Share.share({
-        message: data?.referralInformation?.shareReferralCodeMessage,
-      });
+      if (data?.referralInformation?.shareReferralCodeMessage) {
+        await Share.share({
+          message: data?.referralInformation?.shareReferralCodeMessage,
+        });
+      }
     } catch (e) {
       Logger.notify(e, { file: componentId });
     }
@@ -109,17 +114,19 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
   }
 
   return (
-    <ReferralsScreen
-      data={fullData}
-      onShare={onShare}
-      componentId={componentId}
-      info={data?.referralInformation}
-      handleClose={handleClose}
-      loading={loading}
-      onFetchMoreData={handleEndReached}
-      onRefresh={handleRefreshScreen}
-      businessAccountState={{ activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount }}
-    />
+    <ThemeOverrideProvider theme={data?.theme}>
+      <ReferralsScreen
+        data={fullData}
+        onShare={onShare}
+        componentId={componentId}
+        info={data?.referralInformation}
+        handleClose={handleClose}
+        loading={loading}
+        onFetchMoreData={handleEndReached}
+        onRefresh={handleRefreshScreen}
+        businessAccountState={{ activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount }}
+      />
+    </ThemeOverrideProvider>
   );
 };
 

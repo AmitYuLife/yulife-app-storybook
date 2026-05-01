@@ -8488,6 +8488,25 @@ export type PathwayChallengeSlot = {
   reward: Scalars["String"]["output"];
 };
 
+export type PathwayGoal = {
+  __typename?: "PathwayGoal";
+  id: Scalars["ID"]["output"];
+  isCompleted: Scalars["Boolean"]["output"];
+  title?: Maybe<Scalars["String"]["output"]>;
+  type: PathwayGoalType;
+};
+
+export enum PathwayGoalType {
+  Daily = "Daily",
+  Weekly = "Weekly",
+}
+
+export type PathwayGoalsSection = {
+  __typename?: "PathwayGoalsSection";
+  cycleEndsAt?: Maybe<Scalars["String"]["output"]>;
+  goals: Array<PathwayGoal>;
+};
+
 export enum PathwaysItemResponseDecision {
   Accepted = "Accepted",
   Rejected = "Rejected",
@@ -8795,6 +8814,12 @@ export type Query = {
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessFeaturedRewards: Array<FeaturedReward>;
+  /**
+   * Whether the current business has reward store access — true if storeEnabled
+   * resolves to true at any level of the cascade (business, pricing tier, product
+   * variant, product version).
+   */
+  getBusinessHasRewardStoreAccess: Scalars["Boolean"]["output"];
   getBusinessInvoices: GetBusinessInvoicesResponse;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
@@ -9089,6 +9114,7 @@ export type Query = {
   getUserOnboardings: UserOnboarding;
   getUserPassiveChallengesEarnRate?: Maybe<UserPassiveChallengesEarnRate>;
   getUserPathwayAdviceSection: PathwayAdviceSection;
+  getUserPathwayGoalsSection: PathwayGoalsSection;
   getUserPathways: UserPathways;
   getUserProfile: UserProfile;
   getUserProfileEvents: Array<UserProfileEvents>;
@@ -9497,6 +9523,7 @@ export type QueryGetMemberDataConnectionArgs = {
 export type QueryGetMemberDataConnectionsArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
+  showActive?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -12351,6 +12378,7 @@ export type TournamentEvent = {
   socialGroupIds?: Maybe<Array<Scalars["String"]["output"]>>;
   startLocalDate?: Maybe<Scalars["String"]["output"]>;
   status: TournamentEventStatus;
+  yuCoinPot?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export enum TournamentEventStatus {
@@ -12568,6 +12596,7 @@ export type UpdateTournamentEventInput = {
   rewardType?: InputMaybe<TournamentRewardType>;
   socialGroupIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
   startLocalDate?: InputMaybe<Scalars["String"]["input"]>;
+  yuCoinPot?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type UpsertMemberDataConnectionInput = {
@@ -33991,6 +34020,65 @@ export type SetShareOfBenefitForProductMutation = {
   };
 };
 
+export type GetReferralInformationQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  businessAccountId: Scalars["String"]["input"];
+  hasSelectedBusinessAccount: Scalars["Boolean"]["input"];
+}>;
+
+export type GetReferralInformationQuery = {
+  __typename?: "Query";
+  referralInformation?: {
+    __typename?: "UserReferralInformation";
+    rewardForReferral: number;
+    referralCode: string;
+    shareReferralCodeMessage: string;
+    codeDisclaimer: string;
+    shareButton: string;
+    businessAccountId?: string | null;
+    background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    markdown: {
+      __typename?: "ReferralMarkdown";
+      headerTitle?: string | null;
+      headerSubtitle?: string | null;
+      shareBoxTitle: string;
+      historyTitle: string;
+      codeHistoryEmptyMessage: string;
+    };
+  };
+  theme?: {
+    __typename?: "MobileGameTheme";
+    id: string;
+    name: string;
+    colors: {
+      __typename?: "MobileGameThemeColors";
+      primary: {
+        __typename?: "PrimaryThemeColor";
+        p20: string;
+        p40: string;
+        p50: string;
+        p60: string;
+        p80: string;
+        p100: string;
+        p200: string;
+        p300: string;
+        p400: string;
+        p500: string;
+        p600: string;
+        p600Shadow: string;
+      };
+    };
+    assets: {
+      __typename?: "MobileGameThemeAssets";
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+  };
+};
+
 export type GetReferralOnboardingPopoverQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetReferralOnboardingPopoverQuery = {
@@ -34031,41 +34119,6 @@ export type GetReferralHistoryQuery = {
       coin: number;
     }>;
   };
-};
-
-export type GetReferralInformationQueryVariables = Exact<{
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
-  hasSelectedBusinessAccount: Scalars["Boolean"]["input"];
-}>;
-
-export type GetReferralInformationQuery = {
-  __typename?: "Query";
-  referralInformation?: {
-    __typename?: "UserReferralInformation";
-    rewardForReferral: number;
-    referralCode: string;
-    shareReferralCodeMessage: string;
-    codeDisclaimer: string;
-    shareButton: string;
-    businessAccountId?: string | null;
-    background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    markdown: {
-      __typename?: "ReferralMarkdown";
-      headerTitle?: string | null;
-      headerSubtitle?: string | null;
-      shareBoxTitle: string;
-      historyTitle: string;
-      codeHistoryEmptyMessage: string;
-    };
-  };
-  activeEmployments: Array<{
-    __typename?: "UserBusinessLink";
-    id: string;
-    businessAccountId: string;
-    businessAccountName: string;
-  }>;
 };
 
 export type GetMobileGameShopfrontQueryVariables = Exact<{ [key: string]: never }>;
@@ -40410,54 +40463,6 @@ export type JoinWeeklyGoalMutation = {
     isJoined: boolean;
     iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
-};
-
-export type GetEmploymentThemeQueryVariables = Exact<{
-  businessAccountId: Scalars["String"]["input"];
-}>;
-
-export type GetEmploymentThemeQuery = {
-  __typename?: "Query";
-  getMobileGameThemeForEmployment: {
-    __typename?: "MobileGameTheme";
-    id: string;
-    name: string;
-    sections: {
-      __typename?: "MobileGameThemeSections";
-      wellbeing?: {
-        __typename?: "MobileGameThemeWellbeingSection";
-        headerTextColor?: string | null;
-        logoType?: string | null;
-        heroImageBackground?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-        heroImageIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      } | null;
-    };
-    colors: {
-      __typename?: "MobileGameThemeColors";
-      primary: {
-        __typename?: "PrimaryThemeColor";
-        p20: string;
-        p40: string;
-        p50: string;
-        p60: string;
-        p80: string;
-        p100: string;
-        p200: string;
-        p300: string;
-        p400: string;
-        p500: string;
-        p600: string;
-        p600Shadow: string;
-      };
-    };
-    assets: {
-      __typename?: "MobileGameThemeAssets";
-      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      iconWhite?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      loginBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    };
-  };
 };
 
 export type GetWellbeingHubItemsQueryVariables = Exact<{
@@ -91536,6 +91541,237 @@ export const SetShareOfBenefitForProductDocument = {
     },
   ],
 } as unknown as DocumentNode<SetShareOfBenefitForProductMutation, SetShareOfBenefitForProductMutationVariables>;
+export const GetReferralInformationDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralInformation" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "referralInformation" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "offset" },
+                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+            ],
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "rewardForReferral" } },
+                { kind: "Field", name: { kind: "Name", value: "referralCode" } },
+                { kind: "Field", name: { kind: "Name", value: "shareReferralCodeMessage" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "background" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "codeDisclaimer" } },
+                { kind: "Field", name: { kind: "Name", value: "shareButton" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "markdown" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "headerTitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "headerSubtitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "shareBoxTitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "historyTitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "codeHistoryEmptyMessage" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "theme" },
+            name: { kind: "Name", value: "getMobileGameThemeForEmployment" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+            ],
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameTheme" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "primary" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "p20" } },
+                      { kind: "Field", name: { kind: "Name", value: "p40" } },
+                      { kind: "Field", name: { kind: "Name", value: "p50" } },
+                      { kind: "Field", name: { kind: "Name", value: "p60" } },
+                      { kind: "Field", name: { kind: "Name", value: "p80" } },
+                      { kind: "Field", name: { kind: "Name", value: "p100" } },
+                      { kind: "Field", name: { kind: "Name", value: "p200" } },
+                      { kind: "Field", name: { kind: "Name", value: "p300" } },
+                      { kind: "Field", name: { kind: "Name", value: "p400" } },
+                      { kind: "Field", name: { kind: "Name", value: "p500" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600" } },
+                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "assets" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "iconWhite" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loginBackgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralInformationQuery, GetReferralInformationQueryVariables>;
 export const GetReferralOnboardingPopoverDocument = {
   kind: "Document",
   definitions: [
@@ -91670,126 +91906,6 @@ export const GetReferralHistoryDocument = {
     },
   ],
 } as unknown as DocumentNode<GetReferralHistoryQuery, GetReferralHistoryQueryVariables>;
-export const GetReferralInformationDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetReferralInformation" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "referralInformation" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "limit" },
-                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "offset" },
-                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "businessAccountId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
-              },
-            ],
-            directives: [
-              {
-                kind: "Directive",
-                name: { kind: "Name", value: "include" },
-                arguments: [
-                  {
-                    kind: "Argument",
-                    name: { kind: "Name", value: "if" },
-                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
-                  },
-                ],
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "rewardForReferral" } },
-                { kind: "Field", name: { kind: "Name", value: "referralCode" } },
-                { kind: "Field", name: { kind: "Name", value: "shareReferralCodeMessage" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "background" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "uri" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "codeDisclaimer" } },
-                { kind: "Field", name: { kind: "Name", value: "shareButton" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "markdown" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "headerTitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "headerSubtitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "shareBoxTitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "historyTitle" } },
-                      { kind: "Field", name: { kind: "Name", value: "codeHistoryEmptyMessage" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "activeEmployments" },
-            name: { kind: "Name", value: "getActiveEmployments" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
-                { kind: "Field", name: { kind: "Name", value: "businessAccountName" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetReferralInformationQuery, GetReferralInformationQueryVariables>;
 export const GetMobileGameShopfrontDocument = {
   kind: "Document",
   definitions: [
@@ -101622,176 +101738,6 @@ export const JoinWeeklyGoalDocument = {
     },
   ],
 } as unknown as DocumentNode<JoinWeeklyGoalMutation, JoinWeeklyGoalMutationVariables>;
-export const GetEmploymentThemeDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetEmploymentTheme" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileGameThemeForEmployment" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "businessAccountId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameTheme" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "sections" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "wellbeing" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "heroImageBackground" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "heroImageIcon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            { kind: "Field", name: { kind: "Name", value: "logoType" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameTheme" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameTheme" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "colors" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "primary" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "p20" } },
-                      { kind: "Field", name: { kind: "Name", value: "p40" } },
-                      { kind: "Field", name: { kind: "Name", value: "p50" } },
-                      { kind: "Field", name: { kind: "Name", value: "p60" } },
-                      { kind: "Field", name: { kind: "Name", value: "p80" } },
-                      { kind: "Field", name: { kind: "Name", value: "p100" } },
-                      { kind: "Field", name: { kind: "Name", value: "p200" } },
-                      { kind: "Field", name: { kind: "Name", value: "p300" } },
-                      { kind: "Field", name: { kind: "Name", value: "p400" } },
-                      { kind: "Field", name: { kind: "Name", value: "p500" } },
-                      { kind: "Field", name: { kind: "Name", value: "p600" } },
-                      { kind: "Field", name: { kind: "Name", value: "p600Shadow" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "assets" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "logo" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "icon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "iconWhite" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "loginBackgroundImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetEmploymentThemeQuery, GetEmploymentThemeQueryVariables>;
 export const GetWellbeingHubItemsDocument = {
   kind: "Document",
   definitions: [
