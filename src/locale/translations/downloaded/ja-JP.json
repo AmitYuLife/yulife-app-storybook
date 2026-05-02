@@ -1942,7 +1942,7 @@
       "leaderboard": "ランキング",
       "member_count": "%{smart_count}人 |||| %{smart_count}人",
       "members": "メンバー",
-      "my_team": "私のチーム ( %{teamName} )",
+      "my_team": "チーム (%{teamName})",
       "total_team_score": "チームの合計得点"
     },
     "update_mobile": {
