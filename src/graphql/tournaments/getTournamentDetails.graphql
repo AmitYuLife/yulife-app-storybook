@@ -13,6 +13,7 @@ query GetTournamentDetails($eventId: ID!) {
     gameMode
     rewardType
     isCompleted
+    hasJoined
     about {
       title
       markdown

@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 
 import { Colours, Style } from "@styles";
@@ -15,24 +15,22 @@ type LeaderboardTeam = NonNullable<GetTournamentLeaderboardQuery["getTournamentL
 interface ITournamentTeamsScreenProps {
   teams: LeaderboardTeam[];
   onLeftIconPress: () => void;
-  onTeamPress?: (teamId: string) => void;
 }
 
-const TournamentTeamsScreen = ({ teams, onLeftIconPress, onTeamPress }: ITournamentTeamsScreenProps) => {
+const TournamentTeamsScreen = ({ teams, onLeftIconPress }: ITournamentTeamsScreenProps) => {
   const { bottom } = useSafeAreaInsets();
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<LeaderboardTeam>) => (
       <TournamentTeamRow
-        name={item.name}
+        name={item.name ?? ""}
         score={item.score}
         membersCount={item.membersCount}
         avatars={item.avatars}
         position={index + 1}
-        onPress={onTeamPress ? () => onTeamPress(item.id) : undefined}
       />
     ),
-    [onTeamPress]
+    []
   );
 
   return (
