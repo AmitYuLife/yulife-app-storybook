@@ -24,6 +24,15 @@ const PathwaysContainer = ({ componentId }: Props) => {
 
   const { pathwayChallenge } = usePathwayChallenge({ componentId });
 
+  const onAllGoalsCompleted = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        name: ROUTES.pathwaysGoalsSuccess,
+        passProps: { componentId },
+      },
+    });
+  }, [componentId]);
+
   const {
     goals,
     daysLeft: goalsDaysLeft,
@@ -32,7 +41,7 @@ const PathwaysContainer = ({ componentId }: Props) => {
     isCompletingGoal,
     bannerEvent,
     dismissBannerEvent,
-  } = usePathwayGoals();
+  } = usePathwayGoals({ onAllGoalsCompleted });
 
   const onOpenGoalsHistory = useCallback(() => {
     Navigation.push(componentId, {

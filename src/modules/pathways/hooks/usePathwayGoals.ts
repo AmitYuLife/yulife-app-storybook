@@ -16,7 +16,11 @@ const pickBannerMessageKey = (newCompletedCount: number, total: number): IGoalCo
   return "screens.pathways.goals.banner.halfway";
 };
 
-export const usePathwayGoals = () => {
+interface IUsePathwayGoalsParams {
+  onAllGoalsCompleted: () => void;
+}
+
+export const usePathwayGoals = ({ onAllGoalsCompleted }: IUsePathwayGoalsParams) => {
   const { data } = useQuery(gql("GetUserPathwayGoalsSectionDocument"), {
     fetchPolicy: "cache-and-network",
   });
@@ -45,11 +49,16 @@ export const usePathwayGoals = () => {
 
       const total = goals.length;
       const newCompleted = goals.filter((g) => g.isCompleted).length + 1;
+      const isFinalGoal = newCompleted === total;
 
-      setBannerEvent({
-        id: `${goalId}-${Date.now()}`,
-        messageKey: pickBannerMessageKey(newCompleted, total),
-      });
+      if (isFinalGoal) {
+        onAllGoalsCompleted();
+      } else {
+        setBannerEvent({
+          id: `${goalId}-${Date.now()}`,
+          messageKey: pickBannerMessageKey(newCompleted, total),
+        });
+      }
 
       markGoalCompleted({
         variables: { goalId },
@@ -75,7 +84,7 @@ export const usePathwayGoals = () => {
         },
       }).catch(() => {});
     },
-    [goals, markGoalCompleted]
+    [goals, markGoalCompleted, onAllGoalsCompleted]
   );
 
   const dismissBannerEvent = useCallback((eventId: string) => {
