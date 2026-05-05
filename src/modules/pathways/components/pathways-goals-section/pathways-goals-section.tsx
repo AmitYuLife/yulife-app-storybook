@@ -1,4 +1,5 @@
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
+import { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { Box, TextTemplate } from "@atoms";
 import { CalendarBicolorIcon } from "@atoms/icon/calendar-bicolor";
 import { ArrowButton, TouchableOpacityWithDelay } from "@molecules";
@@ -6,13 +7,14 @@ import { Colours } from "@styles";
 import { t } from "@locale";
 import { PATHWAYS_GOALS_SECTION, PATHWAYS_GOALS_OPEN_HISTORY } from "@ids";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
-import { IPathwayGoalView } from "@app/modules/pathways/types/pathway-goal.types";
+import { PathwayGoal } from "@graphql/__generated/graphql";
 import PathwayGoalRow from "./subcomponents/pathway-goal-row";
 
 interface IPathwaysGoalsSectionProps {
-  goals: IPathwayGoalView[];
+  goals: PathwayGoal[];
   daysLeft: number;
-  onToggle: (id: string) => void;
+  onComplete: (id: string) => void;
+  isCompletingGoal: boolean;
   onOpenHistory: () => void;
 }
 
@@ -20,7 +22,13 @@ const PROGRESS_BAR_HEIGHT = 6;
 const COMPLETED_COLOUR = Colours.pathways.tick;
 const TRACK_COLOUR = Colours.neutral.n100;
 
-const PathwaysGoalsSection = ({ goals, daysLeft, onToggle, onOpenHistory }: IPathwaysGoalsSectionProps) => {
+const PathwaysGoalsSection = ({
+  goals,
+  daysLeft,
+  onComplete,
+  isCompletingGoal,
+  onOpenHistory,
+}: IPathwaysGoalsSectionProps) => {
   const { theme } = useTheme();
   const inProgressColour = theme.colors.primary.p600;
   const { totalCount, remainingCount, allCompleted, progressRatio } = useMemo(() => {
@@ -36,6 +44,16 @@ const PathwaysGoalsSection = ({ goals, daysLeft, onToggle, onOpenHistory }: IPat
   }, [goals]);
 
   const progressFillColour = allCompleted ? COMPLETED_COLOUR : inProgressColour;
+
+  const progressPercent = useSharedValue(progressRatio * 100);
+
+  useEffect(() => {
+    progressPercent.value = withSpring(progressRatio * 100, { damping: 18, stiffness: 140, mass: 0.8 });
+  }, [progressPercent, progressRatio]);
+
+  const progressFillStyle = useAnimatedStyle(() => ({
+    width: `${progressPercent.value}%`,
+  }));
 
   return (
     <Box pv={16} ph={16} br={16} bg={Colours.neutral.white} testID={PATHWAYS_GOALS_SECTION} gap={16}>
@@ -59,17 +77,18 @@ const PathwaysGoalsSection = ({ goals, daysLeft, onToggle, onOpenHistory }: IPat
       {totalCount > 0 ? (
         <Box h={PROGRESS_BAR_HEIGHT} br={PROGRESS_BAR_HEIGHT / 2} bg={TRACK_COLOUR} overflow="hidden">
           <Box
+            forceAnimated={true}
             h={PROGRESS_BAR_HEIGHT}
             br={PROGRESS_BAR_HEIGHT / 2}
             bg={progressFillColour}
-            width={`${progressRatio * 100}%`}
+            style={progressFillStyle}
           />
         </Box>
       ) : null}
 
       <Box gap={8}>
         {goals.map((goal) => (
-          <PathwayGoalRow key={goal.id} goal={goal} onToggle={onToggle} />
+          <PathwayGoalRow key={goal.id} goal={goal} onComplete={onComplete} isCompletingGoal={isCompletingGoal} />
         ))}
       </Box>
     </Box>

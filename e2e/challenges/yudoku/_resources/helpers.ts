@@ -112,10 +112,7 @@ export const END_YUDOKU_FAKE_TIME = async () => {
   jest.setSystemTime(currentTime);
 
   When("I complete the Yudoku", when.completeYudoku(false, false), async () => {
-    Then(
-      "I should see my reward of 60 coins",
-      then.idVisible(ids.CHALLENGE_REWARD("60"), 4000)
-    );
+    Then("I should see my reward of 60 coins", then.idVisible(ids.CHALLENGE_REWARD("60"), 4000));
   });
   When(
     "I tap to collect my 60 YuCoin reward",

@@ -288,10 +288,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     });
     When("I tap to select Spanish option", when.switchLanguage("🇪🇸 Español (Estados Unidos)", 5_000), async () => {
       When("I wait for the app to finish loading after language change", when.wait(10_000), async () => {
-        Then(
-          "I should see that the client language has successfully changed in Spanish",
-          then.textVisible("200 YuCoin hoy", 20_000)
-        );
+        Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy", 20_000));
       });
     });
   });

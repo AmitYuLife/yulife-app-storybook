@@ -200,7 +200,13 @@
       "goals": {
         "heading": "Goals",
         "goals_left": "%{smart_count} goal left |||| %{smart_count} goals left",
-        "days_left": "%{smart_count} day left |||| %{smart_count} days left"
+        "days_left": "%{smart_count} day left |||| %{smart_count} days left",
+        "banner": {
+          "title": "Nicely done! 🎉",
+          "first_completed": "Your first goal completed!",
+          "halfway": "Halfway there, keep going!",
+          "default": "Goal completed!"
+        }
       },
       "personal_health_path": {
         "heading": "Personal Health Path"
