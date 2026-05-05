@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
+// eslint-disable-next-line rulesdir/no-restricted-imports-clone
 import { View, Animated } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import { TextTemplate } from "@atoms";
 import { Pressable } from "@components/molecules";
 import { SLIDER_INPUT, SLIDER_LABEL } from "@ids";
+import { useTheme } from "@app/modules/themes/hooks/useTheme";
+import { isNumber } from "lodash";
 
 const CIRCLE_DIAMETER = 8;
 
@@ -20,6 +23,8 @@ export interface SliderInputProps {
 
 export const SliderInput = (props: SliderInputProps) => {
   const { maxValue, onChange, leftLabel, rightLabel, score, minValue = 0 } = props;
+  const { theme } = useTheme();
+  const activeColor = theme.colors.primary.p600;
   const valueIterator = useMemo(
     () => new Array(maxValue - minValue + 1).fill(0).map((_, i) => i + minValue),
     [maxValue, minValue]
@@ -32,19 +37,19 @@ export const SliderInput = (props: SliderInputProps) => {
           const isActive = score === i;
 
           return (
-            <Pressable hitSlop={5} key={i} onPress={() => onChange(i)} testID={SLIDER_INPUT(i)} delay={1000}>
-              <AnimatedText isActive={isActive} index={i} />
+            <Pressable hitSlop={5} key={i} onPress={() => onChange?.(i)} testID={SLIDER_INPUT(i)} delay={1000}>
+              <AnimatedText isActive={isActive} index={i} activeColor={activeColor} />
             </Pressable>
           );
         })}
       </View>
       <View style={StyleSheet.flatten([styles.greyBarWrapper, styles.valueWrapper])}>
         {valueIterator.map((i) => {
-          const isActive = score >= i;
-          const activeStyles = isActive ? styles.activeCircle : {};
+          const isActive = isNumber(score) ? score >= i : false;
+          const activeStyles = isActive ? { backgroundColor: activeColor } : {};
 
           return (
-            <Pressable hitSlop={5} key={i} onPress={() => onChange(i)} delay={1000}>
+            <Pressable hitSlop={5} key={i} onPress={() => onChange?.(i)} delay={1000}>
               <View style={styles.circleWrapper}>
                 <View style={StyleSheet.flatten([styles.circle, activeStyles])} />
               </View>
@@ -67,11 +72,12 @@ export const SliderInput = (props: SliderInputProps) => {
 interface AnimatedTextProps {
   isActive: boolean;
   index: number;
+  activeColor: string;
 }
 
 const AnimatedText = (props: AnimatedTextProps) => {
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const { isActive, index } = props;
+  const { isActive, index, activeColor } = props;
 
   useEffect(() => {
     Animated.timing(scaleAnim, {
@@ -85,7 +91,7 @@ const AnimatedText = (props: AnimatedTextProps) => {
     };
   }, [isActive, scaleAnim]);
 
-  const activeStyles = isActive ? styles.activeText : {};
+  const activeStyles = isActive ? { color: activeColor } : {};
 
   return (
     <Animated.Text
@@ -109,9 +115,6 @@ const AnimatedText = (props: AnimatedTextProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-  },
-  activeText: {
-    color: Colours.darkHotPink,
   },
   textWrapper: { height: 36 },
   text: {
@@ -140,9 +143,6 @@ const styles = StyleSheet.create({
     height: CIRCLE_DIAMETER,
     borderRadius: CIRCLE_DIAMETER / 2,
     backgroundColor: Colours.slider.inactive,
-  },
-  activeCircle: {
-    backgroundColor: Colours.darkHotPink,
   },
   labelWrapper: {
     paddingVertical: 8,
