@@ -1,0 +1,15 @@
+mutation MarkPathwayGoalCompleted($goalId: ID!) {
+  markPathwayGoalCompleted(goalId: $goalId) {
+    success
+    goal {
+      id
+      title
+      icon {
+        id
+        uri
+      }
+      type
+      isCompleted
+    }
+  }
+}

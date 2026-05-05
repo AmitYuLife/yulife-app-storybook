@@ -8,6 +8,7 @@ import { ROUTES } from "@navigation/constants";
 import PathwaysScreen from "../screens/pathways.screen";
 import { usePathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import { usePathways } from "../hooks/usePathways";
+import { usePathwayGoals } from "../hooks/usePathwayGoals";
 
 interface Props {
   componentId: string;
@@ -22,6 +23,25 @@ const PathwaysContainer = ({ componentId }: Props) => {
   const { data, loading, error, isStreakComplete } = usePathways(componentId);
 
   const { pathwayChallenge } = usePathwayChallenge({ componentId });
+
+  const {
+    goals,
+    daysLeft: goalsDaysLeft,
+    hasData: hasGoalsData,
+    completeGoal,
+    isCompletingGoal,
+    bannerEvent,
+    dismissBannerEvent,
+  } = usePathwayGoals();
+
+  const onOpenGoalsHistory = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.goalsHistory,
+        name: ROUTES.goalsHistory,
+      },
+    });
+  }, [componentId]);
 
   const moodSubmissions = useMemo(() => getMoodSubmission(data), [data]);
   const hasLoadedOnce = useRef(false);
@@ -74,6 +94,14 @@ const PathwaysContainer = ({ componentId }: Props) => {
       interventionSections: data?.getInterventionItems?.sections as Array<FeatureCardSection | WellbeingHubSection>,
       pathwayChallenge: pathwayChallenge,
       isStreakComplete: isStreakComplete,
+      goals: goals,
+      goalsDaysLeft: goalsDaysLeft,
+      showGoalsSection: hasGoalsData && goals.length > 0,
+      onCompleteGoal: completeGoal,
+      isCompletingGoal: isCompletingGoal,
+      onOpenGoalsHistory: onOpenGoalsHistory,
+      goalsBannerEvent: bannerEvent,
+      onDismissGoalsBanner: dismissBannerEvent,
     }),
     [
       loading,
@@ -91,6 +119,14 @@ const PathwaysContainer = ({ componentId }: Props) => {
       data?.getInterventionItems?.sections,
       pathwayChallenge,
       isStreakComplete,
+      goals,
+      goalsDaysLeft,
+      hasGoalsData,
+      completeGoal,
+      isCompletingGoal,
+      onOpenGoalsHistory,
+      bannerEvent,
+      dismissBannerEvent,
     ]
   );
 

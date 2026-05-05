@@ -18,6 +18,10 @@ import { PATHWAYS_SCREEN } from "@ids";
 import { PathwayChallenge } from "@components/containers/member/quests/challenges-list/hooks/usePathwayChallenge";
 import PathwayStreaks from "../components/pathway-streaks/pathway-streaks";
 import PathwaysTitle from "../components/pathways-title/pathways-title";
+import PathwaysGoalsSection from "../components/pathways-goals-section/pathways-goals-section";
+import GoalCompletionBanner from "../components/pathways-goals-section/subcomponents/goal-completion-banner";
+import { IGoalCompletionBannerEvent } from "../types/pathway-goal.types";
+import { PathwayGoal } from "@graphql/__generated/graphql";
 import { PathwaysContentSkeleton, PathwaysHeaderSkeleton, PathwaysStreaksSkeleton } from "./pathways.skeletons";
 
 interface IPathwaysScreenProps {
@@ -35,6 +39,14 @@ interface IPathwaysScreenProps {
   maxProgress: number;
   pathwayChallenge: PathwayChallenge;
   isStreakComplete: boolean;
+  goals: PathwayGoal[];
+  goalsDaysLeft: number;
+  showGoalsSection: boolean;
+  onCompleteGoal: (id: string) => void;
+  isCompletingGoal: boolean;
+  onOpenGoalsHistory: () => void;
+  goalsBannerEvent: IGoalCompletionBannerEvent | null;
+  onDismissGoalsBanner: (eventId: string) => void;
 }
 
 const PathwaysScreen = ({
@@ -52,6 +64,14 @@ const PathwaysScreen = ({
   maxProgress,
   pathwayChallenge,
   isStreakComplete,
+  goals,
+  goalsDaysLeft,
+  showGoalsSection,
+  onCompleteGoal,
+  isCompletingGoal,
+  onOpenGoalsHistory,
+  goalsBannerEvent,
+  onDismissGoalsBanner,
 }: IPathwaysScreenProps) => {
   const scrollY = useSharedValue(0);
   const { width, height } = useWindowDimensions();
@@ -149,6 +169,24 @@ const PathwaysScreen = ({
                 }}
               />
             </Box>
+            {showGoalsSection ? (
+              <Box>
+                <PathwaysGoalsSection
+                  goals={goals}
+                  daysLeft={goalsDaysLeft}
+                  onComplete={onCompleteGoal}
+                  isCompletingGoal={isCompletingGoal}
+                  onOpenHistory={onOpenGoalsHistory}
+                />
+                {goalsBannerEvent ? (
+                  <GoalCompletionBanner
+                    key={goalsBannerEvent.id}
+                    event={goalsBannerEvent}
+                    onDismissed={onDismissGoalsBanner}
+                  />
+                ) : null}
+              </Box>
+            ) : null}
             <Box pb={0}>
               <PathwaysAdviceSection items={adviceSection?.items} scrollY={scrollY} />
             </Box>

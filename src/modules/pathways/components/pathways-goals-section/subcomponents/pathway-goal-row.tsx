@@ -4,24 +4,32 @@ import { Colours } from "@styles";
 import { Pressable } from "@molecules";
 import { CheckBoxType } from "@components/molecules/check-box/check-box-type";
 import { PATHWAYS_GOAL_ROW, PATHWAYS_GOAL_ROW_CHECKBOX } from "@ids";
-import { IPathwayGoalView } from "@app/modules/pathways/types/pathway-goal.types";
+import { PathwayGoal } from "@graphql/__generated/graphql";
 import { useTheme } from "@app/modules/themes/hooks/useTheme";
 
 interface IPathwayGoalRowProps {
-  goal: IPathwayGoalView;
-  onToggle: (id: string) => void;
+  goal: PathwayGoal;
+  onComplete: (id: string) => void;
+  isCompletingGoal: boolean;
 }
 
-const PathwayGoalRow = ({ goal, onToggle }: IPathwayGoalRowProps) => {
-  const { id, title, iconUrl, isCompleted } = goal;
+const PathwayGoalRow = ({ goal, onComplete, isCompletingGoal }: IPathwayGoalRowProps) => {
+  const { id, title, icon, isCompleted } = goal;
   const { theme } = useTheme();
 
-  const handlePress = useCallback(() => onToggle(id), [id, onToggle]);
+  const handlePress = useCallback(() => {
+    if (isCompleted) {
+      return;
+    }
+
+    onComplete(id);
+  }, [id, isCompleted, onComplete]);
 
   return (
     <Pressable
       onPress={handlePress}
-      enableAnimation={true}
+      disabled={isCompletingGoal}
+      enableAnimation={!isCompleted}
       pressedTranslation={1}
       flexDirection="row"
       alignItems="center"
@@ -32,7 +40,7 @@ const PathwayGoalRow = ({ goal, onToggle }: IPathwayGoalRowProps) => {
       gap={12}
       testID={PATHWAYS_GOAL_ROW(id)}
     >
-      <Image source={{ uri: iconUrl }} width={24} height={24} contentFit="contain" />
+      {icon?.uri ? <Image source={{ uri: icon.uri }} width={24} height={24} contentFit="contain" /> : null}
       <Box flex={1}>
         <TextTemplate type="b2" color={Colours.inkStrong}>
           {title}

@@ -560,7 +560,10 @@ export type BeneficiaryShareOfBenefit = {
 export type BillingCentreListItem = {
   __typename?: "BillingCentreListItem";
   billingAddressName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use directDebits (plural) instead. Retained for backwards compatibility with cached clients. */
   directDebit?: Maybe<BillingSummaryDirectDebit>;
+  directDebits: Array<BillingSummaryDirectDebit>;
+  id: Scalars["ID"]["output"];
   isPrimary: Scalars["Boolean"]["output"];
   postalAddress?: Maybe<BillingSummaryPostalAddress>;
 };
@@ -568,13 +571,16 @@ export type BillingCentreListItem = {
 export type BillingSummary = {
   __typename?: "BillingSummary";
   billingCentre?: Maybe<BillingSummaryBillingCentre>;
+  /** @deprecated Use directDebits (plural) instead. Retained for backwards compatibility with cached clients. */
   directDebit?: Maybe<BillingSummaryDirectDebit>;
+  directDebits: Array<BillingSummaryDirectDebit>;
   totalBillingCentres: Scalars["Int"]["output"];
 };
 
 export type BillingSummaryBillingCentre = {
   __typename?: "BillingSummaryBillingCentre";
   billingAddressName?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
   isPrimary: Scalars["Boolean"]["output"];
   postalAddress?: Maybe<BillingSummaryPostalAddress>;
 };
@@ -582,6 +588,7 @@ export type BillingSummaryBillingCentre = {
 export type BillingSummaryDirectDebit = {
   __typename?: "BillingSummaryDirectDebit";
   accountNumberEnding?: Maybe<Scalars["String"]["output"]>;
+  isPrimary: Scalars["Boolean"]["output"];
   status?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -5690,6 +5697,12 @@ export type MarkMobileUserWrappedResponse = {
   count: Scalars["Int"]["output"];
 };
 
+export type MarkPathwayGoalCompletedResponse = {
+  __typename?: "MarkPathwayGoalCompletedResponse";
+  goal: PathwayGoal;
+  success: Scalars["Boolean"]["output"];
+};
+
 export type MaximiseYuSection = {
   __typename?: "MaximiseYuSection";
   content?: Maybe<MaximiseYuSectionContent>;
@@ -7000,6 +7013,7 @@ export type Mutation = {
   markMobileGameUserAchievementsViewed?: Maybe<MobileGameUserAchievements>;
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   markMobileUserWrappedAsViewed: MarkMobileUserWrappedResponse;
+  markPathwayGoalCompleted: MarkPathwayGoalCompletedResponse;
   markRewardsLedgerItemAsUsed?: Maybe<Scalars["Boolean"]["output"]>;
   /** @deprecated Use openMobileRewardChest with sourceType: battlePass */
   openMobileGameBattlePassChest: MobileGameBattlePassChestOpenResponse;
@@ -7648,6 +7662,10 @@ export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {
 
 export type MutationMarkMobileUserWrappedAsViewedArgs = {
   wrappedId: Scalars["String"]["input"];
+};
+
+export type MutationMarkPathwayGoalCompletedArgs = {
+  goalId: Scalars["ID"]["input"];
 };
 
 export type MutationMarkRewardsLedgerItemAsUsedArgs = {
@@ -8490,6 +8508,7 @@ export type PathwayChallengeSlot = {
 
 export type PathwayGoal = {
   __typename?: "PathwayGoal";
+  icon?: Maybe<RemoteImage>;
   id: Scalars["ID"]["output"];
   isCompleted: Scalars["Boolean"]["output"];
   title?: Maybe<Scalars["String"]["output"]>;
@@ -9174,6 +9193,11 @@ export type Query = {
   /** Search for the name of someone you can invite to a duel. */
   searchForDuelOpponent?: Maybe<Array<Maybe<DuelSearchResult>>>;
   searchLeaderboardUser: Array<SearchLeaderboardUser>;
+  /**
+   * Gets the LLM-generated analysis for a specific open-ended survey question.
+   * Returns null if the feature flag is off, the campaign does not exist, or no complete analysis is available.
+   */
+  surveyQuestionAnalysis?: Maybe<SurveyQuestionAnalysis>;
   validateGiftSendToRecipient?: Maybe<GiftSendToRecipientValidation>;
   validateReferralCode: ReferralCodeValidation;
   wellbeingHubCategories: Array<WellbeingHubCategory>;
@@ -10098,6 +10122,12 @@ export type QuerySearchLeaderboardUserArgs = {
   searchType?: InputMaybe<SocialGroupLeaderboardSearchType>;
   socialGroupId?: InputMaybe<Scalars["ID"]["input"]>;
   socialGroupLeaderboardId?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QuerySurveyQuestionAnalysisArgs = {
+  campaignId: Scalars["ID"]["input"];
+  questionId: Scalars["ID"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -11274,6 +11304,34 @@ export type Surge = {
   lottie: ContentItemLottie;
   multiplier: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
+};
+
+/** Represents the lifecycle status of a survey question analysis. */
+export enum SurveyAnalysisStatus {
+  Complete = "Complete",
+  Failed = "Failed",
+  Pending = "Pending",
+}
+
+/** Represents the analysis version for a survey question. */
+export enum SurveyAnalysisVersion {
+  MultiPhase = "MultiPhase",
+  SinglePass = "SinglePass",
+}
+
+/** Represents the LLM-generated analysis for a single open-ended survey question. */
+export type SurveyQuestionAnalysis = {
+  __typename?: "SurveyQuestionAnalysis";
+  /** The campaign ID. */
+  campaignId: Scalars["ID"]["output"];
+  /** The question ID (stepId). */
+  questionId: Scalars["ID"]["output"];
+  /** The raw LLM-generated analysis text. Null while analysis is pending or if it failed. */
+  rawOutput?: Maybe<Scalars["String"]["output"]>;
+  /** The analysis lifecycle status. */
+  status: SurveyAnalysisStatus;
+  /** The analysis version used. */
+  version: SurveyAnalysisVersion;
 };
 
 /** Represents information about a survey question. */
@@ -30473,6 +30531,24 @@ export type PerformMobileOnboardingStepMutationVariables = Exact<{
 
 export type PerformMobileOnboardingStepMutation = { __typename?: "Mutation"; performMobileOnboardingStep: boolean };
 
+export type GetUserPathwayGoalsSectionQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserPathwayGoalsSectionQuery = {
+  __typename?: "Query";
+  getUserPathwayGoalsSection: {
+    __typename?: "PathwayGoalsSection";
+    cycleEndsAt?: string | null;
+    goals: Array<{
+      __typename?: "PathwayGoal";
+      id: string;
+      title?: string | null;
+      type: PathwayGoalType;
+      isCompleted: boolean;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null; hash?: string | null } | null;
+    }>;
+  };
+};
+
 export type GetUserPathwaysQueryVariables = Exact<{
   startDate?: InputMaybe<Scalars["String"]["input"]>;
   endDate?: InputMaybe<Scalars["String"]["input"]>;
@@ -32537,6 +32613,26 @@ export type GetUserPathwaysQuery = {
           onScrollIntoView?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         }
     >;
+  };
+};
+
+export type MarkPathwayGoalCompletedMutationVariables = Exact<{
+  goalId: Scalars["ID"]["input"];
+}>;
+
+export type MarkPathwayGoalCompletedMutation = {
+  __typename?: "Mutation";
+  markPathwayGoalCompleted: {
+    __typename?: "MarkPathwayGoalCompletedResponse";
+    success: boolean;
+    goal: {
+      __typename?: "PathwayGoal";
+      id: string;
+      title?: string | null;
+      type: PathwayGoalType;
+      isCompleted: boolean;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
   };
 };
 
@@ -85913,6 +86009,56 @@ export const PerformMobileOnboardingStepDocument = {
     },
   ],
 } as unknown as DocumentNode<PerformMobileOnboardingStepMutation, PerformMobileOnboardingStepMutationVariables>;
+export const GetUserPathwayGoalsSectionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserPathwayGoalsSection" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserPathwayGoalsSection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "cycleEndsAt" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "goals" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "icon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                            { kind: "Field", name: { kind: "Name", value: "hash" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                      { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserPathwayGoalsSectionQuery, GetUserPathwayGoalsSectionQueryVariables>;
 export const GetUserPathwaysDocument = {
   kind: "Document",
   definitions: [
@@ -89154,6 +89300,69 @@ export const GetUserPathwaysDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserPathwaysQuery, GetUserPathwaysQueryVariables>;
+export const MarkPathwayGoalCompletedDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "MarkPathwayGoalCompleted" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "goalId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "markPathwayGoalCompleted" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "goalId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "goalId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "goal" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "icon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                      { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MarkPathwayGoalCompletedMutation, MarkPathwayGoalCompletedMutationVariables>;
 export const SubmitPathwayChallengeFeedbackDocument = {
   kind: "Document",
   definitions: [

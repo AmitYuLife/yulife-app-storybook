@@ -1,0 +1,16 @@
+query GetUserPathwayGoalsSection {
+  getUserPathwayGoalsSection {
+    cycleEndsAt
+    goals {
+      id
+      title
+      icon {
+        id
+        uri
+        hash
+      }
+      type
+      isCompleted
+    }
+  }
+}

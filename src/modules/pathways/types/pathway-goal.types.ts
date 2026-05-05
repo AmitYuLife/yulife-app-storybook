@@ -1,6 +1,7 @@
-export interface IPathwayGoalView {
+export interface IGoalCompletionBannerEvent {
   id: string;
-  title: string;
-  iconUrl: string;
-  isCompleted: boolean;
+  messageKey:
+    | "screens.pathways.goals.banner.first_completed"
+    | "screens.pathways.goals.banner.halfway"
+    | "screens.pathways.goals.banner.default";
 }

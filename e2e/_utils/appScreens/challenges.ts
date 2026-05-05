@@ -200,21 +200,22 @@ export const tapChallengeSuccessCta =
     await tapID(ids.CHALLENGE_SUCCESS_CTA, timeout)();
   };
 
-export const onMeditationChallengeComplete = (minutes: number, level: number, totalMinutes?: number) => async () => {
-  await wait(3000)();
+export const onMeditationChallengeComplete =
+  (minutes: number, level: number, totalMinutes?: number) => async () => {
+    await wait(3000)();
 
-  const screenCopy = ["Great work!", "Continue"];
+    const screenCopy = ["Great work!", "Continue"];
 
-  for (const i of screenCopy) {
-    await waitFor(element(by.text(i)))
-      .toBeVisible()
-      .withTimeout(10000);
-    await expect(element(by.text(i))).toBeVisible();
-  }
+    for (const i of screenCopy) {
+      await waitFor(element(by.text(i)))
+        .toBeVisible()
+        .withTimeout(10000);
+      await expect(element(by.text(i))).toBeVisible();
+    }
 
-  await successLevel(level, 10000)();
-  await successMeditationStats(minutes, totalMinutes ?? minutes, 10000)();
-};
+    await successLevel(level, 10000)();
+    await successMeditationStats(minutes, totalMinutes ?? minutes, 10000)();
+  };
 
 export const startChallenge = (challengeTile: string) => async () => {
   await tapID(ids.CHALLENGE_TILE(challengeTile), 3000)();
