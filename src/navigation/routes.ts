@@ -160,6 +160,7 @@ import PathwaysMoodCalendarContainer from "../modules/pathways/containers/pathwa
 
 // goals history
 import PathwaysGoalsHistoryContainer from "../modules/pathways/containers/pathways-goals-history.container";
+import PathwaysGoalsSuccessContainer from "../modules/pathways/containers/pathways-goals-success.container";
 
 // --- Modal imports ---
 import YuCoinPowerExplained from "../components/containers/member/yu/yu-coin-power-explained/index";
@@ -717,6 +718,10 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.goalsHistory,
     component: PathwaysGoalsHistoryContainer,
+  },
+  {
+    name: ROUTES.pathwaysGoalsSuccess,
+    component: PathwaysGoalsSuccessContainer,
   },
 
   // modals

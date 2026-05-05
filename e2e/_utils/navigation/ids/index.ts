@@ -1185,6 +1185,8 @@ export const PATHWAYS_GOAL_ROW_CHECKBOX = (id: string, completed: boolean) =>
   `PATHWAYS_GOAL_ROW_${id}_${completed ? "" : "not_"}completed`;
 export const PATHWAYS_GOAL_HISTORY_ROW = (id: string) => `PATHWAYS_GOAL_HISTORY_ROW_${id}`;
 export const PATHWAYS_GOAL_COMPLETION_BANNER = "PATHWAYS_GOAL_COMPLETION_BANNER";
+export const PATHWAYS_GOALS_SUCCESS_SCREEN = "PATHWAYS_GOALS_SUCCESS_SCREEN";
+export const PATHWAYS_GOALS_SUCCESS_CTA = "PATHWAYS_GOALS_SUCCESS_CTA";
 export const PATHWAYS_REFLECTION_UNLOCKS_IN = "PATHWAYS_REFLECTION_UNLOCKS_IN";
 export const SEE_TERMS_AND_CONDITIONS_BUTTON =
   "BUTTON_BASE_See terms and conditions_false-text-view";

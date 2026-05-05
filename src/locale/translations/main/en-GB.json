@@ -206,6 +206,11 @@
           "first_completed": "Your first goal completed!",
           "halfway": "Halfway there, keep going!",
           "default": "Goal completed!"
+        },
+        "success": {
+          "title": "Great job!",
+          "body": "You've completed all goals for this week! You're planting the seeds of a habit!",
+          "cta": "Cool!"
         }
       },
       "personal_health_path": {
