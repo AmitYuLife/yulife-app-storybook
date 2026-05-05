@@ -1,8 +1,7 @@
 import { ScrollView } from "react-native";
-import React, { memo } from "react";
+import { memo } from "react";
 import { Colours, Style, StyleSheet } from "@styles";
 import { Box } from "@atoms";
-import { Pressable } from "@molecules";
 import { t } from "@locale";
 import TournamentSectionHeader from "../tournament-section-header/tournament-section-header";
 import TournamentLeaderboardCard from "../tournament-leaderboard-card/tournament-leaderboard-card";
@@ -13,27 +12,20 @@ type LeaderboardTeam = NonNullable<GetTournamentLeaderboardQuery["getTournamentL
 interface ITournamentLeaderboardSectionProps {
   teams: LeaderboardTeam[];
   onViewAll?: () => void;
-  onTeamPress?: (teamId: string) => void;
 }
 
-const TournamentLeaderboardSection = ({ teams, onViewAll, onTeamPress }: ITournamentLeaderboardSectionProps) => (
+const TournamentLeaderboardSection = ({ teams, onViewAll }: ITournamentLeaderboardSectionProps) => (
   <Box bg={Colours.neutral.n50}>
     <TournamentSectionHeader title={t("screens.tournaments.leaderboard")} onPress={onViewAll} />
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.content}>
       {teams.map((team, i) => (
-        <Pressable
+        <TournamentLeaderboardCard
           key={team.id}
-          onPress={onTeamPress ? () => onTeamPress(team.id) : undefined}
-          delay={200}
-          enableAnimation={true}
-        >
-          <TournamentLeaderboardCard
-            position={i + 1}
-            teamName={team.name}
-            score={team.score}
-            avatars={team.avatars || []}
-          />
-        </Pressable>
+          position={i + 1}
+          teamName={team.name ?? ""}
+          score={team.score}
+          avatars={(team.avatars ?? []).map((a) => ({ uri: a.uri ?? undefined }))}
+        />
       ))}
     </ScrollView>
   </Box>

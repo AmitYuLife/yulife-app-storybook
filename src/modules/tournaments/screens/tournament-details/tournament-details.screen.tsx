@@ -1,5 +1,4 @@
-import LinearGradient from "react-native-linear-gradient";
-import React, { memo, useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 
 import { Colours, Style, StyleSheet } from "@styles";
@@ -50,7 +49,6 @@ type SectionItem =
       __type: TournamentDetailsSectionType.Leaderboard;
       teams: LeaderboardTeam[];
       onViewAll?: () => void;
-      onTeamPress?: (teamId: string) => void;
     }
   | { __type: TournamentDetailsSectionType.MyTeamTitle; teamName: string }
   | { __type: TournamentDetailsSectionType.MyTeamScore; totalScore: number }
@@ -58,8 +56,6 @@ type SectionItem =
   | { __type: TournamentDetailsSectionType.About; title: string; markdown: string }
   | { __type: TournamentDetailsSectionType.Banner; banner: NonNullable<TournamentData["banner"]> }
   | { __type: TournamentDetailsSectionType.Spacer; height: number };
-
-const GRADIENT_COLORS = ["rgba(250, 250, 254, 0)", Colours.neutral.n50, Colours.neutral.n50, Colours.neutral.n50];
 
 interface ITournamentDetailsScreenProps {
   title: string;
@@ -70,15 +66,15 @@ interface ITournamentDetailsScreenProps {
   daysLeft?: number;
   teams?: LeaderboardTeam[];
   myTeam?: MyTeamData;
+  hasJoined: boolean;
   about?: TournamentData["about"];
   banner?: TournamentData["banner"];
-  button?: TournamentData["button"];
   onLeftIconPress: () => void;
-  onButtonPress?: () => void;
+  onJoinPress?: () => void;
+  joining?: boolean;
   onViewAllTeams?: () => void;
   onHowToPlay?: () => void;
   onMemberPress?: (userId: string) => void;
-  onTeamPress?: (teamId: string) => void;
   currentUserId?: string;
 }
 
@@ -89,15 +85,15 @@ const TournamentDetailsScreen = ({
   daysLeft,
   teams,
   myTeam,
+  hasJoined,
   about,
   banner,
-  button,
   onLeftIconPress,
-  onButtonPress,
+  onJoinPress,
+  joining,
   onViewAllTeams,
   onHowToPlay,
   onMemberPress,
-  onTeamPress,
   currentUserId,
 }: ITournamentDetailsScreenProps) => {
   const { bottom } = useSafeAreaInsets();
@@ -108,12 +104,15 @@ const TournamentDetailsScreen = ({
 
     items.push({ __type: TournamentDetailsSectionType.Header, title, labels, daysLeft, bgColor, onHowToPlay });
 
-    if (teams?.length) {
-      items.push({ __type: TournamentDetailsSectionType.Leaderboard, teams, onViewAll: onViewAllTeams, onTeamPress });
+    if (hasJoined && teams?.length) {
+      items.push({ __type: TournamentDetailsSectionType.Leaderboard, teams, onViewAll: onViewAllTeams });
     }
 
-    if (myTeam?.members?.length) {
-      items.push({ __type: TournamentDetailsSectionType.MyTeamTitle, teamName: myTeam.teamName });
+    if (hasJoined && myTeam?.members?.length) {
+      items.push({
+        __type: TournamentDetailsSectionType.MyTeamTitle,
+        teamName: myTeam.teamName ?? t("screens.tournaments.your_team_fallback"),
+      });
       items.push({ __type: TournamentDetailsSectionType.MyTeamScore, totalScore: myTeam.totalScore });
       myTeam.members.forEach((member, i) => {
         items.push({
@@ -126,16 +125,18 @@ const TournamentDetailsScreen = ({
     }
 
     if (about) {
-      items.push({ __type: TournamentDetailsSectionType.About, title: about.title, markdown: about.markdown });
+      const aboutTitle = hasJoined ? about.title ?? "" : t("screens.tournaments.join_title");
+      const aboutMarkdown = hasJoined
+        ? about.markdown ?? ""
+        : `${t("screens.tournaments.consent_copy")}\n\n${about.markdown ?? ""}`;
+      items.push({ __type: TournamentDetailsSectionType.About, title: aboutTitle, markdown: aboutMarkdown });
     }
 
-    if (banner) {
+    if (hasJoined && banner) {
       items.push({ __type: TournamentDetailsSectionType.Banner, banner });
     }
 
-    if (button) {
-      items.push({ __type: TournamentDetailsSectionType.Spacer, height: 60 });
-    }
+    items.push({ __type: TournamentDetailsSectionType.Spacer, height: 100 });
 
     return items;
   }, [
@@ -145,11 +146,11 @@ const TournamentDetailsScreen = ({
     bgColor,
     teams,
     myTeam,
+    hasJoined,
     about,
     banner,
-    button,
     onViewAllTeams,
-    onTeamPress,
+    onHowToPlay,
     currentUserId,
   ]);
 
@@ -167,13 +168,7 @@ const TournamentDetailsScreen = ({
             />
           );
         case TournamentDetailsSectionType.Leaderboard:
-          return (
-            <TournamentLeaderboardSection
-              teams={item.teams}
-              onViewAll={item.onViewAll}
-              onTeamPress={item.onTeamPress}
-            />
-          );
+          return <TournamentLeaderboardSection teams={item.teams} onViewAll={item.onViewAll} />;
         case TournamentDetailsSectionType.MyTeamTitle:
           return <TournamentSectionHeader title={t("screens.tournaments.my_team", { teamName: item.teamName })} />;
         case TournamentDetailsSectionType.MyTeamScore:
@@ -198,7 +193,7 @@ const TournamentDetailsScreen = ({
             <Box bg={Colours.neutral.n50} px={24} mb={24}>
               <InfoPanel
                 markdown={item.banner.markdown}
-                remoteImage={item.banner.icon ? { ...item.banner.icon, id: item.banner.icon.uri } : undefined}
+                remoteImage={item.banner.icon ? { ...item.banner.icon, id: item.banner.icon.uri ?? "" } : undefined}
                 showIcon={true}
                 type={item.banner.type}
               />
@@ -213,47 +208,53 @@ const TournamentDetailsScreen = ({
     [onMemberPress]
   );
 
+  const contentContainerStyle = useMemo(
+    () =>
+      StyleSheet.create({
+        list: { paddingBottom: bottom + Style.adjust(!hasJoined && onJoinPress ? 120 : 20) },
+      }).list,
+    [bottom, hasJoined, onJoinPress]
+  );
+
   return (
-    <Box flexGrow={1} bg={Colours.neutral.n50}>
+    <Box flexGrow={1} h="100%" bg={Colours.neutral.n50}>
       <Box position="absolute" bg={bgColor} width="100%" height={"50%"} top={0} />
-      <FlashList
-        data={listData}
-        renderItem={renderItem}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: bottom + Style.adjust(20) }}
-      />
+      <Box flexGrow={1} h="100%">
+        <FlashList
+          data={listData}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={contentContainerStyle}
+        />
+      </Box>
       <GenericHeadingAbsolute
         heading={null}
         color={Colours.neutral.white}
         onLeftIconPress={onLeftIconPress}
         backgroundColor="transparent"
       />
-      {button ? (
-        <Box position="absolute" bottom={0} w="100%">
-          <LinearGradient style={styles.gradient} colors={GRADIENT_COLORS} />
-          <Box p={32} pt={50} pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)} bottom={0}>
-            <Button
-              testID="TOURNAMENT_DETAILS_BUTTON"
-              size="Fill"
-              translatedLabel={button.label}
-              onPress={onButtonPress}
-              shadowColor={button.shadowColor || undefined}
-              backgroundColor={button.backgroundColor || undefined}
-            />
-          </Box>
+      {!hasJoined && onJoinPress ? (
+        <Box
+          position="absolute"
+          bottom={0}
+          left={0}
+          right={0}
+          px={24}
+          pt={12}
+          pb={Math.max(bottom, MIN_SAFE_BOTTOM_PADDING)}
+          bg={Colours.neutral.n50}
+        >
+          <Button
+            testID="TOURNAMENT_JOIN_BUTTON"
+            size="Fill"
+            translatedLabel={t("screens.tournaments.join_button")}
+            onPress={onJoinPress}
+            isLoading={joining}
+          />
         </Box>
       ) : null}
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  gradient: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    height: "100%",
-  },
-});
 
 export default memo(TournamentDetailsScreen);

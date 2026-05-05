@@ -1469,7 +1469,11 @@
       "total_team_score": "Total team score",
       "members": "Members",
       "my_team": "My team (%{teamName})",
-      "member_count": "%{smart_count} member |||| %{smart_count} members"
+      "member_count": "%{smart_count} member |||| %{smart_count} members",
+      "your_team_fallback": "Your team",
+      "join_title": "Join the tournament?",
+      "join_button": "Join tournament",
+      "consent_copy": "Joining means your name and avatar will be visible to your teammates on the team leaderboard. You'll earn points for your team based on your activity for the duration of the tournament."
     }
   },
   "permissions": {

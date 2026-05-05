@@ -154,7 +154,8 @@ export const Image = memo(
       })()
     );
 
-    const remoteUri = !isBundledAsset && source && "uri" in source ? source.uri : undefined;
+    const remoteUri =
+      !isBundledAsset && source && typeof source === "object" && "uri" in source ? source.uri : undefined;
     const hasResolvedNativeSize = !!(nativeSize && nativeSize.height > 0 && nativeSize.width > 0);
 
     useEffect(() => {

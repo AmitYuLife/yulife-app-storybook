@@ -9977,7 +9977,6 @@ export type QueryGetTournamentTeamLeaderboardArgs = {
   eventId: Scalars["ID"]["input"];
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
-  teamId: Scalars["ID"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -12459,6 +12458,7 @@ export type TournamentInfo = {
   daysLeft?: Maybe<Scalars["Int"]["output"]>;
   description?: Maybe<Scalars["String"]["output"]>;
   gameMode?: Maybe<Scalars["String"]["output"]>;
+  hasJoined: Scalars["Boolean"]["output"];
   headerBackgroundColor: Scalars["String"]["output"];
   headerImage?: Maybe<RemoteImage>;
   headerTextColor: Scalars["String"]["output"];
@@ -39934,6 +39934,7 @@ export type GetTournamentDetailsQuery = {
     gameMode?: string | null;
     rewardType?: string | null;
     isCompleted: boolean;
+    hasJoined: boolean;
     headerImage?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
     banner?: {
@@ -39974,7 +39975,8 @@ export type GetTournamentLeaderboardQuery = {
 
 export type GetTournamentTeamLeaderboardQueryVariables = Exact<{
   eventId: Scalars["ID"]["input"];
-  teamId: Scalars["ID"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
 export type GetTournamentTeamLeaderboardQuery = {
@@ -39990,7 +39992,7 @@ export type GetTournamentTeamLeaderboardQuery = {
       id: string;
       name: string;
       score: number;
-      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   } | null;
 };
@@ -99698,6 +99700,7 @@ export const GetTournamentDetailsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "gameMode" } },
                 { kind: "Field", name: { kind: "Name", value: "rewardType" } },
                 { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                { kind: "Field", name: { kind: "Name", value: "hasJoined" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "about" },
@@ -99824,8 +99827,13 @@ export const GetTournamentTeamLeaderboardDocument = {
         },
         {
           kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "teamId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
         },
       ],
       selectionSet: {
@@ -99842,8 +99850,13 @@ export const GetTournamentTeamLeaderboardDocument = {
               },
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "teamId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "teamId" } },
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "offset" },
+                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
               },
             ],
             selectionSet: {
@@ -99867,7 +99880,10 @@ export const GetTournamentTeamLeaderboardDocument = {
                         name: { kind: "Name", value: "image" },
                         selectionSet: {
                           kind: "SelectionSet",
-                          selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
                         },
                       },
                     ],

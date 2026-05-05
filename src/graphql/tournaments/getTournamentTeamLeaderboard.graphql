@@ -1,5 +1,5 @@
-query GetTournamentTeamLeaderboard($eventId: ID!, $teamId: ID!) {
-  getTournamentTeamLeaderboard(eventId: $eventId, teamId: $teamId) {
+query GetTournamentTeamLeaderboard($eventId: ID!, $limit: Int, $offset: Int) {
+  getTournamentTeamLeaderboard(eventId: $eventId, limit: $limit, offset: $offset) {
     teamName
     totalScore
     averageScore
@@ -9,6 +9,7 @@ query GetTournamentTeamLeaderboard($eventId: ID!, $teamId: ID!) {
       name
       score
       image {
+        id
         uri
       }
     }

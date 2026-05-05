@@ -67,7 +67,6 @@ import EventDialogContainer from "../components/containers/member/events/event-d
 import TournamentDetailsContainer from "../modules/tournaments/screens/tournament-details/tournament-details.container";
 import TournamentTeamsContainer from "../modules/tournaments/screens/tournament-teams/tournament-teams.container";
 import TournamentHowToPlayContainer from "../modules/tournaments/screens/tournament-how-to-play/tournament-how-to-play.container";
-import TournamentTeamViewContainer from "../modules/tournaments/screens/tournament-team-view/tournament-team-view.container";
 
 // debug
 import DebugContainer from "../components/containers/member/debug/debug.container";
@@ -444,10 +443,6 @@ const routesForRegistration: RouteDefinition[] = [
   {
     name: ROUTES.tournamentHowToPlay,
     component: TournamentHowToPlayContainer,
-  },
-  {
-    name: ROUTES.tournamentTeamView,
-    component: TournamentTeamViewContainer,
   },
 
   // debug

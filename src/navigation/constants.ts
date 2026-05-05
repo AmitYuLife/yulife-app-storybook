@@ -110,7 +110,6 @@ export const ROUTES = {
   tournamentDetails: "yulife.events.tournamentDetails",
   tournamentTeams: "yulife.events.tournamentTeams",
   tournamentHowToPlay: "yulife.events.tournamentHowToPlay",
-  tournamentTeamView: "yulife.events.tournamentTeamView",
 
   // media
   meditopiaMediaList: "yulife.meditopia.media.list",
