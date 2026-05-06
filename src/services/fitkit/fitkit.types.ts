@@ -12,7 +12,7 @@ export type AggregatedQueryArgs = {
   aggregationType: AggregationType;
   blackListApps?: string[];
   features: IUserStore["features"];
-  metaData?: Record<string, any>;
+  metaData?: Record<string, string>;
 };
 
 export type FitKitSampleType<T extends boolean> = {
@@ -21,7 +21,7 @@ export type FitKitSampleType<T extends boolean> = {
   fitKitTypes: FitKitType[];
   features: IUserStore["features"];
   rawData?: T;
-  metaData?: Record<string, any>;
+  metaData?: Record<string, string>;
 };
 
 export type GenericFitKitResponseType<T extends boolean> = T extends true
@@ -37,13 +37,13 @@ export type FitKitState = {
 export interface QueryFitKitByTypesResponse {
   results: ChallengesPayload[];
   error: boolean | string;
-  errorUserInfo?: Record<string, any>;
+  errorUserInfo?: Record<string, unknown>;
 }
 export interface QueryFitKitByTypesRawResponse {
   // TODO: create common type for sample and aggregated
   results: SampleQueryResult[];
   error: boolean | string;
-  errorUserInfo?: Record<string, any>;
+  errorUserInfo?: Record<string, unknown>;
 }
 
 export enum AggregationType {

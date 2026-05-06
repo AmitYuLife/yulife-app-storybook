@@ -68,7 +68,10 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       if (loggingEnabled) {
         Logger.info(`Raw ${fitKitType} query args`, {
           ...metaData,
-          ...args,
+          disableUserEntries,
+          startTime,
+          endTime,
+          fitKitType,
           location: "fitkit",
         });
       }
@@ -78,7 +81,8 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       if (loggingEnabled && results) {
         Logger.info(`Raw ${fitKitType} query results`, {
           ...metaData,
-          results,
+          fitKitType,
+          resultCount: results.length,
           location: "fitkit",
         });
       }
@@ -92,7 +96,6 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       if (!errorMessage.startsWith("An error occurred retrieving samples of type")) {
         Logger.notify(e, {
           event: "RNFitKit.sampleQuery",
-          userInfo: e.userInfo,
         });
       }
 
@@ -101,7 +104,6 @@ export async function queryFitKitSampleData<T extends boolean = false>({
         error: errorMessage,
         date_start: startTime,
         date_end: endTime,
-        userInfo: e.userInfo,
         location: "fitkit",
       });
     }
@@ -160,8 +162,12 @@ export const queryFitKitAggregatedData = async ({
     if (loggingEnabled) {
       Logger.info("Raw aggregated query args", {
         ...metaData,
-        ...args,
-        fitKitTypes,
+        disableUserEntries,
+        startTime,
+        endTime,
+        timeRange,
+        aggregationType,
+        fitKitTypes: fitKitTypes.join(","),
         location: "fitkit",
       });
     }
@@ -171,8 +177,8 @@ export const queryFitKitAggregatedData = async ({
     if (loggingEnabled && results) {
       Logger.info("Raw aggregated query results", {
         ...metaData,
-        results,
-        fitKitTypes,
+        fitKitTypes: fitKitTypes.join(","),
+        resultCount: results.length,
         location: "fitkit",
       });
     }
@@ -187,7 +193,7 @@ export const queryFitKitAggregatedData = async ({
       error: e.message,
       date_start: start.format(),
       date_end: end.format(),
-      fitKitTypes,
+      fitKitTypes: fitKitTypes.join(","),
       location: "fitkit",
     });
     return { results: [], error: e.message };

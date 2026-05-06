@@ -43,8 +43,10 @@ export const yuHealthAggregateQuery = async ({
 
     if (loggingEnabled) {
       Logger.info("YuHealth aggregate query args", {
-        metadata,
-        params,
+        ...metadata,
+        dataType: params.dataType,
+        startTime: params.startTime?.toISOString(),
+        endTime: params.endTime?.toISOString(),
         location: "yu-health",
       });
     }
@@ -57,8 +59,8 @@ export const yuHealthAggregateQuery = async ({
 
     if (loggingEnabled && results) {
       Logger.info("YuHealth aggregate query results", {
-        metadata,
-        params,
+        ...metadata,
+        dataType: params.dataType,
         total,
         nonZero,
         location: "yu-health",
@@ -71,8 +73,8 @@ export const yuHealthAggregateQuery = async ({
         total,
         nonZero,
         zeroDays: total - nonZero,
-        startTime: params.startTime,
-        endTime: params.endTime,
+        startTime: params.startTime?.toISOString(),
+        endTime: params.endTime?.toISOString(),
         location: "yu-health",
       });
     }
@@ -80,9 +82,9 @@ export const yuHealthAggregateQuery = async ({
     return resultItems;
   } catch (e) {
     Logger.error("YuHealth aggregate query response error", {
-      error: e,
-      params,
-      metadata,
+      ...metadata,
+      errorMessage: e instanceof Error ? e.message : String(e),
+      dataType: params.dataType,
       location: "yu-health",
     });
 
@@ -117,7 +119,10 @@ export async function yuHealthSampleQuery({
     if (loggingEnabled) {
       Logger.info("YuHealth sample query args", {
         ...metadata,
-        ...args,
+        dataType: args.dataType,
+        startTime: args.startTime?.toISOString(),
+        endTime: args.endTime?.toISOString(),
+        disableUserEntries,
         location: "yu-health",
       });
     }
@@ -127,7 +132,8 @@ export async function yuHealthSampleQuery({
     if (loggingEnabled && results) {
       Logger.info("YuHealth sample query results", {
         ...metadata,
-        results,
+        dataType: args.dataType,
+        resultCount: results.result?.length,
         location: "yu-health",
       });
     }
@@ -140,7 +146,7 @@ export async function yuHealthSampleQuery({
     Logger.error("YuHealth sample query error", {
       ...metadata,
       error: e.message,
-      params,
+      dataType: params.dataType,
       location: "yu-health",
     });
 

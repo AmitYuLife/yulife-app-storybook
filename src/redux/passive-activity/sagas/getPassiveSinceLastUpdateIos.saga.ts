@@ -53,7 +53,7 @@ const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, unknown>
+  metaData: Record<string, string>
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -92,7 +92,7 @@ const getMeditation = async (
   meditationLastUpdate: string,
   endDateMeditation: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, unknown>
+  metaData: Record<string, string>
 ): Promise<ChallengesPayload[]> => {
   if (!meditationLastUpdate) {
     return [];
@@ -150,7 +150,7 @@ const getCycling = async (
   cyclingLastUpdate: string,
   endDateCycling: moment.Moment,
   features: IUserStore["features"],
-  metaData: Record<string, unknown>
+  metaData: Record<string, string>
 ): Promise<ChallengesPayload[]> => {
   if (!cyclingLastUpdate) {
     return [];
