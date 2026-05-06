@@ -5,6 +5,9 @@ import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
 import { ISudokuGameContainerProps, SudokuGameContainer } from "@components/games/sudoku/sudoku-game-container";
 import { LottieView } from "@molecules";
+import { useScreenReaderChange } from "@hooks";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { t } from "@locale";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
@@ -15,6 +18,7 @@ interface IProps extends ISudokuGameContainerProps {
 
 export const SudokuScreen = ({ onBack, ...props }: IProps) => {
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   return (
     <>
@@ -36,6 +40,10 @@ export const SudokuScreen = ({ onBack, ...props }: IProps) => {
             logo="yulife"
             backgroundColor="transparent"
             onLeftIconPress={onBack}
+            leftIcon={isScreenReaderEnabled ? LeftIcon.CLOSE : undefined}
+            leftIconAccessibilityLabel={
+              isScreenReaderEnabled ? t("screens.challenge_progress.accessibility.exit_challenge") : undefined
+            }
           />
           <SudokuGameContainer {...props} />
         </View>

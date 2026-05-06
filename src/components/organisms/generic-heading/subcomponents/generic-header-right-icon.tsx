@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo, ReactNode } from "react";
 import { Image, View } from "react-native";
 import { CloseSvg, EditSvg, Text } from "@atoms";
 import { Button, TouchableOpacityWithDelay } from "@molecules";
@@ -14,20 +14,27 @@ type IIcon = IGenericHeadingProps["rightIcon"];
 
 interface IProps {
   icon: IIcon;
-  Icon?: React.ReactNode;
+  Icon?: ReactNode;
   color?: string;
   onPress: () => void;
   testID: string;
+  accessibilityLabel?: string;
   disabled?: boolean;
 }
 
 // TODO: This component needs a proper refactor in the soon...
-const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }: IProps) => {
+const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, accessibilityLabel, disabled }: IProps) => {
   const handleOnPress = icon === "COINS" ? labels[4].onPress : onPress;
 
   if (Icon) {
     return (
-      <TouchableOpacityWithDelay hitSlop={TOP_BAR.HIT_SLOP} onPress={onPress} testID={testID} disabled={disabled}>
+      <TouchableOpacityWithDelay
+        hitSlop={TOP_BAR.HIT_SLOP}
+        onPress={onPress}
+        testID={testID}
+        accessibilityLabel={accessibilityLabel}
+        disabled={disabled}
+      >
         {Icon}
       </TouchableOpacityWithDelay>
     );
@@ -46,12 +53,14 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }
     );
   }
 
+  const iconLabelKey = icon ? accessibilityLabelKeys[icon] : undefined;
+
   return (
     <TouchableOpacityWithDelay
       hitSlop={TOP_BAR.HIT_SLOP}
       onPress={handleOnPress}
       testID={testID}
-      accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
+      accessibilityLabel={accessibilityLabel ?? (iconLabelKey ? t(iconLabelKey) : "")}
       disabled={disabled}
     >
       {getIcon(icon, color)}
@@ -59,7 +68,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }
   );
 };
 
-const accessibilityLabelKeys = {
+const accessibilityLabelKeys: Record<NonNullable<IIcon>, string> = {
   SETTINGS: "generic_heading.right_icon.settings.accessibility_label",
   CLOSE: "generic_heading.right_icon.close.accessibility_label",
   EDIT: "generic_heading.right_icon.edit.accessibility_label",
@@ -69,7 +78,7 @@ const accessibilityLabelKeys = {
   COINS: "generic_heading.right_icon.coins.accessibility_label",
 };
 
-const getIcon = (icon: IIcon, color: string) => {
+const getIcon = (icon: IIcon, color?: string) => {
   switch (icon) {
     case "SETTINGS":
       return <Image source={require("@assets/generic-header/settings.png")} />;
@@ -96,6 +105,7 @@ const getIcon = (icon: IIcon, color: string) => {
       );
     case "Done":
       return (
+        // eslint-disable-next-line @typescript-eslint/no-deprecated -- bespoke font style not expressible via TextTemplate types
         <Text numberOfLines={1} style={styles.rightIconText}>
           {icon}
         </Text>

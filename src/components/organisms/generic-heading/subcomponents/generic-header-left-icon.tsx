@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Back, CloseSvg } from "@atoms";
 import { TOP_BAR } from "@styles";
 import { TouchableOpacityWithDelay } from "@molecules";
@@ -12,14 +12,15 @@ interface IProps {
   color?: string;
   onPress: () => void;
   testID?: string;
+  accessibilityLabel?: string;
   disabled?: boolean;
 }
 
-const GenericHeaderLeftIcon = ({ icon, color, onPress, testID, disabled }: IProps) => (
+const GenericHeaderLeftIcon = ({ icon, color, onPress, testID, accessibilityLabel, disabled }: IProps) => (
   <TouchableOpacityWithDelay
     hitSlop={TOP_BAR.HIT_SLOP}
     onPress={onPress}
-    accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
+    accessibilityLabel={accessibilityLabel ?? (accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : "")}
     testID={testID}
     disabled={disabled}
   >

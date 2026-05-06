@@ -934,6 +934,9 @@
         "progress": "3. Progress (2 - 1): %{progress}",
         "history_steps": "4. Pedometer history steps:",
         "cta": "Export data"
+      },
+      "accessibility": {
+        "exit_challenge": "Exit challenge"
       }
     },
     "challenge_progress_watch": {
