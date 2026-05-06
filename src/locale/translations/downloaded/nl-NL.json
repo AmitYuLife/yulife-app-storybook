@@ -1529,9 +1529,20 @@
       },
       "day": "Dag %{day}",
       "goals": {
+        "banner": {
+          "default": "Doel bereikt!",
+          "first_completed": "Je eerste doel is bereikt!",
+          "halfway": "Halverwege, doorgaan!",
+          "title": "Mooi gedaan! 🎉"
+        },
         "days_left": "%{smart_count} dag over |||| %{smart_count} dagen over",
         "goals_left": "%{smart_count} doel links |||| %{smart_count} doel links",
-        "heading": "Doelen"
+        "heading": "Doelen",
+        "success": {
+          "body": "Je hebt alle doelen voor deze week bereikt! Je plant de zaden van een gewoonte!",
+          "cta": "Gaaf!",
+          "title": "Geweldig gedaan!"
+        }
       },
       "header": "De overdenking van vandaag",
       "health_insights": "Inzichten in gezondheid",
@@ -1937,13 +1948,17 @@
       }
     },
     "tournaments": {
+      "consent_copy": "Meedoen betekent dat je naam en avatar zichtbaar zijn voor je teamgenoten op het team leaderboard. Je verdient punten voor je team op basis van je activiteiten tijdens het toernooi.",
       "days_left": "%{smart_count} dag over |||| %{smart_count} dagen over",
+      "join_button": "Doe mee aan toernooi",
       "joined": "%{smart_count} aangesloten",
+      "join_title": "Meedoen aan het toernooi?",
       "leaderboard": "Leaderboard",
       "member_count": "%{smart_count} lid |||| %{smart_count} leden",
       "members": "Leden",
       "my_team": "Mijn team (%{teamName})",
-      "total_team_score": "Totale teamscore"
+      "total_team_score": "Totale teamscore",
+      "your_team_fallback": "Jouw team"
     },
     "update_mobile": {
       "cta_label": "Mijn app bijwerken"

@@ -1529,9 +1529,20 @@
       },
       "day": "%{day}日目",
       "goals": {
+        "banner": {
+          "default": "目標達成！",
+          "first_completed": "初めての目標達成！",
+          "halfway": "折り返し地点、頑張って！",
+          "title": "よくやった！ 🎉"
+        },
         "days_left": "残り%{smart_count}日 |||| 残り%{smart_count}日",
         "goals_left": "残り%{smart_count}ゴール |||| 残り%{smart_count}ゴール",
-        "heading": "目標"
+        "heading": "目標",
+        "success": {
+          "body": "今週のすべてのゴールを達成しました! あなたは習慣の種を植えています!",
+          "cta": "OK",
+          "title": "素晴らしい!"
+        }
       },
       "header": "今日の振り返り",
       "health_insights": "健康に関するアドバイス",
@@ -1937,13 +1948,17 @@
       }
     },
     "tournaments": {
+      "consent_copy": "参加すると、名前とアバターがチームのリーダーボードでチームメイトに表示されます。 トーナメント期間中の活動に応じて、チームにポイントが加算されます。",
       "days_left": "残り%{smart_count}日 |||| 残り%{smart_count}日",
+      "join_button": "トーナメント に 参加",
       "joined": "%{smart_count}人参加済み",
+      "join_title": "トーナメント に 参加しますか？",
       "leaderboard": "ランキング",
       "member_count": "%{smart_count}人 |||| %{smart_count}人",
       "members": "メンバー",
       "my_team": "チーム (%{teamName})",
-      "total_team_score": "チームの合計得点"
+      "total_team_score": "チームの合計得点",
+      "your_team_fallback": "あなたの チーム"
     },
     "update_mobile": {
       "cta_label": "アプリの更新"

@@ -1529,9 +1529,20 @@
       },
       "day": "يوم %{day}",
       "goals": {
+        "banner": {
+          "default": "تم إنجاز الهدف!",
+          "first_completed": "تم إنجاز هدفك الأول!",
+          "halfway": "منتصف الطريق، واصل التقدم!",
+          "title": "أحسنت صنعًا! 🎉"
+        },
         "days_left": "%{smart_count} يوم متبقي |||| %{smart_count} أيام متبقية",
         "goals_left": "%{smart_count} هدف متبقي |||| %{smart_count} أهداف متبقية",
-        "heading": "الأهداف"
+        "heading": "الأهداف",
+        "success": {
+          "body": "أكملت جميع الأهداف لهذا الأسبوع! أنت تزرع بذور العادة!",
+          "cta": "رائع!",
+          "title": "عمل رائع!"
+        }
       },
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
@@ -1937,13 +1948,17 @@
       }
     },
     "tournaments": {
+      "consent_copy": "الانضمام يعني أن اسمك وصورتك الرمزية ستكون مرئية لزملائك في الفريق على لوحة الصدارة للفريق. ستجمع نقاطًا لفريقك بناءً على نشاطك طوال مدة البطولة.",
       "days_left": "%{smart_count} يوم متبقي |||| %{smart_count} أيام متبقية",
+      "join_button": "انضم إلى البطولة",
       "joined": "%{smart_count} مُنضم |||| %{smart_count} مُنضمون",
+      "join_title": "انضم إلى البطولة؟",
       "leaderboard": "الترتيب",
       "member_count": "%{smart_count} عضو |||| %{smart_count} أعضاء",
       "members": "الأعضاء",
       "my_team": "فريقي (%{teamName})",
-      "total_team_score": "إجمالي نقاط الفريق"
+      "total_team_score": "إجمالي نقاط الفريق",
+      "your_team_fallback": "فريقك"
     },
     "update_mobile": {
       "cta_label": "تحديث تطبيقي"

@@ -1529,9 +1529,20 @@
       },
       "day": "Día %{day}",
       "goals": {
+        "banner": {
+          "default": "Objetivo cumplido.",
+          "first_completed": "Primer objetivo cumplido.",
+          "halfway": "A mitad de camino, ¡sigue adelante!",
+          "title": "¡Muy bien hecho! 🎉"
+        },
         "days_left": "%{smart_count} día restante |||| %{smart_count} días restantes",
         "goals_left": "%{smart_count} gol restante |||| %{smart_count} goles restantes",
-        "heading": "Objetivos"
+        "heading": "Objetivos",
+        "success": {
+          "body": "Has completado todos los objetivos de la semana. ¡Estás plantando las semillas de un hábito!",
+          "cta": "¡Genial!",
+          "title": "¡Buen trabajo!"
+        }
       },
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
@@ -1937,13 +1948,17 @@
       }
     },
     "tournaments": {
+      "consent_copy": "Al unirte, tu nombre y avatar serán visibles para tus compañeros de equipo en la tabla de clasificación. Ganarás puntos para tu equipo en función de tu actividad durante el torneo.",
       "days_left": "%{smart_count} día restante |||| %{smart_count} días restantes",
+      "join_button": "Unirse al torneo",
       "joined": "%{smart_count} unido",
+      "join_title": "¿Participar en el torneo?",
       "leaderboard": "Clasificación",
       "member_count": "%{smart_count} miembro |||| %{smart_count} miembros",
       "members": "Miembros",
       "my_team": "Mi equipo (%{teamName})",
-      "total_team_score": "Puntuación total del equipo"
+      "total_team_score": "Puntuación total del equipo",
+      "your_team_fallback": "Su equipo"
     },
     "update_mobile": {
       "cta_label": "Actualizar mi aplicación"

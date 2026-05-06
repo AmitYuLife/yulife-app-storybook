@@ -1529,9 +1529,20 @@
       },
       "day": "Day %{day}",
       "goals": {
+        "banner": {
+          "default": "Goal completed!",
+          "first_completed": "Your first goal completed!",
+          "halfway": "Halfway there, keep going!",
+          "title": "Great job! 🎉"
+        },
         "days_left": "%{smart_count} day left |||| %{smart_count} days left",
         "goals_left": "%{smart_count} goal left |||| %{smart_count} goals left",
-        "heading": "Goals"
+        "heading": "Goals",
+        "success": {
+          "body": "You've completed all goals for this week! You're planting the seeds of a habit!",
+          "cta": "Cool!",
+          "title": "Great job!"
+        }
       },
       "header": "Today's reflection",
       "health_insights": "Health insights",
@@ -1937,13 +1948,17 @@
       }
     },
     "tournaments": {
+      "consent_copy": "Joining means your name and avatar will be visible to your teammates on the team leaderboard. You'll earn points for your team based on your activity for the duration of the tournament.",
       "days_left": "%{smart_count} day left |||| %{smart_count} days left",
+      "join_button": "Join tournament",
       "joined": "%{smart_count} joined",
+      "join_title": "Join the tournament?",
       "leaderboard": "Leaderboard",
       "member_count": "%{smart_count} member |||| %{smart_count} members",
       "members": "Members",
       "my_team": "My team (%{teamName})",
-      "total_team_score": "Total team score"
+      "total_team_score": "Total team score",
+      "your_team_fallback": "Your team"
     },
     "update_mobile": {
       "cta_label": "Update my app"
