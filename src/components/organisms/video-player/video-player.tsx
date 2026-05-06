@@ -42,7 +42,13 @@ import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logger/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useAppState, useBackHandler, useGetLottieJson, useGetVideoAvailableQualities } from "@hooks";
+import {
+  useAppState,
+  useBackHandler,
+  useGetLottieJson,
+  useGetVideoAvailableQualities,
+  useScreenReaderChange,
+} from "@hooks";
 import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/__generated";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
@@ -175,6 +181,7 @@ const VideoPlayer = ({
 
   const activeLevel = useSelector(getActiveLevel);
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   const {
     netInfo: { type: connectionType },
@@ -274,14 +281,15 @@ const VideoPlayer = ({
         !state.isPaused &&
         state.isMusicControlMounted &&
         !state.showFocusScreen &&
-        !DETOX_ENABLED
+        !DETOX_ENABLED &&
+        !isScreenReaderEnabled
       ) {
         handleFocusScreen();
       }
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [state.isMusicControlMounted, state.showFocusScreen, state.isPaused]);
+  }, [state.isMusicControlMounted, state.showFocusScreen, state.isPaused, isScreenReaderEnabled]);
 
   const handleOnProgress = useCallback(
     async ({ currentTime }: OnProgressData): Promise<void> => {
@@ -714,14 +722,20 @@ const VideoPlayer = ({
           color={themeColour}
           {...showYuLogo}
           onRightIconPress={
-            state.showFocusScreen || (effectiveOrientation === "landscape" && state.isMusicControlMounted)
+            !isScreenReaderEnabled &&
+            (state.showFocusScreen || (effectiveOrientation === "landscape" && state.isMusicControlMounted))
               ? undefined
               : handleOnRightIconPress
           }
           rightIcon="CLOSE"
+          rightIconAccessibilityLabel={
+            isScreenReaderEnabled && activeLevel?.id
+              ? t("screens.challenge_progress.accessibility.exit_challenge")
+              : undefined
+          }
         />
       )}
-      {!state.isMusicControlMounted || effectiveOrientation === "portrait" ? null : (
+      {!state.isMusicControlMounted || effectiveOrientation === "portrait" || isScreenReaderEnabled ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
           <Pressable delay={1000} testID={MEDIA_PORTRAIT_CLOSE} onPress={handleOnRightIconPress}>
             <CloseSvg size={Style.adjust(24)} stroke={"white"} />

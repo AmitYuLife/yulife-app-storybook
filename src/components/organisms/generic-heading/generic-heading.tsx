@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
 import { Logo } from "./subcomponents/logo";
@@ -12,6 +11,9 @@ import { useTheme } from "@modules/themes/hooks/useTheme";
 import { Colours, Style } from "@styles";
 import { MobileGameTheme } from "@app/modules/themes/types";
 
+type LogoType = NonNullable<IGenericHeadingProps["logoType"]>;
+type Theme = ReturnType<typeof useTheme>["theme"];
+
 const GenericHeading = (props: IGenericHeadingProps) => {
   const {
     heading,
@@ -24,6 +26,8 @@ const GenericHeading = (props: IGenericHeadingProps) => {
     color,
     rightIconTestID,
     leftIconTestID,
+    leftIconAccessibilityLabel,
+    rightIconAccessibilityLabel,
     disabled,
     logoType,
   } = props;
@@ -42,6 +46,7 @@ const GenericHeading = (props: IGenericHeadingProps) => {
             color={color}
             onPress={onLeftIconPress}
             testID={leftIconTestID || LEFT_HEADING_BUTTON(heading)}
+            accessibilityLabel={leftIconAccessibilityLabel}
             disabled={disabled}
           />
         )}
@@ -63,7 +68,7 @@ const GenericHeading = (props: IGenericHeadingProps) => {
             justifyContent="center"
             gap={8}
           >
-            {themeIconAssetKey && logo === "yulife" ? (
+            {themeIconAssetKey?.uri && logo === "yulife" ? (
               <>
                 <Image
                   source={{ uri: themeIconAssetKey.uri }}
@@ -74,7 +79,7 @@ const GenericHeading = (props: IGenericHeadingProps) => {
                 <Box w={1} h={26} bg={Colours.neutral.n300} />
               </>
             ) : null}
-            <Logo logo={logo} type={logoType} />
+            {logo ? <Logo logo={logo} type={logoType} /> : null}
           </Box>
         ) : typeof heading === "string" ? (
           <Box style={styles.centerTextWrapper}>
@@ -97,6 +102,7 @@ const GenericHeading = (props: IGenericHeadingProps) => {
             color={color}
             onPress={onRightIconPress}
             testID={rightIconTestID || BUTTON_CLOSE_HEADER(heading || logo || "button_only")}
+            accessibilityLabel={rightIconAccessibilityLabel}
             disabled={disabled}
           />
         )}
@@ -105,14 +111,14 @@ const GenericHeading = (props: IGenericHeadingProps) => {
   );
 };
 
-const LOGO_TYPE_TO_ASSET: Partial<Record<IGenericHeadingProps["logoType"], keyof MobileGameTheme["assets"]>> = {
+const LOGO_TYPE_TO_ASSET: Partial<Record<LogoType, keyof MobileGameTheme["assets"]>> = {
   inverted: "iconWhite",
   "logo-only": "icon",
 };
 
-const getIconThemeLogo = (theme: MobileGameTheme, logoType: IGenericHeadingProps["logoType"]) => {
-  const assetKey = LOGO_TYPE_TO_ASSET[logoType] ?? LOGO_TYPE_TO_ASSET["logo-only"];
-  const icon = theme.assets[assetKey];
+const getIconThemeLogo = (theme: Theme, logoType: IGenericHeadingProps["logoType"]) => {
+  const assetKey = (logoType && LOGO_TYPE_TO_ASSET[logoType]) ?? LOGO_TYPE_TO_ASSET["logo-only"];
+  const icon = assetKey ? theme.assets[assetKey] : undefined;
   return icon ? icon : null;
 };
 

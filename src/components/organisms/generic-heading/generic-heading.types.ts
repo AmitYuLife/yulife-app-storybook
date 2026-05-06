@@ -13,12 +13,14 @@ interface ICommonHeadingProps {
   hideBorder?: boolean;
   leftIcon?: LeftIcon;
   leftIconTestID?: string;
+  leftIconAccessibilityLabel?: string;
   logo?: GenericHeadingLogo;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
   rightIcon?: IRightIcon;
   RightIcon?: ReactNode;
   rightIconTestID?: string;
+  rightIconAccessibilityLabel?: string;
   style?: ViewStyle;
   logoType?: IYuLifeLogoProps["type"];
 }
