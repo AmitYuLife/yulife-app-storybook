@@ -40,7 +40,7 @@ class Logging {
     await dd.warn(message, context);
   };
 
-  public error = (errorOrMessage: unknown, context: Record<string, unknown> = {}) => {
+  public error = (errorOrMessage: unknown, context: LogContext = {}) => {
     const error = this.toError(errorOrMessage);
     dd.error(error.message, { ...context, error });
 
@@ -49,7 +49,7 @@ class Logging {
     }
   };
 
-  public notify = (errorOrMessage: unknown, tags: Record<string, unknown> = {}) => {
+  public notify = (errorOrMessage: unknown, tags: LogContext = {}) => {
     const error = this.toError(errorOrMessage);
     dd.error(error.message, { ...tags, error });
     this.reportToBugsnag(error, tags);
@@ -75,7 +75,7 @@ class Logging {
     return new Error(String(errorOrMessage));
   };
 
-  private reportToBugsnag = (error: Error, tags: Record<string, unknown>) => {
+  private reportToBugsnag = (error: Error, tags: LogContext) => {
     if (Platform.OS === "web") {
       return;
     }

@@ -78,10 +78,8 @@ export default function* getDailyPassiveActivity(
 
     if ((!meditationPermissionGranted || !cyclingPermissionGranted) && features.loggingEnabled) {
       Logger.info("Health provider permissions not granted", {
-        permissions: {
-          cycling: cyclingPermissionGranted,
-          meditation: meditationPermissionGranted,
-        },
+        cyclingPermissionGranted,
+        meditationPermissionGranted,
         location: "getDailyPassiveActivity",
       });
     }

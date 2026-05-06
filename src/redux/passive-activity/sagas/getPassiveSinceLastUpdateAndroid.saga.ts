@@ -217,10 +217,8 @@ const checkPermissions = async (
 
   if ((!meditationPermissionGranted || !cyclingPermissionGranted) && userFeatures?.loggingEnabled) {
     Logger.info("Health provider permissions not granted", {
-      permissions: {
-        cycling: cyclingPermissionGranted,
-        meditation: meditationPermissionGranted,
-      },
+      cyclingPermissionGranted,
+      meditationPermissionGranted,
       location: "checkPermissions",
     });
   }

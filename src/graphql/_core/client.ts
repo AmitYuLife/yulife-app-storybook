@@ -11,7 +11,9 @@ import Config from "react-native-config";
 import * as Device from "expo-device";
 import * as Application from "expo-application";
 import { store } from "@redux/_core/store";
+import { IReduxState } from "@redux/_core/reducers";
 import Logger from "@services/logger/logger";
+import { LogContext } from "@services/logger/types";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 import { getCurrentLocale, region, REGION, REGION_LIST } from "@locale";
@@ -63,7 +65,7 @@ const requestIdPrefix = `${defaultHeaders.apollo_client_name}_${defaultHeaders.d
 // use a request counter to ensure uniqueness for closely batched requests
 let requestCount = 0;
 
-const getUserId = () => ((store.getState() as any) || {})?.user?.id || "unknown";
+const getUserId = () => (store.getState() as IReduxState)?.user?.id || "unknown";
 
 const authMiddleware = (r?: REGION) =>
   setContext(async (op, { headers }) => {
@@ -103,9 +105,8 @@ const retryLink = createRetryLink(() => {
 
 const errorLink = onError(({ operation, networkError, graphQLErrors }) => {
   const { headers } = operation.getContext();
-  const metadata = {
+  const metadata: LogContext = {
     operationName: operation.operationName,
-    variables: operation.variables,
     requestId: headers?.["x-request-id"],
     locale: headers?.yu_locale,
     appVersion: headers?.app_version,
@@ -113,7 +114,7 @@ const errorLink = onError(({ operation, networkError, graphQLErrors }) => {
   };
 
   if (networkError) {
-    Logger.error(networkError, {
+    Logger.error(networkError.message, {
       ...metadata,
       statusCode: "statusCode" in networkError ? networkError.statusCode : undefined,
     });
@@ -121,7 +122,7 @@ const errorLink = onError(({ operation, networkError, graphQLErrors }) => {
 
   if (graphQLErrors) {
     for (const err of graphQLErrors) {
-      Logger.error(err, { ...metadata, path: err.path });
+      Logger.error(err.message, { ...metadata, path: err.path });
     }
   }
 });

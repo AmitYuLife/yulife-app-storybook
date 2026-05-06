@@ -16,8 +16,10 @@ export default function* getStreakModalDetails() {
 
   if (features.loggingEnabled) {
     yield call(Logger.info, "show_streak_modal_attempt", {
-      streaksBeforeUpdate,
-      streaks,
+      currentStreakBefore: streaksBeforeUpdate.currentStreak,
+      currentStreak: streaks.currentStreak,
+      maxStreak: streaks.maxStreak,
+      isAvailable: streaks.isAvailable,
       activeRoute,
       showStreaks: features.showStreaks,
     });
