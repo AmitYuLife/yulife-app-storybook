@@ -157,25 +157,41 @@ export const Image = memo(
     const remoteUri =
       !isBundledAsset && source && typeof source === "object" && "uri" in source ? source.uri : undefined;
     const hasResolvedNativeSize = !!(nativeSize && nativeSize.height > 0 && nativeSize.width > 0);
+    const [resolveSizeFailed, setResolveSizeFailed] = useState(false);
 
     useEffect(() => {
+      if (!remoteUri || disableNativeSizing || (typeof propHeight === "number" && propHeight > 0)) {
+        return;
+      }
+
+      if (hasResolvedNativeSize) {
+        return;
+      }
+
+      let cancelled = false;
       (async () => {
-        if (!remoteUri || disableNativeSizing || (typeof propHeight === "number" && propHeight > 0)) {
-          return;
-        }
-
-        if (hasResolvedNativeSize) {
-          return;
-        }
-
         const size = await resolveRemoteImageSize(remoteUri);
-        if (!size) {
+        if (cancelled) {
           return;
         }
 
-        setNativeSize(size);
+        if (size) {
+          setNativeSize(size);
+        } else {
+          // Mount RawImage anyway so onLoad/onError can fire and the parent's fallback path runs.
+          setResolveSizeFailed(true);
+        }
       })();
+
+      return () => {
+        cancelled = true;
+      };
     }, [remoteUri, disableNativeSizing, propHeight, hasResolvedNativeSize]);
+
+    // Reset failure flag when the URI changes so a recycled FlashList row gets a fresh attempt.
+    useEffect(() => {
+      setResolveSizeFailed(false);
+    }, [remoteUri]);
 
     const handleLoadStart = useCallback(() => setIsLoading(!isWeb()), []);
 
@@ -222,6 +238,17 @@ export const Image = memo(
       const roundedHeight = round(propHeight);
       const roundedWidth = round(propWidth);
 
+      // loadAsync couldn't determine the size and we still don't know the height. Render a
+      // square so RawImage has visible dimensions to load into; onLoad will then update the
+      // real aspect ratio.
+      if (resolveSizeFailed && roundedHeight === 0 && nativeSize.height === 0) {
+        return {
+          height: roundedWidth || PIXEL_FIX,
+          width: roundedWidth || PIXEL_FIX,
+          opacity: 1,
+        };
+      }
+
       // We round the height to 2 decimal places to avoid
       // floating point issues that can cause infinite loops
       const calculatedHeight = round(nativeSize.height / nativeSize.width, 2) * roundedWidth;
@@ -234,7 +261,7 @@ export const Image = memo(
         width: roundedWidth || PIXEL_FIX,
         opacity: height === 0 ? 0.1 : 1,
       };
-    }, [disableNativeSizing, propHeight, propWidth, nativeSize, loadingHeight]);
+    }, [disableNativeSizing, propHeight, propWidth, nativeSize, loadingHeight, resolveSizeFailed]);
     const { theme: userTheme } = useTheme();
 
     const containerStyle = useMemo(() => [styles.wrapper, dimensions, style], [dimensions, style]);
@@ -253,7 +280,10 @@ export const Image = memo(
     }, [isLoading, suppressLoadingUi, CustomLoader, themeColor]);
 
     const isAwaitingSize =
-      !disableNativeSizing && !(typeof propHeight === "number" && propHeight > 0) && !hasResolvedNativeSize;
+      !disableNativeSizing &&
+      !(typeof propHeight === "number" && propHeight > 0) &&
+      !hasResolvedNativeSize &&
+      !resolveSizeFailed;
 
     return (
       <View pointerEvents="none" style={containerStyle} testID={testID}>
