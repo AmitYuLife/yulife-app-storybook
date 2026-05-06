@@ -9,6 +9,7 @@ import Video, {
   IgnoreSilentSwitchType,
   ViewType,
   OnVideoErrorData,
+  ResizeMode,
 } from "@atoms/video/video";
 import moment from "moment";
 // eslint-disable-next-line rulesdir/no-restricted-imports-clone
@@ -556,6 +557,7 @@ const VideoPlayer = ({
             source={videoSource}
             disableFocus={true}
             poster={poster ? { source: { uri: poster }, resizeMode: PosterResizeModeType.COVER } : undefined}
+            resizeMode={effectiveOrientation === "landscape" ? ResizeMode.NONE : ResizeMode.COVER}
             progressUpdateInterval={1000}
             onError={handleOnError}
             onLoad={onLoad}
