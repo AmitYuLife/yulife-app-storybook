@@ -25,6 +25,7 @@ Source control is GitLab (`glab` CLI).
 - Use `react-native-reanimated` for animations, not `Animated` from React Native.
 - Use FlashList over FlatList with `estimatedItemSize`. Avoid anonymous functions in `renderItem` or event handlers.
 - **All ESLint warnings are CI-blocking** (`--max-warnings 0`). When you modify a file, run `pnpm eslint <file>` and fix all warnings in that file, even pre-existing ones.
+- Use `theme.colors.primary.p600` / `theme.colors.primary.p600Shadow` from `useTheme()` (`@modules/themes/hooks/useTheme`) instead of `Colours.primary.p600` / `Colours.primary.p600Shadow`.
 
 ## Environment Configuration
 
