@@ -1,4 +1,4 @@
-import { defineConfig, devices } from "@playwright/test";
+import { defineConfig } from "@playwright/test";
 import * as path from "path";
 
 require("dotenv").config({ path: path.resolve(__dirname, "..", ".env.e2e") });
@@ -30,7 +30,12 @@ export default defineConfig({
         isMobile: true,
         hasTouch: true,
         userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) YuLife-Web-Vibes",
-        // Don't fail on uncaught errors — the RN web app has some expected native-only errors
+        // Disable web security so the RN web app can hit localhost:5000 directly
+        // without the api-server having to send CORS headers. Vibe-only — never
+        // ship a real client this way.
+        launchOptions: {
+          args: ["--disable-web-security", "--disable-site-isolation-trials"],
+        },
       },
     },
   ],

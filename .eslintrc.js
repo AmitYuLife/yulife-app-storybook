@@ -229,6 +229,24 @@ module.exports = {
         "eslint-comments/no-unused-disable": "off",
       },
     },
+    {
+      files: ["vibes/**/*", "web/**/*"],
+      env: {
+        browser: true,
+        node: true,
+      },
+      parserOptions: {
+        project: null,
+      },
+      rules: {
+        "@typescript-eslint/no-deprecated": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "strict-null-checks/all": "off",
+        "rulesdir/no-restricted-imports-clone": "off",
+        curly: "off",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {

@@ -52,3 +52,26 @@ export async function typeIntoTestId(page: Page, testId: string, value: string, 
 export async function screenshot(page: Page, name: string) {
   await page.screenshot({ path: `vibes/screenshots/${name}.png`, fullPage: true });
 }
+
+/**
+ * Pipe browser console errors/warnings + uncaught page errors to the test's
+ * stdout so a white-screen crash isn't invisible. Call this immediately after
+ * the test gets `page`, before any navigation. No-op for log/info noise.
+ */
+export function attachBrowserLogs(page: Page): void {
+  page.on("pageerror", (err) => {
+    console.error("[browser:pageerror]", err.message, err.stack?.split("\n").slice(0, 5).join("\n"));
+  });
+  page.on("console", (msg) => {
+    const type = msg.type();
+    if (type === "error" || type === "warning") {
+      console.log(`[browser:${type}]`, msg.text());
+    }
+  });
+  page.on("requestfailed", (req) => {
+    const failure = req.failure()?.errorText;
+    if (failure && !failure.includes("ERR_ABORTED")) {
+      console.warn("[browser:requestfailed]", req.method(), req.url(), failure);
+    }
+  });
+}

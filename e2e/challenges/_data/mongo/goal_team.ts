@@ -81,7 +81,7 @@ export const GOAL_TEAM_6 = {
   data: {
     _id: generateRandomMongoId(),
     goal: GOALS_TOURNAMENT.data._id,
-    teamName: "SG1",
+    teamName: "Shoreditch Strikers",
     createdAt: moment.utc().startOf("day").format("YYYY-MM-DD"),
     membersCount: 1,
     overallProgress: 2,
@@ -97,7 +97,7 @@ export const GOAL_TEAM_7 = {
   data: {
     _id: generateRandomMongoId(),
     goal: GOALS_TOURNAMENT.data._id,
-    teamName: "SG7",
+    teamName: "Camden Crew",
     createdAt: moment.utc().startOf("day").format("YYYY-MM-DD"),
     membersCount: 1,
     overallProgress: 2,
