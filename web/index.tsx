@@ -23,8 +23,10 @@ Object.assign = function (target: any, ...sources: any[]) {
         }
       }
     }
+
     return target;
   }
+
   return originalAssign(target, ...sources);
 };
 
@@ -44,6 +46,7 @@ import { getToken } from "../src/services/storage";
 import { setUnauthenticatedRoot, setAuthenticatedRoot } from "../src/navigation/root";
 import { region } from "../src/locale";
 import { store } from "../src/redux/_core/store";
+
 import { getUserSessionSuccess, refreshUserProfileEvents } from "../src/redux/user/user.actions";
 import { setAuthenticated } from "../src/redux/app/app.actions";
 

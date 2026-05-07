@@ -111,6 +111,7 @@ export default (_env, argv) => {
         "react-native-push-notification": path.join(STORYBOOK_ALIASES, "react-native-push-notification"),
         "@yu-life/react-native-yu-watch": path.join(__dirname, "aliases/yu-watch"),
         "@react-native-community/netinfo": path.join(__dirname, "aliases/netinfo"),
+        "customerio-reactnative": path.join(__dirname, "aliases/customerio"),
       },
       extensions: [".web.tsx", ".web.ts", ".web.js", ".tsx", ".ts", ".js"],
       fallback: {

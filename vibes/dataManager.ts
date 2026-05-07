@@ -23,10 +23,7 @@ type ConnectOptions = {
   skipReseed?: boolean;
 };
 
-export async function connectDataManager(
-  data: Record<string, unknown>,
-  options: ConnectOptions = {},
-): Promise<void> {
+export async function connectDataManager(data: Record<string, unknown>, options: ConnectOptions = {}): Promise<void> {
   const port = options.port ?? DEFAULT_PORT;
   const url = process.env.API_URL || `http://localhost:${port}/`;
   console.log("[vibes] Connecting to API:", url);
@@ -50,6 +47,12 @@ export async function connectDataManager(
       console.warn("[vibes] Re-seed hit a duplicate key — assuming DB is already populated");
       return;
     }
+
+    const respData = (error as { response?: { data?: unknown } })?.response?.data;
+    if (respData) {
+      console.error("[vibes] Reseed error response:", JSON.stringify(respData).slice(0, 1000));
+    }
+
     throw error;
   }
 }
@@ -63,23 +66,64 @@ export async function addRecords(records: IDatabaseItem[]): Promise<void> {
 }
 
 /**
+ * Seed by delegating to the framework's `dataManager.seed()` — which inserts
+ * without calling `/detox/clear` first. Use when `/detox/clear` is broken on
+ * the api-server (handler returning no value) but `/detox/addRecords` works.
+ * Falls back to logging duplicate-key warnings without aborting.
+ */
+export async function seedRecordsOnly(data: Record<string, unknown>): Promise<void> {
+  const url = process.env.API_URL || `http://localhost:${DEFAULT_PORT}/`;
+  console.log("[vibes] Connecting to API (insert-only):", url);
+
+  dataManager.addData(data as Parameters<typeof dataManager.addData>[0]);
+  await dataManager.connect(url, true);
+
+  try {
+    await dataManager.seed();
+    console.log("[vibes] Insert-only seed succeeded");
+  } catch (error) {
+    const message = extractErrorMessage(error);
+    if (/duplicate key/i.test(message)) {
+      console.warn("[vibes] Insert-only seed hit duplicates — DB likely already populated");
+      return;
+    }
+
+    const respData = (error as { response?: { data?: unknown } })?.response?.data;
+    if (respData) {
+      console.error("[vibes] seed error response:", JSON.stringify(respData).slice(0, 1000));
+    }
+
+    throw error;
+  }
+}
+
+/**
  * Fire a server-side domain event via the API's `/detox/triggerEvent`
  * endpoint. Useful for exercising an `@OnEvent` listener without driving the
  * full UI path that would normally emit it.
  */
 export async function triggerEvent<TEvent extends string>(
   eventName: TEvent,
-  args: Record<string, unknown>,
+  args: Record<string, unknown>
 ): Promise<void> {
   await axios.post(apiUrl("/detox/triggerEvent"), { eventName, args }).catch(() => undefined);
 }
 
 function extractErrorMessage(error: unknown): string {
-  if (typeof error === "string") return error;
+  if (typeof error === "string") {
+    return error;
+  }
+
   if (error && typeof error === "object") {
     const e = error as { response?: { data?: unknown }; message?: unknown };
-    if (typeof e.response?.data === "string") return e.response.data;
-    if (typeof e.message === "string") return e.message;
+    if (typeof e.response?.data === "string") {
+      return e.response.data;
+    }
+
+    if (typeof e.message === "string") {
+      return e.message;
+    }
   }
+
   return String(error);
 }
