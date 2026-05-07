@@ -159,7 +159,7 @@
       "allow": "السماح",
       "ask_later": "اسألني لاحقاً",
       "back": "الرجوع",
-      "back_to_quests": "العودة إلى المهام",
+      "back_to_quests": "واصل المهمة",
       "cancel": "إلغاء",
       "claim": "استرداد",
       "close": "إغلاق",
@@ -659,7 +659,7 @@
         },
         "meditation": {
           "description": "مطلوب من تطبيق YuLife لمزامنة دقائق التأمل الذهني من جلسات التأمل الخاصة بك إلى حساب Health Connect الخاص بك.",
-          "requirement": "يتطلب: جلسات اليقظة",
+          "requirement": "المطلوب: جلسات يقظة ذهنية",
           "title": "دقائق التأمل"
         },
         "steps": {
@@ -931,6 +931,9 @@
       "title": "عذرًا! التحدي النشط الخاص بك لم يتزامن بعد."
     },
     "challenge_progress": {
+      "accessibility": {
+        "exit_challenge": "إنهاء التحدي"
+      },
       "debug_info": {
         "cta": "تصدير البيانات",
         "current_pedometer_steps": "٢. الخطوات الحالية في عدّاد الخطى: %{steps}",
@@ -1237,7 +1240,7 @@
       "total_yu_coin": "إجمالي يوكوين"
     },
     "goals-history": {
-      "title": "سجل الأهداف"
+      "title": "سجل الأهداف السابقة"
     },
     "info_modal": {
       "other_wearables": {
@@ -1257,7 +1260,7 @@
       "title": "اللغة"
     },
     "leaderboard": {
-      "grace_period_banner": "النتائج ما زالت قيد الحساب. لدي المشتركين %{hours} ساعة لتسجيل خطواتهم. الطلع على التحديث لاحقًا لمعرفة من تفوق",
+      "grace_period_banner": "النتائج لا تزال قيد الحساب. لدى المشاركين %{hours} ساعة لتسجيل خطواتهم. عُد بعد ذلك لترى من يتفوق.",
       "invites": {
         "subheading": "من خلال تشغيل لوحة المتصدرين، فإنك تختار مشاركة بياناتك الأخيرة لمدى %{days} يوم عن %{metric} مع أعضاء آخرين في لوحة المتصدرين. يمكن إيقاف هذه الميزة في أي وقت."
       },
@@ -1389,8 +1392,8 @@
       "resend_link": "لم يصلك الرابط؟ أرسل رابط جديد.",
       "short_code_accessibility_hint": "أدخل الرمز من بريدك الإلكتروني",
       "short_code_accessibility_label": "رمز التحقق",
-      "short_code_description": "مستعد لتكون أفضل ما لديك؟ أدخل رمز التحقق من البريد الإلكتروني الذي أرسلناه لك.",
-      "short_code_heading": "دعنا نتأكد أنها أنت!",
+      "short_code_description": "جاهز لتعيش أفضل تجربة مع Yu؟ أدخل رمز التحقق الذي أرسلناه الآن إلى بريدك الإلكتروني.",
+      "short_code_heading": "لنتأكد من هويتك",
       "submit_short_code": "تسجيل الدخول برمز",
       "webview_title": "التهيئة لعملية الإقلاع..."
     },
@@ -1434,7 +1437,7 @@
       "video_duration_reward_label": "%{formattedDuration} • اكسب %{reward}"
     },
     "meditopia_media_all": {
-      "title": "كل التأملات"
+      "title": "شاهد كل التأملات"
     },
     "meditopia_media_list": {
       "see_all_button": "شاهد كل التأملات",
@@ -1532,14 +1535,14 @@
         "banner": {
           "default": "تم إنجاز الهدف!",
           "first_completed": "تم إنجاز هدفك الأول!",
-          "halfway": "منتصف الطريق، واصل التقدم!",
-          "title": "أحسنت صنعًا! 🎉"
+          "halfway": "أنت في منتصف الطريق الآن، استمر",
+          "title": "عمل رائع! 🎉"
         },
         "days_left": "%{smart_count} يوم متبقي |||| %{smart_count} أيام متبقية",
         "goals_left": "%{smart_count} هدف متبقي |||| %{smart_count} أهداف متبقية",
         "heading": "الأهداف",
         "success": {
-          "body": "أكملت جميع الأهداف لهذا الأسبوع! أنت تزرع بذور العادة!",
+          "body": "أنهيت كل أهدافك لهذا الأسبوع! ما تقوم به اليوم يتحوّل إلى عادة قوية",
           "cta": "رائع!",
           "title": "عمل رائع!"
         }
@@ -1557,17 +1560,17 @@
       "reflected": {
         "subtitle": {
           "day1": "تم تسجيل أول لحظة تأمّل. استمر",
-          "day2": "استمر في الظهور",
+          "day2": "واصل التقدّم",
           "day3": "ثلاثة على التوالي. رائع!",
-          "day4": "على وشك الانتهاء!",
-          "day5": "مهمة الصحة مفتوحة"
+          "day4": "قاربت الوصول!",
+          "day5": "فتح Yunity Quest"
         },
         "title": "يوم التأمل! |||| أيام التأمل!"
       },
       "reflect_in": "سيتم التنفيذ خلال %{hours} ساعة و %{minutes} دقيقة",
-      "reflection_active_label": "يعكس",
-      "reflection_chest_button_label": "مهمة الصحة",
-      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) مُهمَّة مكافأة يونتي",
+      "reflection_active_label": "انعكاس",
+      "reflection_chest_button_label": "مهمة Yunity ",
+      "reflection_chest_health_challenge_completed_markdown": "![](%{checkboxUrl}) مكافأة مهمة يونتي",
       "reflection_chest_health_challenge_to_earn_markdown": "![](%{extraChallengeUrl}) مهمة يونتي الإضافية",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "اكسب: %{amount} ![](%{yucoinUrl})",
@@ -1768,7 +1771,7 @@
         },
         "title": "محفظة",
         "used_section": {
-          "label": "مستعمل",
+          "label": "مستخدم",
           "title": "مستخدم"
         }
       }
@@ -1948,12 +1951,12 @@
       }
     },
     "tournaments": {
-      "consent_copy": "الانضمام يعني أن اسمك وصورتك الرمزية ستكون مرئية لزملائك في الفريق على لوحة الصدارة للفريق. ستجمع نقاطًا لفريقك بناءً على نشاطك طوال مدة البطولة.",
+      "consent_copy": "عند الانضمام، سيتمكن أعضاء فريقك من رؤية اسمك وصورتك الرمزية في لوحة الصدارة. كما ستساهم في جمع النقاط لفريقك من خلال نشاطك خلال فترة البطولة",
       "days_left": "%{smart_count} يوم متبقي |||| %{smart_count} أيام متبقية",
       "join_button": "انضم إلى البطولة",
-      "joined": "%{smart_count} مُنضم |||| %{smart_count} مُنضمون",
-      "join_title": "انضم إلى البطولة؟",
-      "leaderboard": "الترتيب",
+      "joined": "انضم %{smart_count}",
+      "join_title": "الانضمام إلى البطولة؟",
+      "leaderboard": "قائمة المتصدرين",
       "member_count": "%{smart_count} عضو |||| %{smart_count} أعضاء",
       "members": "الأعضاء",
       "my_team": "فريقي (%{teamName})",

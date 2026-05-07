@@ -171,9 +171,9 @@
       "cool": "Gaaf!",
       "copy": "Kopie",
       "decline": "Wijs af",
-      "dismiss": "Ontsla",
+      "dismiss": "Sluit",
       "done": "Gedaan",
-      "exit": "Ga naar",
+      "exit": "Stop",
       "get_started": "Aan de slag",
       "give_feedback": "Feedback geven",
       "go_back": "Ga terug",
@@ -187,12 +187,12 @@
       "loading": "Aan het laden...",
       "next": "Volgende",
       "no": "Geen",
-      "no_thanks": "Geen dank",
+      "no_thanks": "Liever niet",
       "not_now": "Niet nu",
       "not_really": "Niet echt",
       "ok": "Ok",
       "open": "Open",
-      "pause": "Pauze",
+      "pause": "Pauzeren",
       "quit": "Stoppen met",
       "resume": "Herstart",
       "save": "Sla op",
@@ -208,7 +208,7 @@
     "level": "Niveau %{level}",
     "many_more": "+veel meer",
     "off": "Uit",
-    "on": "Op",
+    "on": "Aan",
     "power": "Stroom",
     "quest_map": "kaart",
     "spend": "Besteed",
@@ -426,10 +426,10 @@
       "info_card": {
         "power_up_inventory": {
           "description": "Je kunt je Power Ups vinden in je Power Ups inventaris.",
-          "title": "Macht verzameld!"
+          "title": "Power up verzameld!"
         },
         "wallet": {
-          "description": "Je vindt je beloning in je portemonnee in de winkel.",
+          "description": "Je vindt je beloning in je wallet de winkel.",
           "title": "Beloning verzameld!"
         },
         "yumoji_inventory": {
@@ -469,7 +469,7 @@
       "subheading": "Kies een dagelijkse herinneringstijd zodat je geen dag mist en de Yunity Quest kunt ontgrendelen."
     },
     "reward_info": {
-      "got_it": "Ik heb het"
+      "got_it": "Ik snap het"
     },
     "smoking_streak_lapsed": {
       "page_1": {
@@ -492,7 +492,7 @@
     "streak_saver": {
       "body": "Je hebt een dag gemist, maar we verdienen het allemaal om nog een keer te gaan - blijf die uitdagingen verpletteren!",
       "button": "Hebbes!",
-      "inventory_item": "Reeksbeschermers",
+      "inventory_item": "Reeks behouden",
       "title": "Reeks opgeslagen!"
     },
     "switch_to_google_fit": {
@@ -521,7 +521,7 @@
       }
     },
     "unlocked_achievements": {
-      "description": "Laat ze zien door ze aan je Yumoji te koppelen.",
+      "description": "Schep op door ze aan je Yumoji te koppelen.",
       "title": "Nieuwe prestatie ontgrendeld! |||| Je hebt %{smart_count} nieuwe prestaties verdiend!"
     }
   },
@@ -543,7 +543,7 @@
       }
     },
     "package_type": {
-      "not_equipped": "Niet uitgerust"
+      "not_equipped": "Niet mogelijk"
     },
     "reward_item_content": {
       "link_group": {
@@ -557,7 +557,7 @@
     },
     "yucoin_power_button": {
       "button_label": "Verbetert je uitdagingsbeloningen!",
-      "power": "Stroom",
+      "power": "Kracht",
       "yucoin": "YuCoin"
     }
   },
@@ -931,6 +931,9 @@
       "title": "Oeps! Je actieve uitdaging is nog niet gesynchroniseerd."
     },
     "challenge_progress": {
+      "accessibility": {
+        "exit_challenge": "Verlaat uitdaging"
+      },
       "debug_info": {
         "cta": "Gegevens exporteren",
         "current_pedometer_steps": "2. Huidige stappen op de stappenteller: %{steps}",

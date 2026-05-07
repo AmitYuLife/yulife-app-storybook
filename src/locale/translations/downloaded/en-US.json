@@ -931,6 +931,9 @@
       "title": "Oops! Your active challenge isn't syncing yet."
     },
     "challenge_progress": {
+      "accessibility": {
+        "exit_challenge": "Exit challenge"
+      },
       "debug_info": {
         "cta": "Export data",
         "current_pedometer_steps": "2. Current Pedometer Steps: %{steps}",

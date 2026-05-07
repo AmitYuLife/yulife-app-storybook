@@ -931,6 +931,9 @@
       "title": "¡Uy! Tu reto activo aún no se ha sincronizado."
     },
     "challenge_progress": {
+      "accessibility": {
+        "exit_challenge": "Salir del reto"
+      },
       "debug_info": {
         "cta": "Exportar datos",
         "current_pedometer_steps": "2. Pasos actuales del podómetro: %{steps}",

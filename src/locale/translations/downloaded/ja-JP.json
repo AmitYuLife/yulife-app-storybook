@@ -931,6 +931,9 @@
       "title": "進行中のチャレンジがまだ同期されていません。"
     },
     "challenge_progress": {
+      "accessibility": {
+        "exit_challenge": "チャレンジを終了する"
+      },
       "debug_info": {
         "cta": "データをエクスポート",
         "current_pedometer_steps": "2. 現在の歩数計のステップ: %{steps}",
