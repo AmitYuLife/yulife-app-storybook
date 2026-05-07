@@ -1,7 +1,7 @@
 import { memo, ReactElement, useMemo } from "react";
 import { ViewStyle } from "react-native";
 import { StyleSheet } from "@styles";
-import { BlurredWrapper, Box, TextTemplate } from "@atoms";
+import { BlurredWrapper, Box, DeferredRender, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { RollingText } from "@organisms";
 import { Colours, Style } from "@styles";
@@ -60,47 +60,49 @@ const BlurredRaysWrapper = ({
   );
 
   return (
-    <BlurredWrapper tint="dark" isBlurred={isBlurred} backgroundColor={backgroundColor}>
-      <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
-        <RaysSpotlightLayout showRays={showRays}>
-          <Box style={wrapperStyle} testID={testID} gap={50}>
-            {title ? (
-              <Box pt={titlePaddingTop}>
-                <Animated.View
-                  entering={FadeInDown.delay(200).duration(500)}
-                  style={styles.levelUpText}
-                  accessible={true}
-                  accessibilityLabel={acceessibilityLabelTitle}
-                >
-                  <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
-                    {title}
-                  </TextTemplate>
-                  {!rollingTextProps ? null : (
-                    <RollingText
-                      previousValue={rollingTextProps?.previousValue}
-                      newValue={rollingTextProps?.newValue}
-                    />
-                  )}
-                </Animated.View>
+    <DeferredRender>
+      <BlurredWrapper tint="dark" isBlurred={isBlurred} backgroundColor={backgroundColor}>
+        <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
+          <RaysSpotlightLayout showRays={showRays}>
+            <Box style={wrapperStyle} testID={testID} gap={50}>
+              {title ? (
+                <Box pt={titlePaddingTop}>
+                  <Animated.View
+                    entering={FadeInDown.delay(200).duration(500)}
+                    style={styles.levelUpText}
+                    accessible={true}
+                    accessibilityLabel={acceessibilityLabelTitle}
+                  >
+                    <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
+                      {title}
+                    </TextTemplate>
+                    {!rollingTextProps ? null : (
+                      <RollingText
+                        previousValue={rollingTextProps?.previousValue}
+                        newValue={rollingTextProps?.newValue}
+                      />
+                    )}
+                  </Animated.View>
+                </Box>
+              ) : null}
+              <Box flex={1} justifyContent={centerContent ? "center" : "flex-start"} alignItems="center">
+                {children}
               </Box>
-            ) : null}
-            <Box flex={1} justifyContent={centerContent ? "center" : "flex-start"} alignItems="center">
-              {children}
+              {!buttonIsEnabled ? null : (
+                <Box flex={1} justifyContent="flex-end" gap={5} mb={bottom + Style.adjust(10)} disableAutoAdjust={true}>
+                  <Button
+                    testID={buttonTestID ?? ""}
+                    translatedLabel={buttonLabel ?? ""}
+                    onPress={onButtonPress}
+                    isLoading={isLoading}
+                  />
+                </Box>
+              )}
             </Box>
-            {!buttonIsEnabled ? null : (
-              <Box flex={1} justifyContent="flex-end" gap={5} mb={bottom + Style.adjust(10)} disableAutoAdjust={true}>
-                <Button
-                  testID={buttonTestID ?? ""}
-                  translatedLabel={buttonLabel ?? ""}
-                  onPress={onButtonPress}
-                  isLoading={isLoading}
-                />
-              </Box>
-            )}
-          </Box>
-        </RaysSpotlightLayout>
-      </Animated.View>
-    </BlurredWrapper>
+          </RaysSpotlightLayout>
+        </Animated.View>
+      </BlurredWrapper>
+    </DeferredRender>
   );
 };
 
