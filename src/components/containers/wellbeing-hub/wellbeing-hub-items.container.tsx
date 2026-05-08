@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { Platform } from "react-native";
-import { Box, prefetchImages } from "@atoms";
+import { Box } from "@atoms";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { gql, Os } from "@graphql/__generated";
@@ -13,6 +13,7 @@ import { Style } from "@styles";
 import { ROUTES } from "@navigation/constants";
 import { BusinessAccount } from "@components/molecules/business-picker";
 import ThemeOverrideProvider from "@modules/themes/context";
+import { useImagePreload } from "@hooks";
 
 interface IProps {
   componentId: string;
@@ -45,7 +46,6 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
   const [selectedBusinessAccount, setSelectedBusinessAccount] = useState<BusinessAccount | undefined>(undefined);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [categoryToPreselect, setCategoryToPreselect] = useState(preselectCategory || null);
-  const [isPrefetchingImages, setIsPrefetchingImages] = useState(true);
   const firstName = useSelector(getUserFirstName);
 
   const { data, loading, previousData } = useQuery(gql("GetWellbeingHubItemsDocument"), {
@@ -76,28 +76,20 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
       }),
     [componentId]
   );
-
-  useEffect(() => {
+  const imagesToPreload = useMemo(() => {
     if (!data?.theme) {
-      return;
+      return undefined;
     }
 
-    const fetchImages = async () => {
-      const themeBackgroundUri = data?.theme?.sections?.wellbeing?.heroImageBackground?.uri;
-      const themeIconUri = data?.theme?.sections?.wellbeing?.heroImageIcon?.uri;
+    return [
+      data?.theme?.sections?.wellbeing?.heroImageBackground?.uri,
+      data?.theme?.sections?.wellbeing?.heroImageIcon?.uri,
+    ].filter((uri): uri is string => !!uri) as string[];
+  }, [data?.theme]);
 
-      const images = [themeBackgroundUri, themeIconUri].filter((uri): uri is string => !!uri);
-      if (images.length > 0) {
-        try {
-          await prefetchImages(images);
-        } finally {
-          setIsPrefetchingImages(false);
-        }
-      }
-    };
-
-    fetchImages();
-  }, [data?.theme, loading]);
+  const { hasLoaded } = useImagePreload({
+    images: imagesToPreload,
+  });
 
   useEffect(() => {
     if (data?.categories && categoryToPreselect) {
@@ -154,7 +146,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({
         <WellBeingHub
           handleClose={handleClose}
           categoryChips={categoryChips}
-          loading={loading || isPrefetchingImages}
+          loading={loading || !hasLoaded}
           userFirstName={firstName}
           handleWellbeingLocationPress={handleWellbeingLocationPress}
           cards={data?.listItems}
