@@ -1240,7 +1240,7 @@
       "total_yu_coin": "Totaal YuCoin"
     },
     "goals-history": {
-      "title": "Doelen geschiedenis"
+      "title": "Geschiedenis Doelen "
     },
     "info_modal": {
       "other_wearables": {
@@ -1265,7 +1265,7 @@
         "subheading": "Door een leaderboard in te schakelen, kies je ervoor om je meest recente %{days} dag %{metric} gegevens te delen met andere leden van het leaderboard. Je kunt dit op elk moment uitschakelen."
       },
       "list": {
-        "empty_leaderboard": "Blijf zitten terwijl we je klassement opstellen",
+        "empty_leaderboard": "Blijf zitten terwijl we je leaderboard opstellen",
         "heading": "Leaderboards"
       },
       "metrics": {
@@ -1310,12 +1310,12 @@
           "heading": "Stappen Leaderboard"
         },
         "yudoku_info": {
-          "content": "Dit dagelijkse klassement onthult de nieuwste, verbijsterende Yudoku-tijden. Zet je denkhoed op en laten we eens kijken wie zich vandaag een weg naar de toppositie kan Yudokuën!",
+          "content": "Dit dagelijkse klassement onthult de nieuwste, verbijsterende Yudoku-tijden. Zet je denkhoed op en laten we eens kijken wie zich vandaag een weg naar de toppositie kan Yudoku-en!",
           "heading": "Yudoku Leaderboard"
         }
       },
       "search": {
-        "friends_not_found": "We konden de vriend die je zoekt niet vinden.\nzoeken. Je kunt ze uitnodigen met\nde knop hieronder:",
+        "friends_not_found": "We konden de vriend die je zoekt niet vinden.\nJe kunt ze uitnodigen met\nde knop hieronder:",
         "friends_not_found_no_referrals": "We konden de vriend die je zoekt niet vinden.\nzoeken.",
         "loading_state": "Op zoek naar resultaten ...",
         "sub_heading": "Leaderboards zoeken"
@@ -1423,7 +1423,7 @@
       "description": "Wissel tussen het imperiale (mijlen) en metrische (kilometers) systeem.",
       "imperial": {
         "description": "De afstand wordt weergegeven in mijlen \"mi\".",
-        "title": "Keizerlijk systeem"
+        "title": "Imperiaal systeem"
       },
       "metric": {
         "description": "De afstand wordt weergegeven in kilometers \"km\".",
@@ -1469,13 +1469,13 @@
         "label": "Ondersteuning"
       },
       "tools": {
-        "label": "Gereedschap"
+        "label": "Tools "
       },
       "version": {
         "accessibility_label": "yu life app versie %{version}"
       },
       "wellbeing_hub": {
-        "label": "Hub Welzijn"
+        "label": "Welzijn Hub"
       }
     },
     "mood-calendar": {
@@ -1520,13 +1520,13 @@
         "bullet_point_3": "Streeft ernaar gezondheidsproblemen te voorkomen voordat ze een probleem worden",
         "description": "De Yunity Quest geeft je gerichte en gepersonaliseerde content op basis van je dagelijkse reflectieantwoorden.",
         "heading": "Yunity zoektocht",
-        "info_panel_markdown": "Deze zoektocht telt niet mee voor je streak!",
+        "info_panel_markdown": "Deze zoektocht telt niet mee voor je reeks!",
         "title": "Ontworpen voor Yu"
       },
       "claim": {
-        "health_challenge": "Yunity zoektocht",
+        "health_challenge": "Yunity missie",
         "reward_subtitle": "Je kunt het vinden in de lijst met uitdagingen.",
-        "reward_title": "Beloning verzameld!",
+        "reward_title": "Beloning opgehaald!",
         "title": "Hier is alles wat je vandaag hebt gekregen!",
         "yucoin": "YuCoin"
       },
@@ -1547,14 +1547,14 @@
           "title": "Geweldig gedaan!"
         }
       },
-      "header": "De overdenking van vandaag",
+      "header": "De reflectie van vandaag",
       "health_insights": "Inzichten in gezondheid",
       "journey_header": "Huidige reis",
       "journey_header_starts": "Reflecteer gedurende %{maxProgress} opeenvolgende dagen om een bonus quest te verdienen",
       "personal_health_path": {
         "heading": "Persoonlijk gezondheidspad"
       },
-      "powered_by_yunity": "Aangedreven door",
+      "powered_by_yunity": "Powered by",
       "recommended_for_you": "Aanbevolen voor jou",
       "reflect": "Reflecteren",
       "reflected": {
@@ -1563,14 +1563,14 @@
           "day2": "Blijf komen opdagen.",
           "day3": "Drie op een rij. Leuk!",
           "day4": "We zijn er bijna!",
-          "day5": "Yunity Quest ontgrendeld"
+          "day5": "Yunity Missie ontgrendeld"
         },
         "title": "dag van bezinning! |||| dagen van bezinning!"
       },
       "reflect_in": "Reflecteren in %{hours}h %{minutes}m",
       "reflection_active_label": "Reflecteren",
-      "reflection_chest_button_label": "Yunity zoektocht",
-      "reflection_chest_health_challenge_completed_markdown": "(%{checkboxUrl}) Bonus Yunity Quest",
+      "reflection_chest_button_label": "Yunity missie",
+      "reflection_chest_health_challenge_completed_markdown": "(%{checkboxUrl}) Bonus Yunity Missie",
       "reflection_chest_health_challenge_to_earn_markdown": "(%{extraChallengeUrl}) Bonus Yunity Quest",
       "reflection_chest_reward_to_earn_completed_markdown": "![](%{checkboxUrl}) %{amount} ![](%{yucoinUrl})",
       "reflection_chest_reward_to_earn_markdown": "Verdienen: **%{amount}** ![](%{yucoinUrl})",
@@ -1592,11 +1592,11 @@
       "health_section": {
         "android_header": "Google Fit-machtigingen",
         "header": "Systeemrechten",
-        "ios_header": "Apple gezondheidsmachtigingen",
-        "samsung_header": "Samsung gezondheidsmachtigingen"
+        "ios_header": "Machtigingen Apple gezondheid",
+        "samsung_header": "Machtigingen Samsung gezondheid"
       },
       "info_message": "Beheer je machtigingen om volledig beloond te worden met YuCoin voor je activiteiten.",
-      "open_apple_health": "Apple gezondheidsmachtigingen",
+      "open_apple_health": "Machtigingen Apple gezondheid",
       "status_ask_permissions": "**Machtiging niet verbonden**\nGebruik de knop \"Verbinden\" om verbinding te maken. Bezoek [onze FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) voor meer hulp.",
       "status_disconnected": "**Status: Verbinding verbroken**\nControleer de instellingen van je telefoon om opnieuw verbinding te maken. Bezoek [onze FAQ] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) voor meer hulp.",
       "status_unknown": "**Status: Onbekend**\nWe kunnen de status van de toestemming niet bepalen. Waarschijnlijk is alles in orde.",
@@ -1607,10 +1607,10 @@
         "title": "Google Fit"
       },
       "system_section": {
-        "header": "Systeem machtigingen",
+        "header": "Systeemmachtigingen",
         "secondary_button": "Systeeminstellingen"
       },
-      "title": "Activiteit machtigingen"
+      "title": "Activiteitmachtigingen"
     },
     "products": {
       "beneficiary": {
@@ -1856,7 +1856,7 @@
     },
     "streak": {
       "accessibility": {
-        "streak_completed": "%{header} %{ribbonLabel} is verzameld, begin je volgende streak in %{time}",
+        "streak_completed": "%{header} %{ribbonLabel} is verzameld, begin je volgende reeks in %{time}",
         "streak_start": "%{header} %{subHeader} %{streakCompleted} van %{streakMax} dagen voltooid."
       },
       "completion": {
@@ -1869,7 +1869,7 @@
       "heading_completed_today_streak": {
         "day1": "Eerste dag gedaan!",
         "day2": "Twee dagen voorbij!",
-        "day3": "Je bent over de bult heen!",
+        "day3": "Je bent over de drempel heen!",
         "day4": "De laatste loodjes!",
         "day5": "Verbrijzelde die streak!"
       },
@@ -1919,7 +1919,7 @@
       "toast": {
         "google_fit_location_permission": {
           "accessibility": {
-            "accessibility_label": "Om yu-munten te verdienen met fietsen, hebben we toestemming van de locatie nodig om gegevens over fietsactiviteiten te verzamelen en verbinding te maken met Google Fit."
+            "accessibility_label": "Om YuCoin te verdienen met fietsen, hebben we toestemming van de locatie nodig om gegevens over fietsactiviteiten te verzamelen en verbinding te maken met Google Fit."
           },
           "cta_label": "Toestemming verlenen",
           "message": "Om Yucoin te verdienen voor het fietsen, hebben we toestemming van de locatie nodig om gegevens over de fietsactiviteit te verzamelen en verbinding te maken met Google Fit."
