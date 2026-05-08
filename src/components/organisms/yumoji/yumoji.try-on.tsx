@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState, useCallback } from "react";
+import { memo, useEffect, useState, useCallback } from "react";
 import { LayoutChangeEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@apollo/client";
@@ -12,7 +12,6 @@ import Logger from "@services/logger/logger";
 import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
 import {
   CoverType,
-  MobileOnboardingStepPerformed,
   YuWorld,
   gql,
   GetYumojiRemoteFittingRoomQuery,
@@ -33,8 +32,8 @@ const HIT_SLOP = {
 };
 
 const _TryOnYumojiPart = ({ customerProductId, coverType = CoverType.Common, onChange }: Props) => {
-  const [selectedWorld, setSelectedWorld] = useState<YuWorld>(null);
-  const [avatar, setAvatar] = useState<GetYumojiRemotePartsQuery["avatar"]>(null);
+  const [selectedWorld, setSelectedWorld] = useState<YuWorld | null>(null);
+  const [avatar, setAvatar] = useState<GetYumojiRemotePartsQuery["avatar"] | null>(null);
 
   const { yumoji, fittingRoom } = useYumojiFittingRoom({ customerProductId, coverType });
   const { yuWorlds = [], popover, selectedYuWorld } = fittingRoom;
@@ -73,8 +72,9 @@ const _TryOnYumojiPart = ({ customerProductId, coverType = CoverType.Common, onC
       updateOnboardingStep();
     }
 
-    if (onChange) {
-      onChange(yuWorlds.find((i) => i.id === id).id);
+    const matchedWorld = yuWorlds.find((i) => i.id === id);
+    if (onChange && matchedWorld) {
+      onChange(matchedWorld.id);
     }
   };
 
@@ -100,7 +100,7 @@ const _TryOnYumojiPart = ({ customerProductId, coverType = CoverType.Common, onC
           isClosed={popoverClosed}
         />
         <View style={styles.row} onLayout={handleTextLayout}>
-          <TextTemplate type="l2b" color={variant?.mainColor} testID={YUMOJI_OUTFIT_LABEL(variant.title)}>
+          <TextTemplate type="l2b" color={variant?.mainColor} testID={YUMOJI_OUTFIT_LABEL(variant?.title ?? "")}>
             {variant?.title}
           </TextTemplate>
         </View>
@@ -167,7 +167,7 @@ function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoomQuery["getYumoji
 
   const updateOnboardingStep = useCallback(async () => {
     try {
-      await performOnboardingStep({ variables: { step: popover.id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
+      await performOnboardingStep({ variables: { step: popover?.id } });
       setIsClosed(true);
     } catch (e) {
       Logger.notify(e, { where: "yumoji-try-on" });
@@ -184,7 +184,7 @@ function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoomQuery["getYumoji
 
 interface WorldRadioButtons {
   yuWorlds: GetYumojiRemoteFittingRoomQuery["getYumojiRemoteFittingRoom"]["yuWorlds"];
-  selectedWorld: string;
+  selectedWorld: YuWorld | null;
   handlePress: (id: YuWorld) => void;
 }
 

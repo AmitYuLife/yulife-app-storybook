@@ -1,9 +1,9 @@
-import React, { FC, useState, useEffect, memo, useCallback } from "react";
+import { FC, useState, useEffect, memo, useCallback } from "react";
 import { View, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import { useMutation } from "@apollo/client";
-import { MobileOnboardingStepPerformed, gql } from "@graphql/__generated";
+import { gql } from "@graphql/__generated";
 import { useDebouncedQuery } from "@hooks";
 import Logger from "@services/logger/logger";
 import { Popover } from "@molecules";
@@ -36,12 +36,12 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
     try {
       setPopoverVisible(true);
       dispatch(setOnboardingReferralsBadge({ showReferralsBadge: true }));
-      await performOnboardingStep({ variables: { step: id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
+      await performOnboardingStep({ variables: { step: id } });
       await Storage.setItem(StorageKey.referralsPopover, "true");
     } catch (e) {
       Logger.notify(e, { file: "referrals-popover" });
     }
-  }, [id]);
+  }, [id, dispatch, performOnboardingStep]);
 
   useEffect(() => {
     (async () => {
@@ -50,13 +50,13 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
         getReferralOnboardingPopover();
       }
     })();
-  }, []);
+  }, [getReferralOnboardingPopover, sessionCount]);
 
   useEffect(() => {
     if (showPopover) {
       startOnboarding();
     }
-  }, [showPopover]);
+  }, [showPopover, startOnboarding]);
 
   useEffect(() => {
     if (error) {
@@ -69,7 +69,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
     setPopoverVisible(false);
   }, []);
 
-  if (!popoverVisible || !onboardingMessage || !image) {
+  if (!popoverVisible || !onboardingMessage || !image?.uri) {
     return null;
   }
 
@@ -79,7 +79,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
         <View style={styles.popoverTextWrapper}>
           <Markdown text={onboardingMessage} markdownStyles={markdownStyles} />
         </View>
-        <Image style={styles.popoverImage} resizeMode="contain" source={image} />
+        <Image style={styles.popoverImage} resizeMode="contain" source={{ uri: image.uri }} />
       </View>
     </Popover>
   );
