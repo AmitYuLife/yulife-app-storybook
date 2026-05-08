@@ -264,19 +264,6 @@ export type ActivityToday = {
   chest?: Maybe<Chest>;
 };
 
-export type AdBanner = {
-  __typename?: "AdBanner";
-  endDate?: Maybe<Scalars["String"]["output"]>;
-  height?: Maybe<Scalars["Int"]["output"]>;
-  id: Scalars["String"]["output"];
-  imageUrl: RemoteImage;
-  navigateTo: Scalars["String"]["output"];
-  navigateToType: Scalars["String"]["output"];
-  routeProps?: Maybe<Scalars["String"]["output"]>;
-  startDate: Scalars["String"]["output"];
-  width?: Maybe<Scalars["Int"]["output"]>;
-};
-
 export type AddUserFeedbackResponse = {
   __typename?: "AddUserFeedbackResponse";
   message?: Maybe<Scalars["String"]["output"]>;
@@ -8605,17 +8592,6 @@ export type PlayerBirthday = {
   isVisible: Scalars["Boolean"]["output"];
 };
 
-export enum PolicyStatus {
-  ClaimAdmitted = "CLAIM_ADMITTED",
-  ClaimNotified = "CLAIM_NOTIFIED",
-  Death = "DEATH",
-  Lapsed = "LAPSED",
-  Live = "LIVE",
-  NotLiveYet = "NOT_LIVE_YET",
-  NotTakenUp = "NOT_TAKEN_UP",
-  Termination = "TERMINATION",
-}
-
 export type PotentialReward = {
   __typename?: "PotentialReward";
   id: Scalars["ID"]["output"];
@@ -8713,12 +8689,6 @@ export type ProductCategoryInformation = {
   yuCoinPower: Scalars["Int"]["output"];
 };
 
-export type ProductDescriptionValuePair = {
-  __typename?: "ProductDescriptionValuePair";
-  description: Scalars["String"]["output"];
-  value: Scalars["String"]["output"];
-};
-
 export enum ProductDetailsType {
   DynoPackage = "dynoPackage",
   GroupProduct = "groupProduct",
@@ -8801,7 +8771,6 @@ export type Query = {
   getActiveAndInactiveCount: ActiveAndInactiveCount;
   /** Get the user's active employments */
   getActiveEmployments: Array<UserBusinessLink>;
-  getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAllThemes: Array<MobileGameTheme>;
   getAnalyticsConfiguration: AnalyticsConfiguration;
   /** Get QR code for users to scan & be redirected to the app store */
@@ -9047,12 +9016,10 @@ export type Query = {
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
-  getReferralBackground: RemoteImage;
   getReferralHistory: UserReferralHistory;
   getReferralOnboardingPopover: ReferralOnboardingPopover;
   getReferralRewardAmount: ReferralRewardAmount;
   getResources: Array<Resource>;
-  getRewardsProductsList: Array<RewardsProductsListItem>;
   /**
    * Gets scale question results for a specific question in a business survey campaign.
    * Returns overview statistics and breakdown by segment for scale questions.
@@ -9150,10 +9117,7 @@ export type Query = {
   getYuCoinPowerInfo: YuCoinPowerExplainedScreen;
   getYuCoinTopupAutoApprovalStatus: YuCoinTopupAutoApprovalStatusResponse;
   getYuCoinTopupRequests: TeamGetYuCoinTopupRequestsResponse;
-  getYuScreen?: Maybe<YuScreen>;
   getYuScreenProductDetails: YuScreenProductDetails;
-  getYuScreenProductList?: Maybe<YuScreenProductList>;
-  getYuScreenProductSurvey: YuScreenProductSurvey;
   getYuScreenV5?: Maybe<YuScreenV5>;
   getYuScreenV5Sections: Array<YuScreenSection>;
   getYuStoreCredit: EngagementDashboardYuStoreCredit;
@@ -9208,11 +9172,6 @@ export type Query = {
 /** Default types to be extended / root query */
 export type QueryDownloadUserDocumentArgs = {
   documentId: Scalars["ID"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetAdBannersArgs = {
-  place?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10603,24 +10562,6 @@ export enum RewardsChestType {
   Mountain = "MOUNTAIN",
   Ocean = "OCEAN",
 }
-
-export type RewardsProductsListItem = {
-  __typename?: "RewardsProductsListItem";
-  backgroundImage: RemoteImage;
-  cta: Scalars["String"]["output"];
-  event?: Maybe<SduiAction>;
-  id: Scalars["ID"]["output"];
-  imageOverlay?: Maybe<RewardImageOverlay>;
-  onPress?: Maybe<RewardsProductsListItemAction>;
-  title: Scalars["String"]["output"];
-  yuCoinPowerIncrease?: Maybe<Scalars["Int"]["output"]>;
-};
-
-export type RewardsProductsListItemAction = {
-  __typename?: "RewardsProductsListItemAction";
-  productAction?: Maybe<ProductAction>;
-  sduiAction?: Maybe<SduiAction>;
-};
 
 export type SalaryRequirements = {
   __typename?: "SalaryRequirements";
@@ -13464,22 +13405,6 @@ export type YuHealthOptions = {
   dataType: YuHealthDataType;
 };
 
-export type YuProductCertificate = {
-  __typename?: "YuProductCertificate";
-  /** Used as body in the policy detail certificate e.g. "Provides financial support if you cannot work due to ill health." */
-  body: Scalars["String"]["output"];
-  /** Business name */
-  companyName: Scalars["String"]["output"];
-  /** Used as info for terms and conditions on policy detail certificate e.g. Paid over 24 months */
-  condition: Array<ProductDescriptionValuePair>;
-  /** Customer name */
-  customerFullName: Scalars["String"]["output"];
-  /** Customer join date */
-  customerJoinDate: Scalars["String"]["output"];
-  /** Used as the heading in policy detail certificate e.g. Total cover 25% of salary */
-  heading?: Maybe<ProductDescriptionValuePair>;
-};
-
 export enum YuProductStatus {
   Active = "active",
   InProgress = "inProgress",
@@ -13490,139 +13415,11 @@ export enum YuProductStatus {
   Unlockable = "unlockable",
 }
 
-export type YuScreen = {
-  __typename?: "YuScreen";
-  boxOptionCards?: Maybe<Array<Maybe<YuScreenBoxOptionCard>>>;
-  carrierLogo?: Maybe<VariableRemoteImage>;
-  enrolTimer?: Maybe<YuScreenEnrolTimer>;
-  enrollCopy?: Maybe<YuScreenEnrollCopy>;
-  onboarding?: Maybe<YuScreenOnboarding>;
-  productCarousel?: Maybe<YuScreenCarousel>;
-  productSlots: Array<Maybe<YuScreenProduct>>;
-  spanningProductSlot?: Maybe<YuScreenSpanningProductSlot>;
-  surveyFooter?: Maybe<YuScreenSurveyFooter>;
-  yumojiPrompt: YuScreenYumojiPrompt;
-};
-
-export type YuScreenBoxOptionCard = {
-  __typename?: "YuScreenBoxOptionCard";
-  description?: Maybe<Scalars["String"]["output"]>;
-  event?: Maybe<SduiAction>;
-  image?: Maybe<RemoteImage>;
-  onPress?: Maybe<SduiAction>;
-  title?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type YuScreenCarousel = {
-  __typename?: "YuScreenCarousel";
-  heading?: Maybe<Scalars["String"]["output"]>;
-  items: Array<Maybe<YuScreenCarouselItem>>;
-};
-
-export type YuScreenCarouselItem = {
-  __typename?: "YuScreenCarouselItem";
-  backgroundColor?: Maybe<Scalars["String"]["output"]>;
-  button?: Maybe<YuScreenCarouselItemButton>;
-  contentContainerStyles?: Maybe<Array<SduiStyle>>;
-  descriptionMarkdown?: Maybe<Scalars["String"]["output"]>;
-  descriptionMarkdownStyles?: Maybe<Array<SduiStyle>>;
-  id: Scalars["ID"]["output"];
-  images?: Maybe<Array<VariableRemoteImage>>;
-  titleMarkdown?: Maybe<Scalars["String"]["output"]>;
-  titleMarkdownStyles?: Maybe<Array<SduiStyle>>;
-  variant?: Maybe<YuScreenCarouselItemVariant>;
-};
-
-export type YuScreenCarouselItemButton = {
-  __typename?: "YuScreenCarouselItemButton";
-  event?: Maybe<SduiAction>;
-  label: Scalars["String"]["output"];
-  onPress: YuScreenProductButtonAction;
-};
-
-export enum YuScreenCarouselItemVariant {
-  Full = "full",
-  Narrow = "narrow",
-}
-
-export type YuScreenEnrolTimer = {
-  __typename?: "YuScreenEnrolTimer";
-  backgroundGradientList?: Maybe<Array<Scalars["String"]["output"]>>;
-  button?: Maybe<YuScreenEnrolTimerButton>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-  secondsUntilTarget: Scalars["Int"]["output"];
-  styles?: Maybe<Array<SduiStyle>>;
-};
-
-export type YuScreenEnrolTimerButton = {
-  __typename?: "YuScreenEnrolTimerButton";
-  event?: Maybe<SduiAction>;
-  label: Scalars["String"]["output"];
-  onPress: SduiAction;
-};
-
-export type YuScreenEnrollCopy = {
-  __typename?: "YuScreenEnrollCopy";
-  description: Scalars["String"]["output"];
-  styles?: Maybe<Array<SduiStyle>>;
-  title: Scalars["String"]["output"];
-};
-
 export type YuScreenItemSlot = {
   __typename?: "YuScreenItemSlot";
   backgroundUrl: Scalars["String"]["output"];
   /** @deprecated ISA-4231 - No longer used in new PDP design from V5.0.0 */
   iconUrl: Scalars["String"]["output"];
-};
-
-export type YuScreenOnboarding = {
-  __typename?: "YuScreenOnboarding";
-  button: YuScreenOnboardingButton;
-  dismissByPlaceholder: Scalars["Boolean"]["output"];
-  heading: Scalars["String"]["output"];
-  id: MobileOnboardingStepPerformed;
-  isYuCoinPowerDisplayed?: Maybe<Scalars["Boolean"]["output"]>;
-  overlayImage?: Maybe<RemoteImage>;
-  placeholder: YuScreenProduct;
-  productSlots?: Maybe<Array<YuScreenProduct>>;
-  text: Scalars["String"]["output"];
-};
-
-export type YuScreenOnboardingButton = {
-  __typename?: "YuScreenOnboardingButton";
-  event?: Maybe<SduiAction>;
-  label: Scalars["String"]["output"];
-  onPress?: Maybe<YuScreenProductButtonAction>;
-};
-
-export type YuScreenProduct = {
-  __typename?: "YuScreenProduct";
-  backgroundColour: Scalars["String"]["output"];
-  borderColor?: Maybe<Scalars["String"]["output"]>;
-  borderStyle?: Maybe<YuScreenSlotBorderStyle>;
-  borderWidth?: Maybe<Scalars["Int"]["output"]>;
-  bottomShadowColour: Scalars["String"]["output"];
-  depressed?: Maybe<Scalars["Boolean"]["output"]>;
-  event?: Maybe<SduiAction>;
-  id: Scalars["ID"]["output"];
-  leftBackgroundImage?: Maybe<RemoteImage>;
-  leftText?: Maybe<Scalars["String"]["output"]>;
-  leftTextColour?: Maybe<Scalars["String"]["output"]>;
-  onPress?: Maybe<YuScreenProductButtonAction>;
-  rightIcon?: Maybe<RemoteImage>;
-  rightStatusIcon?: Maybe<RemoteImage>;
-  showOnOnboarding?: Maybe<Scalars["Boolean"]["output"]>;
-  status?: Maybe<YuProductStatus>;
-  text?: Maybe<Scalars["String"]["output"]>;
-  title: Scalars["String"]["output"];
-  titleColour: Scalars["String"]["output"];
-  topShadowColour: Scalars["String"]["output"];
-};
-
-export type YuScreenProductButtonAction = {
-  __typename?: "YuScreenProductButtonAction";
-  productAction?: Maybe<ProductAction>;
-  sduiAction?: Maybe<SduiAction>;
 };
 
 export type YuScreenProductDetails = {
@@ -13670,12 +13467,6 @@ export type YuScreenProductDetailsContentItem =
   | ContentItemWrapper
   | ContentItemYuCoinPower;
 
-export type YuScreenProductList = {
-  __typename?: "YuScreenProductList";
-  body: Array<YuScreenCarouselItem>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-};
-
 export type YuScreenProductPaymentHistory = {
   __typename?: "YuScreenProductPaymentHistory";
   infoPanel?: Maybe<YuScreenProductPaymentHistoryInfoPanel>;
@@ -13709,21 +13500,6 @@ export type YuScreenProductPaymentHistoryItem = {
   status: Scalars["String"]["output"];
 };
 
-export type YuScreenProductSurvey = {
-  __typename?: "YuScreenProductSurvey";
-  description: Scalars["String"]["output"];
-  id: Scalars["ID"]["output"];
-  options: Array<YuScreenProductSurveyOption>;
-  postSubmissionMessage: Scalars["String"]["output"];
-  title: Scalars["String"]["output"];
-};
-
-export type YuScreenProductSurveyOption = {
-  __typename?: "YuScreenProductSurveyOption";
-  id: Scalars["ID"]["output"];
-  label: Scalars["String"]["output"];
-};
-
 export type YuScreenSection =
   | FeatureCardSection
   | HeroCardSection
@@ -13733,33 +13509,6 @@ export type YuScreenSection =
   | SduiSection
   | SmokingSection
   | WellbeingHubSection;
-
-export enum YuScreenSlotBorderStyle {
-  Dashed = "dashed",
-  Dotted = "dotted",
-  Solid = "solid",
-}
-
-export type YuScreenSpanningProductSlot = {
-  __typename?: "YuScreenSpanningProductSlot";
-  heading?: Maybe<Scalars["String"]["output"]>;
-  images?: Maybe<Array<VariableRemoteImage>>;
-};
-
-export type YuScreenSurveyFooter = {
-  __typename?: "YuScreenSurveyFooter";
-  backgroundColour: Scalars["String"]["output"];
-  button: YuScreenSurveyFooterButton;
-  image: RemoteImage;
-  markdown: Scalars["String"]["output"];
-};
-
-export type YuScreenSurveyFooterButton = {
-  __typename?: "YuScreenSurveyFooterButton";
-  event?: Maybe<SduiAction>;
-  label: Scalars["String"]["output"];
-  onPress: SduiAction;
-};
 
 export type YuScreenV5 = {
   __typename?: "YuScreenV5";
@@ -13778,13 +13527,6 @@ export type YuScreenV5YumojiPromptButton = {
   __typename?: "YuScreenV5YumojiPromptButton";
   label: Scalars["String"]["output"];
   onPress: SduiAction;
-};
-
-export type YuScreenYumojiPrompt = {
-  __typename?: "YuScreenYumojiPrompt";
-  buttonText: Scalars["String"]["output"];
-  heading: Scalars["String"]["output"];
-  text: Scalars["String"]["output"];
 };
 
 export type YuStoreGroupProduct = {
