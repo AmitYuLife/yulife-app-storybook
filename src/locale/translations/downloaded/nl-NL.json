@@ -1968,7 +1968,7 @@
     },
     "video_player": {
       "error_message": "Er is iets fout gegaan.\n Probeer het opnieuw",
-      "one_moment_please": "Een moment, alstublieft...",
+      "one_moment_please": "Een moment, alsjeblieft...",
       "playing_on_airplay": "Afspelen op AirPlay-apparaat",
       "playing_on_chromecast": "Afspelen op Chromecast",
       "session_complete": "Sessie voltooid.",
@@ -1984,13 +1984,13 @@
       "come_back_in": "Kom terug binnen",
       "in_progress": "In uitvoering",
       "pick_challenge": "Kies je uitdaging.",
-      "quest_resets_in": "Quests worden gereset in",
+      "quest_resets_in": "Missies worden gereset in",
       "reward": "Belonen",
-      "title": "Wekelijkse zoektocht"
+      "title": "Wekelijkse missie"
     },
     "wellbeing_hub": {
       "category_all": "Alle",
-      "header_description": "Jouw snel toegankelijke hub om jouw welzijnsvoordelen te ontdekken en ervan te genieten.",
+      "header_description": "Je snel toegankelijke hub om je welzijnsvoordelen te ontdekken en ervan te genieten.",
       "header_title": "Hoi %{name}",
       "no_results": {
         "description": "Je hebt momenteel geen welzijnsvoordelen. Misschien kun je ze hier later vinden.",
@@ -2040,7 +2040,7 @@
         "line_3": "avonturen die je hebt beleefd:"
       },
       "stage_3": {
-        "collected": "Je verzamelde...",
+        "collected": "Je inde",
         "steps": "stappen",
         "subtitle": "Je hebt het verpletterd!",
         "title": "Dit jaar liep je...",
@@ -2059,10 +2059,10 @@
       "title": "in Overzicht"
     },
     "yu_coin_power_explained": {
-      "heading": "YuCoin Vermogen",
+      "heading": "YuCoin kracht",
       "no_products": {
         "description": "Je YuCoin Power verhoogt de hoeveelheid YuCoin die je verdient met elke activiteit. Blijf kijken voor mogelijkheden om je YuCoin Power in de toekomst te verhogen!",
-        "title": "Meer vermogen om meer YuCoin te verdienen"
+        "title": "Meer power om meer YuCoin te verdienen"
       }
     },
     "yumoji_builder": {
@@ -2070,7 +2070,7 @@
         "heading": "Goed gedaan!\nJe Yumoji is klaar voor het avontuur."
       },
       "create": {
-        "link": "Ik zal dit later doen",
+        "link": "Ik doe dit later ",
         "title": "Creëer je Yumoji om het Yuniversum binnen te stappen"
       },
       "edit": {
@@ -2079,7 +2079,7 @@
       "exit_modal": {
         "cta_label_secondary": "Blijven bewerken",
         "heading": "Yumoji bouwer verlaten?",
-        "subheading": "Weet je zeker dat je wilt afsluiten? Je zult alle niet-opgeslagen wijzigingen kwijtraken."
+        "subheading": "Weet je zeker dat je wil stoppen? Je raakt alle niet-opgeslagen wijzigingen kwijt."
       },
       "heading": "Bewerk je Yumoji"
     },
@@ -2101,7 +2101,7 @@
     "cancel": {
       "message": {
         "default": "Je huidige voortgang gaat verloren en als je vandaag een Yudoku voltooit, wordt deze niet gerangschikt op het klassement.",
-        "jp": "Je huidige voortgang gaat verloren en als je vandaag een Getallen Puzzel voltooit, wordt deze niet gerangschikt op het leaderboard."
+        "jp": "Je huidige voortgang gaat verloren en als je vandaag een Getallenpuzzel voltooit, wordt deze niet gerangschikt op het leaderboard."
       }
     },
     "completed": {
@@ -2113,7 +2113,7 @@
       },
       "practice_title": {
         "default": "Yudoku Oefenen",
-        "jp": "Oefenen met getallenpuzzels"
+        "jp": "Oefenen met Getallenpuzzels"
       },
       "sub1": {
         "default": "Je bent klaar met je dagelijkse Yudoku.",
@@ -2124,7 +2124,7 @@
     },
     "difficulty": {
       "easy": "Gemakkelijk",
-      "hard": "Hard",
+      "hard": "Moeilijk",
       "medium": "Medium"
     },
     "error": {
@@ -2132,7 +2132,7 @@
       "continue": "Ga verder",
       "message": {
         "default": "Er is een fout opgetreden tijdens het indienen van je Yudoku resultaten",
-        "jp": "Er is een fout opgetreden tijdens het indienen van je Getallenraadsel resultaten"
+        "jp": "Er is een fout opgetreden tijdens het indienen van je Getallenpuzzel resultaten"
       },
       "retry": "Opnieuw proberen",
       "title": "Kon resultaten niet indienen"
@@ -2190,16 +2190,16 @@
     "pause": {
       "difficulty": "Moeilijkheid",
       "mistakes": "Fouten",
-      "resume": "Resume Spel",
+      "resume": "Hervat Spel",
       "time": "Tijd",
       "title": "Pauze"
     },
     "progress": {
       "paused": {
-        "default": "Yudoku onderbroken",
+        "default": "Yudoku gepauzeerd",
         "jp": "Getallenpuzzel Gepauzeerd"
       },
-      "resume": "Resume Spel"
+      "resume": "Hervat spel"
     },
     "staging": {
       "alreadyDone": {
@@ -2221,7 +2221,7 @@
       "notApplicable": "n.v.t.",
       "paused": "Gepauzeerd",
       "personalBest": "Persoonlijke topscore",
-      "reward": "Belonen",
+      "reward": "Beloning",
       "todaysTime": "De tijd van vandaag",
       "unranked": "Niet gerangschikt"
     },
@@ -2241,7 +2241,7 @@
     "less_than_minute": "minder dan 1 minuut",
     "minute": "minuut",
     "minutes": "minuten",
-    "second": "tweede",
+    "second": "seconde",
     "seconds": "seconden",
     "short_day": "d",
     "short_days": "d",
@@ -2390,10 +2390,10 @@
       "join": "en"
     },
     "connect": {
-      "body": "Sluit een service aan zodat we je kunnen belonen voor je dagelijkse activiteiten. Je kunt dit op elk moment aanpassen in de instellingen van je apparaat.",
+      "body": "Sluit een service aan zodat we je kunnen belonen voor je dagelijkse activiteiten. Je kan dit op elk moment aanpassen in de instellingen van je apparaat.",
       "button": "Laten we verbinding maken",
       "no_providers": "We konden geen zorgverleners vinden op je apparaat.",
-      "not_available": "Sommige functies zijn mogelijk niet beschikbaar voor jou. Misschien mis je onze op YuCoin. Je kunt een andere service proberen",
+      "not_available": "Sommige functies zijn mogelijk niet beschikbaar voor jou. Misschien mis je YuCoin. Je kan een andere service proberen",
       "system_permission_needed": {
         "body": "Open de instellingen van YuLife en schakel de toestemming in",
         "button": "Instellingen openen",

@@ -159,7 +159,7 @@
       "allow": "OK",
       "ask_later": "後で回答する",
       "back": "戻る",
-      "back_to_quests": "クエスト 再び ",
+      "back_to_quests": "クエストに戻る",
       "cancel": "キャンセル",
       "claim": "獲得",
       "close": "閉じる",
@@ -1390,11 +1390,11 @@
       },
       "open_email": "メールアプリを開く",
       "resend_link": "届いていない場合は、新しいリンクを送信できます。",
-      "short_code_accessibility_hint": "メールからのコードを入力してください",
-      "short_code_accessibility_label": "確認コード",
-      "short_code_description": "最高のYuになる準備はできていますか？今送信したメールから、確認コードを入力してください。",
-      "short_code_heading": "本人 確認 を 行いましょう！",
-      "submit_short_code": "コードで ログイン",
+      "short_code_accessibility_hint": "メールに記載されているコードを入力してください",
+      "short_code_accessibility_label": "認証コード",
+      "short_code_description": "送信されたメールに記載されている認証コードを入力してください。",
+      "short_code_heading": "本人確認",
+      "submit_short_code": "コードでログイン",
       "webview_title": "準備中です..."
     },
     "login_email": {
@@ -1414,7 +1414,7 @@
       "cta_label": "続ける",
       "forgot": {
         "cta": "パスワードをお忘れですか?",
-        "title": "パスワード リセット"
+        "title": "パスワードの再設定"
       },
       "heading": "パスワードを入力してください",
       "submitting": "送信中です..."
@@ -1479,7 +1479,7 @@
       }
     },
     "mood-calendar": {
-      "title": "ムード カレンダー"
+      "title": "ムードカレンダー"
     },
     "no_access": {
       "heading": "申し訳ございません。",
@@ -1735,11 +1735,11 @@
         "initial_state": "割引、バウチャー、サブスクリプションを検索",
         "no_results": "ブランドが見つかりません。",
         "placeholder": "検索",
-        "subheading": "ブランド を検索",
+        "subheading": "ブランドを検索",
         "title": "ストア"
       },
       "storefront": {
-        "reward_location": "あなたの報酬は %{location} に設定されています",
+        "reward_location": "ストアの国・地域は%{location}に設定されています",
         "wallet": "ウォレット"
       },
       "tabs": {
@@ -1763,7 +1763,7 @@
           },
           "voucher": {
             "heading": "あなたのウォレットは準備ができました！",
-            "subheading": "引き換え済みの報酬はここに表示されます"
+            "subheading": "引き換え済みのリワードはここに表示されます"
           }
         },
         "expired_section": {
@@ -1951,17 +1951,17 @@
       }
     },
     "tournaments": {
-      "consent_copy": "参加すると、名前とアバターがチームのリーダーボードでチームメイトに表示されます。 トーナメント期間中の活動に応じて、チームにポイントが加算されます。",
+      "consent_copy": "参加すると、名前とアバターがランキングでチームメイトに表示されます。 イベント期間中の活動に応じて、チームにポイントが加算されます。",
       "days_left": "残り%{smart_count}日 |||| 残り%{smart_count}日",
-      "join_button": "トーナメント に 参加",
+      "join_button": "チームイベントに参加",
       "joined": "%{smart_count}人参加済み",
-      "join_title": "トーナメント に 参加しますか？",
+      "join_title": "チームイベントに参加しますか?",
       "leaderboard": "ランキング",
       "member_count": "%{smart_count}人 |||| %{smart_count}人",
       "members": "メンバー",
       "my_team": "チーム (%{teamName})",
       "total_team_score": "チームの合計得点",
-      "your_team_fallback": "あなたの チーム"
+      "your_team_fallback": "あなたのチーム"
     },
     "update_mobile": {
       "cta_label": "アプリの更新"
