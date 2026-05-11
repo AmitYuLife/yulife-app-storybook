@@ -416,6 +416,11 @@ export type AvailablePathwayGoal = {
   title: Scalars["String"]["output"];
 };
 
+export type AvailablePathwayGoalsSection = {
+  __typename?: "AvailablePathwayGoalsSection";
+  goals: Array<AvailablePathwayGoal>;
+};
+
 export type AvailablePerk = {
   __typename?: "AvailablePerk";
   imageUrl: Scalars["String"]["output"];
@@ -1188,6 +1193,7 @@ export type BusinessSessionSettings = {
   /** @deprecated Temporary field for survey export feature, will be removed in next release */
   surveyExportEnabled: Scalars["Boolean"]["output"];
   tournamentsEnabled: Scalars["Boolean"]["output"];
+  tournamentsIncentivisationsEnabled: Scalars["Boolean"]["output"];
   walletAndBillingPortalEnabled: Scalars["Boolean"]["output"];
   yuStoreEnabled: Scalars["Boolean"]["output"];
 };
@@ -8789,7 +8795,7 @@ export type Query = {
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
   getAvailableHrisIntegrations?: Maybe<Array<HrisIntegration>>;
-  getAvailablePathwayGoals: Array<AvailablePathwayGoal>;
+  getAvailablePathwayGoals: AvailablePathwayGoalsSection;
   getAvailablePermissions: Array<TeamPortalPermission>;
   /** Gets all the colours for a particular partType. */
   getAvatarColors?: Maybe<Array<Maybe<AvatarColor>>>;
@@ -9054,6 +9060,11 @@ export type Query = {
    * including cell type indicators (positive/negative/neutral) and formatted display text for easy consumption in the UI.
    */
   getSurveyHeatmapData: HeatmapData;
+  /**
+   * Gets the LLM-generated analysis for a specific open-ended survey question.
+   * Returns null if the feature flag is off, the campaign does not exist, or no complete analysis is available.
+   */
+  getSurveyQuestionAnalysis?: Maybe<SurveyQuestionAnalysis>;
   getSurveyQuestionInfo: SurveyQuestionInfo;
   /**
    * Gets survey summary results segmented by custom value filters(Department, Age, etc.).
@@ -9087,6 +9098,7 @@ export type Query = {
   getTournamentEvent: TournamentEvent;
   getTournamentEvents: GetTournamentEventsResponse;
   getTournamentLeaderboard?: Maybe<TournamentLeaderboard>;
+  getTournamentRewardTiers: Array<TournamentRewardTier>;
   getTournamentTeamLeaderboard?: Maybe<TournamentTeamLeaderboard>;
   getUninvitedEmployeeCount: Scalars["Int"]["output"];
   getUnityRewards: UnityRewards;
@@ -9117,7 +9129,6 @@ export type Query = {
   getUserPathwayGoalsSection: PathwayGoalsSection;
   getUserPathways: UserPathways;
   getUserProfile: UserProfile;
-  getUserProfileEvents: Array<UserProfileEvents>;
   getUserSurge?: Maybe<Surge>;
   getUserTodayActivities: TodayActivities;
   getUserTodayActivity?: Maybe<Array<Maybe<ActivityHistoryChallenge>>>;
@@ -9171,11 +9182,6 @@ export type Query = {
   /** Search for the name of someone you can invite to a duel. */
   searchForDuelOpponent?: Maybe<Array<Maybe<DuelSearchResult>>>;
   searchLeaderboardUser: Array<SearchLeaderboardUser>;
-  /**
-   * Gets the LLM-generated analysis for a specific open-ended survey question.
-   * Returns null if the feature flag is off, the campaign does not exist, or no complete analysis is available.
-   */
-  surveyQuestionAnalysis?: Maybe<SurveyQuestionAnalysis>;
   validateGiftSendToRecipient?: Maybe<GiftSendToRecipientValidation>;
   validateReferralCode: ReferralCodeValidation;
   wellbeingHubCategories: Array<WellbeingHubCategory>;
@@ -9807,6 +9813,12 @@ export type QueryGetSurveyHeatmapDataArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetSurveyQuestionAnalysisArgs = {
+  campaignId: Scalars["ID"]["input"];
+  questionId: Scalars["ID"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetSurveyQuestionInfoArgs = {
   campaignId: Scalars["ID"]["input"];
   questionId: Scalars["ID"]["input"];
@@ -10094,12 +10106,6 @@ export type QuerySearchLeaderboardUserArgs = {
   searchType?: InputMaybe<SocialGroupLeaderboardSearchType>;
   socialGroupId?: InputMaybe<Scalars["ID"]["input"]>;
   socialGroupLeaderboardId?: InputMaybe<Scalars["ID"]["input"]>;
-};
-
-/** Default types to be extended / root query */
-export type QuerySurveyQuestionAnalysisArgs = {
-  campaignId: Scalars["ID"]["input"];
-  questionId: Scalars["ID"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -12438,6 +12444,14 @@ export type TournamentLeaderboard = {
   teams: Array<TournamentTeamStanding>;
 };
 
+export type TournamentRewardTier = {
+  __typename?: "TournamentRewardTier";
+  banner?: Maybe<Scalars["String"]["output"]>;
+  description: Scalars["String"]["output"];
+  image: RemoteImage;
+  yuCoinAmount: Scalars["Int"]["output"];
+};
+
 export enum TournamentRewardType {
   BraggingRights = "bragging_rights",
   Yucoin = "yucoin",
@@ -13009,7 +13023,6 @@ export type UserProfile = {
   badgeCounts: UserProfileBadgeCounts;
   earnRate: Scalars["Int"]["output"];
   endPointsVersion: EndPointsVersion;
-  events: Array<UserProfileEvents>;
   gameSettings: GameSettings;
   heroCards: Array<HeroCard>;
   notification: UserProfileNotification;
@@ -30302,13 +30315,10 @@ export type GetAvailablePathwayGoalsQueryVariables = Exact<{ [key: string]: neve
 
 export type GetAvailablePathwayGoalsQuery = {
   __typename?: "Query";
-  getAvailablePathwayGoals: Array<{
-    __typename?: "AvailablePathwayGoal";
-    id: string;
-    itemId: string;
-    title: string;
-    score: number;
-  }>;
+  getAvailablePathwayGoals: {
+    __typename?: "AvailablePathwayGoalsSection";
+    goals: Array<{ __typename?: "AvailablePathwayGoal"; id: string; itemId: string; title: string; score: number }>;
+  };
 };
 
 export type GetUserPathwayGoalsSectionQueryVariables = Exact<{ [key: string]: never }>;
@@ -85816,10 +85826,19 @@ export const GetAvailablePathwayGoalsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "itemId" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "score" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "goals" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "itemId" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "score" } },
+                    ],
+                  },
+                },
               ],
             },
           },

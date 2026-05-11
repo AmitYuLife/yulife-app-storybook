@@ -26,7 +26,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
   });
 
   const goals: IPathwayGoalsPickerOption[] = useMemo(
-    () => data?.getAvailablePathwayGoals ?? [],
+    () => data?.getAvailablePathwayGoals.goals ?? [],
     [data?.getAvailablePathwayGoals]
   );
 
