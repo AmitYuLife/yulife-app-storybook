@@ -408,6 +408,14 @@ export type AutoAssignmentRules = {
   rules: Array<AutoAssignmentRule>;
 };
 
+export type AvailablePathwayGoal = {
+  __typename?: "AvailablePathwayGoal";
+  id: Scalars["ID"]["output"];
+  itemId: Scalars["ID"]["output"];
+  score: Scalars["Float"]["output"];
+  title: Scalars["String"]["output"];
+};
+
 export type AvailablePerk = {
   __typename?: "AvailablePerk";
   imageUrl: Scalars["String"]["output"];
@@ -7062,6 +7070,7 @@ export type Mutation = {
    */
   setMobilePlayerBirthdayVisibility?: Maybe<LifeEvents>;
   setPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  setPathwayGoalCycle: SetPathwayGoalCycleResponse;
   /**
    * Sets the player's life events information.
    *
@@ -7875,6 +7884,10 @@ export type MutationSetMobilePlayerBirthdayVisibilityArgs = {
 export type MutationSetPasswordArgs = {
   password: Scalars["String"]["input"];
   reset?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationSetPathwayGoalCycleArgs = {
+  input: SetPathwayGoalCycleInput;
 };
 
 export type MutationSetPlayerBirthdayArgs = {
@@ -8776,6 +8789,7 @@ export type Query = {
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
   getAvailableHrisIntegrations?: Maybe<Array<HrisIntegration>>;
+  getAvailablePathwayGoals: Array<AvailablePathwayGoal>;
   getAvailablePermissions: Array<TeamPortalPermission>;
   /** Gets all the colours for a particular partType. */
   getAvatarColors?: Maybe<Array<Maybe<AvatarColor>>>;
@@ -10880,6 +10894,15 @@ export type Session = {
   expires?: Maybe<Scalars["Int"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
   tokenRefreshRequired?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type SetPathwayGoalCycleInput = {
+  pathwayItemIds: Array<Scalars["ID"]["input"]>;
+};
+
+export type SetPathwayGoalCycleResponse = {
+  __typename?: "SetPathwayGoalCycleResponse";
+  success: Scalars["Boolean"]["output"];
 };
 
 export type SftpConnectionConfig = {
@@ -13378,6 +13401,8 @@ export type YuCoinTopupPaymentMethodFee = {
   minimumCharge: Scalars["Int"]["output"];
   /** Payment method identifier (bacs, direct_debit) */
   paymentMethod: Scalars["String"]["output"];
+  /** Per-transaction limit in lowest denomination (pence/cents). null means no limit. */
+  perTransactionLimit?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export enum YuHealthCapability {
@@ -30273,6 +30298,19 @@ export type PerformMobileOnboardingStepMutationVariables = Exact<{
 
 export type PerformMobileOnboardingStepMutation = { __typename?: "Mutation"; performMobileOnboardingStep: boolean };
 
+export type GetAvailablePathwayGoalsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAvailablePathwayGoalsQuery = {
+  __typename?: "Query";
+  getAvailablePathwayGoals: Array<{
+    __typename?: "AvailablePathwayGoal";
+    id: string;
+    itemId: string;
+    title: string;
+    score: number;
+  }>;
+};
+
 export type GetUserPathwayGoalsSectionQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserPathwayGoalsSectionQuery = {
@@ -32376,6 +32414,15 @@ export type MarkPathwayGoalCompletedMutation = {
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
   };
+};
+
+export type SetPathwayGoalCycleMutationVariables = Exact<{
+  input: SetPathwayGoalCycleInput;
+}>;
+
+export type SetPathwayGoalCycleMutation = {
+  __typename?: "Mutation";
+  setPathwayGoalCycle: { __typename?: "SetPathwayGoalCycleResponse"; success: boolean };
 };
 
 export type SubmitPathwayChallengeFeedbackMutationVariables = Exact<{
@@ -85753,6 +85800,34 @@ export const PerformMobileOnboardingStepDocument = {
     },
   ],
 } as unknown as DocumentNode<PerformMobileOnboardingStepMutation, PerformMobileOnboardingStepMutationVariables>;
+export const GetAvailablePathwayGoalsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAvailablePathwayGoals" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getAvailablePathwayGoals" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "itemId" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAvailablePathwayGoalsQuery, GetAvailablePathwayGoalsQueryVariables>;
 export const GetUserPathwayGoalsSectionDocument = {
   kind: "Document",
   definitions: [
@@ -89107,6 +89182,46 @@ export const MarkPathwayGoalCompletedDocument = {
     },
   ],
 } as unknown as DocumentNode<MarkPathwayGoalCompletedMutation, MarkPathwayGoalCompletedMutationVariables>;
+export const SetPathwayGoalCycleDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetPathwayGoalCycle" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "input" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "SetPathwayGoalCycleInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setPathwayGoalCycle" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: { kind: "Variable", name: { kind: "Name", value: "input" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SetPathwayGoalCycleMutation, SetPathwayGoalCycleMutationVariables>;
 export const SubmitPathwayChallengeFeedbackDocument = {
   kind: "Document",
   definitions: [

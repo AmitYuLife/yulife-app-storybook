@@ -65,6 +65,7 @@ enum DebugCodes {
   pathwaysClaim = "pathways-claim",
   pathwaysProgress = "pathways-progress",
   pathwaysFeedback = "pathways-feedback",
+  pathwayGoalsPicker = "pathway-goals-picker",
   viewUserInfo = "view-user-info",
   getThemes = "get-themes",
   welcomeScreen = "welcome-screen",
@@ -418,6 +419,15 @@ const DebugContainer = memo(({ componentId, isModal }: IDebugContainerProps) => 
               component: {
                 id: ROUTES.pathwayChallengeFeedback,
                 name: ROUTES.pathwayChallengeFeedback,
+              },
+            });
+          }
+
+          case DebugCodes.pathwayGoalsPicker: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.pathwayGoalsPicker,
+                name: ROUTES.pathwayGoalsPicker,
               },
             });
           }

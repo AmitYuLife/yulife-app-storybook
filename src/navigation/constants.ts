@@ -176,6 +176,7 @@ export const ROUTES = {
   pathwayChallengeIntro: "yulife.member.pathways.challengeIntro",
   pathwaysMediaPlayer: "yulife.member.pathways.mediaPlayer",
   pathwaysGoalsSuccess: "yulife.member.pathways.goalsSuccess",
+  pathwayGoalsPicker: "yulife.member.pathways.goalsPicker",
 
   // mood calendar
   moodCalendar: "yulife.member.moodCalendar",

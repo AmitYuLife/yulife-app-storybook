@@ -213,6 +213,22 @@
           "cta": "Cool!"
         }
       },
+      "goals_picker": {
+        "header": {
+          "title": "Set up your goals",
+          "subtitle": "Set a goal that feels manageable and build from there.",
+          "pagination": "%{current} of %{total}"
+        },
+        "cta": {
+          "accept": "Set this goal",
+          "skip": "Skip",
+          "continue": "Continue"
+        },
+        "recap": {
+          "title": "Goals are saved!",
+          "cta": "Let's go!"
+        }
+      },
       "personal_health_path": {
         "heading": "Personal Health Path"
       },

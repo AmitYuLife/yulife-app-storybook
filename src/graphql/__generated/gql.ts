@@ -259,9 +259,11 @@ type Documents = {
   UpdateUserNotificationsSettingsDocument: typeof types.UpdateUserNotificationsSettingsDocument;
   GetMobileWhatsNewModalDocument: typeof types.GetMobileWhatsNewModalDocument;
   PerformMobileOnboardingStepDocument: typeof types.PerformMobileOnboardingStepDocument;
+  GetAvailablePathwayGoalsDocument: typeof types.GetAvailablePathwayGoalsDocument;
   GetUserPathwayGoalsSectionDocument: typeof types.GetUserPathwayGoalsSectionDocument;
   GetUserPathwaysDocument: typeof types.GetUserPathwaysDocument;
   MarkPathwayGoalCompletedDocument: typeof types.MarkPathwayGoalCompletedDocument;
+  SetPathwayGoalCycleDocument: typeof types.SetPathwayGoalCycleDocument;
   SubmitPathwayChallengeFeedbackDocument: typeof types.SubmitPathwayChallengeFeedbackDocument;
   ConfirmPaymentCardDocument: typeof types.ConfirmPaymentCardDocument;
   GetMobilePaymentCardSetupDocument: typeof types.GetMobilePaymentCardSetupDocument;
@@ -606,9 +608,11 @@ const documents: Documents = {
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
   PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
+  GetAvailablePathwayGoalsDocument: types.GetAvailablePathwayGoalsDocument,
   GetUserPathwayGoalsSectionDocument: types.GetUserPathwayGoalsSectionDocument,
   GetUserPathwaysDocument: types.GetUserPathwaysDocument,
   MarkPathwayGoalCompletedDocument: types.MarkPathwayGoalCompletedDocument,
+  SetPathwayGoalCycleDocument: types.SetPathwayGoalCycleDocument,
   SubmitPathwayChallengeFeedbackDocument: types.SubmitPathwayChallengeFeedbackDocument,
   ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
   GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
@@ -1890,6 +1894,10 @@ export function gql(
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "GetAvailablePathwayGoalsDocument"): (typeof documents)["GetAvailablePathwayGoalsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(
   source: "GetUserPathwayGoalsSectionDocument"
 ): (typeof documents)["GetUserPathwayGoalsSectionDocument"];
@@ -1901,6 +1909,10 @@ export function gql(source: "GetUserPathwaysDocument"): (typeof documents)["GetU
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "MarkPathwayGoalCompletedDocument"): (typeof documents)["MarkPathwayGoalCompletedDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SetPathwayGoalCycleDocument"): (typeof documents)["SetPathwayGoalCycleDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
