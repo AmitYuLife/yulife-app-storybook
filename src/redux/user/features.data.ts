@@ -61,7 +61,6 @@ export const features = [
   "tempEnableYuHealthForegroundService",
   "tempVideoPlaybackEnableAppleTv",
   "tempVideoPlaybackEnableGoogleCast",
-  "tempGameEnableEndOfPlanets",
   "tempGameEnableNewSuccessScreen",
   "tempGameEnableNewRewardScreen",
   "tempGameEnableAppTheme",
