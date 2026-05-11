@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, memo, useCallback } from "react";
+import { FC, useState, useEffect, memo, useCallback, useRef } from "react";
 import { View, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
@@ -29,6 +29,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   const [popoverVisible, setPopoverVisible] = useState(false);
   const dispatch = useDispatch();
   const sessionCount = useSelector(getUserSessionCount);
+  const hasCheckedSessionCount = useRef(false);
 
   const { showPopover, id, onboardingMessage, image } = data?.getReferralOnboardingPopover || {};
 
@@ -45,11 +46,17 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
 
   useEffect(() => {
     (async () => {
+      if (hasCheckedSessionCount.current) {
+        return;
+      }
+
       const isOnboard = await Storage.getItem(StorageKey.referralsPopover);
       if (sessionCount > 1 && !isOnboard) {
         getReferralOnboardingPopover();
       }
     })();
+
+    hasCheckedSessionCount.current = true;
   }, [getReferralOnboardingPopover, sessionCount]);
 
   useEffect(() => {
