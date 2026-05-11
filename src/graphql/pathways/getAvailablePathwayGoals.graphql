@@ -1,8 +1,10 @@
 query GetAvailablePathwayGoals {
   getAvailablePathwayGoals {
-    id
-    itemId
-    title
-    score
+    goals {
+      id
+      itemId
+      title
+      score
+    }
   }
 }
