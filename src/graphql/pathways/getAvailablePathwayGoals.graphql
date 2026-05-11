@@ -1,0 +1,8 @@
+query GetAvailablePathwayGoals {
+  getAvailablePathwayGoals {
+    id
+    itemId
+    title
+    score
+  }
+}
