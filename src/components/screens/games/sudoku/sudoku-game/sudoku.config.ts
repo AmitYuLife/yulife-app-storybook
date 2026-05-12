@@ -1,11 +1,21 @@
 import { ISudokuConfig } from "@components/games/sudoku/sudoku.interface";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { Colours, Style } from "@styles";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { WorldName } from "@utils";
 import { PixelRatio } from "react-native";
 
+// Cap the board height on near-square viewports (e.g. unfolded foldables) so the
+// keypad below stays on screen. Keypad rows are square buttons sized board/5,
+// so two rows ≈ 0.4 * board; the 1.9 divisor leaves headroom for the in-screen
+// SudokuHeader (timer/date/mistakes), keypad paddings, and bottom safe area.
+const sudokuAvailableHeight = Style.DEVICE_HEIGHT - TOP_BAR_WITH_PAD;
+const sudokuHeightBasedBoardSize = sudokuAvailableHeight / 1.9;
+
 // Board size
-export const SUDOKU_BOARD_SIZE = PixelRatio.roundToNearestPixel(Style.DEVICE_WIDTH * 0.95);
+export const SUDOKU_BOARD_SIZE = PixelRatio.roundToNearestPixel(
+  Math.min(Style.DEVICE_WIDTH * 0.95, sudokuHeightBasedBoardSize)
+);
 
 // Amount of cells per row/column
 export const SUDOKU_DIMENSIONS = 9;
