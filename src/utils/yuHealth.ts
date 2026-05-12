@@ -156,6 +156,15 @@ export function gqlDataTypeToDataType(
   throw new Error(`Data type ${dataType} not supported for conversion!`);
 }
 
+/**
+ * Data types whose totals should round up to the nearest whole minute when
+ * summing health samples (rather than floor to whole seconds).
+ */
+export const AUTO_ROUND_DATA_TYPES: ReadonlySet<HealthDataType> = new Set([
+  HealthDataType.mindfulMinutes,
+  HealthDataType.workoutMinutes,
+]);
+
 export const toYuHealthReduxType = (gql?: YuHealthOptionsGql | null): YuHealthOptionsRedux | undefined => {
   if (!gql) {
     return undefined;

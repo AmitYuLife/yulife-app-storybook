@@ -1,4 +1,4 @@
-import { roundSecondsToNearestMinute, truncateNumberValue } from "./number";
+import { roundSecondsToNearestMinute, sumSampleValues, truncateNumberValue } from "./number";
 
 describe("roundSecondsToNearestMinute", () => {
   const cases = [
@@ -17,6 +17,37 @@ describe("roundSecondsToNearestMinute", () => {
       expect(roundSecondsToNearestMinute(input)).toBe(expected);
     });
   }
+});
+
+describe("sumSampleValues", () => {
+  describe("when roundToMinute is true (meditation)", () => {
+    it("rounds a fractional-minute total up to the nearest whole minute", () => {
+      expect(sumSampleValues([{ value: 876 }], true)).toBe(900);
+    });
+
+    it("does not change a value that is already a whole number of minutes", () => {
+      expect(sumSampleValues([{ value: 900 }], true)).toBe(900);
+    });
+
+    it("sums multiple samples before rounding", () => {
+      // 600 + 276 = 876s → rounds up to 900s
+      expect(sumSampleValues([{ value: 600 }, { value: 276 }], true)).toBe(900);
+    });
+
+    it("handles high-precision values from apps like Headspace", () => {
+      expect(sumSampleValues([{ value: 876.9123456 }], true)).toBe(900);
+    });
+  });
+
+  describe("when roundToMinute is false (non-meditation)", () => {
+    it("floors to a whole number of seconds", () => {
+      expect(sumSampleValues([{ value: 876.9 }], false)).toBe(876);
+    });
+
+    it("sums multiple samples and floors", () => {
+      expect(sumSampleValues([{ value: 500 }, { value: 376.7 }], false)).toBe(876);
+    });
+  });
 });
 
 describe("truncateNumberValue", () => {

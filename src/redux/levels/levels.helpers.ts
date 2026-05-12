@@ -8,7 +8,8 @@ import {
 import EngagementTracking from "@services/logging/engagement-tracking";
 import Logger from "@services/logger/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
-import { isForegroundServiceEnabled } from "@utils/yuHealth";
+import { sumSampleValues } from "@utils/number";
+import { AUTO_ROUND_DATA_TYPES, isForegroundServiceEnabled } from "@utils/yuHealth";
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.types";
@@ -32,11 +33,21 @@ export async function logEmptyResultDebugData({
   features: IFeature;
   result: Unpacked<typeof getEndResultFitkit>;
 }) {
+  const { yuHealth } = activeChallenge;
+
+  if (!yuHealth) {
+    Logger.error(new Error("logEmptyResultDebugData called without yuHealth"), {
+      file: "levels.helpers",
+      event: "logEmptyResultDebugData",
+    });
+    return;
+  }
+
   const data = await yuHealthSampleQuery({
     params: {
       startTime: moment().subtract(1, "day").startOf("day").toDate(),
       endTime: moment().endOf("day").toDate(),
-      dataType: activeChallenge.yuHealth?.dataType,
+      dataType: yuHealth.dataType,
     },
     features,
     metadata: { file: "levels.helpers" },
@@ -142,6 +153,15 @@ const getNonPedometerEndResult = async ({
   const { startDateTime, endDateTime, yuHealth, additionalChallengePeriodDisabled } = activeLevel;
 
   const dataType = yuHealth?.dataType;
+
+  if (!dataType) {
+    Logger.error(new Error("getNonPedometerEndResult called without yuHealth dataType"), {
+      file: "levels.helpers",
+      event: "getNonPedometerEndResult",
+    });
+    return { value: 0 };
+  }
+
   const sharedParams = {
     features,
     queryOptions: { blacklistApps, disableUserEntries: features.disableUserEntries },
@@ -159,8 +179,7 @@ const getNonPedometerEndResult = async ({
 
   // We do this to effectively filter blacklist apps, user entries etc which is impossible with aggregate queries
   // Some apps (headspace 😡) return results with very high precision eg 69.123912391293129 which isn't supported by our gql mutation
-  const sumSamples = (results: ISampleQueryResponse[]) =>
-    Math.floor(results.reduce((acc, item) => acc + item.value, 0));
+  const sumSamples = (results: ISampleQueryResponse[]) => sumSampleValues(results, AUTO_ROUND_DATA_TYPES.has(dataType));
 
   if (queryResult.length > 0) {
     return {
@@ -425,5 +444,6 @@ const MAX_AVAILABLE = 4;
 /** @deprecated should be returned from the backend */
 export function getChallengesAmountAvailable(level: number) {
   const available = Math.floor((level - 1) / 50) + 1;
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   return available > MAX_AVAILABLE ? MAX_AVAILABLE : available;
 }

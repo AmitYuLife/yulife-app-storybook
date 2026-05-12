@@ -1,6 +1,8 @@
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logger/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
+import { sumSampleValues } from "@utils/number";
+import { AUTO_ROUND_DATA_TYPES } from "@utils/yuHealth";
 import moment from "moment";
 import { call, cancel, cancelled, fork, put, race, select, spawn, take, delay } from "redux-saga/effects";
 import { cancelLocalPush } from "../../device/device.actions";
@@ -81,7 +83,7 @@ export function* startTracking(
         const results = {
           endDateTime,
           startDateTime,
-          value: Math.floor(queryResult.reduce((accumulator, session) => accumulator + session.value, 0)),
+          value: sumSampleValues(queryResult, !!yuHealth && AUTO_ROUND_DATA_TYPES.has(yuHealth.dataType)),
         };
 
         const { data }: Awaited<ReturnType<typeof updateMobileQuestLevelChallenge>> = yield call(
