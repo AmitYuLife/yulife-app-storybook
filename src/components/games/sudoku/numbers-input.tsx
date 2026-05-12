@@ -1,4 +1,5 @@
 import NumberInput, { SUDOKU_NUMBER_PADDING, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
+import { SUDOKU_BOARD_SIZE } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
 import { Style, StyleSheet } from "@styles";
@@ -14,7 +15,11 @@ const NumbersInput = () => {
 
   const onNumberPress = useCallback(
     (value: number) => {
-      putNumber({ number: value, row: selectedCell?.row, column: selectedCell?.column, antiCheat: true });
+      if (!putNumber || !selectedCell) {
+        return;
+      }
+
+      putNumber({ number: value, row: selectedCell.row, column: selectedCell.column, antiCheat: true });
     },
     [selectedCell, putNumber]
   );
@@ -25,7 +30,8 @@ const NumbersInput = () => {
 
   return (
     <Box
-      width={Style.DEVICE_WIDTH}
+      width={SUDOKU_BOARD_SIZE}
+      alignSelf="center"
       p={Style.adjust(15)}
       alignItems="center"
       flexDirection="column"
@@ -50,7 +56,7 @@ const NumbersInput = () => {
         <Box p={SUDOKU_NUMBER_PADDING} aspectRatio={1} flex={1}>
           <BoxOption
             isSelected={false}
-            selectedStyle={null}
+            selectedStyle={undefined}
             debounce={false}
             wrapperStyle={styles.undoButtonWrapper}
             innerHeight={500}
