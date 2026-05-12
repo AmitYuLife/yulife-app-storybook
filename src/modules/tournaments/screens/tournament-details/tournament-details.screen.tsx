@@ -1,5 +1,6 @@
 import { memo, useCallback, useMemo } from "react";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import moment from "moment";
 
 import { Colours, Style, StyleSheet } from "@styles";
 import { MIN_SAFE_BOTTOM_PADDING } from "@styles/safeAreaViewOffset";
@@ -22,6 +23,7 @@ import type {
 
 enum TournamentDetailsSectionType {
   Header,
+  GracePeriod,
   Leaderboard,
   MyTeamTitle,
   MyTeamScore,
@@ -45,6 +47,7 @@ type SectionItem =
       bgColor: string;
       onHowToPlay?: () => void;
     }
+  | { __type: TournamentDetailsSectionType.GracePeriod; hours: number }
   | {
       __type: TournamentDetailsSectionType.Leaderboard;
       teams: LeaderboardTeam[];
@@ -69,6 +72,8 @@ interface ITournamentDetailsScreenProps {
   hasJoined: boolean;
   about?: TournamentData["about"];
   banner?: TournamentData["banner"];
+  endDate?: string | null;
+  gracePeriodEnd?: string | null;
   onLeftIconPress: () => void;
   onJoinPress?: () => void;
   joining?: boolean;
@@ -88,6 +93,8 @@ const TournamentDetailsScreen = ({
   hasJoined,
   about,
   banner,
+  endDate,
+  gracePeriodEnd,
   onLeftIconPress,
   onJoinPress,
   joining,
@@ -99,10 +106,27 @@ const TournamentDetailsScreen = ({
   const { bottom } = useSafeAreaInsets();
   const bgColor = headerBackgroundColor || "#290163";
 
+  const gracePeriodHours = useMemo(() => {
+    if (!gracePeriodEnd || !endDate) {
+      return null;
+    }
+
+    const now = moment();
+    if (!now.isBetween(moment(endDate), moment(gracePeriodEnd))) {
+      return null;
+    }
+
+    return moment(gracePeriodEnd).diff(moment(endDate), "hours");
+  }, [endDate, gracePeriodEnd]);
+
   const listData = useMemo(() => {
     const items: SectionItem[] = [];
 
     items.push({ __type: TournamentDetailsSectionType.Header, title, labels, daysLeft, bgColor, onHowToPlay });
+
+    if (gracePeriodHours !== null) {
+      items.push({ __type: TournamentDetailsSectionType.GracePeriod, hours: gracePeriodHours });
+    }
 
     if (hasJoined && teams?.length) {
       items.push({ __type: TournamentDetailsSectionType.Leaderboard, teams, onViewAll: onViewAllTeams });
@@ -152,6 +176,7 @@ const TournamentDetailsScreen = ({
     onViewAllTeams,
     onHowToPlay,
     currentUserId,
+    gracePeriodHours,
   ]);
 
   const renderItem = useCallback(
@@ -166,6 +191,16 @@ const TournamentDetailsScreen = ({
               bgColor={item.bgColor}
               onHowToPlay={item.onHowToPlay}
             />
+          );
+        case TournamentDetailsSectionType.GracePeriod:
+          return (
+            <Box bg={Colours.neutral.n50} px={24} pt={16}>
+              <InfoPanel
+                showIcon={true}
+                type="info"
+                markdown={t("screens.leaderboard.grace_period_banner", { hours: item.hours })}
+              />
+            </Box>
           );
         case TournamentDetailsSectionType.Leaderboard:
           return <TournamentLeaderboardSection teams={item.teams} onViewAll={item.onViewAll} />;
