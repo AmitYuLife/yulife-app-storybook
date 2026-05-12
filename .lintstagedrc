@@ -1,5 +1,5 @@
 {
-  "*.js": ["eslint --fix", "prettier --write"],
-  "*.ts": ["eslint --fix", "prettier --write"],
-  "*.tsx": ["eslint --fix", "prettier --write"]
+  "*.js": ["eslint --fix --max-warnings 0", "prettier --write"],
+  "*.ts": ["eslint --fix --max-warnings 0", "prettier --write"],
+  "*.tsx": ["eslint --fix --max-warnings 0", "prettier --write"]
 }
