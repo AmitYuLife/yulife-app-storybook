@@ -1,7 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1 } from "../postgres/business";
 import { GOALS_TOURNAMENT } from "./goals_for_global";
-import { CUSTOMER_76 } from "../postgres/customers";
+import { CUSTOMER_76, CUSTOMER_TOURNAMENT_WINNER } from "../postgres/customers";
 import moment from "moment";
 
 // ─── Team config ───
@@ -45,6 +45,7 @@ const MEMBER_DATA = [
 ];
 
 const LOGIN_USER_SCORE = 2500;
+const WINNER_USER_SCORE = 5000;
 
 // ─── Pre-generated IDs ───
 
@@ -93,8 +94,10 @@ export const [
 
 const goalTeams: IDatabaseItem[] = TEAM_NAMES.map((_, i) => {
   const isLoginTeam = i === 0;
-  const memberCount = MEMBER_DATA.filter((m) => m.team === i).length + (isLoginTeam ? 1 : 0);
-  const total = teamTotal(i) + (isLoginTeam ? LOGIN_USER_SCORE : 0);
+  const extraMembers = isLoginTeam ? 2 : 0;
+  const extraScore = isLoginTeam ? LOGIN_USER_SCORE + WINNER_USER_SCORE : 0;
+  const memberCount = MEMBER_DATA.filter((m) => m.team === i).length + extraMembers;
+  const total = teamTotal(i) + extraScore;
 
   return {
     type: "mongo",
@@ -540,5 +543,36 @@ export const TOURNAMENT_LOGIN_USER_PARTICIPATION: IDatabaseItem = {
     status: "active",
     typesToTrack: ["passive_challenge_steps"],
     completed: { passive_challenge_steps: LOGIN_USER_SCORE },
+  },
+};
+
+// ─── Tournament winner participation (team 0 - Shoreditch) ───
+
+export const TOURNAMENT_WINNER_PARTICIPATION: IDatabaseItem = {
+  type: "mongo",
+  modelName: "goal_participation",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_TOURNAMENT_WINNER.customer.data.customerId,
+    parentType: "goals",
+    goal: GOALS_TOURNAMENT.data._id,
+    team: goalTeamIds[0],
+    joinGoalTime: now(),
+    startDateTime: now(),
+    endDateTime: inDays(7),
+    status: "active",
+    typesToTrack: ["passive_challenge_steps"],
+    completed: { passive_challenge_steps: WINNER_USER_SCORE },
+  },
+};
+
+export const TOURNAMENT_WINNER_INVITATION: IDatabaseItem = {
+  type: "mongo",
+  modelName: "goal_invitation_for_global",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_TOURNAMENT_WINNER.customer.data.customerId,
+    goal: GOALS_TOURNAMENT.data._id,
+    endDateTime: inDays(7),
   },
 };

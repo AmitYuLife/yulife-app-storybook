@@ -535,3 +535,13 @@ export const CUSTOMER_132_TOGGLES = {
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_TOURNAMENT_WINNER_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_TOURNAMENT_WINNER.customer.data.customerId,
+    features: { ...DEFAULT_TOGGLES.data.features },
+  },
+} as IDatabaseItem;

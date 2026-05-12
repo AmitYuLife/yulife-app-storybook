@@ -63,3 +63,9 @@ export const completeYuniversalAndClaim =
     await tapText("Open the chest", waitTime)();
     await tapText("Claim rewards", waitTime)();
   };
+
+export const triggerTournamentMatchUpCompleted = (matchUpId: string) => async () => {
+  await dataManager.triggerEvent("game_social_group_tournament_match_up_completed", {
+    matchUpId,
+  });
+};
