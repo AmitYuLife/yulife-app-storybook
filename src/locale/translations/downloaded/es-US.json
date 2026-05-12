@@ -1547,6 +1547,15 @@
           "title": "¡Buen trabajo!"
         }
       },
+      "goals_picker": {
+        "cta": {
+          "continue": "Continuar",
+          "skip": "Saltar"
+        },
+        "recap": {
+          "cta": "¡Vamos!"
+        }
+      },
       "header": "Reflexión de hoy",
       "health_insights": "Información sanitaria",
       "journey_header": "Viaje actual",

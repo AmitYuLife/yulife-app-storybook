@@ -1547,6 +1547,22 @@
           "title": "素晴らしい!"
         }
       },
+      "goals_picker": {
+        "cta": {
+          "accept": "この目標を設定する",
+          "continue": "続ける",
+          "skip": "スキップ"
+        },
+        "header": {
+          "pagination": "%{current} / %{total}",
+          "subtitle": "管理できる目標を設定し、そこから構築します。",
+          "title": "目標 を 設定"
+        },
+        "recap": {
+          "cta": "始める",
+          "title": "目標 が 保存 されました！"
+        }
+      },
       "header": "今日の振り返り",
       "health_insights": "健康に関するアドバイス",
       "journey_header": "これまでの進捗",

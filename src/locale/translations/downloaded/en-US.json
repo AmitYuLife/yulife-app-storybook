@@ -1547,6 +1547,22 @@
           "title": "Great job!"
         }
       },
+      "goals_picker": {
+        "cta": {
+          "accept": "Set this goal",
+          "continue": "Continue",
+          "skip": "Skip"
+        },
+        "header": {
+          "pagination": "%{current} of %{total}",
+          "subtitle": "Set a goal that feels manageable and build from there.",
+          "title": "Set up your goals"
+        },
+        "recap": {
+          "cta": "Let's go!",
+          "title": "Goals are saved!"
+        }
+      },
       "header": "Today's reflection",
       "health_insights": "Health insights",
       "journey_header": "Current journey",

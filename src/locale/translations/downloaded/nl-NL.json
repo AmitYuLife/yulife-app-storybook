@@ -1547,6 +1547,15 @@
           "title": "Geweldig gedaan!"
         }
       },
+      "goals_picker": {
+        "cta": {
+          "continue": "Ga verder",
+          "skip": "Skip"
+        },
+        "recap": {
+          "cta": "Laten we gaan!"
+        }
+      },
       "header": "De reflectie van vandaag",
       "health_insights": "Inzichten in gezondheid",
       "journey_header": "Huidige reis",

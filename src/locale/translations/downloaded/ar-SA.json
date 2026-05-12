@@ -1547,6 +1547,22 @@
           "title": "عمل رائع!"
         }
       },
+      "goals_picker": {
+        "cta": {
+          "accept": "حدد هذا الهدف",
+          "continue": "استمرار",
+          "skip": "تخطي"
+        },
+        "header": {
+          "pagination": "%{current} من %{total}",
+          "subtitle": "حدد هدفًا يبدو قابلاً للإدارة واستمر في البناء بعد ذلك",
+          "title": "قم بإعداد أهدافك"
+        },
+        "recap": {
+          "cta": "لنبدأ!",
+          "title": "الأهداف محفوظة!"
+        }
+      },
       "header": "تأمل اليوم",
       "health_insights": "التحليلات الصحية",
       "journey_header": "الرحلة الحالية",
