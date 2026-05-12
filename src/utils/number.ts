@@ -1,5 +1,10 @@
 export const roundSecondsToNearestMinute = (seconds: number): number => Math.ceil(seconds / 60) * 60;
 
+export const sumSampleValues = (results: { value: number }[], roundToMinute: boolean): number => {
+  const total = results.reduce((acc, item) => acc + item.value, 0);
+  return roundToMinute ? roundSecondsToNearestMinute(total) : Math.floor(total);
+};
+
 export function padNum(x: number, sliceIndex: number = -2) {
   return `0${x}`.slice(sliceIndex);
 }
