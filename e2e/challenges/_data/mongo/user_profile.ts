@@ -230,3 +230,12 @@ export const USER_PROFILE_132 = {
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
+
+export const USER_PROFILE_TOURNAMENT_WINNER = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_TOURNAMENT_WINNER.customer.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;

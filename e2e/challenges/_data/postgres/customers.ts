@@ -2,8 +2,11 @@ import {
   generateRandomMongoId,
   IDatabaseItem,
   generateRandomInbox,
+  createCustomerRecords,
+  generateRandomPostgresId,
 } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
+import { BUSINESS_ACCOUNT_1 } from "./business";
 
 const type = "postgres";
 const modelName = "customer";
@@ -355,3 +358,27 @@ export const CUSTOMER_RANDOM_CHEST = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_TOURNAMENT_WINNER = createCustomerRecords({
+  archived: false,
+  firstName: "Tournament",
+  lastName: "Winner",
+  status: "onboarded",
+  email: generateRandomInbox(),
+  customerId: generateRandomPostgresId(),
+  preferredContentLocation: "GB",
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessEmployeeId: generateRandomPostgresId(),
+      archived: false,
+      legalFirstName: "Tournament",
+      legalLastName: "Winner",
+      inviteCode: "TournamentWinner01",
+      employmentEmail: generateRandomInbox(),
+      employmentStartDate: moment().subtract(1, "y").format("YYYY-MM-DD"),
+      employmentLeaveDate: moment().add(10, "y").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+});

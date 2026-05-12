@@ -1,12 +1,13 @@
 import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, dataManager } from "@yu-life/yulife-bdd-framework";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-import { tournamentEventDescription } from "./_resources/fixtures";
+import { tournamentEventDescription, tournamentRoundWinnerBody } from "./_resources/fixtures";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("As a user I can opt in and take an event", async () => {
   Scenario("I can take and complete a 3 star challenge event and hit all the event milestones, with the daily hero card toggle", scenario.start, async () => {
@@ -243,6 +244,26 @@ Feature("As a user I can opt in and take an event", async () => {
           Then("I should see the Leaderboard section", then.textVisible("Leaderboard", 2000));
           Then("I should see my team section", then.textVisible("My team (Shoreditch)", 2000));
           Then("I should see the total team score", then.textVisible("Total team score", 2000));
+        });
+      });
+    });
+  });
+
+  Scenario("As a participant on the winning team I receive the winner notification when match up completion is triggered", scenario.start, async () => {
+    Given("I login as the tournament winner", given.loginAsUser(data.CUSTOMER_TOURNAMENT_WINNER.customer, GENERIC_AUTH_PASSWORD), async () => {
+      Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 4000));
+      Then("I can see the notification centre icon", then.idVisible(ids.NOTIF_CENTRE));
+    });
+    When("the tournament match-up completed event is triggered for my match up", when.triggerTournamentMatchUpCompleted(data.TOURNAMENT_8_MATCH_UP.data._id), async () => {
+      When("I wait for the winner notification to be delivered", when.wait(5000), async () => {
+        When("I tap on the notification centre", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+          Then("I see the notification centre modal", then.textVisible("Notifications", 2000));
+          Then("I see the winner notification from Yugi", then.idVisible(ids.INBOX_MESSAGE_ITEM("Round Won! 🎉"), 5000));
+        });
+        When("I tap on the winner notification", when.tapID(ids.INBOX_MESSAGE_ITEM("Round Won! 🎉"), 2000), async () => {
+          Then("I see the winner hero image modal", then.idVisible(ids.HERO_IMAGE_MODAL, 3000));
+          Then("I see the winning team name referenced in the body", then.textExists(tournamentRoundWinnerBody("Shoreditch"), 3000));
+          Then("I see the modal CTA button", then.idVisible(ids.HERO_IMAGE_CONFIRM_BUTTON, 2000));
         });
       });
     });

@@ -494,3 +494,18 @@ export const USER_132 = {
     ],
   },
 } as IDatabaseItem;
+
+export const NPC_YUGI_YULIFER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: "NPC_YUGI",
+    earnRate: 0,
+    isAvatarCreated: false,
+    npcInfo: {
+      firstName: "Yugi",
+      lastName: "",
+    },
+  },
+} as IDatabaseItem;
