@@ -1,4 +1,3 @@
-import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -41,7 +40,9 @@ class PushNotificationsModal extends PureComponent<Props> {
 
     this.props.denyPushNotification();
 
-    Navigation.dismissModal(componentId);
+    if (componentId) {
+      Navigation.dismissModal(componentId);
+    }
   };
 
   private handleAgree = () => {
@@ -53,7 +54,7 @@ class PushNotificationsModal extends PureComponent<Props> {
     try {
       await Linking.openSettings();
     } catch (e) {
-      Logger.notify(e, { url: "app-settings" });
+      Logger.error(e, { url: "app-settings" });
     }
 
     this.dismissModal();

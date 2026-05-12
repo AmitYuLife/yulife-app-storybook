@@ -1,17 +1,9 @@
-import React, {
-  memo,
-  isValidElement,
-  ReactElement,
-  useMemo,
-  useState,
-  useCallback,
-  ReactNode,
-  cloneElement,
-} from "react";
+import { memo, isValidElement, ReactElement, useMemo, useState, useCallback, ReactNode, cloneElement } from "react";
 import { KeyboardAvoidingView, Platform, View, ViewStyle } from "react-native";
 import { Button, Pressable, SecondaryButton } from "@molecules";
 import { Style, Colours, StyleSheet } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
+import type { Props as ContentItemLottieProps } from "@components/sdui/contentItemLottie/types";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
 import { Box, CloseSvg, Image, Source, TextTemplate } from "@atoms";
@@ -85,14 +77,16 @@ const FloatingModal = ({
         setIsLoading(true);
         await buttonOnPress();
       } catch (err) {
-        Logger.notify(err, { location: "floating-modal" });
+        Logger.error(err, { location: "floating-modal" });
       } finally {
         setIsLoading(false);
       }
     }
 
-    closeOverlay();
+    closeOverlay?.();
   }, [buttonOnPress, closeOverlay]);
+
+  const onCloseIconPress = useCallback(() => closeOverlay?.(), [closeOverlay]);
 
   const wrapperStyles = useMemo(
     () => ({ ...styles.wrapper, paddingTop, minHeight: height, ...wrapperStyle }),
@@ -100,7 +94,7 @@ const FloatingModal = ({
   );
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <Box w="100%" h="100%" justifyContent="flex-end" {...overlayStyle}>
         <View style={wrapperStyles} testID={testID}>
           {!title ? null : (
@@ -110,7 +104,7 @@ const FloatingModal = ({
           )}
           {!lottie ? null : (
             <View style={styles.iconWrapper}>
-              <ContentItemLottie {...lottie} />
+              <ContentItemLottie {...(lottie as ContentItemLottieProps)} />
             </View>
           )}
           {!iconAsset ? null : (
@@ -133,7 +127,7 @@ const FloatingModal = ({
             />
           )}
           {!showCloseIcon ? null : (
-            <Pressable onPress={closeOverlay} style={styles.closeWrapper} delay={1000}>
+            <Pressable onPress={onCloseIconPress} style={styles.closeWrapper} delay={1000}>
               <CloseSvg stroke={closeIconColor} size={Style.adjust(24)} />
             </Pressable>
           )}

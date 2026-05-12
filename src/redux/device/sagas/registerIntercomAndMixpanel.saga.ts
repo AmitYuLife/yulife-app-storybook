@@ -23,7 +23,7 @@ function* registerDeviceOnYuServer(deviceToken: string) {
       })
     );
   } catch (e) {
-    Logger.notify(e, { event: "registerDevice" });
+    Logger.error(e, { event: "registerDevice" });
   }
 }
 

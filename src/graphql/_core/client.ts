@@ -103,7 +103,11 @@ const retryLink = createRetryLink(() => {
   store.dispatch(updateOfflineState({ isOffline: true }));
 });
 
-const errorLink = onError(({ operation, networkError, graphQLErrors }) => {
+const errorLink = onError(({ operation, networkError }) => {
+  if (!networkError || !("statusCode" in networkError) || !networkError.statusCode) {
+    return;
+  }
+
   const { headers } = operation.getContext();
   const metadata: LogContext = {
     operationName: operation.operationName,
@@ -113,18 +117,10 @@ const errorLink = onError(({ operation, networkError, graphQLErrors }) => {
     deviceId: headers?.device_id,
   };
 
-  if (networkError) {
-    Logger.error(networkError.message, {
-      ...metadata,
-      statusCode: "statusCode" in networkError ? networkError.statusCode : undefined,
-    });
-  }
-
-  if (graphQLErrors) {
-    for (const err of graphQLErrors) {
-      Logger.error(err.message, { ...metadata, path: err.path });
-    }
-  }
+  Logger.error(networkError.message, {
+    ...metadata,
+    statusCode: networkError.statusCode,
+  });
 });
 
 let defaultClient: ApolloClient<NormalizedCacheObject>;

@@ -81,12 +81,14 @@ export const yuHealthAggregateQuery = async ({
 
     return resultItems;
   } catch (e) {
-    Logger.error("YuHealth aggregate query response error", {
-      ...metadata,
-      errorMessage: e instanceof Error ? e.message : String(e),
-      dataType: params.dataType,
-      location: "yu-health",
-    });
+    if (loggingEnabled) {
+      Logger.error("YuHealth aggregate query response error", {
+        ...metadata,
+        errorMessage: e instanceof Error ? e.message : String(e),
+        dataType: params.dataType,
+        location: "yu-health",
+      });
+    }
 
     return [];
   }
@@ -140,15 +142,14 @@ export async function yuHealthSampleQuery({
 
     return results.result;
   } catch (e) {
-    // Add it back when we'll have the logic to log only one error per session
-    // Logger.notify(e, { event: "yuHealthSampleQuery" });
-
-    Logger.error("YuHealth sample query error", {
-      ...metadata,
-      error: e.message,
-      dataType: params.dataType,
-      location: "yu-health",
-    });
+    if (loggingEnabled) {
+      Logger.error("YuHealth sample query error", {
+        ...metadata,
+        error: e.message,
+        dataType: params.dataType,
+        location: "yu-health",
+      });
+    }
 
     return [];
   }

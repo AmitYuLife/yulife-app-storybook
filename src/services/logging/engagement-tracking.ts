@@ -41,13 +41,13 @@ class EngagementTrackingInstance {
     this.userId = "";
 
     if (this.initialised) {
-      this.mixpanel.clearSuperProperties();
-      this.mixpanel.reset();
+      this.mixpanel?.clearSuperProperties();
+      this.mixpanel?.reset();
 
       try {
         await Intercom.logout(); // we should always logout from intercom because sometimes things get weirdly cached...
       } catch (err) {
-        Logger.notify(err, {
+        Logger.error(err, {
           location: "engagement-tracking.logOut",
         });
       }
@@ -63,10 +63,14 @@ class EngagementTrackingInstance {
     };
   };
 
-  public getMixpanelDeviceId = () => this.mixpanel.getDeviceId();
+  public getMixpanelDeviceId = () => this.mixpanel?.getDeviceId?.();
 
   public setUserId = async (userId: string, intercomHash: string, supportLevel: UserSupportLevel) => {
     if (this.updatingUser) {
+      return;
+    }
+
+    if (!this.mixpanel) {
       return;
     }
 
@@ -112,7 +116,7 @@ class EngagementTrackingInstance {
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
     } catch (err) {
-      Logger.notify(err, {
+      Logger.error(err, {
         location: "engagement-tracking.setIntercomUser",
       });
     }
@@ -138,7 +142,7 @@ class EngagementTrackingInstance {
     try {
       await Intercom.logEvent(event, data);
     } catch (err) {
-      Logger.notify(err, {
+      Logger.error(err, {
         location: "engagement-tracking.logEvent",
       });
     }
@@ -177,7 +181,7 @@ class EngagementTrackingInstance {
   };
 
   public logMixpanelEvent = (event: MixpanelEvent, metadata: MixpanelEventMetadata = {}) => {
-    if (!this.initialised) {
+    if (!this.initialised || !this.mixpanel) {
       return;
     }
 
@@ -203,7 +207,7 @@ class EngagementTrackingInstance {
     try {
       await Intercom.updateUser({ languageOverride });
     } catch (err) {
-      Logger.notify(err, {
+      Logger.error(err, {
         location: "engagement-tracking.setUserLanguagePreferenceOnIntercom",
       });
     }
@@ -231,7 +235,7 @@ class EngagementTrackingInstance {
         await Intercom.updateUser(eventProperties as Record<string, string | number | boolean>);
       }
     } catch (err) {
-      Logger.notify(err, {
+      Logger.error(err, {
         location: "engagement-tracking.setUserProperties",
       });
     }

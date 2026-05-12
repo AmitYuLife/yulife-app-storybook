@@ -7,7 +7,7 @@ export async function setFitkitPermission(fitkitPermision: string): Promise<void
   try {
     await Storage.setItem(StorageKey.fitkitPermission, fitkitPermision);
   } catch (e) {
-    Logger.notify(e, { event: "setFitkitPermissions" });
+    Logger.error(e, { event: "setFitkitPermissions" });
   }
 }
 
@@ -16,7 +16,7 @@ export async function getFitkitPermission(): Promise<string | null> {
     const fitkitPermision = await Storage.getItem(StorageKey.fitkitPermission);
     return fitkitPermision;
   } catch (e) {
-    Logger.notify(e, { event: "getFitkitPermissions" });
+    Logger.error(e, { event: "getFitkitPermissions" });
     return null;
   }
 }

@@ -11,9 +11,22 @@ const preload = async (): Promise<void> => {
   if (queue.length > 0) {
     const items = queue.splice(-BATCH_SIZE, BATCH_SIZE);
     try {
-      await prefetchImages(items.map((asset) => asset.uri));
+      const uris = items
+        .map((asset) => {
+          if (typeof asset === "string") {
+            return asset;
+          }
+
+          if (typeof asset === "object" && asset !== null && "uri" in asset && typeof asset.uri === "string") {
+            return asset.uri;
+          }
+
+          return null;
+        })
+        .filter((uri): uri is string => uri !== null);
+      await prefetchImages(uris);
     } catch (error) {
-      Logger.notify(error, { location: "image-service", event: "preload" });
+      Logger.error(error, { location: "image-service", event: "preload" });
     }
   }
 };

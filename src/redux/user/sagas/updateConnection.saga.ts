@@ -26,7 +26,7 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
     } catch (e) {
       yield put(updateConnectionFailed(payload));
       yield spawn(() => {
-        Logger.notify(e, { event: "updateConnectionSaga_onDisconnect" });
+        Logger.error(e, { event: "updateConnectionSaga_onDisconnect" });
       });
     }
   } else {
@@ -40,14 +40,15 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
       );
 
       if (result?.data?.getNewConnectionLink) {
-        yield call(() => Linking.openURL(result.data.getNewConnectionLink));
+        const link = result.data.getNewConnectionLink;
+        yield call(() => Linking.openURL(link));
       } else {
         yield put(updateConnectionFailed(payload));
       }
     } catch (e) {
       yield put(updateConnectionFailed(payload));
       yield spawn(() => {
-        Logger.notify(e, { event: "updateConnectionSaga_onConnect" });
+        Logger.error(e, { event: "updateConnectionSaga_onConnect" });
       });
     }
   }

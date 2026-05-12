@@ -33,8 +33,8 @@ export default function* listenToSteps() {
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
   const channel: StepChannel = features.tempGameEnableReleaseYuHealthV4
-    ? yield call(yuHealthStepsChannel, startOfDay, stepsBlackListApps, features.disableUserEntries)
-    : yield call(stepsChannel, startOfDay, stepsBlackListApps, features.canFallbackToStepDetectorSensor);
+    ? yield call(yuHealthStepsChannel, startOfDay, stepsBlackListApps, features.disableUserEntries ?? true)
+    : yield call(stepsChannel, startOfDay, stepsBlackListApps, features.canFallbackToStepDetectorSensor ?? false);
 
   while (isRunning) {
     try {
@@ -81,7 +81,7 @@ export default function* listenToSteps() {
       }
     } catch (e) {
       yield spawn(() => {
-        Logger.notify(e, { event: "listenToSteps" });
+        Logger.error(e, { event: "listenToSteps" });
       });
     } finally {
       const isCancelled: boolean = yield cancelled();

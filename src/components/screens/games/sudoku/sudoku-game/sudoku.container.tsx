@@ -69,7 +69,7 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
   const navigateToCompleted = useCallback(
     (
       params: GetSudokuBoardQuery["getSudokuBoard"],
-      result: SubmitMobileQuestLevelSudokuSolutionMutation["submitMobileQuestLevelSudokuSolution"]
+      result: NonNullable<SubmitMobileQuestLevelSudokuSolutionMutation["submitMobileQuestLevelSudokuSolution"]>
     ) => {
       Navigation.push(componentId, {
         component: {
@@ -79,11 +79,11 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
             results: {
               ...params,
               adjustedTime: result.incomingData.duration,
-              leaderboardId: data.getSudokuBoard.stats?.leaderboardId,
+              leaderboardId: data?.getSudokuBoard?.stats?.leaderboardId,
               leaderboardEligible: data?.getSudokuBoard?.leaderboardEligible,
             },
             reward: result?.yuCoinAwarded,
-            stats: data.getSudokuBoard.stats,
+            stats: data?.getSudokuBoard?.stats,
           },
         },
       });
@@ -154,7 +154,7 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
                     Navigation.popTo(ROUTES.quests);
                   },
                 });
-                Logger.notify(err, {
+                Logger.error(err, {
                   challengeId: sudokuState.challengeId,
                   date: sudokuState.date,
                 });
@@ -177,7 +177,10 @@ export const SudokuContainer = ({ componentId, challengeId }: IProps) => {
         const [result] = await Promise.all([submitSolution(params, onGameComplete), delay(delayMs)]);
 
         if (result) {
-          const resultData = result?.submitMobileQuestLevelSudokuSolution;
+          const resultData = result.submitMobileQuestLevelSudokuSolution;
+          if (!resultData) {
+            return;
+          }
 
           dispatch(
             challengeEndSuccessAction({

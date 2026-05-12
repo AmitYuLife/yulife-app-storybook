@@ -6,7 +6,7 @@ export class IntercomClient {
     try {
       await Intercom.present();
     } catch (e) {
-      Logger.notify(e, { location: "IntercomClient.displayMessenger" });
+      Logger.error(e, { location: "IntercomClient.displayMessenger" });
     }
   };
 
@@ -14,7 +14,7 @@ export class IntercomClient {
     try {
       await Intercom.presentMessageComposer();
     } catch (e) {
-      Logger.notify(e, { location: "IntercomClient.displayMessageComposer" });
+      Logger.error(e, { location: "IntercomClient.displayMessageComposer" });
     }
   };
 
@@ -22,7 +22,7 @@ export class IntercomClient {
     try {
       await Intercom.sendTokenToIntercom(token);
     } catch (e) {
-      Logger.notify(e, { location: "IntercomClient.sendTokenToIntercom" });
+      Logger.error(e, { location: "IntercomClient.sendTokenToIntercom" });
     }
   };
 }

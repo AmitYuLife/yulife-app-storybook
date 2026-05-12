@@ -145,7 +145,7 @@ const useGoogleCast = ({ videoSourceType, onRemotePlaybackEnd }: IUseGoogleCastP
           autoplay: true,
         });
       } catch (error) {
-        Logger.notify(error, { location: "useGoogleCast-startCasting" });
+        Logger.error(error, { location: "useGoogleCast-startCasting" });
       } finally {
         setIsLoadingMedia(false);
       }

@@ -25,7 +25,7 @@ export default function* checkConnectionSaga() {
         yield call(setAuthenticatedRoot);
       }
     } catch (error) {
-      Logger.notify(error, { file: "checkConnection" });
+      Logger.error(error, { file: "checkConnection" });
     }
   }
 }

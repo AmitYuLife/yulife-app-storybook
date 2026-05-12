@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { View } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -48,18 +48,22 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
         setContentLocationSelection(selection.id);
       }
     }
-  }, [queryLoading]);
+  }, [contentLocationSelection, data?.data, queryLoading]);
 
-  const onRightIconPress = useCallback(() => (loading ? null : Navigation.pop(componentId)), [loading, componentId]);
+  const onRightIconPress = useCallback(() => {
+    if (!loading) {
+      Navigation.pop(componentId).catch((): void => undefined);
+    }
+  }, [loading, componentId]);
 
   const handleUpdateContentLocation = useCallback(async () => {
     try {
       await updateMobileUserContentLocation({ variables: { location: contentLocationSelection } });
-      await onRightIconPress();
+      onRightIconPress();
     } catch (e) {
-      Logger.notify(e, { file: "select-content-location.container" });
+      Logger.error(e, { file: "select-content-location.container" });
     }
-  }, [contentLocationSelection]);
+  }, [contentLocationSelection, onRightIconPress, updateMobileUserContentLocation]);
 
   const canDismissWithoutSelection = data?.contentLocation?.hasUserSelectedContentLocation === true;
 
@@ -92,7 +96,7 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
       </View>
       <GenericHeadingAbsolute
         heading={heading}
-        onRightIconPress={canDismissWithoutSelection ? onRightIconPress : null}
+        onRightIconPress={canDismissWithoutSelection ? () => onRightIconPress() : undefined}
       />
     </View>
   );
