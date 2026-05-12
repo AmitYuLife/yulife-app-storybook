@@ -6474,8 +6474,6 @@ export enum MobileOnboardingStepPerformed {
   YuScreenGloves = "yuScreenGloves",
   YuScreenGlovesLive = "yuScreenGlovesLive",
   YuScreenGlovesPurchased = "yuScreenGlovesPurchased",
-  YuScreenOnboarding = "yuScreenOnboarding",
-  YuScreenOnboardingPension = "yuScreenOnboardingPension",
 }
 
 export type MobilePaymentCardSetup = {
@@ -9098,7 +9096,7 @@ export type Query = {
   getTournamentEvent: TournamentEvent;
   getTournamentEvents: GetTournamentEventsResponse;
   getTournamentLeaderboard?: Maybe<TournamentLeaderboard>;
-  getTournamentRewardTiers: Array<TournamentRewardTier>;
+  getTournamentRewardTiers: TournamentRewardTiersResponse;
   getTournamentTeamLeaderboard?: Maybe<TournamentTeamLeaderboard>;
   getUninvitedEmployeeCount: Scalars["Int"]["output"];
   getUnityRewards: UnityRewards;
@@ -9257,6 +9255,7 @@ export type QueryGetBulkMemberImportsArgs = {
 export type QueryGetBulkMemberUploadTemplateUrlArgs = {
   dataFormatId?: InputMaybe<Scalars["String"]["input"]>;
   localDate?: InputMaybe<Scalars["String"]["input"]>;
+  source?: InputMaybe<Scalars["String"]["input"]>;
   uploadType: BulkMemberUploadType;
 };
 
@@ -11934,6 +11933,7 @@ export type TeamProductInformation = {
   perks: Array<TeamProductInformationPerk>;
   policyName: Scalars["String"]["output"];
   product: Array<TeamProductInformationField>;
+  productCode: Scalars["String"]["output"];
   productConfiguration: TeamProductInformationProductConfiguration;
   productDescription: Scalars["String"]["output"];
 };
@@ -12427,7 +12427,9 @@ export type TournamentInfo = {
   button?: Maybe<GoalDetailsButton>;
   daysLeft?: Maybe<Scalars["Int"]["output"]>;
   description?: Maybe<Scalars["String"]["output"]>;
+  endDate?: Maybe<Scalars["String"]["output"]>;
   gameMode?: Maybe<Scalars["String"]["output"]>;
+  gracePeriodEnd?: Maybe<Scalars["String"]["output"]>;
   hasJoined: Scalars["Boolean"]["output"];
   headerBackgroundColor: Scalars["String"]["output"];
   headerImage?: Maybe<RemoteImage>;
@@ -12444,12 +12446,26 @@ export type TournamentLeaderboard = {
   teams: Array<TournamentTeamStanding>;
 };
 
+export type TournamentRewardCustomBounds = {
+  __typename?: "TournamentRewardCustomBounds";
+  defaultAmount: Scalars["Int"]["output"];
+  maxAmount?: Maybe<Scalars["Int"]["output"]>;
+  minAmount: Scalars["Int"]["output"];
+  step: Scalars["Int"]["output"];
+};
+
 export type TournamentRewardTier = {
   __typename?: "TournamentRewardTier";
   banner?: Maybe<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
   image: RemoteImage;
   yuCoinAmount: Scalars["Int"]["output"];
+};
+
+export type TournamentRewardTiersResponse = {
+  __typename?: "TournamentRewardTiersResponse";
+  customBounds: TournamentRewardCustomBounds;
+  tiers: Array<TournamentRewardTier>;
 };
 
 export enum TournamentRewardType {
@@ -39734,6 +39750,8 @@ export type GetTournamentDetailsQuery = {
     rewardType?: string | null;
     isCompleted: boolean;
     hasJoined: boolean;
+    endDate?: string | null;
+    gracePeriodEnd?: string | null;
     headerImage?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
     banner?: {
@@ -99619,6 +99637,8 @@ export const GetTournamentDetailsDocument = {
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "endDate" } },
+                { kind: "Field", name: { kind: "Name", value: "gracePeriodEnd" } },
               ],
             },
           },

@@ -30,5 +30,7 @@ query GetTournamentDetails($eventId: ID!) {
       shadowColor
       backgroundColor
     }
+    endDate
+    gracePeriodEnd
   }
 }
