@@ -20,6 +20,7 @@ import {
 import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 import sortBy from "lodash/sortBy";
 import Loading from "../../../atoms/loading/loading";
+import { INotificationsSectionItem } from "../../../screens/member/settings/settings.screen";
 import { Alert } from "react-native";
 import Logger from "@services/logger/logger";
 
@@ -32,7 +33,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
     refetchQueries: [{ query: GetInboxNotificationsSettingsDocument }],
     awaitRefetchQueries: true,
     onError: (err) => {
-      Logger.notify(err, { message: "Failed to update notification settings" });
+      Logger.error(err, { message: "Failed to update notification settings" });
       Alert.alert(t("screens.leaderboard_settings.error"));
     },
   });
@@ -55,23 +56,30 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
   const inboxNotificationItems = useMemo(
     () =>
-      inboxNotificationsSettings.map((n) => ({
-        ...n,
-        title: "",
-        description: n.description ?? "",
-        onSwitchPress: async () => {
-          try {
-            await updateNotification({
-              variables: {
-                type: n.type,
-                isActive: !n.isActive,
-              },
-            });
-          } catch (e) {
-            Logger.notify(e, { message: "Failed to update inbox notification settings" });
-          }
-        },
-      })),
+      inboxNotificationsSettings
+        .filter((n): n is NonNullable<(typeof inboxNotificationsSettings)[number]> => n != null)
+        .map(
+          (n): INotificationsSectionItem => ({
+            ...n,
+            title: "",
+            name: n.name,
+            description: n.description ?? "",
+            onSwitchPress: () => {
+              (async () => {
+                try {
+                  await updateNotification({
+                    variables: {
+                      type: n.type,
+                      isActive: !n.isActive,
+                    },
+                  });
+                } catch (e) {
+                  Logger.error(e, { message: "Failed to update inbox notification settings" });
+                }
+              })();
+            },
+          })
+        ),
     [inboxNotificationsSettings, updateNotification]
   );
 
@@ -98,6 +106,10 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
   const updateConsent = useCallback(
     async ({ name, socialGroupId, leaderboardId, consent }: IChangeConsentProps) => {
+      if (!socialGroupId || !leaderboardId) {
+        return;
+      }
+
       logMixpanelEventActionCreator("leaderboard_toggle", {
         name,
         isActive: consent,

@@ -15,7 +15,7 @@ export function useGetLottieJson(uri: string | null | undefined) {
           const responseInJson = (await response.json()) as AnimationObject;
           setJson(responseInJson);
         } catch (error) {
-          Logger.notify(error, { file: "useGetLottieJson" });
+          Logger.error(error, { file: "useGetLottieJson" });
         } finally {
           setLoading(false);
         }

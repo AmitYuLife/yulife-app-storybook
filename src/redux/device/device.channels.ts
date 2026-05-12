@@ -20,7 +20,7 @@ export async function createPushNotificationsChannel() {
         };
       },
       handleError(_, error) {
-        Logger.notify(error, { event: "pushNotification" });
+        Logger.error(error, { event: "pushNotification" });
       },
     });
 
@@ -42,7 +42,7 @@ export async function createPushNotificationsChannel() {
           token: value.data,
         })
       )
-      .catch((error) => Logger.notify(error, { event: "pushNotification" }));
+      .catch((error) => Logger.error(error, { event: "pushNotification" }));
 
     return () => null;
   });

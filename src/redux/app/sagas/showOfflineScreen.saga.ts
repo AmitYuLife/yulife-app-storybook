@@ -15,7 +15,7 @@ export default function* showOfflineScreenSaga(dataPayload: ReturnType<typeof up
         yield call(setOfflineRoot);
       }
     } catch (e) {
-      Logger.notify(e, { event: "showOfflineScreen" });
+      Logger.error(e, { event: "showOfflineScreen" });
     }
   }
 }

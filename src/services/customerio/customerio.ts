@@ -30,7 +30,7 @@ class CustomerIOService {
       await CustomerIO.initialize(config);
       this.initialized = true;
     } catch (error) {
-      Logger.notify(error, { location: "customerio.init" });
+      Logger.error(error, { location: "customerio.init" });
     }
   };
 
@@ -47,7 +47,7 @@ class CustomerIOService {
       await CustomerIO.identify({ userId, traits });
       await this.flushPendingDeviceTokens();
     } catch (error) {
-      Logger.notify(error, { location: "customerio.identify" });
+      Logger.error(error, { location: "customerio.identify" });
     }
   };
 
@@ -67,7 +67,7 @@ class CustomerIOService {
     try {
       await CustomerIO.registerDeviceToken(deviceToken);
     } catch (error) {
-      Logger.notify(error, { location: "customerio.registerPushToken" });
+      Logger.error(error, { location: "customerio.registerPushToken" });
     }
   };
 
@@ -79,7 +79,7 @@ class CustomerIOService {
     try {
       await CustomerIO.track(eventName, properties);
     } catch (error) {
-      Logger.notify(error, { location: "customerio.track" });
+      Logger.error(error, { location: "customerio.track" });
     }
   };
 
@@ -92,7 +92,7 @@ class CustomerIOService {
       this.userId = null;
       await CustomerIO.clearIdentify();
     } catch (error) {
-      Logger.notify(error, { location: "customerio.clearIdentity" });
+      Logger.error(error, { location: "customerio.clearIdentity" });
     }
   };
 }

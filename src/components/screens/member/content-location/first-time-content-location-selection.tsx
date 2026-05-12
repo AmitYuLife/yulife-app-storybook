@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { memo, useCallback } from "react";
 import { Modal, View } from "react-native";
 import { Colours, Style, StyleSheet } from "@styles";
 import Logger from "@services/logger/logger";
@@ -37,7 +37,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
     try {
       await updateContentLocation({ variables: { location: contentLocation } });
     } catch (e) {
-      Logger.notify(e, { file: "content-location-selection-modal" });
+      Logger.error(e, { file: "content-location-selection-modal" });
     }
   }, [contentLocation, updateContentLocation]);
 
@@ -89,7 +89,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
   );
 };
 
-const FirstTimeContentLocationSelection = React.memo(_FirstTimeContentLocationSelection);
+const FirstTimeContentLocationSelection = memo(_FirstTimeContentLocationSelection);
 export default FirstTimeContentLocationSelection;
 
 const styles = StyleSheet.create({

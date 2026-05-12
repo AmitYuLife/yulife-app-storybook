@@ -401,7 +401,7 @@ const VideoPlayer = ({
       );
     } catch (err) {
       reduxDispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
-      Logger.notify(err, {
+      Logger.error(err, {
         location: "video-player-handleStartButton",
         activeCastProtocol,
       });
@@ -460,7 +460,7 @@ const VideoPlayer = ({
     } catch (err) {
       dispatch({ type: ActionTypes.SET_ON_END_ERROR });
       onError();
-      Logger.notify(err, { location: "video-player-handleOnEnd", activeCastProtocol });
+      Logger.error(err, { location: "video-player-handleOnEnd", activeCastProtocol });
     }
   }, [
     onEnd,
@@ -489,7 +489,7 @@ const VideoPlayer = ({
 
   const handleOnError = useCallback(
     async (err: OnVideoErrorData): Promise<void> => {
-      Logger.notify(new Error(JSON.stringify(err?.error || {})), {
+      Logger.error(new Error(JSON.stringify(err?.error || {})), {
         location: "video-player-onError",
         activeCastProtocol,
       });

@@ -15,7 +15,7 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
   const [isIosMotionAuthorised, setIsIosMotionAuthorised] = useState(false);
   const features = useUserFeatures();
 
-  const timer = useRef(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (Platform.OS === "ios") {
@@ -45,10 +45,14 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
           });
       }
     }
-  }, [setIsIosMotionAuthorised]);
+  }, [setIsIosMotionAuthorised, features.tempGameEnableReleaseYuHealthV4]);
 
   useEffect(() => {
-    return () => clearTimeout(timer.current);
+    return () => {
+      if (timer.current !== null) {
+        clearTimeout(timer.current);
+      }
+    };
   }, []);
 
   const delayedSetFitkitPermission = (permission: string) => {
@@ -78,13 +82,13 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
           title: t("screens.daily.fitkit.help.title"),
         });
       } catch (e) {
-        Logger.notify(e, { file: "daily-steps-content", platform: "ios" });
+        Logger.error(e, { file: "daily-steps-content", platform: "ios" });
       }
     } else {
       try {
         return await authorise({ ...buildFitKitPermissions(), platform });
       } catch (e) {
-        Logger.notify(e, { file: "daily-steps-content", platform: "android" });
+        Logger.error(e, { file: "daily-steps-content", platform: "android" });
       }
     }
   };

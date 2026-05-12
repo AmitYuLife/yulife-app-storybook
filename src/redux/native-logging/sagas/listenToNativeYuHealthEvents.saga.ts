@@ -14,7 +14,7 @@ export default function* listenToNativeYuHealthEvents() {
       Logger.warn("YuHealth native event", { message: results.message, location: "yu-health-native" });
     } catch (e) {
       yield spawn(() => {
-        Logger.notify(e, { event: "listenToNativeYuHealthEvents" });
+        Logger.error(e, { event: "listenToNativeYuHealthEvents" });
       });
     }
   }

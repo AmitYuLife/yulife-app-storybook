@@ -40,7 +40,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
       await performOnboardingStep({ variables: { step: id } });
       await Storage.setItem(StorageKey.referralsPopover, "true");
     } catch (e) {
-      Logger.notify(e, { file: "referrals-popover" });
+      Logger.error(e, { file: "referrals-popover" });
     }
   }, [id, dispatch, performOnboardingStep]);
 
@@ -68,7 +68,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   useEffect(() => {
     if (error) {
       setPopoverVisible(false);
-      Logger.notify(error, { file: "referrals-popover" });
+      Logger.error(error, { file: "referrals-popover" });
     }
   }, [error]);
 

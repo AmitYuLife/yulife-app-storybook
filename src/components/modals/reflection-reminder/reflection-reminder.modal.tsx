@@ -33,14 +33,18 @@ const ReflectionReminderModal = ({ callback, componentId }: IReflectionReminderM
       dispatch(pathwayNotificationDenied());
     }
 
-    Navigation.dismissModal(componentId);
+    if (componentId) {
+      Navigation.dismissModal(componentId);
+    }
   }, [callback, componentId, dispatch, toSettings]);
 
   const handleConfirm = useCallback(async () => {
     dispatch(requirePushEnabled());
 
     // need to await to get correct push
-    await Navigation.dismissModal(componentId);
+    if (componentId) {
+      await Navigation.dismissModal(componentId);
+    }
 
     pushScreenFromActiveRoute({
       component: {
@@ -54,10 +58,12 @@ const ReflectionReminderModal = ({ callback, componentId }: IReflectionReminderM
     try {
       await Linking.openSettings();
     } catch (e) {
-      Logger.notify(e, { url: "app-settings" });
+      Logger.error(e, { url: "app-settings" });
     }
 
-    Navigation.dismissModal(componentId);
+    if (componentId) {
+      Navigation.dismissModal(componentId);
+    }
   }, [componentId]);
 
   if (toSettings) {

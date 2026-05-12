@@ -180,7 +180,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
         if (result.data?.loginUser?.token) {
           await applyLoginSession({
             loginResponse: result,
-            region: props.region,
+            region: props.region!,
             componentId,
             dispatch,
           });
@@ -194,7 +194,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
           errorToLog = new Error("Login network error");
         }
 
-        Logger.notify(errorToLog, {
+        Logger.error(errorToLog, {
           file: "login-confirm.container",
           region: payload.region,
           loginUserSuccess: !!result,
@@ -228,7 +228,7 @@ const LoginConfirmContainer = ({ componentId, ...props }: Props) => {
       shortCode={shortCode}
       onChangeShortCode={setShortCode}
       shortCodeLength={shortCodeLength}
-      showLoginWithPassword={showLoginWithPassword}
+      showLoginWithPassword={!!showLoginWithPassword}
       onPressResend={sendMagicLink}
       onPressBack={onNavigateBack}
       onPressLoginWithPassword={() =>

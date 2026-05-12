@@ -48,14 +48,14 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
 
     const activeRoute: string = yield select(getRouteState);
     if (setMainRootTimeout) {
-      Logger.notify(new Error("Listening to readyToSetMainRoot timed out."), {
+      Logger.error(new Error("Listening to readyToSetMainRoot timed out."), {
         file: "hydrateApiConfigSaga",
         activeRoute,
       });
     }
 
     if (timeout) {
-      Logger.notify(new Error("API config hydration timed out"), { file: "hydrateApiConfigSaga" });
+      Logger.error(new Error("API config hydration timed out"), { file: "hydrateApiConfigSaga" });
     }
 
     yield put(setMainRoot());
@@ -71,6 +71,7 @@ function* runHydration({ type, payload }: SyncAction) {
     let shouldFetchConfig: boolean = typeof payload === "object" ? (payload || {})?.shouldFetchConfig : true;
 
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+    const tempGameEnableAppTheme = features.tempGameEnableAppTheme ?? false;
 
     if (type === "INIT") {
       const hasValidRegionConfig: boolean = yield call(region.hydratePreferredRegion);
@@ -84,18 +85,23 @@ function* runHydration({ type, payload }: SyncAction) {
     const token: string = yield call(getToken);
     if (shouldFetchConfig) {
       if (DETOX_ENABLED) {
-        yield call(hydrateForDetox, features.tempGameEnableAppTheme, token);
+        yield call(hydrateForDetox, tempGameEnableAppTheme, token);
       } else {
+        const apolloClient = client();
+        if (!apolloClient) {
+          throw new Error("Apollo client not initialised");
+        }
+
         const response: Awaited<ReturnType<typeof queryConfig>> = yield call(() =>
-          queryConfig({ apolloClient: client(), tempGameEnableAppTheme: features.tempGameEnableAppTheme, token })
+          queryConfig({ apolloClient, tempGameEnableAppTheme, token })
         );
 
         if (response?.data?.config?.__typename) {
-          yield call(region.setConfig, response.data.config);
+          yield call(region.setConfig, response.data.config as unknown as Parameters<typeof region.setConfig>[0]);
         }
 
         if (response?.data && "theme" in response.data) {
-          client().writeQuery({
+          apolloClient.writeQuery({
             query: GetMobileGameThemeDocument,
             data: { getMobileGameTheme: response.data.theme },
           });
@@ -124,15 +130,24 @@ function* runHydration({ type, payload }: SyncAction) {
 const hydrateForDetox = async (tempGameEnableAppTheme: boolean, token: string) => {
   for (const regionalClient of regionalClients) {
     try {
+      if (!regionalClient) {
+        continue;
+      }
+
       const response = await queryConfig({ apolloClient: regionalClient, tempGameEnableAppTheme, token });
 
       if (response?.data?.config?.__typename) {
-        await region.setConfig(response.data.config);
+        await region.setConfig(response.data.config as unknown as Parameters<typeof region.setConfig>[0]);
         return;
       }
 
       if (response?.data && "theme" in response.data) {
-        client().writeQuery({
+        const apolloClient = client();
+        if (!apolloClient) {
+          continue;
+        }
+
+        apolloClient.writeQuery({
           query: GetMobileGameThemeDocument,
           data: { getMobileGameTheme: response.data.theme },
         });
