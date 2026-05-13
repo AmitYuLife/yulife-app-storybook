@@ -28,8 +28,9 @@ export const useStreakCheckIn = (
   const currentScreen = useSelector(getRouteState);
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
-  const [dispatchStreakLapsedAction, setDispatchStreakLapsedAction] = useState(false);
-  const [showCommitmentScreen, setShowCommitmentScreen] = useState(false);
+  const dispatchStreakLapsedActionRef = useRef(false);
+  const showCommitmentScreenRef = useRef(false);
+  const prevScreenRef = useRef(currentScreen);
   const isOverlayOpen = useRef(false);
   const initialSmokingStateStreak = useRef<number | null>(null);
   const showSmokingCheckInOverlayRef = useRef<(data: HealthSmokingState) => void>(() => {});
@@ -73,22 +74,24 @@ export const useStreakCheckIn = (
   }, [querySmokingState]);
 
   useEffect(() => {
-    if (currentScreen !== ROUTES.smoking) {
+    const enteredSmoking = prevScreenRef.current !== ROUTES.smoking && currentScreen === ROUTES.smoking;
+    prevScreenRef.current = currentScreen;
+
+    if (!enteredSmoking) {
       return;
     }
 
-    if (dispatchStreakLapsedAction) {
+    if (dispatchStreakLapsedActionRef.current) {
       dispatch(smokingState?.streakLapsedAction);
-      setDispatchStreakLapsedAction(false);
+      dispatchStreakLapsedActionRef.current = false;
       return;
     }
 
-    if (showCommitmentScreen) {
+    if (showCommitmentScreenRef.current) {
       navigateToCommitmentScreen(smokingState);
-      setShowCommitmentScreen(false);
+      showCommitmentScreenRef.current = false;
     }
-  }, [currentScreen, dispatch, dispatchStreakLapsedAction, showCommitmentScreen, smokingState]);
-
+  }, [currentScreen, dispatch, smokingState]);
   const onContinueStreakPress = useCallback(async () => {
     try {
       await dismissOverlay();
@@ -154,10 +157,10 @@ export const useStreakCheckIn = (
                     },
                     onSubmit: () => {
                       if (currentSmokingData.streakLapsedAction) {
-                        setDispatchStreakLapsedAction(true);
+                        dispatchStreakLapsedActionRef.current = true;
                       }
 
-                      setShowCommitmentScreen(true);
+                      showCommitmentScreenRef.current = true;
 
                       Navigation.popTo(ROUTES.smoking);
                     },
