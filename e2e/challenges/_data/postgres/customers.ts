@@ -155,6 +155,49 @@ export const CUSTOMER_MEDITOPIA_2 = {
   },
 } as IDatabaseItem;
 
+export const MEDITOPIA_FULL_CATALOG_MEMBER = createCustomerRecords({
+  archived: false,
+  status: "onboarded",
+  firstName: "Meditopia",
+  lastName: "FullCatalog",
+  email: generateRandomInbox(),
+  preferredContentLocation: "GB",
+  firstAppOpenDate: moment().subtract(26, "days").toDate(),
+  employments: [
+    {
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      archived: false,
+      employmentStartDate: moment().subtract(26, "days").format("YYYY-MM-DD"),
+      products: [],
+    },
+  ],
+  userInfo: {
+    earnRate: 10,
+    isAvatarCreated: false,
+  },
+  userGameState: {
+    currentLevel: 1,
+    currentBalance: 200,
+    currentStreak: 0,
+  },
+  userOnboarding: {
+    performedSteps: {
+      employeeDashboardOnboarding: false,
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+  customerCoreSettings: [
+    {
+      domain: "game.quests",
+      settings: {
+        disableMeditationBucketing: true,
+      },
+    },
+  ],
+});
+
 export const CUSTOMER_52 = {
   type,
   modelName,

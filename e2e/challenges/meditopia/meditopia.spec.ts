@@ -6,6 +6,7 @@ import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
 import * as helper from "./_resources/helpers";
+import { GENERIC_AUTH_PASSWORD } from "_utils/users/auth";
 
 Feature("As a user I can take a Meditopia challenge", async () => {
   Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
@@ -82,6 +83,20 @@ Feature("As a user I can take a Meditopia challenge", async () => {
           Then("I should see the correct reward on the challenge completion screen", then.onMeditopiaChallengeComplete(5, 140, "20", 14));
         });
       });
+    });
+  });
+
+  Scenario("I can see the full internal meditation catalogue on a meditation challenge when bucketing is disabled", scenario.start, async () => {
+    Given("I login as a user on level 1 with full meditation catalogue access", given.loginAsUser(data.MEDITOPIA_FULL_CATALOG_MEMBER.customer, GENERIC_AUTH_PASSWORD), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
+        Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+      });
+    });
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
+      Then("I am on the Challenge Details screen", then.canSeeNewChallengePage("meditation", data.MEDITOPIA_FULL_CATALOG_MEMBER.users!.data.earnRate));
+    });
+    When("I tap Take Challenge", when.tapTakeChallenge, async () => {
+      Then("I should see the expected full catalog meditation cards", then.isOnTodaysMeditationScreenFullInternalCatalog);
     });
   });
 

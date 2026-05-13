@@ -204,6 +204,16 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const MEDITOPIA_FULL_CATALOG_MEMBER_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.MEDITOPIA_FULL_CATALOG_MEMBER.customer.data.customerId,
+    features: mediaContentToggle.data.features,
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_54_TOGGLES = {
   type,
   modelName,
