@@ -41,6 +41,7 @@ API URLs are controlled by `.env.local`, but `.env.local.overrides` takes preced
 - Client: `src/graphql/_core/client.ts`
 - Queries by domain in `src/graphql/[feature]/`, generated types in `src/graphql/__generated/`
 - Run `pnpm generate:gql:types:local` after modifying `.graphql` files
+- **Never hand-edit anything under `src/graphql/__generated/`.** It is codegen output. After changing any `.graphql` file (or any server schema you depend on), always run `pnpm generate:gql:types` / `pnpm generate:gql:types:local` — do not patch the generated `graphql.ts`, `gql.ts`, `possibleTypes.ts`, or document selection sets by hand even if the API server isn't reachable. Start the API server and re-run codegen instead.
 
 ## Navigation (React Native Navigation)
 
