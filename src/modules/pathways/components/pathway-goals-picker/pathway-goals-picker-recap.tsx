@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { ImageBackground } from "expo-image";
 import { useSelector } from "react-redux";
-import { Box, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { ControlledYuCoinCounter } from "@organisms/generic-heading";
 import BlurredRaysWrapper from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
 import RaysSpotlightFocal from "@organisms/rays/rays-spotlight-focal";
@@ -56,6 +56,9 @@ const PathwayGoalsPickerRecap = ({ selectedGoals, isSubmitting, onConfirm }: IPa
                 withBorder={Colours.neutral.n200}
                 gap={12}
               >
+                {goal.smallIcon.uri ? (
+                  <Image source={{ uri: goal.smallIcon.uri }} width={24} height={24} contentFit="contain" />
+                ) : null}
                 <Box flex={1}>
                   <TextTemplate type="b2" color={Colours.inkStrong}>
                     {goal.title}

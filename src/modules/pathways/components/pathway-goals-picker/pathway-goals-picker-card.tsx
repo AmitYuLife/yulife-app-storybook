@@ -1,18 +1,13 @@
 import { memo } from "react";
-import { Box, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import { Colours } from "@styles";
 import { PATHWAY_GOALS_PICKER_ACCEPT, PATHWAY_GOALS_PICKER_CARD, PATHWAY_GOALS_PICKER_SKIP } from "@ids";
-import {
-  getPathwayGoalCardColors,
-  IPathwayGoalsPickerOption,
-  PathwayGoalsPickerChoice,
-} from "../../types/pathway-goals-picker.types";
+import { IPathwayGoalsPickerOption, PathwayGoalsPickerChoice } from "../../types/pathway-goals-picker.types";
 
 interface IPathwayGoalsPickerCardProps {
   goal: IPathwayGoalsPickerOption;
-  index: number;
-  upcomingCount: number;
+  upcomingGoals: IPathwayGoalsPickerOption[];
   choice: PathwayGoalsPickerChoice | undefined;
   canAccept: boolean;
   onAccept: () => void;
@@ -20,17 +15,17 @@ interface IPathwayGoalsPickerCardProps {
 }
 
 const STACK_PEEK_STEP = 10;
+const ICON_SIZE = 120;
 
 const PathwayGoalsPickerCard = ({
   goal,
-  index,
-  upcomingCount,
+  upcomingGoals,
   choice,
   canAccept,
   onAccept,
   onSkip,
 }: IPathwayGoalsPickerCardProps) => {
-  const { background } = getPathwayGoalCardColors(index);
+  const background = goal.color;
 
   const isAccepted = choice === PathwayGoalsPickerChoice.Accept;
   const isSkipped = choice === PathwayGoalsPickerChoice.Skip;
@@ -39,29 +34,37 @@ const PathwayGoalsPickerCard = ({
   return (
     <Box px={24} pt={8} pb={24} testID={PATHWAY_GOALS_PICKER_CARD(goal.id)}>
       <Box position="relative">
-        {Array.from({ length: upcomingCount })
-          .map((_, i) => upcomingCount - 1 - i)
-          .map((i) => {
-            const colors = getPathwayGoalCardColors(index + i + 1);
+        {upcomingGoals
+          .map((upcoming, i) => ({ upcoming, i }))
+          .reverse()
+          .map(({ upcoming, i }) => {
             const peek = STACK_PEEK_STEP * (i + 1);
             return (
               <Box
-                key={`ghost-${i}`}
+                key={`ghost-${upcoming.id}`}
                 position="absolute"
                 top={peek}
                 left={0}
                 right={0}
                 bottom={-peek}
                 br={16}
-                bg={colors.background}
+                bg={upcoming.color}
               />
             );
           })}
-        <Box br={16} bg={background} p={16} gap={16}>
-          <Box pt={8} minHeight={140}>
+        <Box br={16} bg={background} p={16} gap={16} minHeight={320}>
+          <Box gap={4}>
+            <TextTemplate type="l2b" color={Colours.neutral.white}>
+              {goal.category.toUpperCase()}
+            </TextTemplate>
             <TextTemplate type="b1b" color={Colours.neutral.white}>
               {goal.title}
             </TextTemplate>
+          </Box>
+          <Box flex={1} alignItems="center" justifyContent="center">
+            {goal.largeIcon.uri ? (
+              <Image source={{ uri: goal.largeIcon.uri }} width={ICON_SIZE} height={ICON_SIZE} contentFit="contain" />
+            ) : null}
           </Box>
           <Box flexDirection="row" gap={16}>
             <Box flex={1}>

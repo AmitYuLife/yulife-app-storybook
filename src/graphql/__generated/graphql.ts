@@ -410,15 +410,20 @@ export type AutoAssignmentRules = {
 
 export type AvailablePathwayGoal = {
   __typename?: "AvailablePathwayGoal";
+  category: Scalars["String"]["output"];
+  color: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   itemId: Scalars["ID"]["output"];
+  largeIcon: RemoteImage;
   score: Scalars["Float"]["output"];
+  smallIcon: RemoteImage;
   title: Scalars["String"]["output"];
 };
 
 export type AvailablePathwayGoalsSection = {
   __typename?: "AvailablePathwayGoalsSection";
   goals: Array<AvailablePathwayGoal>;
+  maxSelectable: Scalars["Int"]["output"];
 };
 
 export type AvailablePerk = {
@@ -8512,9 +8517,11 @@ export type PathwayChallengeSlot = {
 
 export type PathwayGoal = {
   __typename?: "PathwayGoal";
-  icon?: Maybe<RemoteImage>;
+  color: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   isCompleted: Scalars["Boolean"]["output"];
+  largeIcon: RemoteImage;
+  smallIcon: RemoteImage;
   title?: Maybe<Scalars["String"]["output"]>;
   type: PathwayGoalType;
 };
@@ -9127,6 +9134,8 @@ export type Query = {
   getUserPathwayGoalsSection: PathwayGoalsSection;
   getUserPathways: UserPathways;
   getUserProfile: UserProfile;
+  /** @deprecated No longer used in v5.8.0 */
+  getUserProfileEvents: Array<UserProfileEvents>;
   getUserSurge?: Maybe<Surge>;
   getUserTodayActivities: TodayActivities;
   getUserTodayActivity?: Maybe<Array<Maybe<ActivityHistoryChallenge>>>;
@@ -11729,6 +11738,16 @@ export type TeamEmployeeRecognitionCampaignPackageResponse = {
   rate: Scalars["Float"]["output"];
   /** @deprecated Use directDebitApprovalLimit instead. Will be removed next release. */
   topupThreshold: Scalars["Int"]["output"];
+  /**
+   * Weekly top-up cap (Mon–Sun ISO week) across all payment methods, in lowest denomination
+   * (pence/cents). null means no weekly limit applies for the business currency.
+   */
+  weeklyLimit?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * Sum (in lowest denomination) of the business's top-ups in the current Mon–Sun week
+   * across all payment methods, counting pending/invoiced/paid statuses.
+   */
+  weeklyTotalThisWeek: Scalars["Int"]["output"];
 };
 
 export type TeamEmployeeRecognitionCampaignRecipient = {
@@ -13039,6 +13058,8 @@ export type UserProfile = {
   badgeCounts: UserProfileBadgeCounts;
   earnRate: Scalars["Int"]["output"];
   endPointsVersion: EndPointsVersion;
+  /** @deprecated No longer used in v5.8.0 */
+  events: Array<UserProfileEvents>;
   gameSettings: GameSettings;
   heroCards: Array<HeroCard>;
   notification: UserProfileNotification;
@@ -30333,7 +30354,18 @@ export type GetAvailablePathwayGoalsQuery = {
   __typename?: "Query";
   getAvailablePathwayGoals: {
     __typename?: "AvailablePathwayGoalsSection";
-    goals: Array<{ __typename?: "AvailablePathwayGoal"; id: string; itemId: string; title: string; score: number }>;
+    maxSelectable: number;
+    goals: Array<{
+      __typename?: "AvailablePathwayGoal";
+      id: string;
+      itemId: string;
+      title: string;
+      score: number;
+      color: string;
+      category: string;
+      largeIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      smallIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
   };
 };
 
@@ -30350,7 +30382,9 @@ export type GetUserPathwayGoalsSectionQuery = {
       title?: string | null;
       type: PathwayGoalType;
       isCompleted: boolean;
-      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null; hash?: string | null } | null;
+      color: string;
+      largeIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      smallIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     }>;
   };
 };
@@ -32437,7 +32471,9 @@ export type MarkPathwayGoalCompletedMutation = {
       title?: string | null;
       type: PathwayGoalType;
       isCompleted: boolean;
-      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      color: string;
+      largeIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      smallIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
   };
 };
@@ -85844,6 +85880,7 @@ export const GetAvailablePathwayGoalsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "maxSelectable" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "goals" },
@@ -85854,12 +85891,42 @@ export const GetAvailablePathwayGoalsDocument = {
                       { kind: "Field", name: { kind: "Name", value: "itemId" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "score" } },
+                      { kind: "Field", name: { kind: "Name", value: "color" } },
+                      { kind: "Field", name: { kind: "Name", value: "category" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "largeIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "smallIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
                     ],
                   },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -85890,26 +85957,43 @@ export const GetUserPathwayGoalsSectionDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "icon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                            { kind: "Field", name: { kind: "Name", value: "hash" } },
-                          ],
-                        },
-                      },
                       { kind: "Field", name: { kind: "Name", value: "type" } },
                       { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                      { kind: "Field", name: { kind: "Name", value: "color" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "largeIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "smallIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
                     ],
                   },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -89195,25 +89279,43 @@ export const MarkPathwayGoalCompletedDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "icon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
                       { kind: "Field", name: { kind: "Name", value: "type" } },
                       { kind: "Field", name: { kind: "Name", value: "isCompleted" } },
+                      { kind: "Field", name: { kind: "Name", value: "color" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "largeIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "smallIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
                     ],
                   },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },

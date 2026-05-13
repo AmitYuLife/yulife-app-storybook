@@ -4,12 +4,15 @@ mutation MarkPathwayGoalCompleted($goalId: ID!) {
     goal {
       id
       title
-      icon {
-        id
-        uri
-      }
       type
       isCompleted
+      color
+      largeIcon {
+        ...RemoteImage
+      }
+      smallIcon {
+        ...RemoteImage
+      }
     }
   }
 }

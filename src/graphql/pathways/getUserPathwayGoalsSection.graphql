@@ -4,13 +4,15 @@ query GetUserPathwayGoalsSection {
     goals {
       id
       title
-      icon {
-        id
-        uri
-        hash
-      }
       type
       isCompleted
+      color
+      largeIcon {
+        ...RemoteImage
+      }
+      smallIcon {
+        ...RemoteImage
+      }
     }
   }
 }
