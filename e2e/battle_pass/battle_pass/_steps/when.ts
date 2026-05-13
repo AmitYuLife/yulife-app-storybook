@@ -34,7 +34,7 @@ export const donate =
   };
 
 export const goToRewardStore = async () => {
-  await launchApp({ url: "yulifeapp-detox://yulife/rewards" });
+  await launchApp({ url: "yulifeapp-detox://yulife/rewards", newInstance: false });
 };
 
 export const dismissRewardPopUp = async () => {

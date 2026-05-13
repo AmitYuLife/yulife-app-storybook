@@ -10,6 +10,7 @@ import { EndOfSeasonRewardsInfo, LottieView } from "@molecules";
 import { Box, TextTemplate } from "@atoms";
 import { Navigation } from "@navigation/main";
 import BlurredRaysWrapper, { BLURRED_RAYS_Y_OFFSET } from "@organisms/blurred-rays-wrapper/blurred-rays-wrapper";
+import { DETOX_ENABLED } from "@services/socket";
 
 export interface IBattlePassEndOfSeasonModalProps {
   title: string;
@@ -31,7 +32,7 @@ const IMAGE_TOP = screenHeight / 2.4 - BLURRED_RAYS_Y_OFFSET / 1.9 - REWARD_IMAG
 
 const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBattlePassEndOfSeasonModalProps) => {
   const [animationStage, setAnimationStage] = useState(0);
-  const [showStatics, setShowStatics] = useState(false);
+  const [showStatics, setShowStatics] = useState(DETOX_ENABLED);
   const lottieRef = useRef<RNLottieView>(null);
   const onButtonPress = async () => {
     await onComplete();
@@ -39,7 +40,11 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
   };
 
   useEffect(() => {
-    lottieRef.current?.play(FRAMES[animationStage].startFrame, FRAMES[animationStage].endFrame);
+    if (DETOX_ENABLED) {
+      return;
+    }
+
+    lottieRef.current?.play(FRAMES[0].startFrame, FRAMES[0].endFrame);
   }, []);
 
   const validItemsIndexes = items.map((item, index) => (item.title ? index : null)).filter((i) => i !== null);

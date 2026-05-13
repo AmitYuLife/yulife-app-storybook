@@ -16,6 +16,8 @@ export * from "./mongo/userOnboardings";
 export * from "./mongo/goals_for_global";
 export * from "./mongo/goal_reward_milestones_for_global";
 export * from "./mongo/goal_invitation_for_global";
+export * from "./mongo/goal_team";
+export * from "./mongo/goal_participation";
 export * from "./mongo/goal_events_for_global";
 export * from "./mongo/core_journey_instances";
 export * from "./mongo/core_journey_steps";
