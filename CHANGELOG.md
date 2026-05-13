@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.9.0] - 2026-05-13
+
+### Bugfixes
+
+- Bugfix GS-1926: Round active external meditation up to nearest minute
+- Bugfix GS-2760: Fix referrals popover randomly showing in detox
+- Bugfix GS-2749: Wellbeing hub issues on no images
+- Bugfix GS-2704: Fix invalid hook call on duels search list
+- Bugfix CTE-715: logger update
+- (grafted) Merge branch 'bugfix/plus-points-elevation' into 'develop'
+- (grafted) Merge branch 'bugfix/gs-2699-locale-switch-navbar-timeout' into 'develop'
+
+### Tasks
+
+- Task GS-2687: Improve vibing workflow
+- Task GS-2765: Dynamic icons and colours
+- Task GS-2750: Render grace-period banner on tournament details
+- Task GS-1570: Cap YuDoku board size on foldable viewports
+- Task DEVOPS-5544: Reduce Bugsnag reports
+- Task GS-2692: Select goals flow
+- Task ENG-4415: Downgrade reanimated & deferred render the blurred rays
+- Task GS-2728: Improve vibing experience
+- (grafted) Task GS-2443: Screen reader support for exit challenge button
+- (grafted) Merge branch 'task/bump-reanimated' into 'develop'
+- Task GS-2695: Part 1 null fixes
+- Task DEVOPS-5357: (Security) Update Node.js version
+- Task DEVOPS-5444: Adjust CI rules for GitLab Merge Trains
+- Task GS-2217: Fix new success screen
+- Task CTE-715: improve queries on cold start
+- Task DEVOPS-5427: Split Logger into EngagementTracking + Logging service
+- Task CTE-700: Detox sync guards
+
+### Chores
+
+- Chore GS-2768: Fail commits on eslint warnings — match CI --max-warnings 0
+- Chore CTE-635: UAT TestFlight translations group
+- Chore - Updated translations
+- Chore GS-2764: Drop unused tempGameEnableEndOfPlanets entry
+- Chore GS-2692: Adjust available goals return type
+- Chore - Updated translations
+- Chore ISA-4383: Purge sub 4.60 code
+- Chore - Updated translations
+- Chore GS-2419: Update claude.md about theme colours
+- Chore - Updated translations
+- chore DEVOPS-5408: Remove Dependabot configuration from Aikido Autofix enabled Repos
+- Chore - Updated translations
+
+### Improvements
+
+- (grafted) Merge branch 'feat/gs-2648-tournament-ui-improvements' into 'develop'
+
+### Extra
+
+- Fix CTE-715: YuScreen stale images
+- Detox GS-2495: Tournaments Notification
+- fix(security): Fix security issue in follow-redirects via minor version upgrade from 1.15.11 to 1.16.0
+- Fix CTE-715: quest map cache + e2e
+- (grafted) Detox GS-2703: Legacy Team vs Team Tournament
+- (grafted) fix(security): Fix security issue in axios via minor version upgrade from 1.13.6 to 1.15.1
+- (grafted) Merge branch 'security/aikido-update-packages-25521536-hvob' into 'develop'
+- (grafted) Detox CTE-700: to the moon
+
 ## [5.8.0] - 2026-05-01
 
 ### Features
