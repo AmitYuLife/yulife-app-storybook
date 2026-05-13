@@ -31,6 +31,7 @@ const PathwayGoalsPickerScreen = ({
   currentIndex,
   totalGoals,
   selectedGoals,
+  upcomingGoals,
   currentChoice,
   canAcceptMore,
   canContinue,
@@ -89,8 +90,7 @@ const PathwayGoalsPickerScreen = ({
           <PathwayGoalsPickerHeader current={currentIndex + 1} total={totalGoals} onBack={headerOnBack} />
           <PathwayGoalsPickerCard
             goal={currentGoal}
-            index={currentIndex}
-            upcomingCount={Math.max(0, totalGoals - currentIndex - 1)}
+            upcomingGoals={upcomingGoals}
             choice={currentChoice}
             canAccept={canAcceptMore}
             onAccept={onAccept}

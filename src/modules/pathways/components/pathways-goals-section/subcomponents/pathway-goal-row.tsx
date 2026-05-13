@@ -13,8 +13,10 @@ interface IPathwayGoalRowProps {
   isCompletingGoal: boolean;
 }
 
+const ICON_SIZE = 24;
+
 const PathwayGoalRow = ({ goal, onComplete, isCompletingGoal }: IPathwayGoalRowProps) => {
-  const { id, title, icon, isCompleted } = goal;
+  const { id, title, smallIcon, isCompleted } = goal;
   const { theme } = useTheme();
 
   const handlePress = useCallback(() => {
@@ -40,7 +42,9 @@ const PathwayGoalRow = ({ goal, onComplete, isCompletingGoal }: IPathwayGoalRowP
       gap={12}
       testID={PATHWAYS_GOAL_ROW(id)}
     >
-      {icon?.uri ? <Image source={{ uri: icon.uri }} width={24} height={24} contentFit="contain" /> : null}
+      {smallIcon.uri ? (
+        <Image source={{ uri: smallIcon.uri }} width={ICON_SIZE} height={ICON_SIZE} contentFit="contain" />
+      ) : null}
       <Box flex={1}>
         <TextTemplate type="b2" color={Colours.inkStrong}>
           {title}

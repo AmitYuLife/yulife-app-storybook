@@ -1,10 +1,19 @@
 query GetAvailablePathwayGoals {
   getAvailablePathwayGoals {
+    maxSelectable
     goals {
       id
       itemId
       title
       score
+      color
+      category
+      largeIcon {
+        ...RemoteImage
+      }
+      smallIcon {
+        ...RemoteImage
+      }
     }
   }
 }

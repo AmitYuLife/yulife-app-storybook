@@ -67,12 +67,8 @@ export const usePathwayGoals = ({ onAllGoalsCompleted }: IUsePathwayGoalsParams)
             __typename: "MarkPathwayGoalCompletedResponse",
             success: true,
             goal: {
-              __typename: "PathwayGoal",
-              id: target.id,
-              title: target.title,
-              type: target.type,
+              ...target,
               isCompleted: true,
-              icon: target.icon ? { __typename: "RemoteImage", id: target.icon.id, uri: target.icon.uri } : null,
             },
           },
         },

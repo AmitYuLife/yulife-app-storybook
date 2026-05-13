@@ -6,7 +6,6 @@ import { showYuModal } from "@navigation/root";
 import { gql } from "@graphql/__generated";
 import {
   IPathwayGoalsPickerOption,
-  PATHWAY_GOALS_PICKER_MAX_SELECTION,
   PathwayGoalsPickerChoice,
   PathwayGoalsPickerMode,
 } from "../types/pathway-goals-picker.types";
@@ -29,6 +28,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
     () => data?.getAvailablePathwayGoals.goals ?? [],
     [data?.getAvailablePathwayGoals]
   );
+  const maxSelectable = data?.getAvailablePathwayGoals.maxSelectable ?? 0;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [choices, setChoices] = useState<(PathwayGoalsPickerChoice | undefined)[]>([]);
@@ -46,8 +46,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
   );
   const acceptedCount = selectedGoals.length;
   const currentChoice = choices[currentIndex];
-  const canAcceptMore =
-    acceptedCount < PATHWAY_GOALS_PICKER_MAX_SELECTION || currentChoice === PathwayGoalsPickerChoice.Accept;
+  const canAcceptMore = acceptedCount < maxSelectable || currentChoice === PathwayGoalsPickerChoice.Accept;
   const canContinue = currentChoice !== undefined;
 
   const showConnectionErrorModal = useCallback(() => {
@@ -88,7 +87,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
     }
 
     const isLastGoal = currentIndex >= goals.length - 1;
-    const isMaxReached = acceptedCount >= PATHWAY_GOALS_PICKER_MAX_SELECTION;
+    const isMaxReached = acceptedCount >= maxSelectable;
 
     if (isLastGoal && acceptedCount === 0) {
       Navigation.popToRoot(componentId);
@@ -115,6 +114,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
     currentIndex,
     goals.length,
     isSubmitting,
+    maxSelectable,
     selectedGoals,
     setCycle,
     showConnectionErrorModal,
@@ -143,6 +143,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
   }, [componentId, currentIndex, onBack, mode]);
 
   const currentGoal = goals[currentIndex];
+  const upcomingGoals = useMemo(() => goals.slice(currentIndex + 1), [goals, currentIndex]);
 
   return {
     isLoading: isLoadingGoals && goals.length === 0,
@@ -152,6 +153,7 @@ export const usePathwayGoalsPicker = ({ componentId }: IUsePathwayGoalsPickerPar
     currentIndex,
     totalGoals: goals.length,
     selectedGoals,
+    upcomingGoals,
     currentChoice,
     canAcceptMore,
     canContinue,
