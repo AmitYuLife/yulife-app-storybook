@@ -1,0 +1,17 @@
+export const FULL_CATALOG_MEDITATION_CARD_TITLES: readonly string[] = [
+  "Awareness",
+  "Explore your breath",
+  "Counting breaths",
+  "Body scan",
+  "Relaxing the body",
+  "Rediscovering senses",
+  "Grounding",
+  "Deep relaxation",
+  "Being aware of the present moment",
+  "Slowing down",
+  "Improving attention and focus",
+  "Compassion",
+  "Gratitude",
+  "Acceptance",
+  "Expand",
+];
