@@ -139,24 +139,7 @@ export const RN_WEB_ALIASES: Record<string, string> = {
   entities: path.resolve(__dirname, "../node_modules/entities"),
 };
 
-const getStorybookAssetPublicPath = (): string => {
-  const baseUrl = process.env.STORYBOOK_BASE_URL;
-  if (!baseUrl) {
-    return "/";
-  }
-
-  return baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-};
-
 export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig => {
-  const assetPublicPath = getStorybookAssetPublicPath();
-
-  // Storybook resolves iframe bundles as `./${publicPath}${filename}`. Only override
-  // publicPath for GitHub Pages subpath deploys — setting it to "/" breaks locally.
-  if (process.env.STORYBOOK_BASE_URL && config.output) {
-    config.output.publicPath = assetPublicPath;
-  }
-
   config.resolve = config.resolve ?? {};
   config.resolve.alias = {
     ...config.resolve.alias,
@@ -225,7 +208,6 @@ export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig =>
       options: {
         name: "[name].[hash:8].[ext]",
         esModule: false,
-        publicPath: assetPublicPath,
       },
     },
   ];
