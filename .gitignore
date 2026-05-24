@@ -90,6 +90,7 @@ simulator.mov
 
 .yalc
 storybook-static/
+debug-storybook.log
 
 # Expo codegen
 ios-temp
