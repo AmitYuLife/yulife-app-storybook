@@ -19,7 +19,6 @@ patchedDependencies:
   "react-native@0.79.6": "patches/react-native@0.79.6.patch"
   "react-native-navigation@8.8.1": "patches/react-native-navigation@8.8.1.patch"
   "react-native-video@6.19.0": "patches/react-native-video@6.19.0.patch"
-  "storybook@10.2.13": "patches/storybook@10.2.13.patch"
   "@bacons/apple-targets@0.0.5": "patches/@bacons__apple-targets@0.0.5.patch"
 peerDependencyRules:
   allowedVersions:

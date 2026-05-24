@@ -1,0 +1,50 @@
+{
+  "$schema": "Merge manifest — drives design-system → yulife-app-storybook migration",
+  "sourceRepo": "~/Projects/design-system",
+  "replace": [
+    {
+      "name": "Button",
+      "source": "src/components/Button",
+      "target": "src/components/button",
+      "category": "Inputs",
+      "reason": "Figma-canonical API (colour × variant × size, press animation)"
+    }
+  ],
+  "importNew": [
+    { "name": "ButtonGroup", "source": "src/components/Button/ButtonGroup.tsx", "target": "src/components/button/button-group.tsx", "category": "Inputs" },
+    { "name": "Hero", "source": "src/components/Hero", "target": "src/components/hero", "category": "Layout" },
+    { "name": "HeroProductDetails", "source": "src/components/Hero/HeroProductDetails.tsx", "target": "src/components/hero/hero-product-details.tsx", "category": "Layout" },
+    { "name": "Card", "source": "src/components/Card", "target": "src/components/card", "category": "Layout", "notes": "Imported for templates; defers formal replace decision" },
+    { "name": "CardInfoContent", "source": "src/components/Card/CardInfoContent.tsx", "target": "src/components/card/card-info-content.tsx", "category": "Layout" },
+    { "name": "Tile", "source": "src/components/Tile", "target": "src/components/tile", "category": "Layout" },
+    { "name": "NavigationHeader", "source": "src/components/NavigationHeader", "target": "src/components/navigation-header", "category": "Navigation" },
+    { "name": "ActionBar", "source": "src/components/ActionBar", "target": "src/components/action-bar", "category": "Navigation" },
+    { "name": "Badge", "source": "src/components/Badge", "target": "src/components/badge", "category": "Feedback" },
+    { "name": "InlineBanner", "source": "src/components/InlineBanner", "target": "src/components/inline-banner", "category": "Feedback" },
+    { "name": "YuCoinValue", "source": "src/components/YuCoinValue", "target": "src/components/yu-coin-value", "category": "Typography" },
+    { "name": "Popover", "source": "src/components/Popover", "target": "src/components/popover", "category": "Feedback" },
+    { "name": "UnorderedList", "source": "src/components/UnorderedList", "target": "src/components/unordered-list", "category": "Typography" },
+    { "name": "TabSwitcher", "source": "src/components/TabSwitcher", "target": "src/components/tab-switcher", "category": "Navigation" },
+    { "name": "LevelDisc", "source": "src/components/LevelDisc", "target": "src/components/level-disc", "category": "Layout" },
+    { "name": "QuestMap", "source": "src/components/QuestMap", "target": "src/components/quest-map", "category": "Layout", "notes": "DS component; distinct from Screens/Member/QuestMap" },
+    { "name": "SinglePageTemplate", "source": "src/templates/SinglePageTemplate", "target": "src/templates/single-page-template", "category": "Templates" },
+    { "name": "ModalTemplate", "source": "src/templates/ModalTemplate", "target": "src/templates/modal-template", "category": "Templates" },
+    { "name": "YuCoinScreen", "source": "src/templates/YuCoinScreen", "target": "src/templates/yu-coin-screen", "category": "Templates" },
+    { "name": "QuestScreen", "source": "src/templates/QuestScreen", "target": "src/templates/quest-screen", "category": "Templates" }
+  ],
+  "keepExisting": [
+    { "name": "TextField", "reason": "No old equivalent" },
+    { "name": "AchievementCard", "reason": "App-specific organism" },
+    { "name": "Switch", "reason": "Old repo uses Toggle — keep both until curated" }
+  ],
+  "defer": [
+    { "name": "Checkbox", "notes": "Both exist — decide later" },
+    { "name": "Radio", "notes": "Both exist — decide later" },
+    { "name": "Toggle", "notes": "Old Toggle vs new Switch — decide later" },
+    { "name": "ProgressBar", "notes": "Both exist — decide later" }
+  ],
+  "excluded": [
+    { "name": "Game Assets", "reason": "User decision — do not import" },
+    { "name": "HomeScreen", "reason": "Internal only, superseded by YuCoinScreen" }
+  ]
+}

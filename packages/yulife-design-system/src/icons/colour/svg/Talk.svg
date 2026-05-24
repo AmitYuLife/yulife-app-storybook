@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 21 19.2939" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Talk icon">
+<path id="Rectangle 10987" d="M1 8C1 3.58172 4.58172 0 9 0H13C17.4183 0 21 3.58172 21 8V8C21 12.4183 17.4183 16 13 16H9C4.58172 16 1 12.4183 1 8V8Z" fill="var(--fill-0, #B9A2FF)"/>
+<path id="Union" d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16H9L12.1464 19.1464C12.4614 19.4614 13 19.2383 13 18.7929V15.9381C16.9463 15.446 20 12.0796 20 8C20 3.58172 16.4183 0 12 0H8Z" fill="var(--fill-0, #ECE4FF)"/>
+<circle id="Ellipse 202" cx="6" cy="8" r="1" fill="var(--fill-0, #A682FF)"/>
+<circle id="Ellipse 203" cx="10" cy="8" r="1" fill="var(--fill-0, #A682FF)"/>
+<circle id="Ellipse 204" cx="14" cy="8" r="1" fill="var(--fill-0, #A682FF)"/>
+</g>
+</svg>

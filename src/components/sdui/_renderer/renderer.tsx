@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import { type FC, ReactNode, useContext } from "react";
 
 import {
   ContentItemMarkdown,
@@ -44,66 +44,73 @@ import ContentItemScale from "../contentItemScale/contentItemScale";
 
 let componentMap: Record<string, (props: unknown) => ReactNode>;
 
-(() => {
-  // Due to a circular dependency with contentItemWrapper (renderer->@components/sdui->contentItemWrapper->renderer)
-  // we need to wait for the next tick to use these components, or anything exported after contentItemWrapper will be undefined
-  setTimeout(() => {
-    componentMap = {
-      ContentItemMarkdown,
-      ContentItemButton,
-      ContentItemImage,
-      ContentItemText: ContentItemTextSdui,
-      ContentItemTextInput,
-      ContentItemRowIconTextBanner,
-      ContentItemLottie: ContentItemLottieSdui,
-      ContentItemPad,
-      ContentItemRadio,
-      ContentItemChoice,
-      ContentItemHeaderBar,
-      ContentItemProgressBar,
-      ContentItemTextGroup,
-      ContentItemAccordion,
-      ContentItemBox,
-      ContentItemDropdownInput,
-      ContentItemWrapper,
-      ContentItemMedia,
-      ContentItemLinearGradient,
-      ContentItemInfoCard,
-      ContentItemBoxOptionCard,
-      ContentItemSwitch,
-      ContentItemShowHideBalance,
-      ContentItemDatePicker: ContentItemDatePickerSdui,
-      ContentItemHint,
-      ContentItemImageChoice,
-      ContentItemSliderInput,
-      ContentItemTextAreaInput,
-      ContentItemFade,
-      ContentItemScrollPicker,
-      ContentItemPaymentButton,
-      ContentItemScale,
-      ContentItemConfirm,
-      ContentItemStackedShadowWrapper,
-      ContentItemBlurredRaysWrapper,
-      ContentItemLoader,
-    };
-  });
-})();
+const getComponentMap = () => {
+  if (componentMap) {
+    return componentMap;
+  }
+
+  // Lazy init avoids circular dependency with contentItemWrapper during module evaluation.
+  componentMap = {
+    ContentItemMarkdown,
+    ContentItemButton,
+    ContentItemImage,
+    ContentItemText: ContentItemTextSdui,
+    ContentItemTextInput,
+    ContentItemRowIconTextBanner,
+    ContentItemLottie: ContentItemLottieSdui,
+    ContentItemPad,
+    ContentItemRadio,
+    ContentItemChoice,
+    ContentItemHeaderBar,
+    ContentItemProgressBar,
+    ContentItemTextGroup,
+    ContentItemAccordion,
+    ContentItemBox,
+    ContentItemDropdownInput,
+    ContentItemWrapper,
+    ContentItemMedia,
+    ContentItemLinearGradient,
+    ContentItemInfoCard,
+    ContentItemBoxOptionCard,
+    ContentItemSwitch,
+    ContentItemShowHideBalance,
+    ContentItemDatePicker: ContentItemDatePickerSdui,
+    ContentItemHint,
+    ContentItemImageChoice,
+    ContentItemSliderInput,
+    ContentItemTextAreaInput,
+    ContentItemFade,
+    ContentItemScrollPicker,
+    ContentItemPaymentButton,
+    ContentItemScale,
+    ContentItemConfirm,
+    ContentItemStackedShadowWrapper,
+    ContentItemBlurredRaysWrapper,
+    ContentItemLoader,
+  };
+
+  return componentMap;
+};
 
 interface Props {
-  item: GetSduiJourneyQuery["getSduiJourney"]["body"][number];
+  item: NonNullable<NonNullable<GetSduiJourneyQuery["getSduiJourney"]>["body"]>[number];
 }
 
-export const Renderer: React.FC<Props> = ({ item }) => {
+export const Renderer: FC<Props> = ({ item }) => {
   const sduiState = useContext(SduiStateContext);
   const sduiId = useContext(SduiIdContext);
 
-  const Component = componentMap[item?.__typename];
+  const Component = getComponentMap()[item?.__typename];
 
   if (!Component) {
     return null;
   }
 
-  const dynamicProps = mapDynamicProps(sduiId, sduiState, (item as any).dynamicProps);
+  const dynamicProps = mapDynamicProps(
+    sduiId,
+    sduiState,
+    (item as { dynamicProps?: string | null }).dynamicProps ?? ""
+  );
 
   /**
    * @TODO Add id fields to all ContentItems

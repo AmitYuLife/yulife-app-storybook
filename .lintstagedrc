@@ -1,5 +1,8 @@
 {
-  "*.js": ["eslint --fix --max-warnings 0", "prettier --write"],
-  "*.ts": ["eslint --fix --max-warnings 0", "prettier --write"],
-  "*.tsx": ["eslint --fix --max-warnings 0", "prettier --write"]
+  "!(.storybook)/**/*.js": ["eslint --fix --max-warnings 0", "prettier --write"],
+  ".storybook/**/*.js": ["prettier --write"],
+  "!(.storybook)/**/*.ts": ["eslint --fix --max-warnings 0", "prettier --write"],
+  ".storybook/**/*.ts": ["prettier --write"],
+  "!(.storybook)/**/*.tsx": ["eslint --fix --max-warnings 0", "prettier --write"],
+  ".storybook/**/*.tsx": ["prettier --write"]
 }

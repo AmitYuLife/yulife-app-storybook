@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Level Bubble Icon">
+<circle id="Shadow" cx="10" cy="11" r="10" fill="var(--fill-0, #CC0D6E)"/>
+<circle id="Bubble" cx="10" cy="10" r="10" fill="var(--fill-0, #F43E8E)"/>
+<path id="Star" d="M9.9993 3.5L11.4087 8.09344L16 8.0832L12.2797 10.9124L13.7085 15.5L9.9993 12.6532L6.29148 15.5L7.72035 10.9124L4 8.0832L8.5913 8.09344L9.9993 3.5Z" fill="var(--fill-0, #FFD600)"/>
+</g>
+</svg>

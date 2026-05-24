@@ -1,0 +1,1188 @@
+{
+  "description": "Catalog of YuLife app screens for Storybook and LLM reference. Story files live under screens/ and import presentational components from src/.",
+  "storyTitlePrefix": "Screens/",
+  "documentedCount": 30,
+  "pendingCount": 98,
+  "totalCount": 129,
+  "screens": [
+    {
+      "name": "Health Cash Plan",
+      "domain": "examples",
+      "path": "packages/yulife-design-system/src/templates/single-page-template/single-page-template.tsx",
+      "importPath": "@yulife-private/design-system/templates",
+      "storyPath": "screens/examples/health-cash-plan.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "reference",
+      "type": "reference",
+      "notes": "Reference composition from Journey design system — demonstrates SinglePageTemplate with product content."
+    },
+    {
+      "name": "Achievements",
+      "domain": "achievements",
+      "path": "src/components/screens/achievements/achievements.screen.tsx",
+      "importPath": "@screens/achievements/achievements.screen",
+      "storyPath": "screens/achievements/achievements.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "AppReview",
+      "domain": "app-review",
+      "path": "src/components/screens/app-review/app-review.screen.tsx",
+      "importPath": "@screens/app-review/app-review.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "BattlePass",
+      "domain": "battle-pass",
+      "path": "src/components/screens/battle-pass/battle-pass.screen.tsx",
+      "importPath": "@screens/battle-pass/battle-pass.screen",
+      "storyPath": "screens/battle-pass/battle-pass.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "BattlePassIntro",
+      "domain": "battle-pass",
+      "path": "src/components/screens/battle-pass/battle-pass-intro/battle-pass-intro.screen.tsx",
+      "importPath": "@screens/battle-pass/battle-pass-intro/battle-pass-intro.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "BattlePassLeaderboard",
+      "domain": "battle-pass",
+      "path": "src/components/screens/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.screen.tsx",
+      "importPath": "@screens/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "AddBeneficiaryModal",
+      "domain": "components",
+      "path": "src/components/modals/yuscreen/beneficiary/add-beneficiary-modal.screen.tsx",
+      "importPath": "@screens/src/components/modals/yuscreen/beneficiary/add-beneficiary-modal.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Confirmation",
+      "domain": "components",
+      "path": "src/components/modals/yuscreen/beneficiary/confirmation.screen.tsx",
+      "importPath": "@screens/src/components/modals/yuscreen/beneficiary/confirmation.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "GiftView",
+      "domain": "components",
+      "path": "src/components/containers/member/gift-view/gift-view.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gift-view/gift-view.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "Notifications",
+      "domain": "components",
+      "path": "src/components/containers/member/notifications/notifications.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/notifications/notifications.screen",
+      "storyPath": "screens/member/notifications.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "ProductDetails",
+      "domain": "components",
+      "path": "src/components/containers/products/product-details/product-details.screen.tsx",
+      "importPath": "@screens/src/components/containers/products/product-details/product-details.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "QuestMap",
+      "domain": "member",
+      "path": "src/components/containers/member/quests/quest-map/quest-map.screen.tsx",
+      "importPath": "@components/containers/member/quests/quest-map/quest-map.screen",
+      "storyPath": "screens/member/quest-map.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "RewardSearchOverlay",
+      "domain": "components",
+      "path": "src/components/modals/reward-search-overlay/reward-search-overlay.screen.tsx",
+      "importPath": "@screens/src/components/modals/reward-search-overlay/reward-search-overlay.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "UpdateMobileModal",
+      "domain": "components",
+      "path": "src/components/modals/mobile-update/update-mobile-modal.screen.tsx",
+      "importPath": "@screens/src/components/modals/mobile-update/update-mobile-modal.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "WrappedEnding",
+      "domain": "components",
+      "path": "src/components/containers/wrapped/stages/wrapped-ending/wrapped-ending.screen.tsx",
+      "importPath": "@screens/src/components/containers/wrapped/stages/wrapped-ending/wrapped-ending.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "WrappedStage1",
+      "domain": "components",
+      "path": "src/components/containers/wrapped/stages/wrapped-stage-1/wrapped-stage-1.screen.tsx",
+      "importPath": "@screens/src/components/containers/wrapped/stages/wrapped-stage-1/wrapped-stage-1.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "WrappedStage2",
+      "domain": "components",
+      "path": "src/components/containers/wrapped/stages/wrapped-stage-2/wrapped-stage-2.screen.tsx",
+      "importPath": "@screens/src/components/containers/wrapped/stages/wrapped-stage-2/wrapped-stage-2.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "WrappedStage3",
+      "domain": "components",
+      "path": "src/components/containers/wrapped/stages/wrapped-stage-3/wrapped-stage-3.screen.tsx",
+      "importPath": "@screens/src/components/containers/wrapped/stages/wrapped-stage-3/wrapped-stage-3.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "WrappedStage4",
+      "domain": "components",
+      "path": "src/components/containers/wrapped/stages/wrapped-stage-4/wrapped-stage-4.screen.tsx",
+      "importPath": "@screens/src/components/containers/wrapped/stages/wrapped-stage-4/wrapped-stage-4.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "WrappedStaging",
+      "domain": "components",
+      "path": "src/components/containers/wrapped/stages/wrapped-staging/wrapped-staging.screen.tsx",
+      "importPath": "@screens/src/components/containers/wrapped/stages/wrapped-staging/wrapped-staging.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Sudoku",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-game/sudoku.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-game/sudoku.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "SudokuCompleted",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-completed/sudoku-completed.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-completed/sudoku-completed.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "SudokuLeaderboard",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "SudokuLeaderboardEmpty",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard-empty.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard-empty.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "SudokuPractice",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-practice/sudoku-practice.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-practice/sudoku-practice.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "SudokuProgress",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-progress/sudoku-progress.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-progress/sudoku-progress.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "SudokuStaging",
+      "domain": "games",
+      "path": "src/components/screens/games/sudoku/sudoku-staging/sudoku-staging.screen.tsx",
+      "importPath": "@screens/games/sudoku/sudoku-staging/sudoku-staging.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "GenericError",
+      "domain": "generic-error",
+      "path": "src/components/screens/generic-error/generic-error.screen.tsx",
+      "importPath": "@screens/generic-error/generic-error.screen",
+      "storyPath": "screens/system/generic-error.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "GiftingIntro",
+      "domain": "gifting-intro.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-intro.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-intro.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingLimitReached",
+      "domain": "gifting-limit-reached.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-limit-reached.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-limit-reached.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingLoading",
+      "domain": "gifting-loading.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-loading.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-loading.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingManager",
+      "domain": "gifting-manager.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-manager.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-manager.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingMessagePreview",
+      "domain": "gifting-message-preview.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-message-preview.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-message-preview.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingMessage",
+      "domain": "gifting-message.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-message.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-message.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingSearch",
+      "domain": "gifting-search.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-search.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-search.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingSuccess",
+      "domain": "gifting-success.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-success.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-success.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "GiftingYuCoin",
+      "domain": "gifting-yu-coin.screen.tsx",
+      "path": "src/components/containers/member/gifting/screens/gifting-yu-coin.screen.tsx",
+      "importPath": "@screens/src/components/containers/member/gifting/screens/gifting-yu-coin.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "Login",
+      "domain": "login",
+      "path": "src/components/screens/login/legacy/login.screen.tsx",
+      "importPath": "@screens/login/legacy/login.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "LoginConfirm",
+      "domain": "login",
+      "path": "src/components/screens/login/login-confirm/login-confirm.screen.tsx",
+      "importPath": "@screens/login/login-confirm/login-confirm.screen",
+      "storyPath": "screens/auth/login-confirm.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "LoginEmail",
+      "domain": "login",
+      "path": "src/components/screens/login/login-email/login-email.screen.tsx",
+      "importPath": "@screens/login/login-email/login-email.screen",
+      "storyPath": "screens/auth/login-email.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "LoginHero",
+      "domain": "login",
+      "path": "src/components/screens/login/login-hero/login-hero.screen.tsx",
+      "importPath": "@screens/login/login-hero/login-hero.screen",
+      "storyPath": "screens/auth/login-hero.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "LoginPassword",
+      "domain": "login",
+      "path": "src/components/screens/login/login-password/login-password.screen.tsx",
+      "importPath": "@screens/login/login-password/login-password.screen",
+      "storyPath": "screens/auth/login-password.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "ActiveDuels",
+      "domain": "member",
+      "path": "src/components/screens/member/duels-hub/active-duels/active-duels.screen.tsx",
+      "importPath": "@screens/member/duels-hub/active-duels/active-duels.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ActivityHistory",
+      "domain": "member",
+      "path": "src/components/screens/member/activity-history/activity-history.screen.tsx",
+      "importPath": "@screens/member/activity-history/activity-history.screen",
+      "storyPath": "screens/member/activity-history.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "AnimatedChest",
+      "domain": "member",
+      "path": "src/components/screens/member/animated-chest/animated-chest.screen.tsx",
+      "importPath": "@screens/member/animated-chest/animated-chest.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "4"
+    },
+    {
+      "name": "ChallengeDetails",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-details/challenge-details.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-details/challenge-details.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengeExit",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-exit/challenge-exit.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-exit/challenge-exit.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengeFailed",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-failed/challenge-failed.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-failed/challenge-failed.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengeFailedOld",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-failed/challenge-failed-old.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-failed/challenge-failed-old.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "ChallengeProgress",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-progress/challenge-progress.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-progress/challenge-progress.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengesHistoryNew",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenges-history-new/challenges-history-new.screen.tsx",
+      "importPath": "@screens/member/challenges/challenges-history-new/challenges-history-new.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengesList",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenges-list/challenges-list.screen.tsx",
+      "importPath": "@screens/member/challenges/challenges-list/challenges-list.screen",
+      "storyPath": "screens/member/challenges-list.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "ChallengeSuccess",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-success/challenge-success.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-success/challenge-success.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengeSuccessOld",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-success/challenge-success-old.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-success/challenge-success-old.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "ChallengeUnavailable",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-unavailable/challenge-unavailable.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-unavailable/challenge-unavailable.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "ChallengeWatchProgress",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/challenge-watch-progress/challenge-watch-progress.screen.tsx",
+      "importPath": "@screens/member/challenges/challenge-watch-progress/challenge-watch-progress.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "4"
+    },
+    {
+      "name": "CollectEventReward",
+      "domain": "member",
+      "path": "src/components/screens/member/events/collect-event-reward/collect-event-reward.screen.tsx",
+      "importPath": "@screens/member/events/collect-event-reward/collect-event-reward.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "CollectReward",
+      "domain": "member",
+      "path": "src/components/screens/member/collect-reward/collect-reward.screen.tsx",
+      "importPath": "@screens/member/collect-reward/collect-reward.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "CompletedDuels",
+      "domain": "member",
+      "path": "src/components/screens/member/duels-hub/completed-duels/completed-duels.screen.tsx",
+      "importPath": "@screens/member/duels-hub/completed-duels/completed-duels.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "4"
+    },
+    {
+      "name": "DailySteps",
+      "domain": "member",
+      "path": "src/components/screens/member/daily-steps/daily-steps.screen.tsx",
+      "importPath": "@screens/member/daily-steps/daily-steps.screen",
+      "storyPath": "screens/member/daily-steps.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "Debug",
+      "domain": "member",
+      "path": "src/components/screens/member/debug/debug.screen.tsx",
+      "importPath": "@screens/member/debug/debug.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Duels.intro",
+      "domain": "member",
+      "path": "src/components/screens/member/duels-hub/duels.intro.screen.tsx",
+      "importPath": "@screens/member/duels-hub/duels.intro.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "EotwChest",
+      "domain": "member",
+      "path": "src/components/screens/member/eotw-chest/eotw-chest.screen.tsx",
+      "importPath": "@screens/member/eotw-chest/eotw-chest.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "4"
+    },
+    {
+      "name": "EventDialog",
+      "domain": "member",
+      "path": "src/components/screens/member/events/event-dialog/event-dialog.screen.tsx",
+      "importPath": "@screens/member/events/event-dialog/event-dialog.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "EventDialogLoading",
+      "domain": "member",
+      "path": "src/components/screens/member/events/event-dialog/event-dialog-loading.screen.tsx",
+      "importPath": "@screens/member/events/event-dialog/event-dialog-loading.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Feedback",
+      "domain": "member",
+      "path": "src/components/screens/member/feedback/feedback.screen.tsx",
+      "importPath": "@screens/member/feedback/feedback.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "FiitMediaCategoryList",
+      "domain": "member",
+      "path": "src/components/screens/member/media/fiit-media-category-list/fiit-media-category-list.screen.tsx",
+      "importPath": "@screens/member/media/fiit-media-category-list/fiit-media-category-list.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "FiitMediaList",
+      "domain": "member",
+      "path": "src/components/screens/member/media/fiit-media-list/fiit-media-list.screen.tsx",
+      "importPath": "@screens/member/media/fiit-media-list/fiit-media-list.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Generic",
+      "domain": "member",
+      "path": "src/components/screens/member/generic-screen/generic.screen.tsx",
+      "importPath": "@screens/member/generic-screen/generic.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "Info",
+      "domain": "member",
+      "path": "src/components/screens/member/info-screen/info.screen.tsx",
+      "importPath": "@screens/member/info-screen/info.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "Inspect",
+      "domain": "member",
+      "path": "src/components/screens/member/inspect/inspect.screen.tsx",
+      "importPath": "@screens/member/inspect/inspect.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "Leaderboard",
+      "domain": "member",
+      "path": "src/components/screens/member/leaderboard/leaderboard.screen.tsx",
+      "importPath": "@screens/member/leaderboard/leaderboard.screen",
+      "storyPath": "screens/member/leaderboard.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "LeaderboardSettings",
+      "domain": "member",
+      "path": "src/components/screens/member/leaderboard-settings/leaderboard-settings.screen.tsx",
+      "importPath": "@screens/member/leaderboard-settings/leaderboard-settings.screen",
+      "storyPath": "screens/member/leaderboard-settings.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "LevelLocked",
+      "domain": "member",
+      "path": "src/components/screens/member/challenges/level-locked/level-locked.screen.tsx",
+      "importPath": "@screens/member/challenges/level-locked/level-locked.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "LevelSelector",
+      "domain": "member",
+      "path": "src/components/screens/member/debug/level-selector/level-selector.screen.tsx",
+      "importPath": "@screens/member/debug/level-selector/level-selector.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Loading",
+      "domain": "member",
+      "path": "src/components/screens/member/loading/loading.screen.tsx",
+      "importPath": "@screens/member/loading/loading.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "MediaPlayer",
+      "domain": "member",
+      "path": "src/components/screens/member/media/media-player/media-player.screen.tsx",
+      "importPath": "@screens/member/media/media-player/media-player.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "MediaPlayerProgress",
+      "domain": "member",
+      "path": "src/components/screens/member/media/media-player/media-player-progress.screen.tsx",
+      "importPath": "@screens/member/media/media-player/media-player-progress.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "MeditopiaMediaAll",
+      "domain": "member",
+      "path": "src/components/screens/member/media/meditopia-media-all/meditopia-media-all.screen.tsx",
+      "importPath": "@screens/member/media/meditopia-media-all/meditopia-media-all.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "MeditopiaMediaList",
+      "domain": "member",
+      "path": "src/components/screens/member/media/meditopia-media-list/meditopia-media-list.screen.tsx",
+      "importPath": "@screens/member/media/meditopia-media-list/meditopia-media-list.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Menu",
+      "domain": "member",
+      "path": "src/components/screens/member/menu/menu.screen.tsx",
+      "importPath": "@screens/member/menu/menu.screen",
+      "storyPath": "screens/member/menu.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "PathwaysProgress",
+      "domain": "member",
+      "path": "src/components/screens/member/debug/pathways-progress/pathways-progress.screen.tsx",
+      "importPath": "@screens/member/debug/pathways-progress/pathways-progress.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Permissions",
+      "domain": "member",
+      "path": "src/components/screens/member/permissions/permissions.screen.tsx",
+      "importPath": "@screens/member/permissions/permissions.screen",
+      "storyPath": "screens/member/permissions.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "PermissionsOld",
+      "domain": "member",
+      "path": "src/components/screens/member/permissions/permissions-old.screen.tsx",
+      "importPath": "@screens/member/permissions/permissions-old.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "RewardsList",
+      "domain": "member",
+      "path": "src/components/screens/member/rewards/list/rewards-list.screen.tsx",
+      "importPath": "@screens/member/rewards/list/rewards-list.screen",
+      "storyPath": "screens/member/rewards-list.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "RewardsPurchased",
+      "domain": "member",
+      "path": "src/components/screens/member/rewards/purchased/rewards-purchased.screen.tsx",
+      "importPath": "@screens/member/rewards/purchased/rewards-purchased.screen",
+      "storyPath": "screens/member/rewards-purchased.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "RewardsUnavailable",
+      "domain": "member",
+      "path": "src/components/screens/member/rewards/unavailable/rewards-unavailable.screen.tsx",
+      "importPath": "@screens/member/rewards/unavailable/rewards-unavailable.screen",
+      "storyPath": "screens/member/rewards-unavailable.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "Settings",
+      "domain": "member",
+      "path": "src/components/screens/member/settings/settings.screen.tsx",
+      "importPath": "@screens/member/settings/settings.screen",
+      "storyPath": "screens/member/settings.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "Shopfront",
+      "domain": "member",
+      "path": "src/components/screens/member/shopfront/shopfront.screen.tsx",
+      "importPath": "@screens/member/shopfront/shopfront.screen",
+      "storyPath": "screens/member/shopfront.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "SmokingCommitment",
+      "domain": "member",
+      "path": "src/components/screens/member/smoking/smoking-commitment/smoking-commitment.screen.tsx",
+      "importPath": "@screens/member/smoking/smoking-commitment/smoking-commitment.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "SmokingHub",
+      "domain": "member",
+      "path": "src/components/screens/member/smoking/smoking-hub/smoking-hub.screen.tsx",
+      "importPath": "@screens/member/smoking/smoking-hub/smoking-hub.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "SmokingStreakLapsed",
+      "domain": "member",
+      "path": "src/components/screens/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.screen.tsx",
+      "importPath": "@screens/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "Streaks",
+      "domain": "member",
+      "path": "src/components/screens/member/streaks/streaks.screen.tsx",
+      "importPath": "@screens/member/streaks/streaks.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "TodayEarnings",
+      "domain": "member",
+      "path": "src/components/screens/member/today-earnings/today-earnings.screen.tsx",
+      "importPath": "@screens/member/today-earnings/today-earnings.screen",
+      "storyPath": "screens/member/today-earnings.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "TodayEarningsLoading",
+      "domain": "member",
+      "path": "src/components/screens/member/today-earnings/today-earnings-loading.screen.tsx",
+      "importPath": "@screens/member/today-earnings/today-earnings-loading.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Tools",
+      "domain": "member",
+      "path": "src/components/screens/member/tools/tools.screen.tsx",
+      "importPath": "@screens/member/tools/tools.screen",
+      "storyPath": "screens/member/tools.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "TournamentDebug",
+      "domain": "member",
+      "path": "src/components/screens/member/debug/tournament-debug/tournament-debug.screen.tsx",
+      "importPath": "@screens/member/debug/tournament-debug/tournament-debug.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "UserSearch",
+      "domain": "member",
+      "path": "src/components/screens/member/user-search/user-search.screen.tsx",
+      "importPath": "@screens/member/user-search/user-search.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "YuScreen",
+      "domain": "member",
+      "path": "src/components/containers/member/yu/subcomponents/yu-screen-v5/yu-screen.tsx",
+      "importPath": "@components/containers/member/yu/subcomponents/yu-screen-v5/yu-screen",
+      "storyPath": "screens/member/yu-screen.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "YuHealthConnect",
+      "domain": "member",
+      "path": "src/components/screens/member/yu-health-connect/yu-health-connect.screen.tsx",
+      "importPath": "@screens/member/yu-health-connect/yu-health-connect.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "YuHealthConnectSelect",
+      "domain": "member",
+      "path": "src/components/screens/member/yu-health-connect/yu-health-connect-select.screen.tsx",
+      "importPath": "@screens/member/yu-health-connect/yu-health-connect-select.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "NoAccess",
+      "domain": "no-access",
+      "path": "src/components/screens/no-access/no-access.screen.tsx",
+      "importPath": "@screens/no-access/no-access.screen",
+      "storyPath": "screens/system/no-access.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "Offline",
+      "domain": "offline",
+      "path": "src/components/screens/offline/offline.screen.tsx",
+      "importPath": "@screens/offline/offline.screen",
+      "storyPath": "screens/system/offline.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "FitkitConnect",
+      "domain": "onboarding",
+      "path": "src/components/screens/onboarding/fitkit-connect/fitkit-connect.screen.tsx",
+      "importPath": "@screens/onboarding/fitkit-connect/fitkit-connect.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "SignupReward",
+      "domain": "onboarding",
+      "path": "src/components/screens/onboarding/signup-reward/signup-reward.screen.tsx",
+      "importPath": "@screens/onboarding/signup-reward/signup-reward.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "PathwayGoalsPicker",
+      "domain": "pathway-goals-picker",
+      "path": "src/modules/pathways/screens/pathway-goals-picker/pathway-goals-picker.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathway-goals-picker/pathway-goals-picker.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysChallengeFeedback",
+      "domain": "pathways-challenge-feedback",
+      "path": "src/modules/pathways/screens/pathways-challenge-feedback/pathways-challenge-feedback.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-challenge-feedback/pathways-challenge-feedback.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysChallengeIntro",
+      "domain": "pathways-challenge-intro",
+      "path": "src/modules/pathways/screens/pathways-challenge-intro/pathways-challenge-intro.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-challenge-intro/pathways-challenge-intro.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysChallengeSuccess",
+      "domain": "pathways-challenge-success.screen.tsx",
+      "path": "src/modules/pathways/screens/pathways-challenge-success.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-challenge-success.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysClaim",
+      "domain": "pathways-claim",
+      "path": "src/modules/pathways/screens/pathways-claim/pathways-claim.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-claim/pathways-claim.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysGoalsHistory",
+      "domain": "pathways-goals-history.screen.tsx",
+      "path": "src/modules/pathways/screens/pathways-goals-history.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-goals-history.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysGoalsSuccess",
+      "domain": "pathways-goals-success.screen.tsx",
+      "path": "src/modules/pathways/screens/pathways-goals-success.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-goals-success.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysMoodCalendar",
+      "domain": "pathways-mood-calendar.screen.tsx",
+      "path": "src/modules/pathways/screens/pathways-mood-calendar.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-mood-calendar.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PathwaysReflected",
+      "domain": "pathways-reflected",
+      "path": "src/modules/pathways/screens/pathways-reflected/pathways-reflected.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways-reflected/pathways-reflected.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "Pathways",
+      "domain": "pathways.screen.tsx",
+      "path": "src/modules/pathways/screens/pathways.screen.tsx",
+      "importPath": "@screens/src/modules/pathways/screens/pathways.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PerkSubscriptionInfo",
+      "domain": "perk",
+      "path": "src/components/screens/perk/perk-subscription-info.screen.tsx",
+      "importPath": "@screens/perk/perk-subscription-info.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "PerkSubscriptionInfoLoading",
+      "domain": "perk",
+      "path": "src/components/screens/perk/perk-subscription-info-loading.screen.tsx",
+      "importPath": "@screens/perk/perk-subscription-info-loading.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Beneficiary",
+      "domain": "products",
+      "path": "src/components/screens/products/fib/beneficiaries/beneficiary.screen.tsx",
+      "importPath": "@screens/products/fib/beneficiaries/beneficiary.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "Referrals",
+      "domain": "referrals",
+      "path": "src/components/screens/referrals/referrals.screen.tsx",
+      "importPath": "@screens/referrals/referrals.screen",
+      "storyPath": "screens/referrals/referrals.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "ReferralsLoading",
+      "domain": "referrals",
+      "path": "src/components/screens/referrals/referrals-loading.screen.tsx",
+      "importPath": "@screens/referrals/referrals-loading.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "EmailSent",
+      "domain": "reset-password",
+      "path": "src/components/screens/reset-password/email-sent.screen.tsx",
+      "importPath": "@screens/reset-password/email-sent.screen",
+      "storyPath": "screens/auth/email-sent.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "ResetPassword",
+      "domain": "reset-password",
+      "path": "src/components/screens/reset-password/reset-password.screen.tsx",
+      "importPath": "@screens/reset-password/reset-password.screen",
+      "storyPath": "screens/auth/reset-password.stories.tsx",
+      "storyStatus": "documented",
+      "priorityTier": "done"
+    },
+    {
+      "name": "Sdui",
+      "domain": "sdui",
+      "path": "src/components/screens/sdui/sdui.screen.tsx",
+      "importPath": "@screens/sdui/sdui.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    },
+    {
+      "name": "Splash",
+      "domain": "splash",
+      "path": "src/components/screens/splash/splash.screen.tsx",
+      "importPath": "@screens/splash/splash.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "TournamentDetails",
+      "domain": "tournament-details",
+      "path": "src/modules/tournaments/screens/tournament-details/tournament-details.screen.tsx",
+      "importPath": "@screens/src/modules/tournaments/screens/tournament-details/tournament-details.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "TournamentHowToPlay",
+      "domain": "tournament-how-to-play",
+      "path": "src/modules/tournaments/screens/tournament-how-to-play/tournament-how-to-play.screen.tsx",
+      "importPath": "@screens/src/modules/tournaments/screens/tournament-how-to-play/tournament-how-to-play.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "TournamentTeams",
+      "domain": "tournament-teams",
+      "path": "src/modules/tournaments/screens/tournament-teams/tournament-teams.screen.tsx",
+      "importPath": "@screens/src/modules/tournaments/screens/tournament-teams/tournament-teams.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "3"
+    },
+    {
+      "name": "Update",
+      "domain": "update",
+      "path": "src/components/screens/update/update.screen.tsx",
+      "importPath": "@screens/update/update.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "2"
+    },
+    {
+      "name": "WebView",
+      "domain": "web-view",
+      "path": "src/components/screens/web-view/web-view.screen.tsx",
+      "importPath": "@screens/web-view/web-view.screen",
+      "storyPath": null,
+      "storyStatus": "pending",
+      "priorityTier": "skip"
+    }
+  ],
+  "tierCounts": {
+    "1": 20,
+    "2": 24,
+    "3": 33,
+    "4": 4,
+    "done": 9,
+    "skip": 38
+  },
+  "priorityTiers": {
+    "1": "Shell + auth + rewards (next 20)",
+    "2": "Core journeys (25)",
+    "3": "Feature domains (30)",
+    "4": "Defer or on-demand",
+    "skip": "Skip — legacy, debug, native-heavy, or cover as parent variants",
+    "done": "Documented in Storybook"
+  }
+}

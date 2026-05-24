@@ -1,4 +1,4 @@
-import { getCurrentPlanetByLevel, getCurrentWorld } from "@utils";
+import { getCurrentPlanetByLevel, getCurrentWorld } from "@utils/quests";
 import { planetStyles, yuniversalStyles } from "./theme.styles";
 
 export const getTheme = (currentLevel: number, yuniversalMap?: number) => {

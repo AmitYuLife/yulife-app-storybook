@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Contact Details Active icon">
+<path id="Rectangle 10993" d="M0 4C0 2.89543 0.895431 2 2 2H18C19.1046 2 20 2.89543 20 4V13C20 14.1046 19.1046 15 18 15H2C0.895431 15 0 14.1046 0 13V4Z" fill="var(--fill-0, #BADAFF)"/>
+<path id="Rectangle 10994" d="M0 4C0 2.89543 0.895431 2 2 2H16C17.1046 2 18 2.89543 18 4V13C18 14.1046 17.1046 15 16 15H2C0.89543 15 0 14.1046 0 13V4Z" fill="var(--fill-0, #70B2FF)"/>
+<ellipse id="Ellipse 218" cx="5.32715" cy="6.47531" rx="2" ry="1.97531" fill="var(--fill-0, white)"/>
+<path id="Ellipse 219" d="M8.47846 11.6398C8.52137 11.9126 8.29551 12.1379 8.01936 12.1379C6.88858 12.1379 4.10085 12.1379 2.49842 12.1379C2.22228 12.1379 1.99588 11.9126 2.03879 11.6398C2.28118 10.0989 3.63047 8.91949 5.25863 8.91949C6.8868 8.91949 8.23607 10.0989 8.47846 11.6398Z" fill="var(--fill-0, white)"/>
+<path id="Exclude" fill-rule="evenodd" clip-rule="evenodd" d="M9.5 0C8.11929 0 7 1.11929 7 2.5V3H12V2.5C12 1.11929 10.8807 0 9.5 0ZM9.5 2C9.77614 2 10 1.77614 10 1.5C10 1.22386 9.77614 1 9.5 1C9.22386 1 9 1.22386 9 1.5C9 1.77614 9.22386 2 9.5 2Z" fill="var(--fill-0, #70B2FF)"/>
+<rect id="Rectangle 10997" x="10" y="5" width="7" height="1.5" rx="0.75" fill="var(--fill-0, white)"/>
+<rect id="Rectangle 10998" x="10" y="8" width="7" height="1.5" rx="0.75" fill="var(--fill-0, white)"/>
+<rect id="Rectangle 10999" x="10" y="10.5" width="7" height="1.5" rx="0.75" fill="var(--fill-0, white)"/>
+</g>
+</svg>

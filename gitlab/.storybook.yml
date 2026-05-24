@@ -4,23 +4,19 @@ deploy:dev:storybook:
     - .generic-node-arm64
     - .cache-pull
   stage: release
-  # Do not cancel this job if newer commit made
   interruptible: false
   variables:
     CLOUDFRONT_DOMAIN: app-components.yulife.engineering
     CLOUDFRONT_S3_BUCKET: yu-develop-app-components
-    # Increase memory limit for node
     NODE_OPTIONS: "--max_old_space_size=3072"
     BUILD_PATH: "./storybook-static"
   script:
-    # Install node
     - nvm install -b
     - corepack enable
     - pnpm install --frozen-lockfile
     - pnpm build:storybook:web
-    # Recursive touch to update all files' timestamps to force copy them using `aws s3 sync`
     - find "$BUILD_PATH" -type f -exec touch {} +
-    - aws s3 sync --delete "$BUILD_PATH"  "s3://$CLOUDFRONT_S3_BUCKET"
+    - aws s3 sync --delete "$BUILD_PATH" "s3://$CLOUDFRONT_S3_BUCKET"
     - |
       DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,aliases:Aliases.Items}[?aliases && contains(aliases,'$CLOUDFRONT_DOMAIN')].id" --output text)
       echo "Invalidating Cloudfront Distribution $DISTRIBUTION_ID"
@@ -37,10 +33,8 @@ storybook-build:
   stage: quality
   interruptible: false
   variables:
-    # Increase memory limit for node
     NODE_OPTIONS: "--max_old_space_size=3072"
   script:
-    # Install node
     - nvm install -b
     - corepack enable
     - pnpm install --frozen-lockfile

@@ -142,10 +142,36 @@ module.exports = {
       },
     },
     {
-      files: ["*.stories.tsx"],
+      files: ["packages/yulife-design-system/**/*.{ts,tsx}", "screens/**/*.{ts,tsx}"],
+      rules: {
+        "strict-null-checks/all": "off",
+        "react-native/no-inline-styles": "off",
+        "rulesdir/no-restricted-imports-clone": "off",
+        "rulesdir/jsx-no-logical-and": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "storybook/no-redundant-story-name": "off",
+        "storybook/no-renderer-packages": "off",
+        "react-compiler/react-compiler": "off",
+        "react/no-unescaped-entities": "off",
+        "no-restricted-imports": "off",
+        "@typescript-eslint/no-deprecated": "off",
+      },
+    },
+    {
+      files: ["packages/yulife-design-system/**/*.stories.tsx"],
       rules: {
         "react-native/no-inline-styles": "off",
         "no-restricted-imports": "off",
+      },
+    },
+    {
+      files: ["packages/yulife-design-system/**/*.figma.ts"],
+      parserOptions: {
+        project: null,
+      },
+      rules: {
+        "@typescript-eslint/no-deprecated": "off",
+        "strict-null-checks/all": "off",
       },
     },
     {
@@ -227,24 +253,6 @@ module.exports = {
       rules: {
         "eslint-comments/no-unlimited-disable": "off",
         "eslint-comments/no-unused-disable": "off",
-      },
-    },
-    {
-      files: ["vibes/**/*", "web/**/*"],
-      env: {
-        browser: true,
-        node: true,
-      },
-      parserOptions: {
-        project: null,
-      },
-      rules: {
-        "@typescript-eslint/no-deprecated": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-unused-vars": "off",
-        "strict-null-checks/all": "off",
-        "rulesdir/no-restricted-imports-clone": "off",
-        curly: "off",
       },
     },
   ],

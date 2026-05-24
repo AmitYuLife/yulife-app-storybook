@@ -3,7 +3,10 @@ import { StyleSheet, View } from "react-native";
 
 const BlurView = () => <View style={styles.blur} />;
 
-export default { BlurView };
+const BlurTarget = ({ children, style }) => <View style={style}>{children}</View>;
+
+export { BlurView, BlurTarget };
+export default { BlurView, BlurTarget };
 
 const styles = StyleSheet.create({
   blur: {

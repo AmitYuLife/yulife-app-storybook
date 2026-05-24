@@ -116,19 +116,11 @@
       ],
       "@yu-life/react-native-yu-health/*": [
         "./targets/YuHealth/src/*"
-      ],
-      "@storybook/react-webpack5": [
-        "./node_modules/@storybook/react-webpack5/dist/index.d.ts"
-      ],
-      "@storybook/react": [
-        "./node_modules/@storybook/react/dist/index.d.ts"
       ]
     }
   },
   "exclude": [
     "e2e",
-    "vibes",
-    "web",
     "node_modules",
     "babel.config.js",
     "metro.config.js"

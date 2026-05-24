@@ -2,7 +2,8 @@ import Polyglot from "node-polyglot";
 import { getLocales } from "expo-localization";
 import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language, Translation } from "./translations";
-import { IS_DEVELOP, isWeb } from "@utils";
+import { IS_DEVELOP } from "@utils/debug";
+import { isWeb } from "@utils/device";
 
 class Translator {
   private dict: Polyglot;
@@ -50,8 +51,8 @@ class Translator {
     try {
       const locales = getLocales();
       const locale = locales[0];
-      language = locale?.languageCode;
-      region = locale?.regionCode;
+      language = locale?.languageCode ?? undefined;
+      region = locale?.regionCode ?? undefined;
     } catch (e) {
       console.error(e);
     }
@@ -105,7 +106,7 @@ class Translator {
 
   public readonly getAvailableLocaleOptions = (
     showAllOptions: boolean
-  ): { id: Language; name: string; flag: string; overwrite: Language; intercomLanguage: string }[] => {
+  ): { id: Language; name: string; flag?: string; overwrite?: Language; intercomLanguage: string }[] => {
     return this.getAvailableLocales(showAllOptions)
       .map((id) => {
         const translation = translations[id];

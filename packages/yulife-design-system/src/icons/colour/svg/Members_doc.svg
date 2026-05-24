@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1593">
+<path id="Rectangle 1077" d="M0 2C0 0.895431 0.895431 0 2 0H14C15.1046 0 16 0.895431 16 2V18C16 19.1046 15.1046 20 14 20H2C0.895431 20 0 19.1046 0 18V2Z" fill="var(--fill-0, #69DD86)"/>
+<path id="Rectangle 1076" d="M0 1.5C0 2.50354 0.813532 3.31707 1.81707 3.31707H13C14.1046 3.31707 15 4.2125 15 5.31707V18C15 19.1046 14.1046 20 13 20H2C0.89543 20 0 19.1046 0 18V1.5Z" fill="var(--fill-0, #B7FFC9)"/>
+<path id="Vector 114 (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M3.35 8C3.35 7.64101 3.64101 7.35 4 7.35L10 7.35C10.359 7.35 10.65 7.64102 10.65 8C10.65 8.35899 10.359 8.65 10 8.65L4 8.65C3.64101 8.65 3.35 8.35898 3.35 8Z" fill="var(--fill-0, #69DD86)"/>
+<path id="Vector 115 (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M3.35 11C3.35 10.641 3.64101 10.35 4 10.35L9 10.35C9.35899 10.35 9.65 10.641 9.65 11C9.65 11.359 9.35899 11.65 9 11.65L4 11.65C3.64101 11.65 3.35 11.359 3.35 11Z" fill="var(--fill-0, #69DD86)"/>
+</g>
+</svg>

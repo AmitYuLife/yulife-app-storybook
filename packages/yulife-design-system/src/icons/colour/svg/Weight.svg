@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Weight icon">
+<path id="Rectangle 10565" d="M0 2C0 0.89543 0.895431 0 2 0L16 0C17.1046 0 18 0.895431 18 2L18 16C18 17.1046 17.1046 18 16 18L2 18C0.89543 18 0 17.1046 0 16L0 2Z" fill="var(--fill-0, #FFD600)"/>
+<circle id="Ellipse 1064" cx="9" cy="5.25" r="3.75" fill="var(--fill-0, white)"/>
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M9.74775 9.94148C12.0158 9.58284 13.75 7.61894 13.75 5.25C13.75 2.62665 11.6234 0.5 9 0.5C6.37665 0.5 4.25 2.62665 4.25 5.25C4.25 7.61894 5.98416 9.58284 8.25225 9.94148C8.25076 9.96079 8.25 9.98031 8.25 10V17.992H9.75V10C9.75 9.98031 9.74924 9.96079 9.74775 9.94148ZM12.75 5.25C12.75 7.32107 11.0711 9 9 9C6.92893 9 5.25 7.32107 5.25 5.25C5.25 3.17893 6.92893 1.5 9 1.5C11.0711 1.5 12.75 3.17893 12.75 5.25Z" fill="var(--fill-0, #FFB803)"/>
+<path id="Vector 3445 (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M9 1.25C9 1.25 9.75 4.22789 9.75 5C9.75 5.41421 9.41421 5.75 9 5.75C8.58579 5.75 8.25 5.41421 8.25 5C8.25 4.22789 9 1.25 9 1.25Z" fill="var(--fill-0, #FF5F5F)"/>
+</g>
+</svg>

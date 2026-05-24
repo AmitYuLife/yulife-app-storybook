@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plant a tree icon">
+<path id="Rectangle 10209" d="M3 10H15V17C15 18.1046 14.1046 19 13 19H5C3.89543 19 3 18.1046 3 17V10Z" fill="var(--fill-0, #FD7841)"/>
+<path id="Rectangle 10208" d="M1 10H13V17C13 18.1046 12.1046 19 11 19H3C1.89543 19 1 18.1046 1 17V10Z" fill="var(--fill-0, #FFB13B)"/>
+<rect id="Rectangle 10210" x="1" y="10" width="12" height="2" fill="var(--fill-0, #FFD363)"/>
+<rect id="Rectangle 10211" x="13" y="10" width="2" height="2" fill="var(--fill-0, #FFB803)"/>
+<g id="Group 5276">
+<path id="Vector" d="M0 1.77779V0H3.11112C6.22225 0 9.33337 2.22223 9.33337 5.33336V8.00004H6.22225C2.78579 8.00004 0 5.21425 0 1.77779Z" fill="var(--fill-0, #37C4A0)"/>
+<path id="Vector_2" d="M16 2.8V1H13.3C9.8206 1 7 3.8206 7 7.3V10H9V9.1H9.7C13.1794 9.1 16 6.2794 16 2.8Z" fill="var(--fill-0, #028989)"/>
+</g>
+</g>
+</svg>

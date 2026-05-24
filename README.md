@@ -45,6 +45,17 @@ Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/
 
 This project uses `pnpm` for project tasks and dependencies.
 
+## Design System Storybook
+
+The YuLife design system lives in `packages/yulife-design-system` and is documented with Storybook 10 (web React, not react-native-web).
+
+```sh
+pnpm start:storybook:web   # http://localhost:6006
+pnpm build:storybook:web   # outputs to storybook-static/
+```
+
+Stories are co-located with components under `packages/yulife-design-system/src/**/*.stories.tsx`.
+
 Before you run `pnpm install` make sure you have added your [Gitlab token:](https://yulife.atlassian.net/wiki/spaces/ENGINEERIN/pages/1141833734/Engineering+setup+-+gitlab+access+tokens)
 
 To install dependencies, run:
@@ -451,28 +462,6 @@ SPACESHIP_CONNECT_API_ISSUER_ID=ENV_CONNECT_API_ISSUER_ID
 SPACESHIP_CONNECT_API_KEY_FILEPATH=ENV_CONNECT_API_KEY_FILEPATH
 ```
 
-## StoryBook
-
-This project provides a StoryBook server. This is deployed to <https://app-components.yulife.engineering/>
-To access locally, run the following `start` commands
-
-To access run:
-
-```sh
-pnpm start:storybook:web
-```
-
-To create a new story, you can run the snippet:
-
-```sh
-yustory
-```
-
-It will generate a default template for you.
-
-> **Note**
-> If the app displays a error message when trying to run it with "pnpm start" after using storybook, make sure to revert the changes made to `index.js` before running the app again.
-
 ## Folder Structure for YuLife
 
 The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com/chapter-2/) pattern for component composition.
@@ -507,7 +496,6 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 |   ├── redux (configs, store, reducers, actions, etc.)
 |   ├── services
 |   ├── styles
-├── storybook
 ```
 
 ## Custom ESLint Rules
