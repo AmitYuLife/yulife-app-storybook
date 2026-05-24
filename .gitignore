@@ -102,6 +102,18 @@ plugins/expo-apple-targets
 # Used for local development, merged .env and .env.local.overrides into .env.local
 .env.local.overrides
 
+# Environment files with secrets — use .env.example as a template locally
+.env
+.env.develop
+.env.e2e
+.env.production
+.env.uat
+!.env.example
+
+# Firebase config — download from Firebase console (see support/android/GOOGLE_SERVICES.md)
+support/android/google-services.json
+support/android/google-services-debug.json
+
 .secure_files/
 
 # ignore generated translation files

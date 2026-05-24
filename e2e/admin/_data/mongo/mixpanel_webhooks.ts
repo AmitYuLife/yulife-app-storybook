@@ -14,7 +14,7 @@ export const webhook_1 = {
         "action": "APP_STORE_REVIEW_PROMPT",
         "promptAfterSeconds": 6,
         "enabled": true,
-        "secret": "1mqg2NOMItKUKepufbEpwhs7w8sKhiRkJ6gv09k97x",
+        "secret": "e2e-test-mixpanel-webhook-secret",
         "__v": 0,
         // "promptAfterEvent": "CHALLENGE_START_SUCCESS"
     }

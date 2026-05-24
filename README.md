@@ -159,8 +159,10 @@ When new image assets are added, these should be run through [ImageOptim](https:
 
 #### Local environment override
 
+Copy `.env.example` to `.env.local.overrides` and fill in values from your team secrets store (never commit real keys to this public repo).
+
 To create local environment values override create a file in root directory `.env.local.overrides`
-When running `start:{ios|android}:local` an `.env.local` file will be generated merging `.env` and `.env.local.overrides` files.
+When running `start:{ios|android}:local`, an `.env.local` file will be generated merging `.env` (or `.env.example`) and `.env.local.overrides`.
 
 ### iOS
 
