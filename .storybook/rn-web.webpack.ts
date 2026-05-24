@@ -1,9 +1,72 @@
 import path from "node:path";
+import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import type { Configuration as WebpackConfig } from "webpack";
 import webpack from "webpack";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+
+type WebpackRule = NonNullable<NonNullable<WebpackConfig["module"]>["rules"]>[number];
+
+/** Ensure Storybook's default asset rules do not swallow `*.svg?react` imports. */
+const excludeSvgReactFromAssetRules = (rules: WebpackRule[] | undefined): void => {
+  if (!rules) {
+    return;
+  }
+
+  for (const rule of rules) {
+    if (!rule || typeof rule !== "object") {
+      continue;
+    }
+
+    const webpackRule = rule as {
+      test?: RegExp;
+      oneOf?: WebpackRule[];
+      rules?: WebpackRule[];
+      resourceQuery?: unknown;
+    };
+
+    if (Array.isArray(webpackRule.oneOf)) {
+      excludeSvgReactFromAssetRules(webpackRule.oneOf);
+    }
+
+    if (Array.isArray(webpackRule.rules)) {
+      excludeSvgReactFromAssetRules(webpackRule.rules);
+    }
+
+    if (!(webpackRule.test instanceof RegExp) || !webpackRule.test.test(".svg")) {
+      continue;
+    }
+
+    // Leave the dedicated SVGR rule alone.
+    if (webpackRule.resourceQuery instanceof RegExp && webpackRule.resourceQuery.test("?react")) {
+      continue;
+    }
+
+    const previousQuery = webpackRule.resourceQuery;
+    webpackRule.resourceQuery = (query: string) => {
+      if (/react/.test(query)) {
+        return false;
+      }
+
+      if (typeof previousQuery === "function") {
+        return previousQuery(query);
+      }
+
+      if (previousQuery instanceof RegExp) {
+        return previousQuery.test(query);
+      }
+
+      if (previousQuery && typeof previousQuery === "object" && "not" in previousQuery) {
+        const notQueries = Array.isArray(previousQuery.not) ? previousQuery.not : [previousQuery.not];
+        return notQueries.every((notQuery) => !(notQuery instanceof RegExp && notQuery.test(query)));
+      }
+
+      return true;
+    };
+  }
+};
 
 export const RN_WEB_ALIASES: Record<string, string> = {
   "@app": path.resolve(__dirname, "../src"),
@@ -89,14 +152,26 @@ export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig =>
   config.resolve.extensions = [".web.js", ".web.ts", ".web.tsx", ".js", ".jsx", ".ts", ".tsx", ".json"];
 
   config.module = config.module ?? {};
+  const existingRules = config.module.rules ?? [];
+
+  // Storybook's default webpack rules treat SVG as static assets. Journey DS icons
+  // import SVGR components via `*.svg?react` and must be transformed first.
+  excludeSvgReactFromAssetRules(Array.isArray(existingRules) ? existingRules : [existingRules]);
+
   config.module.rules = [
-    ...(config.module.rules ?? []),
     {
-      test: /\.svg$/,
-      issuer: /\.[jt]sx?$/,
+      test: /\.svg$/i,
       resourceQuery: /react/,
-      use: ["@svgr/webpack"],
+      use: [
+        {
+          loader: require.resolve("@svgr/webpack"),
+          options: {
+            exportType: "default",
+          },
+        },
+      ],
     },
+    ...existingRules,
     {
       test: /\.(ts|js)x?$/,
       include: [
@@ -132,7 +207,7 @@ export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig =>
       },
     },
     {
-      test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|svg|webp|lottie)$/,
+      test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|webp|lottie)$/,
       loader: "file-loader",
       options: {
         name: "[name].[hash:8].[ext]",

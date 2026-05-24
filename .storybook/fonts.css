@@ -1,0 +1,84 @@
+@font-face {
+  font-family: "Bariol";
+  src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Bariol";
+  src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Bariol";
+  src: url("/assets/fonts/Bariol-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Bariol";
+  src: url("/assets/fonts/Bariol-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Legacy RN font family names used in src/styles/style.ts */
+@font-face {
+  font-family: "Bariol-Regular";
+  src: url("/assets/fonts/Bariol-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Bariol-Bold";
+  src: url("/assets/fonts/Bariol-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Bariol-Light";
+  src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url("/assets/fonts/OpenSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+#storybook-root {
+  font-family: Bariol;
+}

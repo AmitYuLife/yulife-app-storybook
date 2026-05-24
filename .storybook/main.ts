@@ -26,7 +26,11 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
-      exclude: ["**/hero-card/hero-card.tsx"],
+      exclude: [
+        "**/hero-card/hero-card.tsx",
+        // Docgen emits `switch.displayName`, which is invalid JS (`switch` is reserved).
+        "**/molecules/switch/switch.tsx",
+      ],
     },
   },
 

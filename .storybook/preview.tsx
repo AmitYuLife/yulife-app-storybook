@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react-webpack5";
 import "./rn-web-polyfills";
+import "./fonts.css";
 import { Box } from "../packages/yulife-design-system/src/components/box";
 import { Colours } from "../packages/yulife-design-system/src/tokens/colours";
 import "../packages/yulife-design-system/src/tokens/tokens.css";

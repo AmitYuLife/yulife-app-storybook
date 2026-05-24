@@ -129,6 +129,7 @@ export const Button: React.FC<ButtonProps> = ({
     : externalTransform;
 
   // ── Container base ──────────────────────────────────────────────────────────
+  const textToken = isLarge ? textStyles.button : textStyles.label1Bold;
   const containerBase: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
@@ -138,6 +139,7 @@ export const Button: React.FC<ButtonProps> = ({
     cursor: disabled ? "not-allowed" : "pointer",
     outline: "none",
     textDecoration: "none",
+    fontFamily: textToken.fontFamily,
     // Size
     height: isLarge ? 48 : undefined,
     padding: isLarge ? "16px 32px" : "8px 16px",
@@ -258,9 +260,10 @@ export const Button: React.FC<ButtonProps> = ({
   })();
 
   // ── Text style ──────────────────────────────────────────────────────────────
-  const textToken = isLarge ? textStyles.button : textStyles.label1Bold;
   const labelStyle: React.CSSProperties = {
-    ...textToken,
+    fontFamily: textToken.fontFamily,
+    fontWeight: textToken.fontWeight,
+    fontSize: `${textToken.fontSize}px`,
     color: labelColor,
     lineHeight: `${textToken.lineHeight}px`,
     letterSpacing: `${textToken.letterSpacing}px`,

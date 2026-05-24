@@ -213,7 +213,7 @@ const StyleGroup = ({ title, rows }: { title: string; rows: StyleRow[] }) => {
 export const TypeSpecimen: StoryObj = {
   name: "Type Specimen",
   render: () => (
-    <div style={{ padding: "40px 48px", maxWidth: 1000 }}>
+    <div style={{ padding: "40px 48px", maxWidth: 1000, fontFamily: fontFamily.sans }}>
       <StyleGroup title="Headings" rows={headingRows} />
       <StyleGroup title="Body" rows={bodyRows} />
       <StyleGroup title="Labels" rows={labelRows} />

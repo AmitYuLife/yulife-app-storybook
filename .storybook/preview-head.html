@@ -1,10 +1,12 @@
+<link rel="preload" href="/assets/fonts/Bariol-Regular.otf" as="font" type="font/otf" crossorigin="anonymous" />
+<link rel="preload" href="/assets/fonts/Bariol-Bold.otf" as="font" type="font/otf" crossorigin="anonymous" />
 <style type="text/css">
   @font-face {
     font-family: "Bariol";
     src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
     font-weight: 100;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -12,7 +14,7 @@
     src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
     font-weight: 300;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -20,7 +22,7 @@
     src: url("/assets/fonts/Bariol-Regular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -28,34 +30,35 @@
     src: url("/assets/fonts/Bariol-Bold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
-    font-family: "Open Sans";
-    src: url("/assets/fonts/OpenSans-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Open Sans";
-    src: url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+    font-family: "Bariol-Regular";
+    src: url("/assets/fonts/Bariol-Regular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
-    font-family: "Open Sans";
-    src: url("/assets/fonts/OpenSans-Bold.ttf") format("truetype");
+    font-family: "Bariol-Bold";
+    src: url("/assets/fonts/Bariol-Bold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
-  body {
+  @font-face {
+    font-family: "Bariol-Light";
+    src: url("/assets/fonts/Bariol-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: block;
+  }
+
+  body,
+  #storybook-root {
     font-family: Bariol;
   }
 </style>
