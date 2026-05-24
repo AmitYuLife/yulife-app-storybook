@@ -1,0 +1,15 @@
+---
+description: Project identity — this is yulife-app-storybook, not yulife-rn-client
+alwaysApply: true
+---
+
+# Project identity
+
+This workspace is **yulife-app-storybook** — a standalone Storybook and design-system documentation repo.
+
+- **This repo:** component library, design tokens, Storybook stories, screen documentation, LLM reference guidelines.
+- **Not this repo:** `yulife-rn-client` — the production React Native iOS/Android app. Do not treat this checkout as the RN client or refer to it as `yulife-rn-client`.
+
+When discussing repo names, remotes, or where code should live, use **yulife-app-storybook** for this project.
+
+Primary commands here: `pnpm start:storybook:web`, `pnpm build:storybook:web`.

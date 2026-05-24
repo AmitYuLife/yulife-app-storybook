@@ -1,8 +1,10 @@
-# YuLife React Native (RN client)
+# yulife-app-storybook — YuLife Design System & Storybook
 
-YuLife is a React Native mobile application for iOS and Android that provides a health and wellness platform with step tracking, challenges, rewards, and gamification features. The app uses Expo, React Native Navigation, Redux Toolkit with Sagas, Apollo GraphQL, and integrates with native health APIs.
+**This is not `yulife-rn-client`.** This workspace is a standalone Storybook project for the YuLife design system: component library rebuild, web Storybook documentation, app screen stories, and LLM-optimised reference docs. The production iOS/Android app lives in the separate `yulife-rn-client` repo.
 
-Source control is GitLab (`glab` CLI).
+This checkout includes legacy app source (`src/`, `screens/`) to render screen stories via react-native-web. Primary work here is in `packages/yulife-design-system/` and `screens/**/*.stories.tsx`.
+
+Source control for this repo: GitHub (`AmitYuLife/yulife-app-storybook`). The upstream RN client uses GitLab (`glab` CLI).
 
 ## Boundaries
 

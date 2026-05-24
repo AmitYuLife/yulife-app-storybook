@@ -1,6 +1,10 @@
-# yulife app
+# yulife-app-storybook
 
-Source code for the React Native app for iOS and Android.
+Storybook workspace for the YuLife design system — component library, design tokens, templates, and app screen documentation.
+
+This is **not** the production mobile app repo (`yulife-rn-client`). Run Storybook with `pnpm start:storybook:web` (http://localhost:6006).
+
+The checkout still contains legacy app source used to render screen stories via react-native-web. See `CLAUDE.md` for full project context.
 
 ## Project Installation
 

@@ -4,13 +4,27 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <div style={{ fontFamily: '"Inter", -apple-system, sans-serif', maxWidth: 720, margin: "0 auto", padding: "40px 24px" }}>
 
-# YuLife Design System
+# yulife-app-storybook
 
-### Component library + Storybook (single source of truth)
+### YuLife Design System — Storybook workspace
 
-A living component library for the YuLife mobile app. Design-system components render as web React in the browser; app screens use react-native-web.
+This repository is a **standalone Storybook project** for documenting the YuLife component library, design tokens, page templates, and app screen compositions.
 
-Canonical components and page templates are merged from the Journey design system (`~/Projects/design-system`). See `guidelines/merge-manifest.json` for the curated replacement list.
+It is **not** the production mobile app repo (`yulife-rn-client`). That codebase ships the iOS and Android app; this workspace exists to browse, validate, and document UI in the browser.
+
+<div style={{ border: "1px solid #E5E7EB", borderRadius: 12, background: "#F9FAFB", padding: "16px 20px", margin: "24px 0", fontSize: 13, lineHeight: 1.7, color: "#374151" }}>
+  <strong style={{ color: "#111827" }}>What lives here</strong>
+  <ul style={{ margin: "8px 0 0", paddingLeft: 20 }}>
+    <li><code>@yulife-private/design-system</code> — web React components and tokens in <code>packages/yulife-design-system</code></li>
+    <li><strong>Foundations, Templates, Components</strong> — design-system stories rendered as web React</li>
+    <li><strong>Screens</strong> — app screen stories rendered via react-native-web for reference and LLM docs</li>
+    <li><strong>Guidelines</strong> — LLM-oriented reference docs in <code>packages/yulife-design-system/guidelines/</code></li>
+  </ul>
+</div>
+
+**Run locally:** <code>pnpm start:storybook:web</code> → http://localhost:6006
+
+Canonical components and page templates are merged from the Journey design system (<code>~/Projects/design-system</code>). See <code>guidelines/merge-manifest.json</code> for the curated replacement list.
 
 ## Explore the Library
 
@@ -33,7 +47,7 @@ Canonical components and page templates are merged from the Journey design syste
   },
   {
     title: "Screens",
-    description: "App screens and Examples/ reference compositions built from templates.",
+    description: "App screen reference compositions built from templates and legacy app components.",
     href: "/?path=/docs/screens-examples-health-cash-plan--docs",
   },
 ].map((section) => (
