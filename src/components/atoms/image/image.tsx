@@ -19,7 +19,7 @@ import {
 } from "expo-image";
 import { Colours, StyleSheet } from "@styles";
 import { shallowEqual } from "react-redux";
-import { isWeb } from "@utils";
+import { isWeb } from "@utils/device";
 import { round } from "lodash";
 import { useBoxProps, useUserFeatures } from "@hooks";
 import { IBoxProps } from "@atoms/box/box.types";

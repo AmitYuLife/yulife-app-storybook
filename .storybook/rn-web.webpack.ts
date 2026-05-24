@@ -71,6 +71,9 @@ export const RN_WEB_ALIASES: Record<string, string> = {
   ),
   "@lottiefiles/dotlottie-react": path.join(__dirname, "/aliases/dotlottie-react"),
   "lottie-react-native": path.join(__dirname, "/aliases/lottie-react-native"),
+  // dom-serializer (via react-native-svg/css-select) resolves entities to a nested
+  // node_modules path that pnpm does not create; alias to the hoisted package.
+  entities: path.resolve(__dirname, "../node_modules/entities"),
 };
 
 export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig => {

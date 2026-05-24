@@ -1,11 +1,18 @@
 import { FC, memo } from "react";
 import { View } from "react-native";
-import { BUTTON_ICON, TertiaryButton } from "@molecules";
-import { Icon, Pad, TextTemplate } from "@atoms";
+import { TertiaryButton } from "@molecules/button/tertiary-button/tertiary-button";
+import { BUTTON_ICON } from "@molecules/button/tertiary-button/tertiary-button.helpers";
+import Pad from "@atoms/pad/pad";
+import { TextTemplate } from "@atoms/text/text-template";
+import { FlagJP } from "@atoms/icon/flag-jp";
+import { FlagKSA } from "@atoms/icon/flag-ksa";
+import { FlagSA } from "@atoms/icon/flag-sa";
+import { FlagUK } from "@atoms/icon/flag-uk";
+import { FlagUS } from "@atoms/icon/flag-us";
 import { REGION, region } from "@locale";
 import { Style, StyleSheet } from "@styles";
 import { useTranslation } from "@hooks";
-import { TOP_BAR_HEIGHT } from "@organisms";
+import { TOP_BAR_HEIGHT } from "@organisms/generic-heading/generic-heading.styles";
 
 type ServerListProps = {
   onPress: (r: REGION) => void;
@@ -46,11 +53,11 @@ export const ServerList: FC<ServerListProps> = memo(({ onPress, restrictToRegion
 });
 
 const REGION_TO_FLAG_MAPPING = {
-  UK: Icon.FlagUK,
-  US: Icon.FlagUS,
-  SA: Icon.FlagSA,
-  JP: Icon.FlagJP,
-  KSA: Icon.FlagKSA,
+  UK: FlagUK,
+  US: FlagUS,
+  SA: FlagSA,
+  JP: FlagJP,
+  KSA: FlagKSA,
 };
 
 export const styles = StyleSheet.create({

@@ -1,15 +1,17 @@
-import { memo, PropsWithChildren, JSX, ReactElement, isValidElement } from "react";
-import { Image as RNImage, ImageStyle, View, ViewStyle } from "react-native";
+import { createElement, memo, PropsWithChildren, JSX, ReactElement, ReactNode, isValidElement } from "react";
+import { Image as RNImage, ImageSourcePropType, ImageStyle, View, ViewStyle } from "react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { IScreen } from "@theme";
 import { LottieView } from "@molecules";
 import { Box, Image, Source } from "@atoms";
+import { isWeb } from "@utils/device";
+import { getBundledImageUri, normalizeImageSource } from "@utils/normalize-image-source";
 
 interface Props {
-  children?: React.ReactNode;
+  children?: ReactNode;
   testID?: string;
-  BackgroundGradient?: JSX.Element;
+  BackgroundGradient?: JSX.Element | null;
   backgroundImage?: Source | ReactElement;
   style?: ViewStyle | ImageStyle;
   isLottie?: boolean;
@@ -44,9 +46,9 @@ const CentredScreen = ({
         <View style={styles.imageWrapper}>
           <Background
             backgroundImage={backgroundImage as Source}
-            isFullScreen={isFullScreen}
-            isLottie={isLottie}
-            style={style}
+            isFullScreen={!!isFullScreen}
+            isLottie={!!isLottie}
+            style={(style ?? {}) as ViewStyle}
           />
         </View>
       )}
@@ -88,6 +90,30 @@ const Background = memo(({ isFullScreen, isLottie, backgroundImage, style }: ISc
     );
   }
 
+  const backgroundUri = isWeb() ? getBundledImageUri(backgroundImage) : null;
+
+  if (backgroundUri) {
+    const imageStyle = isFullScreen
+      ? { width: Style.DEVICE_WIDTH, height: Style.DEVICE_HEIGHT, ...(style as ImageStyle) }
+      : (style as ImageStyle);
+
+    return createElement("img", {
+      src: backgroundUri,
+      alt: "",
+      style: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        ...(typeof imageStyle.width === "number" ? { width: `${imageStyle.width}px` } : { width: imageStyle.width }),
+        ...(typeof imageStyle.height === "number"
+          ? { height: `${imageStyle.height}px` }
+          : { height: imageStyle.height }),
+        objectFit: "cover",
+        pointerEvents: "none",
+      },
+    });
+  }
+
   if (isFullScreen) {
     return (
       <Image contentFit="cover" source={backgroundImage} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />
@@ -96,7 +122,11 @@ const Background = memo(({ isFullScreen, isLottie, backgroundImage, style }: ISc
 
   return (
     <BackgroundWrapper>
-      <RNImage resizeMode="cover" style={style as ImageStyle} source={backgroundImage} />
+      <RNImage
+        resizeMode="cover"
+        style={style as ImageStyle}
+        source={normalizeImageSource(backgroundImage) as ImageSourcePropType}
+      />
     </BackgroundWrapper>
   );
 });

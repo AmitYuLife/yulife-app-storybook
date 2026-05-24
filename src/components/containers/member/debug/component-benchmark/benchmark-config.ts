@@ -1,4 +1,4 @@
-import { Box } from "@atoms";
+import Box from "@atoms/box/box";
 import { Style } from "@styles";
 import { View } from "react-native";
 

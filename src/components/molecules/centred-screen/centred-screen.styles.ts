@@ -1,13 +1,15 @@
 import { ImageStyle, ViewStyle } from "react-native";
-import { Style, TOP_BAR, StyleSheet } from "@styles";
+import { Style, StyleSheet, TOP_BAR } from "@styles";
 
 export default StyleSheet.create({
   imageWrapper: {
-    bottom: 0,
-    start: 0,
     position: "absolute",
-    end: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     width: "100%",
+    height: "100%",
   } as ViewStyle,
   wrapper: {
     alignItems: "center",
@@ -22,4 +24,14 @@ export default StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
   } as ImageStyle,
+  webBackground: {
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    width: "100%",
+  } as ViewStyle,
+  webBackgroundFullScreen: {
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+  } as ViewStyle,
 });

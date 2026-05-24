@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import { FC, memo } from "react";
 import { Image, ImageSourcePropType, View } from "react-native";
 import { Style } from "@styles";
 import { AnimatedClouds } from "./animated-clouds";
@@ -6,6 +6,7 @@ import { CentredScreen } from "@molecules";
 import { IThemeScreens } from "@theme";
 import { styles } from "./hero-header.styles";
 import { IAchievement } from "@organisms/achievements-showcase/achievements-showcase";
+import { normalizeImageSource } from "@utils/normalize-image-source";
 
 interface Props {
   theme: IThemeScreens;
@@ -42,7 +43,11 @@ export const HeroHeaderBackground: FC<Props> = memo(
         {(image && imageSize) || achievement?.backgroundImage ? (
           <Image
             style={imageSize}
-            source={achievement?.backgroundImage ? { uri: achievement?.backgroundImage?.uri } : image}
+            source={
+              achievement?.backgroundImage
+                ? { uri: achievement.backgroundImage.uri }
+                : (normalizeImageSource(image) as ImageSourcePropType)
+            }
             {...imageSize}
           />
         ) : (
