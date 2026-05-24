@@ -1,7 +1,8 @@
-export const FONT_FAMILY_PRIMARY = "'Bariol', 'Nunito Sans', sans-serif";
-export const FONT_FAMILY_PRIMARY_BOLD = "'Bariol Bold', 'Nunito Sans', sans-serif";
-export const FONT_FAMILY_SECONDARY = "'Open Sans', sans-serif";
-export const FONT_FAMILY_SECONDARY_BOLD = "'Open Sans', sans-serif";
+/** Web: single family name; font-weight selects the cut. */
+export const FONT_FAMILY_PRIMARY = "Bariol";
+export const FONT_FAMILY_PRIMARY_BOLD = "Bariol";
+export const FONT_FAMILY_SECONDARY = "Open Sans";
+export const FONT_FAMILY_SECONDARY_BOLD = "Open Sans";
 
 export type TemplateTextType =
   | "h1"
@@ -136,7 +137,7 @@ const canonTextStyles = {
 } as const satisfies Record<string, TextStyleDefinition>;
 
 export const fontFamily = {
-  sans: [FONT_FAMILY_PRIMARY, "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "Roboto", "sans-serif"].join(", "),
+  sans: FONT_FAMILY_PRIMARY,
 } as const;
 
 export const fontSize = {

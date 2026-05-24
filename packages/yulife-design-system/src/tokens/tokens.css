@@ -119,10 +119,10 @@
   --yu-radius-xxl: 24px;
   --yu-radius-full: 9999px;
 
-  /* Typography */
-  --yu-font-primary: 'Bariol', 'Nunito Sans', sans-serif;
-  --yu-font-primary-bold: 'Bariol Bold', 'Nunito Sans', sans-serif;
-  --yu-font-secondary: 'Open Sans', sans-serif;
+  /* Typography — single family; weight selects the cut (see typography.ts) */
+  --yu-font-primary: Bariol;
+  --yu-font-primary-bold: Bariol;
+  --yu-font-secondary: "Open Sans";
 }
 
 /* Typography classes */
