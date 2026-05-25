@@ -140,6 +140,13 @@ export const RN_WEB_ALIASES: Record<string, string> = {
 };
 
 export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig => {
+  // Ignore env churn and Storybook debug logs — git env cleanups otherwise trigger
+  // endless HMR rebuilds (spinner + flashing UI).
+  config.watchOptions = {
+    ...config.watchOptions,
+    ignored: /([\\/](?:\.env[^\\/]*|debug-storybook\.log|storybook-static)(?:[\\/]|$))/,
+  };
+
   config.resolve = config.resolve ?? {};
   config.resolve.alias = {
     ...config.resolve.alias,
@@ -163,6 +170,19 @@ export const applyRnWebWebpackConfig = (config: WebpackConfig): WebpackConfig =>
           loader: require.resolve("@svgr/webpack"),
           options: {
             exportType: "default",
+            // Keep viewBox so SVGs scale when width/height props differ from the source artboard.
+            svgoConfig: {
+              plugins: [
+                {
+                  name: "preset-default",
+                  params: {
+                    overrides: {
+                      removeViewBox: false,
+                    },
+                  },
+                },
+              ],
+            },
           },
         },
       ],

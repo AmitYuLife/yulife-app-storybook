@@ -95,7 +95,16 @@ interface YuLifeLogoProps {
 
 const YuLifeLogo: React.FC<YuLifeLogoProps> = ({ darkMode = false, size = 24 }) => {
   const LogoSvg = darkMode ? YuLifeSquareMonoSvg : YuLifeSquareColourSvg;
-  return <LogoSvg width={size} height={size} aria-label="YuLife" role="img" />;
+  return (
+    <LogoSvg
+      width={size}
+      height={size}
+      viewBox="0 0 80 80"
+      style={{ display: "block", flexShrink: 0 }}
+      aria-label="YuLife"
+      role="img"
+    />
+  );
 };
 
 // ─── NavigationHeader ──────────────────────────────────────────────────────────
